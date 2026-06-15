@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UTM Foundation Programme · Semester 3 Syllabus Guide</title>
+<style>
+  :root{
+    --maroon:#8c1d40;        /* UTM signature maroon */
+    --maroon-dark:#5e1230;
+    --maroon-light:#b03a5b;
+    --gold:#d4a017;
+    --ink:#1f2530;
+    --muted:#5c6675;
+    --bg:#f6f4f1;
+    --card:#ffffff;
+    --line:#e7e2dc;
+    --radius:16px;
+    --shadow:0 6px 24px rgba(40,20,30,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.6;
+  }
+  a{color:inherit;text-decoration:none}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(140,29,64,.97);backdrop-filter:blur(8px);
+    color:#fff;box-shadow:0 2px 14px rgba(0,0,0,.15);
+  }
+  .nav-inner{
+    max-width:1120px;margin:0 auto;padding:.7rem 1.2rem;
+    display:flex;align-items:center;gap:1rem;flex-wrap:wrap;
+  }
+  .brand{display:flex;align-items:center;gap:.6rem;font-weight:700;letter-spacing:.3px}
+  .brand .logo{
+    width:34px;height:34px;border-radius:8px;background:var(--gold);
+    color:var(--maroon-dark);display:grid;place-items:center;font-weight:800;font-size:.95rem;
+  }
+  .brand small{display:block;font-weight:400;font-size:.68rem;opacity:.85;letter-spacing:.5px}
+  .nav-links{margin-left:auto;display:flex;gap:.3rem;flex-wrap:wrap}
+  .nav-links a{
+    padding:.4rem .7rem;border-radius:999px;font-size:.82rem;font-weight:500;
+    transition:background .2s;
+  }
+  .nav-links a:hover{background:rgba(255,255,255,.18)}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:linear-gradient(135deg,var(--maroon) 0%,var(--maroon-dark) 100%);
+    color:#fff;padding:4rem 1.2rem 5rem;position:relative;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;right:-80px;bottom:-80px;width:320px;height:320px;
+    background:radial-gradient(circle,rgba(212,160,23,.35),transparent 70%);
+  }
+  .hero-inner{max-width:1120px;margin:0 auto;position:relative;z-index:2}
+  .hero .eyebrow{
+    display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);
+    padding:.35rem .85rem;border-radius:999px;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:1.1rem;
+  }
+  .hero h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.1;font-weight:800;max-width:18ch}
+  .hero p.sub{margin-top:1.1rem;font-size:1.1rem;max-width:60ch;opacity:.92}
+  .hero .meta{margin-top:1.8rem;display:flex;gap:1.6rem;flex-wrap:wrap;font-size:.9rem}
+  .hero .meta div{opacity:.92}
+  .hero .meta strong{display:block;font-size:1.4rem;font-weight:800;color:var(--gold)}
+
+  /* ---------- LAYOUT ---------- */
+  main{max-width:1120px;margin:0 auto;padding:0 1.2rem}
+  section.block{margin:3.5rem 0;scroll-margin-top:80px}
+  .section-head{display:flex;align-items:center;gap:.9rem;margin-bottom:1.4rem}
+  .section-head .num{
+    flex:none;width:46px;height:46px;border-radius:12px;background:var(--maroon);color:#fff;
+    display:grid;place-items:center;font-weight:800;font-size:1.1rem;
+  }
+  .section-head h2{font-size:1.6rem;font-weight:800;line-height:1.15}
+  .section-head .code{font-size:.8rem;color:var(--muted);font-weight:600;letter-spacing:.5px}
+
+  .intro-card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.6rem;box-shadow:var(--shadow);
+  }
+  .lead{font-size:1.05rem;color:var(--muted)}
+
+  /* ---------- TOPIC GRID ---------- */
+  .topics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.9rem;margin-top:1.3rem}
+  .topic{
+    background:var(--card);border:1px solid var(--line);border-left:4px solid var(--maroon-light);
+    border-radius:12px;padding:1rem 1.1rem;box-shadow:var(--shadow);transition:transform .15s,border-color .15s;
+  }
+  .topic:hover{transform:translateY(-3px);border-left-color:var(--gold)}
+  .topic .t-num{font-size:.72rem;font-weight:700;color:var(--maroon-light);letter-spacing:.5px}
+  .topic .t-title{font-weight:700;margin-top:.15rem}
+  .topic .t-desc{font-size:.86rem;color:var(--muted);margin-top:.3rem}
+
+  /* ---------- TABLE ---------- */
+  .table-wrap{overflow-x:auto;margin-top:1.3rem;border-radius:var(--radius);box-shadow:var(--shadow)}
+  table{width:100%;border-collapse:collapse;background:var(--card);min-width:520px}
+  th,td{padding:.85rem 1rem;text-align:left;border-bottom:1px solid var(--line);font-size:.92rem}
+  thead th{background:var(--maroon);color:#fff;font-weight:600;letter-spacing:.3px}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:nth-child(even){background:#faf8f6}
+  .pill{display:inline-block;background:var(--maroon);color:#fff;border-radius:999px;padding:.15rem .6rem;font-size:.78rem;font-weight:700}
+  td.weight{font-weight:800;color:var(--maroon)}
+  tfoot td{background:var(--maroon-dark);color:#fff;font-weight:800}
+
+  /* ---------- CHIPS / badges ---------- */
+  .badges{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
+  .badge{font-size:.78rem;background:#f0e8eb;color:var(--maroon-dark);padding:.3rem .7rem;border-radius:999px;font-weight:600;border:1px solid #e6d6dc}
+
+  /* ---------- OVERVIEW CARDS ---------- */
+  .overview{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-top:1.4rem}
+  .ov-card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1.3rem;
+    box-shadow:var(--shadow);display:flex;flex-direction:column;gap:.5rem;transition:transform .15s;
+  }
+  .ov-card:hover{transform:translateY(-4px)}
+  .ov-card .ic{font-size:1.8rem}
+  .ov-card h3{font-size:1.05rem}
+  .ov-card p{font-size:.85rem;color:var(--muted)}
+  .ov-card a.go{margin-top:auto;font-size:.82rem;font-weight:700;color:var(--maroon);align-self:flex-start}
+
+  /* ---------- TIPS ---------- */
+  .tips{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem;margin-top:1.3rem}
+  .tip{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.2rem;box-shadow:var(--shadow)}
+  .tip .ic{font-size:1.5rem}
+  .tip h4{margin:.4rem 0 .3rem;font-size:1rem}
+  .tip p{font-size:.86rem;color:var(--muted)}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--maroon-dark);color:#fff;margin-top:4rem;padding:2.5rem 1.2rem}
+  .foot-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;font-size:.9rem;opacity:.92}
+  footer a{color:var(--gold)}
+  .disclaimer{font-size:.78rem;opacity:.65;margin-top:1.4rem;max-width:1120px;margin-left:auto;margin-right:auto}
+
+  @media(max-width:620px){
+    .nav-links{width:100%;margin-left:0;justify-content:flex-start}
+    .hero{padding:3rem 1.2rem 3.5rem}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <span class="logo">UTM</span>
+      <span>Foundation Programme
+        <small>Semester 3 · Syllabus Guide</small>
+      </span>
+    </div>
+    <nav class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#english">English</a>
+      <a href="#calculus">Calculus</a>
+      <a href="#chemistry">Chemistry II</a>
+      <a href="#physics">Physics II</a>
+      <a href="#computing">Computing</a>
+      <a href="#tips">Study Tips</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">UTM Foundation in Science</span>
+    <h1>Your Semester 3 syllabus, explained simply.</h1>
+    <p class="sub">Everything you'll study this semester — five subjects, their topics, and how you'll be assessed — laid out clearly so you always know what's coming next.</p>
+    <div class="meta">
+      <div><strong>5</strong>Subjects</div>
+      <div><strong>40+</strong>Topics</div>
+      <div><strong>1</strong>Semester</div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ===== OVERVIEW ===== -->
+  <section class="block" id="overview">
+    <div class="section-head">
+      <span class="num">i</span>
+      <div>
+        <h2>Semester at a glance</h2>
+        <span class="code">What you're taking this semester</span>
+      </div>
+    </div>
+    <p class="lead">Click any subject to jump straight to its topics and assessment. Each subject mixes coursework (tests, presentations, lab/tutorial work) with a final exam — so steady effort throughout the semester pays off.</p>
+    <div class="overview">
+      <div class="ov-card">
+        <span class="ic">🗣️</span>
+        <h3>Academic Listening &amp; Speaking</h3>
+        <p>Build confidence presenting, discussing and listening in English. <strong>Code: FSPE0022</strong></p>
+        <a class="go" href="#english">View syllabus →</a>
+      </div>
+      <div class="ov-card">
+        <span class="ic">📈</span>
+        <h3>Calculus</h3>
+        <p>Limits, differentiation, integration and differential equations — the language of change.</p>
+        <a class="go" href="#calculus">View syllabus →</a>
+      </div>
+      <div class="ov-card">
+        <span class="ic">⚗️</span>
+        <h3>Chemistry II</h3>
+        <p>Energy, rates, equilibrium, acids &amp; bases, and an introduction to organic chemistry.</p>
+        <a class="go" href="#chemistry">View syllabus →</a>
+      </div>
+      <div class="ov-card">
+        <span class="ic">🔬</span>
+        <h3>Physics II</h3>
+        <p>Electricity, magnetism, optics and modern physics across 13 connected chapters.</p>
+        <a class="go" href="#physics">View syllabus →</a>
+      </div>
+      <div class="ov-card">
+        <span class="ic">💻</span>
+        <h3>Fundamentals of Computing</h3>
+        <p>Programming concepts and hands-on coding in the C language, from zero.</p>
+        <a class="go" href="#computing">View syllabus →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ENGLISH ===== -->
+  <section class="block" id="english">
+    <div class="section-head">
+      <span class="num">1</span>
+      <div>
+        <h2>Academic Listening &amp; Speaking Skills</h2>
+        <span class="code">FSPE0022 · Language Academy, UTMJB</span>
+      </div>
+    </div>
+    <div class="intro-card">
+      <p class="lead">This subject trains you to <strong>communicate confidently in academic English</strong> — speaking spontaneously, presenting formally, discussing in groups, and listening for meaning. Your grade is built almost entirely from performance tasks plus a final listening exam.</p>
+      <div class="badges">
+        <span class="badge">Spoken English</span>
+        <span class="badge">Presentations</span>
+        <span class="badge">Group discussion</span>
+        <span class="badge">Listening comprehension</span>
+      </div>
+    </div>
+
+    <h3 style="margin:2rem 0 .3rem;font-size:1.15rem">📋 How you'll be assessed</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Assessment</th><th>Weight</th><th>Format</th><th>Details</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Impromptu Speech</strong></td>
+            <td class="weight">2 × 10% = 20%</td>
+            <td>Individual</td>
+            <td>Speak on a current issue — 2 to 4 min, semi-formal. Intro (stance) → body (opinion) → conclusion.</td>
+          </tr>
+          <tr>
+            <td><strong>Oral Presentation</strong></td>
+            <td class="weight">10%</td>
+            <td>Individual</td>
+            <td>Informative talk on your field of study — 5 to 7 min, formal. Graded on speaking, content &amp; visual aids.</td>
+          </tr>
+          <tr>
+            <td><strong>Group Discussion</strong></td>
+            <td class="weight">10%</td>
+            <td>Group</td>
+            <td>10–15 min per group. Present a view, support it with evidence, agree/disagree respectfully, take turns.</td>
+          </tr>
+          <tr>
+            <td><strong>Listening Test</strong></td>
+            <td class="weight">2 × 10% = 20%</td>
+            <td>Individual</td>
+            <td>Audio-based, Units 1–8 of the textbook. 30 min each. Done via IQ Skills Online.</td>
+          </tr>
+          <tr>
+            <td><strong>Final Examination</strong></td>
+            <td class="weight">40%</td>
+            <td>Individual</td>
+            <td>1-hour listening exam — main idea, detail, inference, opinion, cause &amp; effect, prediction.</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr><td>Total</td><td>100%</td><td colspan="2">Coursework (60%) + Final Exam (40%)</td></tr>
+        </tfoot>
+      </table>
+    </div>
+    <p style="margin-top:1rem;font-size:.85rem;color:var(--muted)">💡 <strong>Tip:</strong> Speaking tasks are marked on organisation, clarity of ideas, delivery (eye contact, tone, gestures) and time management. Practising out loud — not just in your head — makes the biggest difference.</p>
+  </section>
+
+  <!-- ===== CALCULUS ===== -->
+  <section class="block" id="calculus">
+    <div class="section-head">
+      <span class="num">2</span>
+      <div>
+        <h2>Calculus</h2>
+        <span class="code">Mathematics · Semester 3</span>
+      </div>
+    </div>
+    <div class="intro-card">
+      <p class="lead">Calculus is the mathematics of <strong>change and accumulation</strong>. You'll start with limits, learn to differentiate and integrate, then apply these tools to real problems — finishing with differential equations and numerical methods. Each topic builds on the last, so don't fall behind.</p>
+    </div>
+    <div class="topics">
+      <div class="topic"><div class="t-num">TOPIC 1</div><div class="t-title">Limits &amp; Continuity</div><div class="t-desc">The foundation: what a function approaches, and where it "breaks".</div></div>
+      <div class="topic"><div class="t-num">TOPIC 2</div><div class="t-title">Differentiation</div><div class="t-desc">Rates of change and the rules for finding derivatives.</div></div>
+      <div class="topic"><div class="t-num">TOPIC 3</div><div class="t-title">Applications of Differentiation</div><div class="t-desc">Maxima/minima, optimisation and curve behaviour.</div></div>
+      <div class="topic"><div class="t-num">TOPIC 4</div><div class="t-title">Integration</div><div class="t-desc">The reverse of differentiation — finding areas and totals.</div></div>
+      <div class="topic"><div class="t-num">TOPIC 5</div><div class="t-title">Integration of Trigonometric Functions</div><div class="t-desc">Techniques for integrating sin, cos, tan and friends.</div></div>
+      <div class="topic"><div class="t-num">TOPIC 6</div><div class="t-title">Applications of Integration</div><div class="t-desc">Area between curves, volumes and accumulated quantities.</div></div>
+      <div class="topic"><div class="t-num">TOPIC 7</div><div class="t-title">Ordinary Differential Equations</div><div class="t-desc">Equations involving derivatives — modelling growth &amp; motion.</div></div>
+      <div class="topic"><div class="t-num">TOPIC 8</div><div class="t-title">Numerical Methods</div><div class="t-desc">Approximating answers when exact solutions are hard.</div></div>
+    </div>
+  </section>
+
+  <!-- ===== CHEMISTRY ===== -->
+  <section class="block" id="chemistry">
+    <div class="section-head">
+      <span class="num">3</span>
+      <div>
+        <h2>Chemistry II</h2>
+        <span class="code">Physical &amp; Organic Chemistry · Semester 3</span>
+      </div>
+    </div>
+    <div class="intro-card">
+      <p class="lead">Chemistry II focuses on <strong>energy, change and reactions</strong> — how much heat reactions release, how fast they go, where they settle, and how acids and bases behave — before opening the door to organic chemistry.</p>
+    </div>
+    <div class="topics">
+      <div class="topic"><div class="t-num">CHAPTER 1</div><div class="t-title">Thermochemistry</div><div class="t-desc">Heat changes in reactions — enthalpy, Hess's law.</div></div>
+      <div class="topic"><div class="t-num">CHAPTER 2</div><div class="t-title">Chemical Kinetics</div><div class="t-desc">Reaction rates and the factors that speed them up or slow them down.</div></div>
+      <div class="topic"><div class="t-num">CHAPTER 3</div><div class="t-title">Chemical Equilibrium</div><div class="t-desc">When forward and reverse reactions balance — Le Chatelier's principle.</div></div>
+      <div class="topic"><div class="t-num">CHAPTER 4</div><div class="t-title">Acids &amp; Bases</div><div class="t-desc">pH, strength, neutralisation and buffer systems.</div></div>
+      <div class="topic"><div class="t-num">CHAPTER 6</div><div class="t-title">Organic Chemistry</div><div class="t-desc">The chemistry of carbon compounds — functional groups &amp; reactions.</div></div>
+    </div>
+    <p style="margin-top:1rem;font-size:.85rem;color:var(--muted)">📝 Based on the lecture slides available. Confirm the exact chapter list (and any chapter 5 content) with your lecturer's course outline.</p>
+  </section>
+
+  <!-- ===== PHYSICS ===== -->
+  <section class="block" id="physics">
+    <div class="section-head">
+      <span class="num">4</span>
+      <div>
+        <h2>Physics II</h2>
+        <span class="code">Electricity, Magnetism, Optics &amp; Modern Physics</span>
+      </div>
+    </div>
+    <div class="intro-card">
+      <p class="lead">Physics II is a journey through <strong>four big themes</strong>: electricity, magnetism, optics (light), and modern physics. The early chapters on charge and circuits set up everything that follows, so master them first.</p>
+      <div class="badges">
+        <span class="badge">⚡ Electricity</span>
+        <span class="badge">🧲 Magnetism</span>
+        <span class="badge">🔦 Optics</span>
+        <span class="badge">⚛️ Modern Physics</span>
+      </div>
+    </div>
+    <div class="topics">
+      <div class="topic"><div class="t-num">CH 1</div><div class="t-title">Electrostatics</div><div class="t-desc">Electric charge and electric fields.</div></div>
+      <div class="topic"><div class="t-num">CH 2</div><div class="t-title">Capacitors</div><div class="t-desc">Storing electric charge and energy.</div></div>
+      <div class="topic"><div class="t-num">CH 3</div><div class="t-title">Current &amp; Resistance</div><div class="t-desc">How charge flows and what opposes it.</div></div>
+      <div class="topic"><div class="t-num">CH 4</div><div class="t-title">DC Circuits</div><div class="t-desc">Analysing circuits with Ohm's &amp; Kirchhoff's laws.</div></div>
+      <div class="topic"><div class="t-num">CH 5</div><div class="t-title">Magnetism</div><div class="t-desc">Magnetic fields and forces on charges.</div></div>
+      <div class="topic"><div class="t-num">CH 6</div><div class="t-title">Electromagnetic Induction</div><div class="t-desc">Generating current from changing fields.</div></div>
+      <div class="topic"><div class="t-num">CH 7</div><div class="t-title">Electromagnetic Waves</div><div class="t-desc">From radio waves to gamma rays.</div></div>
+      <div class="topic"><div class="t-num">CH 8</div><div class="t-title">Reflection &amp; Refraction</div><div class="t-desc">How light bounces and bends.</div></div>
+      <div class="topic"><div class="t-num">CH 9</div><div class="t-title">Lenses</div><div class="t-desc">Forming images with converging &amp; diverging lenses.</div></div>
+      <div class="topic"><div class="t-num">CH 10</div><div class="t-title">Interference &amp; Diffraction</div><div class="t-desc">Light behaving as a wave.</div></div>
+      <div class="topic"><div class="t-num">CH 11</div><div class="t-title">Quantum Theory of the Atom</div><div class="t-desc">Energy levels and the quantum model.</div></div>
+      <div class="topic"><div class="t-num">CH 12</div><div class="t-title">Nuclear Physics</div><div class="t-desc">Inside the nucleus — radioactivity &amp; decay.</div></div>
+      <div class="topic"><div class="t-num">CH 13</div><div class="t-title">Nuclear Reactions</div><div class="t-desc">Fission, fusion and nuclear energy.</div></div>
+    </div>
+  </section>
+
+  <!-- ===== COMPUTING ===== -->
+  <section class="block" id="computing">
+    <div class="section-head">
+      <span class="num">5</span>
+      <div>
+        <h2>Fundamentals of Computing</h2>
+        <span class="code">Programming in C · Semester 3</span>
+      </div>
+    </div>
+    <div class="intro-card">
+      <p class="lead">No coding experience needed. This subject takes you from <strong>"what is a computer?"</strong> to writing real programs in the <strong>C language</strong> — variables, input/output, decisions, loops, files and functions. Practice on a computer often; programming is a skill, not just a topic.</p>
+      <div class="badges">
+        <span class="badge">C language</span>
+        <span class="badge">Problem solving</span>
+        <span class="badge">Hands-on coding</span>
+      </div>
+    </div>
+    <div class="topics">
+      <div class="topic"><div class="t-num">TOPIC 1</div><div class="t-title">Introduction to IT</div><div class="t-desc">Computers, hardware, software and how it all fits together.</div></div>
+      <div class="topic"><div class="t-num">TOPIC 2</div><div class="t-title">Programming Concepts</div><div class="t-desc">Algorithms, flowcharts and thinking like a programmer.</div></div>
+      <div class="topic"><div class="t-num">TOPIC 3</div><div class="t-title">Programming Environment</div><div class="t-desc">Setting up and using your C development tools.</div></div>
+      <div class="topic"><div class="t-num">TOPIC 4</div><div class="t-title">Elementary Programming</div><div class="t-desc">Variables, data types and expressions (Parts 1 &amp; 2).</div></div>
+      <div class="topic"><div class="t-num">TOPIC 5</div><div class="t-title">Input &amp; Output</div><div class="t-desc">Reading input and displaying results.</div></div>
+      <div class="topic"><div class="t-num">TOPIC 6</div><div class="t-title">Branching &amp; Loops</div><div class="t-desc">if/else decisions and repetition (Parts 1 &amp; 2).</div></div>
+      <div class="topic"><div class="t-num">TOPIC 7</div><div class="t-title">Input &amp; Output Files</div><div class="t-desc">Reading from and writing to files.</div></div>
+      <div class="topic"><div class="t-num">TOPIC 8</div><div class="t-title">Functions</div><div class="t-desc">Breaking programs into reusable blocks (Parts 1 &amp; 2).</div></div>
+    </div>
+  </section>
+
+  <!-- ===== TIPS ===== -->
+  <section class="block" id="tips">
+    <div class="section-head">
+      <span class="num">★</span>
+      <div>
+        <h2>How to succeed this semester</h2>
+        <span class="code">Practical advice for foundation students</span>
+      </div>
+    </div>
+    <div class="tips">
+      <div class="tip"><span class="ic">🗓️</span><h4>Coursework adds up</h4><p>Most subjects spread marks across tests, presentations and quizzes. Small consistent effort beats last-minute cramming.</p></div>
+      <div class="tip"><span class="ic">🔗</span><h4>Topics build on each other</h4><p>In Calculus and Physics especially, each chapter depends on the previous one. Never skip the basics.</p></div>
+      <div class="tip"><span class="ic">🗣️</span><h4>Practise speaking aloud</h4><p>For English, rehearse presentations and impromptu speeches out loud — confidence and timing are graded.</p></div>
+      <div class="tip"><span class="ic">💻</span><h4>Code every week</h4><p>For Computing, write and run small C programs regularly. You learn programming by doing, not reading.</p></div>
+      <div class="tip"><span class="ic">❓</span><h4>Ask early</h4><p>Confused by a topic? Ask your lecturer or coursemates the same week — gaps only get harder to fix later.</p></div>
+      <div class="tip"><span class="ic">📚</span><h4>Use the slides</h4><p>Your lecture slides are your primary study material. Review them before and after each class.</p></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="foot-inner">
+    <div>
+      <strong style="font-size:1.05rem">UTM Foundation Programme</strong><br>
+      Semester 3 Syllabus Guide for foundation students.
+    </div>
+    <div>
+      Subjects: Academic Listening &amp; Speaking · Calculus ·<br>
+      Chemistry II · Physics II · Fundamentals of Computing
+    </div>
+  </div>
+  <p class="disclaimer">This guide is a student-friendly summary compiled from the official course materials and lecture slides. Topic lists and assessment weights should always be confirmed against your lecturer's official course outline (pro forma), as details may change between semesters.</p>
+</footer>
+
+</body>
+</html>
