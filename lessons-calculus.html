@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculus — Step-by-Step Lessons · UTM Foundation</title>
+<style>
+  :root{--maroon:#8c1d40;--maroon-dark:#5e1230;--maroon-light:#b03a5b;--gold:#d4a017;--ink:#1f2530;--muted:#5c6675;--bg:#f6f4f1;--card:#fff;--line:#e7e2dc;--radius:16px;--shadow:0 6px 24px rgba(40,20,30,.08)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65}
+  a{color:inherit;text-decoration:none}
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(140,29,64,.97);backdrop-filter:blur(8px);color:#fff;box-shadow:0 2px 14px rgba(0,0,0,.15)}
+  .nav-inner{max-width:980px;margin:0 auto;padding:.7rem 1.2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:.6rem;font-weight:700}
+  .brand .logo{width:34px;height:34px;border-radius:8px;background:var(--gold);color:var(--maroon-dark);display:grid;place-items:center;font-weight:800}
+  .brand small{display:block;font-weight:400;font-size:.68rem;opacity:.85}
+  .nav-links{margin-left:auto;display:flex;gap:.3rem;flex-wrap:wrap}
+  .nav-links a{padding:.4rem .7rem;border-radius:999px;font-size:.82rem;font-weight:500}
+  .nav-links a:hover{background:rgba(255,255,255,.18)}
+  .hero{background:linear-gradient(135deg,var(--maroon),var(--maroon-dark));color:#fff;padding:3rem 1.2rem 3.5rem}
+  .hero-inner{max-width:980px;margin:0 auto}
+  .hero .eyebrow{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:.35rem .85rem;border-radius:999px;font-size:.76rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:1rem}
+  .hero h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800}
+  .hero p{margin-top:.9rem;opacity:.92;max-width:60ch}
+  main{max-width:980px;margin:0 auto;padding:0 1.2rem}
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1.3rem 1.5rem;box-shadow:var(--shadow);margin:2rem 0}
+  .toc h2{font-size:1.05rem;margin-bottom:.7rem;color:var(--maroon)}
+  .toc ol{margin-left:1.1rem}
+  .toc li{margin:.3rem 0;font-size:.95rem}
+  .toc .done{color:var(--maroon);font-weight:600}
+  .toc .soon{color:var(--muted)}
+  section.topic{margin:2.5rem 0;scroll-margin-top:80px}
+  .topic-head{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem}
+  .topic-head .n{flex:none;width:42px;height:42px;border-radius:12px;background:var(--maroon);color:#fff;display:grid;place-items:center;font-weight:800}
+  .topic-head h2{font-size:1.45rem;font-weight:800}
+  .lesson{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-top:1rem;box-shadow:var(--shadow);overflow:hidden}
+  .lesson summary{cursor:pointer;list-style:none;padding:1rem 1.2rem;font-weight:700;display:flex;gap:.7rem;align-items:center;border-left:4px solid var(--maroon-light)}
+  .lesson[open] summary{border-left-color:var(--gold);background:#faf6f7}
+  .lesson summary::-webkit-details-marker{display:none}
+  .lesson summary .chev{margin-left:auto;color:var(--muted);transition:transform .2s}
+  .lesson[open] summary .chev{transform:rotate(90deg)}
+  .body{padding:1rem 1.3rem 1.4rem}
+  .body p{margin:.7rem 0}
+  .body h4{margin:1.1rem 0 .4rem;font-size:.95rem;color:var(--maroon)}
+  .body ul,.body ol{margin:.3rem 0 .3rem 1.2rem}
+  .body li{margin:.3rem 0}
+  .math{background:#f7f3ee;border:1px dashed #d8cfc4;border-radius:8px;padding:.55rem .9rem;font-family:"Cambria Math",Georgia,serif;font-size:1rem;margin:.5rem 0;overflow-x:auto}
+  .ex{border:1px solid #e6d6dc;border-radius:10px;padding:.9rem 1.1rem;margin:1rem 0;background:#fcfbfa}
+  .ex .tag{display:inline-block;background:var(--maroon);color:#fff;font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:6px;letter-spacing:.5px;margin-bottom:.5rem}
+  .step{display:flex;gap:.7rem;margin:.5rem 0}
+  .step .num{flex:none;width:24px;height:24px;border-radius:50%;background:var(--maroon-light);color:#fff;font-size:.78rem;font-weight:700;display:grid;place-items:center;margin-top:.1rem}
+  .step .txt{flex:1}
+  .ans{font-weight:800;color:var(--maroon)}
+  .note{background:#eef5ee;border-left:4px solid #4a8b4a;border-radius:6px;padding:.7rem .9rem;font-size:.9rem;margin:.8rem 0}
+  .tip{background:#fff7e6;border-left:4px solid var(--gold);border-radius:6px;padding:.7rem .9rem;font-size:.9rem;margin:.8rem 0}
+  footer{background:var(--maroon-dark);color:#fff;margin-top:3rem;padding:2rem 1.2rem;font-size:.88rem}
+  .foot-inner{max-width:980px;margin:0 auto}
+  footer a{color:var(--gold)}
+  @media(max-width:600px){.nav-links{width:100%;margin-left:0}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="nav-inner">
+  <a class="brand" href="index.html"><span class="logo">UTM</span><span>Foundation Programme<small>Calculus · Step-by-Step Lessons</small></span></a>
+  <nav class="nav-links"><a href="index.html">← Syllabus</a><a href="#t1">Limits</a></nav>
+</div></header>
+
+<div class="hero"><div class="hero-inner">
+  <span class="eyebrow">Calculus · Semester 3</span>
+  <h1>Calculus — learn it step by step</h1>
+  <p>Full lessons built directly from your lecture slides. Each idea is explained, then shown with worked examples solved one step at a time. Click a lesson to open it.</p>
+</div></div>
+
+<main>
+  <div class="toc">
+    <h2>📘 Calculus topics</h2>
+    <ol>
+      <li class="done"><a href="#t1"><strong>Topic 1 — Limits &amp; Continuity</strong> ✅ (full lessons below)</a></li>
+      <li class="soon">Topic 2 — Differentiation <em>(coming next)</em></li>
+      <li class="soon">Topic 3 — Applications of Differentiation</li>
+      <li class="soon">Topic 4 — Integration</li>
+      <li class="soon">Topic 5 — Integration of Trigonometric Functions</li>
+      <li class="soon">Topic 6 — Applications of Integration</li>
+      <li class="soon">Topic 7 — Ordinary Differential Equations</li>
+      <li class="soon">Topic 8 — Numerical Methods</li>
+    </ol>
+  </div>
+
+  <!-- TOPIC 1 -->
+  <section class="topic" id="t1">
+    <div class="topic-head"><span class="n">1</span><h2>Limits &amp; Continuity</h2></div>
+    <p>A <strong>limit</strong> tells you what value a function gets close to as <em>x</em> gets close to some number — even if the function isn't actually defined there. Limits are the foundation of all calculus.</p>
+
+    <!-- 1.1 -->
+    <details class="lesson" open><summary>Lesson 1.1 — What is a limit?<span class="chev">▶</span></summary>
+      <div class="body">
+        <p>Consider this function, which is <strong>not defined</strong> at <em>x</em> = 1 (you'd divide by zero):</p>
+        <div class="math">f(x) = (x − 1) / (x² − 1)</div>
+        <p>Even though we can't plug in <em>x</em> = 1, we can ask: <em>what value does f(x) get close to as x gets close to 1?</em> Build a table approaching 1 from both sides:</p>
+        <h4>From the left (x &lt; 1)</h4>
+        <div class="math">x = 0.9 → 0.5263 &nbsp;·&nbsp; 0.99 → 0.5025 &nbsp;·&nbsp; 0.999 → 0.5003</div>
+        <h4>From the right (x &gt; 1)</h4>
+        <div class="math">x = 1.1 → 0.4762 &nbsp;·&nbsp; 1.01 → 0.4975 &nbsp;·&nbsp; 1.001 → 0.4998</div>
+        <p>Both sides head toward <strong>0.5</strong>. So we write:</p>
+        <div class="math">lim<sub>x→1</sub> (x−1)/(x²−1) = 0.5</div>
+        <div class="note">The small <strong>−</strong> means approaching from the <strong>left</strong>; the small <strong>+</strong> means from the <strong>right</strong>. These are called <strong>one-sided limits</strong>.</div>
+      </div>
+    </details>
+
+    <!-- 1.2 -->
+    <details class="lesson"><summary>Lesson 1.2 — When does a limit exist?<span class="chev">▶</span></summary>
+      <div class="body">
+        <p>The key rule:</p>
+        <div class="note">The limit <strong>exists</strong> only if the left-hand limit and the right-hand limit are <strong>equal</strong>.</div>
+        <div class="math">If &nbsp; lim<sub>x→a⁺</sub> f(x) = lim<sub>x→a⁻</sub> f(x) = L &nbsp;&nbsp;⇒&nbsp;&nbsp; lim<sub>x→a</sub> f(x) = L</div>
+        <p>If the two sides give <strong>different</strong> values, the limit <strong>does not exist (DNE)</strong>.</p>
+        <div class="ex">
+          <span class="tag">WORKED EXAMPLE</span>
+          <p>Determine whether the limit exists for the piecewise function:</p>
+          <div class="math">f(x) = { x − 1, &nbsp;if x &lt; 2 ; &nbsp; x + 2, &nbsp;if x ≥ 2 }</div>
+          <p>Find lim<sub>x→2</sub> f(x).</p>
+          <div class="step"><span class="num">1</span><span class="txt">Left side (use x − 1): &nbsp; lim<sub>x→2⁻</sub> (x − 1) = 2 − 1 = <strong>1</strong></span></div>
+          <div class="step"><span class="num">2</span><span class="txt">Right side (use x + 2): &nbsp; lim<sub>x→2⁺</sub> (x + 2) = 2 + 2 = <strong>4</strong></span></div>
+          <div class="step"><span class="num">3</span><span class="txt">Left (1) ≠ Right (4), so the limit <span class="ans">does not exist</span>.</span></div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 1.3 -->
+    <details class="lesson"><summary>Lesson 1.3 — Rules of limits (the fast way)<span class="chev">▶</span></summary>
+      <div class="body">
+        <p>For "nice" functions you don't need a table — just <strong>substitute</strong> the value, using these rules:</p>
+        <ul>
+          <li>lim<sub>x→a</sub> c = c &nbsp;(limit of a constant is itself)</li>
+          <li>lim<sub>x→a</sub> x = a</li>
+          <li>lim<sub>x→a</sub> xⁿ = aⁿ</li>
+          <li>Sum/difference, product, quotient and power of limits all split apart (as long as you don't divide by 0).</li>
+        </ul>
+        <div class="ex">
+          <span class="tag">WORKED EXAMPLES</span>
+          <div class="step"><span class="num">a</span><span class="txt">lim<sub>x→½</sub> (2x + 7) = 2(½) + 7 = <span class="ans">8</span></span></div>
+          <div class="step"><span class="num">b</span><span class="txt">lim<sub>x→2</sub> 5x²(x − 4) = 5(2)²(2 − 4) = 5·4·(−2) = <span class="ans">−40</span></span></div>
+          <div class="step"><span class="num">c</span><span class="txt">lim<sub>x→π</sub> (x² − 4)/(x + 2) = factor top = (x−2)(x+2)/(x+2) = (x − 2) → <span class="ans">π − 2</span></span></div>
+          <div class="step"><span class="num">d</span><span class="txt">lim<sub>x→−2</sub> √(5x² − 4) = √(5(−2)² − 4) = √16 = <span class="ans">4</span></span></div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 1.4 -->
+    <details class="lesson"><summary>Lesson 1.4 — Tricky limits: factorize or rationalize (0/0)<span class="chev">▶</span></summary>
+      <div class="body">
+        <p>Sometimes substituting gives <strong>0/0</strong> — an "indeterminate" form. Don't give up! Simplify first by <strong>factorizing</strong> or <strong>rationalizing</strong> (multiplying by the conjugate), then substitute.</p>
+
+        <h4>Method A — Factorizing</h4>
+        <div class="ex">
+          <span class="tag">EXAMPLE</span>
+          <p>Find lim<sub>x→6</sub> (x² − 36)/(x − 6).</p>
+          <div class="step"><span class="num">1</span><span class="txt">Substituting gives 0/0 → must factor.</span></div>
+          <div class="step"><span class="num">2</span><span class="txt">Factor the top: x² − 36 = (x − 6)(x + 6)</span></div>
+          <div class="step"><span class="num">3</span><span class="txt">Cancel (x − 6): &nbsp;= lim<sub>x→6</sub> (x + 6)</span></div>
+          <div class="step"><span class="num">4</span><span class="txt">Substitute: 6 + 6 = <span class="ans">12</span></span></div>
+        </div>
+        <p>More factorizing results: &nbsp;lim<sub>x→0</sub> (2x²+5x)/x = <span class="ans">5</span>; &nbsp; lim<sub>x→−1</sub> (x²+x)/(x²−1) = <span class="ans">½</span>.</p>
+
+        <h4>Method B — Rationalizing (when there's a square root)</h4>
+        <div class="ex">
+          <span class="tag">EXAMPLE</span>
+          <p>Find lim<sub>x→4</sub> (x − 4)/(√x − 2).</p>
+          <div class="step"><span class="num">1</span><span class="txt">Substituting gives 0/0.</span></div>
+          <div class="step"><span class="num">2</span><span class="txt">Multiply top &amp; bottom by the conjugate (√x + 2):</span></div>
+          <div class="math">(x − 4)(√x + 2) / [(√x − 2)(√x + 2)] = (x − 4)(√x + 2) / (x − 4)</div>
+          <div class="step"><span class="num">3</span><span class="txt">Cancel (x − 4): &nbsp;= (√x + 2)</span></div>
+          <div class="step"><span class="num">4</span><span class="txt">Substitute x = 4: √4 + 2 = <span class="ans">4</span></span></div>
+        </div>
+        <p>More rationalizing results: &nbsp;lim<sub>x→−1</sub> (x+1)/(√(3−x) − 2) = <span class="ans">−4</span>; &nbsp; lim<sub>x→9</sub> (3 − √x)/(x − 9) = <span class="ans">−1/6</span>.</p>
+      </div>
+    </details>
+
+    <!-- 1.5 -->
+    <details class="lesson"><summary>Lesson 1.5 — Infinite limits (vertical asymptotes)<span class="chev">▶</span></summary>
+      <div class="body">
+        <p>Sometimes, as <em>x</em> approaches a value, f(x) shoots up to +∞ or down to −∞. Then we say f has an <strong>infinite limit</strong>, and the line x = a is a <strong>vertical asymptote</strong>.</p>
+        <div class="ex">
+          <span class="tag">EXAMPLE</span>
+          <p>Evaluate lim<sub>x→0</sub> 1/x.</p>
+          <div class="step"><span class="num">1</span><span class="txt">From the right (x→0⁺): 1/x → <strong>+∞</strong></span></div>
+          <div class="step"><span class="num">2</span><span class="txt">From the left (x→0⁻): 1/x → <strong>−∞</strong></span></div>
+          <div class="step"><span class="num">3</span><span class="txt">The two sides disagree, so lim<sub>x→0</sub> 1/x <span class="ans">does not exist</span>.</span></div>
+        </div>
+        <div class="ex">
+          <span class="tag">EXAMPLE</span>
+          <p>Evaluate lim<sub>x→0</sub> 2/x².</p>
+          <div class="step"><span class="num">1</span><span class="txt">x² is always positive, so both sides give 2/(tiny positive) → +∞.</span></div>
+          <div class="step"><span class="num">2</span><span class="txt">lim<sub>x→0</sub> 2/x² = <span class="ans">+∞</span> (still counts as "does not exist", but we note it grows without bound).</span></div>
+        </div>
+        <div class="tip">Rule for f(x)/g(x) where g→0: look at the <strong>sign</strong> of the top and which way the bottom approaches 0 to decide +∞ or −∞.</div>
+      </div>
+    </details>
+
+    <!-- 1.6 -->
+    <details class="lesson"><summary>Lesson 1.6 — Limits at infinity (horizontal asymptotes)<span class="chev">▶</span></summary>
+      <div class="body">
+        <p>Now let <em>x</em> get huge (x → ∞) or hugely negative (x → −∞). We're studying the <strong>end behaviour</strong> of the graph.</p>
+        <div class="note">Key theorem: for any positive power r, &nbsp;lim<sub>x→∞</sub> c/xʳ = 0. &nbsp;(Big bottom ⇒ fraction shrinks to 0.)</div>
+        <h4>The method for fractions</h4>
+        <ol><li>Divide every term, top and bottom, by the <strong>highest power of x in the denominator</strong>.</li><li>Apply the theorem (terms like 1/x, 1/x² → 0).</li></ol>
+        <div class="ex">
+          <span class="tag">EXAMPLE</span>
+          <p>Find lim<sub>x→∞</sub> (2x − 1)/(x + 1).</p>
+          <div class="step"><span class="num">1</span><span class="txt">Highest power in bottom is x. Divide each term by x:</span></div>
+          <div class="math">(2 − 1/x) / (1 + 1/x)</div>
+          <div class="step"><span class="num">2</span><span class="txt">As x→∞, the 1/x terms vanish: (2 − 0)/(1 + 0)</span></div>
+          <div class="step"><span class="num">3</span><span class="txt">= <span class="ans">2</span> &nbsp;→ so y = 2 is a horizontal asymptote.</span></div>
+        </div>
+        <div class="ex">
+          <span class="tag">EXAMPLE</span>
+          <p>Find lim<sub>x→∞</sub> (1 + 2x³)/(3 − 2x³).</p>
+          <div class="step"><span class="num">1</span><span class="txt">Divide by x³: (1/x³ + 2)/(3/x³ − 2)</span></div>
+          <div class="step"><span class="num">2</span><span class="txt">→ (0 + 2)/(0 − 2) = <span class="ans">−1</span></span></div>
+        </div>
+        <div class="tip"><strong>Shortcut for rational functions:</strong> compare degrees. Bottom bigger → limit 0. Equal degrees → ratio of leading coefficients. Top bigger → limit DNE (∞).</div>
+      </div>
+    </details>
+
+    <!-- 1.7 -->
+    <details class="lesson"><summary>Lesson 1.7 — Continuity at a point<span class="chev">▶</span></summary>
+      <div class="body">
+        <p>A function is <strong>continuous</strong> at <em>x = a</em> if you can draw it through that point without lifting your pen. Formally, <strong>all three</strong> conditions must hold:</p>
+        <ol>
+          <li>f(a) is <strong>defined</strong> (a is in the domain).</li>
+          <li>lim<sub>x→a</sub> f(x) <strong>exists</strong> (left = right).</li>
+          <li>lim<sub>x→a</sub> f(x) = f(a) (the limit equals the actual value).</li>
+        </ol>
+        <p>If any condition fails, f is <strong>discontinuous</strong> at a.</p>
+        <div class="ex">
+          <span class="tag">WORKED EXAMPLE — finding k</span>
+          <p>Find k so that this function is continuous at x = 2:</p>
+          <div class="math">f(x) = { (3x − 6)/(2x³ − 3x² − 4), &nbsp;x ≠ 2 ; &nbsp; k, &nbsp;x = 2 }</div>
+          <div class="step"><span class="num">1</span><span class="txt">For continuity we need lim<sub>x→2</sub> f(x) = f(2) = k.</span></div>
+          <div class="step"><span class="num">2</span><span class="txt">Compute the limit (it's 0/0, so factor): 3x − 6 = 3(x − 2), and 2x³ − 3x² − 4 = (x − 2)(2x² + x + 2).</span></div>
+          <div class="step"><span class="num">3</span><span class="txt">Cancel (x − 2): &nbsp;lim<sub>x→2</sub> 3 / (2x² + x + 2)</span></div>
+          <div class="step"><span class="num">4</span><span class="txt">Substitute x = 2: 3 / (8 + 2 + 2) = 3/12 = ¼</span></div>
+          <div class="step"><span class="num">5</span><span class="txt">So <span class="ans">k = ¼</span>.</span></div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 1.8 -->
+    <details class="lesson"><summary>Lesson 1.8 — Types of discontinuity &amp; continuity on an interval<span class="chev">▶</span></summary>
+      <div class="body">
+        <h4>Three types of discontinuity</h4>
+        <ul>
+          <li><strong>Removable</strong> — there's a hole, but the limit exists (you could "fill" the point). e.g. (x²−x−2)/(x−2) at x = 2.</li>
+          <li><strong>Jump</strong> — left and right limits both exist but differ; the graph jumps.</li>
+          <li><strong>Infinite</strong> — the function shoots to ±∞ (a vertical asymptote).</li>
+        </ul>
+        <div class="note">Polynomials and rational functions are continuous <strong>everywhere in their domain</strong>. A rational function is only discontinuous where its denominator = 0.</div>
+        <div class="ex">
+          <span class="tag">EXAMPLE — interval continuity</span>
+          <p>State where f(x) = (x − 1)/(x² + 2x) is continuous.</p>
+          <div class="step"><span class="num">1</span><span class="txt">Set denominator = 0: x² + 2x = x(x + 2) = 0 → x = 0 and x = −2.</span></div>
+          <div class="step"><span class="num">2</span><span class="txt">It's continuous everywhere except those two points:</span></div>
+          <div class="step"><span class="num">3</span><span class="txt"><span class="ans">(−∞, −2) ∪ (−2, 0) ∪ (0, ∞)</span></span></div>
+        </div>
+        <div class="tip">To check continuity on a closed interval [a, b], also check it's continuous <em>from the right</em> at a and <em>from the left</em> at b.</div>
+      </div>
+    </details>
+
+    <div class="tip" style="margin-top:1.5rem">✏️ <strong>Practice yourself:</strong> Your slides include "Practise 1.1–1.7" exercises after each section. Try them, then check using the methods above.</div>
+  </section>
+</main>
+
+<footer><div class="foot-inner">
+  <p><strong>UTM Foundation · Calculus step-by-step lessons.</strong> Topic 1 built from the official lecture slides (Cengage-based). More topics are being added. <a href="index.html">← Back to the full syllabus</a></p>
+</div></footer>
+</body>
+</html>
