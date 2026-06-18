@@ -505,21 +505,193 @@
   <!-- TOPIC 4 -->
   <section class="topic" id="t4">
     <div class="topic-head"><span class="n">4</span><h2>Integration</h2></div>
-    <p>Integration reverses differentiation and adds up infinitely many small pieces — used for areas and totals.</p>
-    <details class="lesson"><summary>Lesson 4.1 — Basic integration & substitution<span class="chev">▶</span></summary><div class="body">
-      <div class="math">∫ xⁿ dx = xⁿ⁺¹/(n+1) + C &nbsp;(n ≠ −1) &nbsp;·&nbsp; ∫ₐᵇ f(x) dx = F(b) − F(a)</div>
-      <div class="ex"><span class="tag">WORKED EXAMPLE — indefinite</span>
-        <p>Find ∫ (6x² + 4) dx.</p>
-        <div class="step"><span class="num">1</span><span class="txt">∫6x² dx = 6·x³/3 = 2x³ ; ∫4 dx = 4x</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">= <span class="ans">2x³ + 4x + C</span> (don't forget +C!)</span></div>
+    <p>Integration is the <b>reverse process of differentiation</b>. If dy/dx = f(x), then ∫ f(x) dx = y. Integration is more challenging than differentiation — it is not always obvious which technique to use.</p>
+
+    <details class="lesson" open><summary>Lesson 4.1 — Introduction & notation<span class="chev">▶</span></summary><div class="body">
+      <div class="math">∫ 4x dx = 2x² + C, &nbsp; C ∈ ℝ</div>
+      <p>Each part of the notation has a name:</p>
+      <div class="step"><span class="num">∫</span><span class="txt"><b>integral sign</b></span></div>
+      <div class="step"><span class="num">4x</span><span class="txt">the <b>integrand</b> (function being integrated)</span></div>
+      <div class="step"><span class="num">dx</span><span class="txt">always written — shows the variable of integration</span></div>
+      <div class="step"><span class="num">C</span><span class="txt"><b>constant of integration</b></span></div>
+      <p>Integrals of this type are <b>indefinite integrals</b> (as opposed to definite integrals).</p>
+      <div class="note"><b>Why the "+C"?</b> If y = x², y = x²+3, y = x²−44 all differentiate to dy/dx = 2x. The constant disappears on differentiating, so on integrating we don't know which it was — write +C. An indefinite integral <b>must always include +C</b>.</div>
+      <div class="tip">Differentiating <b>decreases</b> the order of the polynomial by one; integrating <b>increases</b> it by one.</div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 4.2 — Table of integration formulas<span class="chev">▶</span></summary><div class="body">
+      <div class="math">
+        1. ∫ xⁿ dx = xⁿ⁺¹/(n+1) + C &nbsp;(n ≠ −1)<br>
+        2. ∫ (1/x) dx = ln|x| + C<br>
+        3. ∫ eˣ dx = eˣ + C<br>
+        4. ∫ aˣ dx = aˣ/ln a + C
+      </div>
+      <div class="math">
+        ∫ sin x dx = −cos x &nbsp;·&nbsp; ∫ cos x dx = sin x<br>
+        ∫ sec²x dx = tan x &nbsp;·&nbsp; ∫ csc²x dx = −cot x<br>
+        ∫ sec x tan x dx = sec x &nbsp;·&nbsp; ∫ csc x cot x dx = −csc x<br>
+        ∫ sec x dx = ln|sec x + tan x| &nbsp;·&nbsp; ∫ csc x dx = ln|csc x − cot x|<br>
+        ∫ tan x dx = ln|sec x| &nbsp;·&nbsp; ∫ cot x dx = ln|sin x|
+      </div>
+      <div class="math">
+        ∫ dx/(x²+a²) = (1/a) tan⁻¹(x/a) &nbsp;·&nbsp; ∫ dx/√(a²−x²) = sin⁻¹(x/a)<br>
+        ∫ dx/(x²−a²) = (1/2a) ln|(x−a)/(x+a)| &nbsp;·&nbsp; ∫ dx/√(x²±a²) = ln|x + √(x²±a²)|
+      </div>
+      <div class="tip"><b>Strategy for integration:</b> 1) Simplify the integrand. 2) Look for an obvious substitution. 3) Classify by form. 4) Try again.</div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 4.3 — Indefinite integrals (powers & roots)<span class="chev">▶</span></summary><div class="body">
+      <div class="math">∫ kxⁿ dx = kxⁿ⁺¹/(n+1) + C &nbsp;(n ≠ −1)</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>Integrate 10x⁴ + 1/x² + 6√x − 3 with respect to x.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Rewrite: ∫10x⁴ dx + ∫x⁻² dx + ∫6x^(1/2) dx − ∫3 dx</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">= 10x⁵/5 + x⁻¹/(−1) + 6x^(3/2)/(3/2) − 3x + C</span></div>
+        <div class="step"><span class="num">3</span><span class="txt"><span class="ans">= 2x⁵ − 1/x + 4√(x³) − 3x + C</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — expand first</span>
+        <p>∫ (x+1)(3x−2) dx</p>
+        <div class="step"><span class="num">1</span><span class="txt">Expand: ∫ 3x² + x − 2 dx</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><span class="ans">= x³ + x²/2 − 2x + C</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 4.4 — Integral of 1/x and 1/(ax+b)<span class="chev">▶</span></summary><div class="body">
+      <p>The only xⁿ that cannot use the power rule is x⁻¹ = 1/x (would give x⁰/0). Instead, since d/dx(ln x) = 1/x:</p>
+      <div class="math">∫ (1/x) dx = ln|x| + C &nbsp;·&nbsp; ∫ 1/(ax+b) dx = ln|ax+b| / [d(ax+b)/dx] + C</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>∫ 2/(3x) dx = (2/3)∫(1/x) dx = <span class="ans">(2/3) ln|x| + C</span></p>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>∫ 4x(x² − 5/x²) dx = ∫ 4x³ − 20/x dx = <span class="ans">x⁴ − 20 ln|x| + C</span></p>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>∫ 1/(x+7) dx = ln|x+7|/1 + C = <span class="ans">ln|x+7| + C</span></p>
+        <p>∫ 1/(2−3x) dx = <span class="ans">ln|2−3x|/(−3) + C</span></p>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 4.5 — Exponential & trigonometric integrals<span class="chev">▶</span></summary><div class="body">
+      <div class="math">∫ e^f(x) dx = e^f(x)/f′(x) + C &nbsp;·&nbsp; ∫ cos f(x) dx = sin f(x)/f′(x) + C</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — exponential</span>
+        <p>∫ e^(2x+3) dx = e^(2x+3)/[d(2x+3)/dx] + C = <span class="ans">e^(2x+3)/2 + C</span></p>
+        <p>∫ e^(1−4x) dx = <span class="ans">−e^(1−4x)/4 + C</span></p>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — trig</span>
+        <p>∫ cos(2x/3) dx = sin(2x/3)/(2/3) + C = <span class="ans">(3/2) sin(2x/3) + C</span></p>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — simplify first</span>
+        <p>∫ eˣ − 4tan²x dx. Use tan²x = sec²x − 1:</p>
+        <div class="step"><span class="num">1</span><span class="txt">= ∫ eˣ − 4sec²x + 4 dx</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><span class="ans">= eˣ − 4tan x + 4x + C</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — identity</span>
+        <p>∫ sin²(x/2) dx. Use cos x = 1 − 2sin²(x/2) → sin²(x/2) = (1 − cos x)/2:</p>
+        <div class="step"><span class="num">1</span><span class="txt">= ½∫(1 − cos x) dx = <span class="ans">½(x − sin x) + C</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 4.6 — Definite integrals & properties<span class="chev">▶</span></summary><div class="body">
+      <div class="math">∫ₐᵇ f(x) dx = [F(x)]ₐᵇ = F(b) − F(a) &nbsp;where F′(x) = f(x)</div>
+      <p>The result of a definite integral is a <b>number</b> (the area under the curve from x = a to x = b). a = lower limit, b = upper limit. <b>No +C needed</b> for definite integrals.</p>
+      <div class="note"><b>Properties:</b><br>
+        • ∫ₐᵃ f(x) dx = 0<br>
+        • ∫ₐᵇ f(x) dx = −∫ᵦᵃ f(x) dx<br>
+        • ∫ₐᵇ k·f(x) dx = k∫ₐᵇ f(x) dx<br>
+        • ∫ₐᵇ k dx = k(b − a)<br>
+        • ∫ₐᵇ f = ∫ₐᶜ f + ∫ᶜᵇ f &nbsp;(a ≤ c ≤ b)<br>
+        • ∫ₐᵇ [f ± g] dx = ∫ₐᵇ f ± ∫ₐᵇ g
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>∫₀² (3x² + 7) dx = [x³ + 7x]₀² = (8 + 14) − 0 = <span class="ans">22</span></p>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>∫₀⁵ 2 dx = [2x]₀⁵ = 10 − 0 = <span class="ans">10</span></p>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — properties</span>
+        <p>Given ∫₁⁵ f(x) dx = −5 and ∫₁⁵ g(x) dx = 8:</p>
+        <div class="step"><span class="num">a</span><span class="txt">∫₅¹ [f(x)+2x] dx = −[∫₁⁵ f + ∫₁⁵ 2x] = −[−5 + 24] = <span class="ans">−19</span></span></div>
+        <div class="step"><span class="num">b</span><span class="txt">∫₁⁵ [f + 5g] dx = −5 + 5(8) = <span class="ans">35</span></span></div>
+        <div class="step"><span class="num">c</span><span class="txt">If ∫₁⁵ [2f − kg] dx = 6: 2(−5) − k(8) = 6 → −10 − 8k = 6 → <span class="ans">k = −2</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 4.7 — Integration by substitution<span class="chev">▶</span></summary><div class="body">
+      <p><b>Steps:</b> 1) Choose u = g(x). 2) Find du/dx = g′(x). 3) Substitute so the whole integral is in terms of u (no x left). 4) Integrate. 5) Substitute back. Useful forms: ∫f(ax+b)dx, ∫f′(x)/f(x), ∫f′(x)[f(x)]ⁿ dx.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>∫ (2x+5)¹⁰ dx. Let u = 2x+5, du/dx = 2 → dx = du/2:</p>
+        <div class="step"><span class="num">1</span><span class="txt">= ∫ u¹⁰ (du/2) = ½·u¹¹/11</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><span class="ans">= (1/22)(2x+5)¹¹ + C</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>∫ sin x · cos⁵x dx. Let u = cos x, du = −sin x dx:</p>
+        <div class="step"><span class="num">1</span><span class="txt">= −∫ u⁵ du = −u⁶/6</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><span class="ans">= −(1/6) cos⁶x + C</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — f′/f form</span>
+        <p>∫ (x+1)/(x²+2x+5) dx. Let u = x²+2x+5, du = 2(x+1) dx:</p>
+        <div class="step"><span class="num">1</span><span class="txt">= ½∫(1/u) du = <span class="ans">½ ln|x²+2x+5| + C</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — definite (change limits!)</span>
+        <p>∫₀⁵ x/√(x+4) dx. Let u = x+4 → x: 0→u: 4, x: 5→u: 9:</p>
+        <div class="step"><span class="num">1</span><span class="txt">= ∫₄⁹ (u−4)/√u du = [⅔u^(3/2) − 8u^(1/2)]₄⁹</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><span class="ans">= 14/3</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 4.8 — Integration by parts<span class="chev">▶</span></summary><div class="body">
+      <div class="math">∫ u (dv/dx) dx = uv − ∫ v (du/dx) dx</div>
+      <p>Choose u so that du/dx makes the remaining integral easier. <b>Order for choosing u: LIATE</b> — Log, Inverse, Algebra, Trig, Exponential.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>∫ x sin x dx. Let u = x (du = 1·dx), dv/dx = sin x (v = −cos x):</p>
+        <div class="step"><span class="num">1</span><span class="txt">= −x cos x − ∫ −cos x dx</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><span class="ans">= sin x − x cos x + C</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>∫ xe^(2x) dx. Let u = x, dv/dx = e^(2x) (v = e^(2x)/2):</p>
+        <div class="step"><span class="num">1</span><span class="txt">= x·e^(2x)/2 − ∫ e^(2x)/2 dx = xe^(2x)/2 − e^(2x)/4</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><span class="ans">= (e^(2x)/4)(2x − 1) + C</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — the integral of ln x</span>
+        <p>∫ ln x dx. Write as 1·ln x; let u = ln x (du = 1/x), dv/dx = 1 (v = x):</p>
+        <div class="step"><span class="num">1</span><span class="txt">= x ln x − ∫ x·(1/x) dx = x ln x − ∫1 dx</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><span class="ans">= x ln x − x + C</span></span></div>
       </div>
       <div class="ex"><span class="tag">WORKED EXAMPLE — definite</span>
-        <p>Evaluate ∫₁³ 2x dx.</p>
-        <div class="step"><span class="num">1</span><span class="txt">Antiderivative of 2x is x².</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">= [x²]₁³ = 3² − 1² = 9 − 1 = <span class="ans">8</span></span></div>
+        <p>∫₀^(π/2) 2x cos x dx = [2x sin x]₀^(π/2) − ∫₀^(π/2) 2 sin x dx = π − 2 = <span class="ans">π − 2</span></p>
       </div>
-      <h4>Substitution</h4>
-      <p>When the integrand contains a function and its derivative, let u = inner function. e.g. ∫2x(x²+1)⁵ dx: let u = x²+1, du = 2x dx → ∫u⁵ du = u⁶/6 + C = (x²+1)⁶/6 + C.</p>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 4.9 — Tabular method (special case of parts)<span class="chev">▶</span></summary><div class="body">
+      <p>For integrals like ∫xⁿ e^(ax) dx, ∫xⁿ sin ax dx, ∫xⁿ cos ax dx, use a sign/differentiate/integrate table. Differentiate u repeatedly until 0; integrate v′ correspondingly; add diagonal products with alternating signs +, −, +, −.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>∫ x³ e^(2x) dx. Differentiate x³ → 3x² → 6x → 6 → 0; integrate e^(2x) → ½e^(2x) → ¼e^(2x) → ⅛e^(2x) → (1/16)e^(2x):</p>
+        <div class="step"><span class="num">1</span><span class="txt">= +(x³)(½e^(2x)) − (3x²)(¼e^(2x)) + (6x)(⅛e^(2x)) − (6)(1/16 e^(2x))</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><span class="ans">= (1/8)[4x³ − 6x² + 6x − 3] e^(2x) + C</span></span></div>
+      </div>
+      <div class="note"><b>Cyclic case:</b> for ∫e^(3x) cos 2x dx the table doesn't terminate — stop when a multiple of the original appears, then solve algebraically: <span class="ans">∫e^(3x)cos 2x dx = (1/13) e^(3x)(2 sin 2x + 3 cos 2x) + C</span>.</div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 4.10 — Integration by partial fractions<span class="chev">▶</span></summary><div class="body">
+      <p>Rewrite a rational function P(x)/g(x) as a sum of simpler fractions. First check it is <b>proper</b> (deg P &lt; deg g); if improper, do long division first. Then factor g(x) completely.</p>
+      <div class="math">
+        Linear: P(x)/[(x+a)(x+b)] = A/(x+a) + B/(x+b)<br>
+        Repeated: P(x)/(x+a)² = A/(x+a) + B/(x+a)²<br>
+        Quadratic: P(x)/[(ax²+b)(cx+d)] = (Ax+B)/(ax²+b) + C/(cx+d)
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — linear factors</span>
+        <p>∫ (3x+2)/(x²+3x+2) dx. Factor: (x+1)(x+2). Set = A/(x+1) + B/(x+2):</p>
+        <div class="step"><span class="num">1</span><span class="txt">3x+2 = A(x+2) + B(x+1) → A = −1, B = 4</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">= −∫dx/(x+1) + 4∫dx/(x+2) = −ln|x+1| + 4ln|x+2| + C</span></div>
+        <div class="step"><span class="num">3</span><span class="txt"><span class="ans">= ln|(x+2)⁴/(x+1)| + C</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — repeated factor</span>
+        <p>∫ (6x+7)/(x+2)² dx. Set = A/(x+2) + B/(x+2)²: 6x+7 = A(x+2)+B → A = 6, B = −5:</p>
+        <div class="step"><span class="num">1</span><span class="txt"><span class="ans">= 6 ln|x+2| + 5/(x+2) + C</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — improper fraction</span>
+        <p>∫ x²/(x²+3x+2) dx. Long division: = 1 − (3x+2)/(x²+3x+2) = 1 + 1/(x+1) − 4/(x+2):</p>
+        <div class="step"><span class="num">1</span><span class="txt"><span class="ans">= x + ln|(x+1)/(x+2)⁴| + C</span></span></div>
+      </div>
     </div></details>
   </section>
 
