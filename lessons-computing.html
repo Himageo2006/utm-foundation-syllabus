@@ -1002,20 +1002,158 @@ cout &lt;&lt; 156.74 &lt;&lt; endl;   // 156.74</pre>
   </section>
 
   <section class="topic" id="t6"><div class="topic-head"><span class="n">6</span><h2>Branching & Loops</h2></div>
-    <details class="lesson"><summary>Decisions (if/switch) and repetition (for/while)<span class="chev">▶</span></summary><div class="body">
-      <h4>Branching — make a decision</h4>
-      <pre>if (mark &gt;= 50) {
-    printf("Pass\n");
-} else {
-    printf("Fail\n");
+
+    <details class="lesson"><summary>6·1 Review — Boolean, Logical &amp; Relational Operators<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>Logical data uses <code>bool</code> (two values: <code>true</code>, <code>false</code>). Casting bool→int: <code>true</code>→1, <code>false</code>→0 (so <code>2 + true</code> → 3). Casting int→bool: 0→false, non-zero→true (so <code>b = -10;</code> makes b true; <code>b = q;</code> with q=5 gives p=1).</li>
+        <li>Logical operators: <code>!</code> (NOT), <code>&amp;&amp;</code> (AND — true only when both true), <code>||</code> (OR — true when either true). Short-circuit: <code>false &amp;&amp; (anything)</code>→false; <code>true || (anything)</code>→true.</li>
+        <li>Relational operators: <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>==</code>, <code>!=</code>.</li>
+        <li>A relational expression gives 1/0: with <code>int a=10</code>, <code>(a==1)</code>→0, <code>(a&gt;1)</code>→1. But <code>(a=5)</code> is an assignment, prints 5.</li>
+        <li><strong>Complement</strong> an expression by swapping (<code>&lt;</code>↔<code>&gt;=</code>, <code>&gt;</code>↔<code>&lt;=</code>, <code>==</code>↔<code>!=</code>) or putting <code>!</code> in front: complement of <code>n==0</code> is <code>!(n==0)</code> or <code>n != 0</code>.</li>
+      </ul>
+      <div class="note">When to use complement? When converting a flowchart, the branch/iteration path you keep must evaluate to <strong>True</strong> — so a "No (False)" path like <code>n==0</code> becomes <code>n != 0</code>, and a loop condition <code>number&lt;1</code> (exit) becomes <code>number&gt;=1</code> (continue).</div>
+    </details></div>
+
+    <details class="lesson"><summary>6·2 Branching / Selection — the if Statement<span class="chev">▶</span></summary><div class="body">
+      <p>Sometimes programs need to make logical choices: <em>IF score &gt; 50 THEN grade is PASS ELSE grade is FAIL</em>. In C++ this is an <code>if</code> statement with three parts:</p>
+      <pre>if (score > 50)      // part 1: the condition (true/false)
+{
+    grade = PASS;    // part 2: the TRUE-PART
+}
+else
+{
+    grade = FAIL;    // part 3: the FALSE-PART
 }</pre>
-      <h4>Loops — repeat</h4>
-      <pre>// print 1 to 5
-for (int i = 1; i &lt;= 5; i++) {
-    printf("%d ", i);
+      <ul>
+        <li><strong>Part 1 — the condition:</strong> an expression that evaluates to true or false.</li>
+        <li><strong>Part 2 — the TRUE-PART:</strong> statements executed if the condition is true.</li>
+        <li><strong>Part 3 — the FALSE-PART:</strong> statements executed if the condition is false (the TRUE-PART is skipped).</li>
+      </ul>
+      <p>Sometimes there is <strong>no FALSE-PART</strong> — the <code>else</code> is omitted (e.g. <code>if (attendance &lt; 0.8) exam_grade = FAIL;</code>). If a part is only one statement, the curly braces may be omitted.</p>
+      <p><strong>Nested if-else</strong> handles more than two outcomes — actually a regular if-else whose FALSE-PART is another if-else:</p>
+      <pre>if (score > 90)      letter_grade = 'A';
+else if (score > 75) letter_grade = 'B';
+else if (score > 60) letter_grade = 'C';
+else if (score > 50) letter_grade = 'D';
+else                 letter_grade = 'F';</pre>
+    </details></div>
+
+    <details class="lesson"><summary>6·3 Compound Statements &amp; Common if Pitfalls<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>The condition must be in <strong>parentheses</strong>; a statement may be a single statement or a <strong>compound statement</strong> (group of statements in <code>{ }</code>).</li>
+      </ul>
+      <div class="ex"><span class="tag">RELATED ISSUES (TRAPS)</span>
+        <div class="step"><span class="num">1</span><span class="txt">Compound conditions need outer parens: <code>if (0&lt;x) &amp;&amp; (x&lt;10)</code> is a syntax error → <code>if ((0&lt;x) &amp;&amp; (x&lt;10))</code>.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><code>if (2&lt;x&lt;9)</code> compiles but is a <strong>logic error</strong> — always true. Use <code>if ((2&lt;x) &amp;&amp; (x&lt;9))</code>.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Non-Boolean conditions are type-cast: <code>if (n)</code> with n=0 → false ("No"); <code>if (n+5)</code> → 5 → true ("Yes").</span></div>
+        <div class="step"><span class="num">4</span><span class="txt"><code>if (x=0)</code> is assignment (always false → "No"); <code>if (y=10)</code> always true → "Yes" and changes y. Use <code>==</code> for equality.</span></div>
+        <div class="step"><span class="num">5</span><span class="txt"><code>!</code> has higher precedence than <code>&gt;</code>: <code>if (!n&gt;9)</code> with n=5 is <code>(!true)&gt;9</code> → <code>0&gt;9</code> → "No". Use <code>if (!(n&gt;9))</code> → "Yes".</span></div>
+        <div class="step"><span class="num">6</span><span class="txt">Indent correctly — a stray <code>cout</code> not in <code>{ }</code> doesn't belong to the <code>if</code>.</span></div>
+        <div class="step"><span class="num">7</span><span class="txt">A stray semicolon <code>if (x&lt;3);</code> is a <strong>null statement</strong> — does nothing, so the following line always runs. Same for <code>else;</code>.</span></div>
+      </div>
+      <p><strong>Simplifying conditions:</strong> <code>if (a != 0)</code>, <code>if (a &gt; 0)</code>, <code>if (a &lt; 0)</code> all simplify to <code>if (a)</code>; <code>if (a == 0)</code> simplifies to <code>if (!a)</code>. Odd: <code>if (n%2)</code>; even: <code>if (!(n%2))</code>.</p>
+      <div class="note">Exercise 2 trap: in a chain <code>if (day&gt;3) … else if (day&gt;=7) … else if (day&gt;=10) …</code>, day=10 matches the first <code>day&gt;3</code> so fine=6.00 — the later branches are unreachable. Order conditions from most-specific to least.</div>
+    </details></div>
+
+    <details class="lesson"><summary>6·4 The switch Statement<span class="chev">▶</span></summary><div class="body">
+      <p>Many nested if/else comparing one expression to constants can be replaced by a <code>switch</code>:</p>
+      <pre>switch (expression)
+{
+    case value1: statements_1;
+                 break;
+    case value2: statements_2;
+                 break;
+    default:     statements;
+                 break;
 }</pre>
-      <p>Also: <code>while</code> (repeat while a condition is true) and <code>do–while</code> (runs at least once). <code>break</code> exits a loop, <code>continue</code> skips to the next round.</p>
-    </div></details>
+      <p><strong>How it works:</strong> check the value of <code>expression</code>; if it equals a case value, execute that case's statements and <code>break</code> out; if no case matches, run the <code>default</code>.</p>
+      <ul>
+        <li><code>switch(value)</code> with value=1 prints "One"; <code>switch(value+1)</code> evaluates to 2 → "Two"; value=5 matches no case → default "Neither One nor Two".</li>
+        <li><strong>Missing <code>break</code></strong> causes <strong>fall-through</strong>: with value=1 and no break after case 1, it prints "One" then "Two".</li>
+      </ul>
+      <div class="ex"><span class="tag">SWITCH RULES</span>
+        <div class="step"><span class="num">expr</span><span class="txt">The switch expression must be <strong>integral</strong> (int, char, bool) — not float or string.</span></div>
+        <div class="step"><span class="num">case</span><span class="txt">Each case value must be a <strong>constant</strong> (literal, defined constant, or memory const) — not a variable.</span></div>
+      </div>
+      <div class="note">Exercise 3 (fall-through): for i=0 with no break after case 0/1 → prints "ABCE"; i=1 → "BCE"; i=2 → "CE"; i=3 → default "DE". Full output: ABCE BCE CE DE.</div>
+    </details></div>
+
+    <details class="lesson"><summary>6·5 Translating Flowcharts to C++ (if &amp; switch)<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li><strong>Pattern 1</strong> — one condition + true path → <code>if (condition) { statement; }</code> (the kept path must be True). e.g. print n only if negative: <code>if (n &lt; 0) { cout &lt;&lt; n; }</code></li>
+        <li><strong>Pattern 2</strong> — true/false paths → <code>if (condition) { statement_1; } else { statement_2; }</code></li>
+        <li><strong>Pattern 3</strong> — a chain of conditions → <code>if/else if/.../else</code> (e.g. the score→grade ladder).</li>
+        <li><strong>Pattern 4</strong> — when every condition is <code>expression == value</code> → use a <code>switch</code> on that expression.</li>
+      </ul>
+      <div class="note">Exercise 4 (toll by vehicle code): <code>switch (vCode) { case 'C': vRate = 0.50; break; case 'B': vRate = 0.85; break; case 'T': vRate = 1.00; break; case 'M': vRate = 0; break; }</code> then <code>toll = vRate * distance;</code></div>
+    </details></div>
+
+    <details class="lesson"><summary>6·6 Loops / Repetition — Body, Condition, Init &amp; Update<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>The main idea of a loop is to repeat an action or series of actions. Without a stop condition you get an <strong>infinite loop</strong>; a <strong>condition</strong> tells the loop to continue or stop.</li>
+        <li>A loop has two essential parts: the <strong>body</strong> (statements repeated) and the <strong>condition</strong> (controls iteration). It may also have <strong>initialization</strong> (prepares the loop, written outside before the body) and <strong>updating</strong> (changes the condition, written inside the body — if missing, the loop runs forever).</li>
+      </ul>
+      <p><strong>Two forms:</strong></p>
+      <ul>
+        <li><strong>Pre-test loop</strong> — the condition is tested <em>first</em>; the body runs only if it's true (the body may never run).</li>
+        <li><strong>Post-test loop</strong> — the condition is tested <em>after</em> the body, so the body always runs <strong>at least once</strong>.</li>
+      </ul>
+    </details></div>
+
+    <details class="lesson"><summary>6·7 while, for &amp; do…while Statements<span class="chev">▶</span></summary><div class="body">
+      <p>C++ provides three loop statements: <code>while</code> (pre-test), <code>for</code> (pre-test), <code>do…while</code> (post-test). All three below print 10 down to 1:</p>
+      <pre>// while
+n = 10;
+while (n > 0) {
+    cout << n << " ";
+    n = n - 1;
+}</pre>
+      <pre>// for (initialization; condition; updating)
+for (n = 10; n > 0; n = n - 1) {
+    cout << n << " ";
+}</pre>
+      <pre>// do..while (body runs at least once)
+n = 10;
+do {
+    cout << n << " ";
+    n = n - 1;
+} while (n > 0);</pre>
+      <ul>
+        <li><code>for</code> and <code>while</code> are equivalent — <code>for</code> just collects the initialize, condition and update into one line. If the body is one statement, the <code>{ }</code> may be omitted.</li>
+      </ul>
+      <div class="note"><strong>Deciding which loop:</strong> <code>while</code> — pre-test (body may not run); <code>do..while</code> — post-test (body runs ≥ once); <code>for</code> — pre-test, has built-in init/update, best for counters or a known number of repetitions.</div>
+    </details></div>
+
+    <details class="lesson"><summary>6·8 break, continue &amp; Nested Loops<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li><code>break</code> terminates a loop; in an inner loop it exits only that loop and returns to the outer loop.</li>
+        <li><code>continue</code> skips the rest of the current iteration and jumps to the next.</li>
+        <li>A <strong>nested loop</strong> is a loop inside another loop's body. The inner loop completes all its repetitions for <em>each</em> repetition of the outer loop, so total inner repetitions = (outer count) × (inner count).</li>
+      </ul>
+      <pre>for (row = 1; row <= 3; row++) {      // outer loop
+    for (col = 1; col <= 3; col++) {  // inner loop (runs 9 times total)
+        cout << row * col << endl;
+    }
+}</pre>
+      <div class="ex"><span class="tag">TRACE EXERCISES</span>
+        <div class="step"><span class="num">1a</span><span class="txt"><code>x=10; do{ x++; if(x%2==1) continue; cout&lt;&lt;x; }while(x&lt;=21);</code> → prints even values <span class="ans">12, 14, 16, 18, 20, 22</span></span></div>
+        <div class="step"><span class="num">1b</span><span class="txt"><code>y=2; do{ if(y&gt;500) break; cout&lt;&lt;y; y*=3; }while(y&gt;1);</code> → <span class="ans">2, 6, 18, 54, 162, 486</span> (then 1458&gt;500 breaks)</span></div>
+        <div class="step"><span class="num">6</span><span class="txt">Nested for/while with j=i counting down: i=1→"i=1,j=1"; i=2→"j=2,j=1"; i=3→"j=3,j=2,j=1" (6 lines total)</span></div>
+      </div>
+    </details></div>
+
+    <details class="lesson"><summary>6·9 Translating Flowcharts to C++ (loops)<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li><strong>Pattern 1</strong> — pre-test (condition at top, kept path True) → <code>while (condition) { Repeated_actions; }</code></li>
+        <li><strong>Pattern 2</strong> — post-test (condition at bottom) → <code>do { Repeated_actions; } while (condition);</code></li>
+        <li><strong>Pattern 3</strong> — loop with init + update → <code>for (initialize; condition; update) { ... }</code> (equivalent to <code>initialize; while(condition){ ...; update; }</code>).</li>
+      </ul>
+      <div class="ex"><span class="tag">EXAMPLES</span>
+        <div class="step"><span class="num">1</span><span class="txt">Average of odd numbers 1–9: <code>sum=0; i=1; while(i&lt;11){ sum=sum+i; i=i+2; } avrg = sum/5.0;</code></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Total of 1–10: <code>total=0; for(i=1;i&lt;11;i++){ total=total+i; } cout&lt;&lt;total;</code></span></div>
+      </div>
+      <div class="note">Exercise 4 (count positives/negatives in 30 numbers): <code>for(count=0; count&lt;30; count++){ cin&gt;&gt;number; if(number&gt;0) positive++; else if(number&lt;0) negative++; }</code> then display positive &amp; negative.</div>
+    </details></div>
   </section>
 
   <section class="topic" id="t7"><div class="topic-head"><span class="n">7</span><h2>Files (Input & Output)</h2></div>
