@@ -798,14 +798,90 @@
   <!-- TOPIC 6 -->
   <section class="topic" id="t6">
     <div class="topic-head"><span class="n">6</span><h2>Applications of Integration</h2></div>
-    <details class="lesson"><summary>Lesson 6.1 — Area under a curve & between curves<span class="chev">▶</span></summary><div class="body">
-      <div class="math">Area under f = ∫ₐᵇ f(x) dx &nbsp;·&nbsp; Area between = ∫ₐᵇ [top − bottom] dx</div>
+    <p>Two main applications: (1) area of a region — under a curve or between two curves; (2) volume of a solid of revolution.</p>
+
+    <details class="lesson" open><summary>Lesson 6.1 — Area under a curve (x-axis)<span class="chev">▶</span></summary><div class="body">
+      <div class="math">Above x-axis: A = ∫ₐᵇ f(x) dx &nbsp;·&nbsp; Below x-axis: A = |∫ₐᵇ g(x) dx| (use modulus)</div>
       <div class="ex"><span class="tag">WORKED EXAMPLE</span>
-        <p>Find the area under y = x² between x = 0 and x = 3.</p>
-        <div class="step"><span class="num">1</span><span class="txt">Area = ∫₀³ x² dx = [x³/3]₀³</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">= 3³/3 − 0 = 27/3 = <span class="ans">9 square units</span></span></div>
+        <p>Area bounded by y = 2 − x², the x-axis, x = 0 and x = 1.</p>
+        <div class="step"><span class="num">1</span><span class="txt">∫₀¹ (2 − x²) dx = [2x − x³/3]₀¹ = 2 − 1/3</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><span class="ans">= 5/3 square units</span></span></div>
       </div>
-      <div class="note">Volumes of revolution: V = π∫ₐᵇ [f(x)]² dx (rotating about the x-axis).</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — curve crosses axis</span>
+        <p>Region R bounded by y = x³, x-axis, x = −1 to x = 1. Part below axis needs modulus:</p>
+        <div class="step"><span class="num">1</span><span class="txt">∫₀¹ x³ dx = 1/4 (above); |∫₋₁⁰ x³ dx| = 1/4 (below)</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Total = 1/4 + 1/4 = <span class="ans">1/2 square units</span></span></div>
+      </div>
+      <div class="tip">If the curve crosses the x-axis in [a,b], split the integral at the crossing and take the modulus of each piece — otherwise positive and negative areas cancel.</div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 6.2 — Area beside a curve (y-axis)<span class="chev">▶</span></summary><div class="body">
+      <div class="math">Right of y-axis: A = ∫ₐᵇ f(y) dy &nbsp;·&nbsp; Left of y-axis: A = |∫ₐᵇ g(y) dy|</div>
+      <p>Rewrite the curve as x = f(y) and integrate with respect to y.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>Area in the first quadrant bounded by y = 2/x, the y-axis, y = 2 and y = 4. Here x = 2/y:</p>
+        <div class="step"><span class="num">1</span><span class="txt">∫₂⁴ (2/y) dy = [2 ln y]₂⁴ = 2(ln 4 − ln 2) = 2 ln 2</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><span class="ans">= 1.386 units²</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>Bounded by y = 2 ln x, the y-axis, x-axis, y = 2. Here x = e^(y/2):</p>
+        <div class="step"><span class="num">1</span><span class="txt">∫₀² e^(y/2) dy = [2e^(y/2)]₀² = 2(e − 1) = <span class="ans">3.4366 units²</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 6.3 — Area between two curves<span class="chev">▶</span></summary><div class="body">
+      <p>If f(x) ≥ g(x) on [a,b]: A = ∫ₐᵇ [f(x) − g(x)] dx. First find limits from the <b>intersection points</b>.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>Area bounded by y = x²/3 and y = √(3x), x = 0 to 3 (√(3x) is on top):</p>
+        <div class="step"><span class="num">1</span><span class="txt">∫₀³ (√(3x) − x²/3) dx = [√3·x^(3/2)/(3/2) − x³/9]₀³</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><span class="ans">= 3 square units</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — find intersections</span>
+        <p>Region bounded by y = x(x−1) and y = x. Set equal: x²−2x = 0 → x = 0, 2:</p>
+        <div class="step"><span class="num">1</span><span class="txt">∫₀² [x − x(x−1)] dx = ∫₀² (2x − x²) dx = [x² − x³/3]₀²</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><span class="ans">= 4/3 square units</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — integrate w.r.t. y</span>
+        <p>Bounded by y² = 4x and 2x + y = 4. Easier in y: intersections y = 2, y = −4:</p>
+        <div class="step"><span class="num">1</span><span class="txt">∫₋₄² [(4−y)/2 − y²/4] dy = ¼∫₋₄² (8 − 2y − y²) dy</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><span class="ans">= 9 square units</span></span></div>
+      </div>
+      <div class="tip">When the region is awkward in x (e.g. a sideways parabola), integrating with respect to y avoids splitting into pieces.</div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 6.4 — Volume of revolution (single curve)<span class="chev">▶</span></summary><div class="body">
+      <div class="math">About x-axis: V = π∫ₐᵇ [f(x)]² dx &nbsp;·&nbsp; About y-axis: V = π∫꜀ᵈ [f(y)]² dy</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — about x-axis</span>
+        <p>y = 2√x on [0,4] revolved about the x-axis:</p>
+        <div class="step"><span class="num">1</span><span class="txt">V = π∫₀⁴ (2√x)² dx = π∫₀⁴ 4x dx = π[2x²]₀⁴</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><span class="ans">= 32π cubic units</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — about x-axis</span>
+        <p>y = x² on [−2,3]: V = π∫₋₂³ x⁴ dx = π[x⁵/5]₋₂³ = <span class="ans">55π cubic units</span></p>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — about y-axis</span>
+        <p>y = x²+1 on [1,2] about y-axis. x² = y−1:</p>
+        <div class="step"><span class="num">1</span><span class="txt">V = π∫₁² (y−1) dy = π[½y² − y]₁² = <span class="ans">π/2 cubic units</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 6.5 — Volume of revolution (between curves)<span class="chev">▶</span></summary><div class="body">
+      <div class="math">About x-axis: V = π∫ₐᵇ {[f(x)]² − [g(x)]²} dx &nbsp;·&nbsp; About y-axis: V = π∫꜀ᵈ {[f(y)]² − [g(y)]²} dy</div>
+      <p>Subtract the squares (washer method), with f the outer radius and g the inner.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>Region bounded by y = x²+2, x = −2, x = 2, y = 1, revolved about x-axis:</p>
+        <div class="step"><span class="num">1</span><span class="txt">V = π∫₋₂² {(x²+2)² − 1²} dx = π∫₋₂² (x⁴ + 4x² + 3) dx</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">= π[x⁵/5 + 4x³/3 + 3x]₋₂² = <span class="ans">692π/15 cubic units</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — about y-axis</span>
+        <p>Bounded by y² = 8x and y = x² about y-axis. Intersections (0,0),(2,4); in y, outer x = √(8y)... actually x = y²/8 vs x = √y:</p>
+        <div class="step"><span class="num">1</span><span class="txt">V = π∫₀⁴ {(√y)² − (y²/8)²} dy = π∫₀⁴ (y − y⁴/64) dy</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">= π[½y² − y⁵/320]₀⁴ = <span class="ans">24π/5 cubic units</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>y = x² and y = x+2 (positive quadrant) about x-axis. Intersect at x = −1, 2:</p>
+        <div class="step"><span class="num">1</span><span class="txt">V = π∫₋₁² {(x+2)² − (x²)²} dx → [evaluates] = <span class="ans">55π/6 cubic units</span></span></div>
+      </div>
     </div></details>
   </section>
 
