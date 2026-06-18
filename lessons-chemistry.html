@@ -203,14 +203,151 @@
   </section>
 
   <section class="topic" id="c3"><div class="topic-head"><span class="n">3</span><h2>Chemical Equilibrium</h2></div>
-    <details class="lesson"><summary>Kc & Le Chatelier's principle<span class="chev">▶</span></summary><div class="body">
-      <p>Reversible reactions reach a <strong>dynamic balance</strong> where forward and reverse rates are equal. For aA + bB ⇌ cC + dD:</p>
-      <div class="math">Kc = ([C]ᶜ[D]ᵈ) / ([A]ᵃ[B]ᵇ)</div>
-      <p><strong>Le Chatelier:</strong> if you disturb a system at equilibrium, it shifts to oppose the change — add reactant → shifts right; increase pressure → shifts to fewer gas moles; increase temperature → shifts in the endothermic direction.</p>
-      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
-        <p>For N₂ + 3H₂ ⇌ 2NH₃, which way does increasing pressure shift it?</p>
-        <div class="step"><span class="num">1</span><span class="txt">Left side = 4 gas moles, right side = 2 gas moles.</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">Higher pressure favours fewer moles → shifts <span class="ans">right (more NH₃)</span>.</span></div>
+    <p>Equilibrium applies to the <strong>extent</strong> of a reaction — how far it goes once no further change occurs. Built directly from the chapter slides.</p>
+
+    <details class="lesson"><summary>3.1 — Dynamic equilibrium &amp; reversibility<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Irreversible</strong> reactions go in one direction almost exclusively (go to completion), e.g. 2Mg(s) + O₂(g) → 2MgO(s). <strong>Reversible</strong> reactions go both ways at comparable rates, e.g. CaCO₃(s) ⇌ CaO(s) + CO₂(g) and N₂(g) + 3H₂(g) ⇌ 2NH₃(g).</p>
+      <p>In a closed vessel the forward (k₁) and reverse (k₋₁) reactions continue at the same rate — the system looks "finished" but is <strong>dynamic</strong>:</p>
+      <div class="math">At equilibrium: rate<sub>forward</sub> = rate<sub>reverse</sub></div>
+      <div class="tip">On a concentration-vs-time graph, reactants fall and products rise until both level off — that plateau is equilibrium.</div>
+    </div></details>
+
+    <details class="lesson"><summary>3.2 — The equilibrium constant expression (Kc &amp; Kp)<span class="chev">▶</span></summary><div class="body">
+      <p>For the equilibrium aA + bB ⇌ cC + dD:</p>
+      <div class="math">K = ([C]ᶜ[D]ᵈ) / ([A]ᵃ[B]ᵇ) &nbsp; (K depends only on temperature)</div>
+      <p>Examples from the slides:</p>
+      <div class="math">2CO₂(g) ⇌ 2CO(g) + O₂(g): &nbsp; K = [CO]²[O₂] / [CO₂]²</div>
+      <div class="math">CH₄(g) + 2H₂S(g) ⇌ CS₂(g) + 4H₂(g): &nbsp; Kc = [CS₂][H₂]⁴ / ([CH₄][H₂S]²) &nbsp; or &nbsp; Kp = (P<sub>CS₂</sub>)(P<sub>H₂</sub>)⁴ / ((P<sub>CH₄</sub>)(P<sub>H₂S</sub>)²)</div>
+      <p><strong>K<sub>c</sub></strong> uses concentrations; <strong>K<sub>p</sub></strong> uses partial pressures.</p>
+    </div></details>
+
+    <details class="lesson"><summary>3.3 — Calculating K from experimental data (ICE)<span class="chev">▶</span></summary><div class="body">
+      <div class="ex"><span class="tag">WORKED EXAMPLE (from slides) — H₂ + I₂ ⇌ 2HI</span>
+        <p>At 425°C, H₂ and I₂ each start at 5.73 atm. At equilibrium P(HI) = 9.00 atm. Find Kp.</p>
+        <div class="step"><span class="num">1</span><span class="txt">ICE: I 5.73 / 5.73 / 0; C −x / −x / +2x; E (5.73−x)/(5.73−x)/2x.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">P(HI) = 2x = 9.00 → x = 4.50 atm.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">P(H₂) = P(I₂) = 5.73 − 4.50 = 1.23 atm.</span></div>
+        <div class="step"><span class="num">4</span><span class="txt">Kp = (9.00)² / [(1.23)(1.23)] = <span class="ans">53.5</span></span></div>
+      </div>
+      <div class="tip">Products start at 0 — no product is formed yet at the start.</div>
+    </div></details>
+
+    <details class="lesson"><summary>3.4 — Homogeneous vs heterogeneous equilibria<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Homogeneous</strong> = all same state; <strong>heterogeneous</strong> = different states. <strong>Solids (s) and liquids (l)</strong> have constant concentration and are <strong>excluded</strong> from K. Only (g) and (aq) appear.</p>
+      <div class="math">H₂(g) + FeO(s) ⇌ H₂O(g) + Fe(s): &nbsp; Kc = [H₂O] / [H₂]</div>
+      <div class="math">Ag⁺(aq) + Fe²⁺(aq) ⇌ Fe³⁺(aq) + Ag(s): &nbsp; Kc = [Fe³⁺] / ([Ag⁺][Fe²⁺])</div>
+    </div></details>
+
+    <details class="lesson"><summary>3.5 — What K tells you: position, direction &amp; stoichiometry<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Equilibrium position</strong> (10⁻²–10² range):</p>
+      <ul>
+        <li><strong>K = 1</strong> (10⁻² &lt; K &lt; 10²) → conversion of reactants to products roughly equal.</li>
+        <li><strong>K ≪ 1</strong> (&lt; 10⁻²) → conversion negligible; position lies to the <strong>left</strong>. e.g. COCl₂ ⇌ CO + Cl₂, Kc = 2.19×10⁻¹⁰.</li>
+        <li><strong>K ≫ 1</strong> (&gt; 10²) → conversion high; position lies to the <strong>right</strong>. e.g. 2NO ⇌ N₂ + O₂, Kc = 1.00×10³⁰.</li>
+      </ul>
+      <p><strong>Stoichiometry &amp; direction:</strong> if a reaction is reversed, K′ = K⁻¹; if multiplied by n, K′ = Kⁿ.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE (from slides) — reverse &amp; multiply</span>
+        <p>2NO ⇌ N₂ + O₂ has Kc = 1.00×10³⁰.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Reverse (N₂ + O₂ ⇌ 2NO): K′ = (10³⁰)⁻¹ = <span class="ans">1.00×10⁻³⁰</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">For 4NO ⇌ 2N₂ + 2O₂ (×2): K = (10³⁰)² = <span class="ans">1.00×10⁶⁰</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE (from slides) — 2HI ⇌ H₂ + I₂</span>
+        <p>1 L vessel at equilibrium: [HI]=1.75, [H₂]=1.125, [I₂]=0.125 M.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Kc = [H₂][I₂]/[HI]² = (1.125)(0.125)/(1.75)² = <span class="ans">0.046</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Reverse: K′ = (0.046)⁻¹ = <span class="ans">21.7</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Forward Kc &lt; 1 → position to the left, low formation of products.</span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE (from slides) — SO₂/O₂/SO₃ Kp</span>
+        <p>At equilibrium P<sub>SO₂</sub>=0.05, P<sub>O₂</sub>=0.03, P<sub>SO₃</sub>=1.00 atm.</p>
+        <div class="step"><span class="num">1</span><span class="txt">(a) 2SO₂+O₂ ⇌ 2SO₃: Kp = (1.00)²/[(0.05)²(0.03)] = <span class="ans">1.3×10⁴ atm⁻¹</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(b) SO₂+½O₂ ⇌ SO₃ is ½ of (a): K′p = (1.3×10⁴)^½ = <span class="ans">1.14×10² atm⁻¹</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>3.6 — Relationship between Kc and Kp<span class="chev">▶</span></summary><div class="body">
+      <div class="math">Kp = Kc(RT)<sup>Δn</sup> &nbsp; Δn = (mol gas products) − (mol gas reactants), R = 0.0821 dm³·atm·K⁻¹·mol⁻¹, T in K</div>
+      <p>From PV = nRT → P<sub>x</sub> = M<sub>x</sub>RT = [x]RT, so substituting concentrations into Kp gives the (RT)<sup>Δn</sup> factor.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE (from slides) — at 480°C</span>
+        <p>2Cl₂(g) + 2H₂O(g) ⇌ 4HCl(g) + O₂(g), Kp = 0.0752. Find Kc.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Δn = (4+1) − (2+2) = +1.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Kc = Kp / (RT)<sup>Δn</sup> = 0.0752 / [(0.0821)(273+480)]¹</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">= <span class="ans">1.22×10⁻³</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>3.7 — Predicting direction: the reaction quotient Q<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Q</strong> has the same form as K but uses <strong>initial</strong> concentrations. Compare Q with Kc:</p>
+      <ul>
+        <li><strong>Q &gt; Kc</strong> → too much product → shifts <strong>left</strong>.</li>
+        <li><strong>Q &lt; Kc</strong> → too much reactant → shifts <strong>right</strong>.</li>
+        <li><strong>Q = Kc</strong> → at equilibrium, no shift.</li>
+      </ul>
+      <div class="ex"><span class="tag">WORKED EXAMPLE (from slides) — COCl₂ ⇌ CO + Cl₂</span>
+        <p>Kc = 2.19×10⁻¹⁰. Initial: [COCl₂]=3.50×10⁻³, [CO]=1.10×10⁻⁵, [Cl₂]=3.25×10⁻⁶ M.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Q = (1.10×10⁻⁵)(3.25×10⁻⁶)/(3.50×10⁻³) = <span class="ans">1.02×10⁻⁸</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Q &gt; Kc → too much product → shifts <span class="ans">left</span>.</span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>3.8 — Calculating equilibrium concentrations<span class="chev">▶</span></summary><div class="body">
+      <div class="ex"><span class="tag">WORKED EXAMPLE 1 (from slides) — Br₂ + Cl₂ ⇌ 2BrCl</span>
+        <p>Kc = 7.0 at 400K. Start 0.50 M Br₂ and 0.50 M Cl₂ in 1 L.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Q = 0/(0.5·0.5) = 0 &lt; Kc → shifts right.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">ICE: E (0.50−x)/(0.50−x)/2x. 7.0 = (2x)²/(0.50−x)² → 2x/(0.50−x) = √7.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">x = 0.285 M → [BrCl] = 2x = <span class="ans">0.570 M</span>; [Br₂]=[Cl₂]= <span class="ans">0.215 M</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 2 (from slides) — 2HBr ⇌ H₂ + Br₂</span>
+        <p>Kc = 6.25×10⁻⁶ at 1024K. Start 1.00 M HBr.</p>
+        <div class="step"><span class="num">1</span><span class="txt">ICE: E (1.00−2x)/x/x. 6.25×10⁻⁶ = x²/(1.00−2x)².</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Quadratic (or approximation, since K≪10⁻²) → x = 2.5×10⁻³.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">[H₂]=[Br₂]= <span class="ans">0.0025 M</span>; [HBr] = 1.00−0.005 = <span class="ans">0.995 M</span></span></div>
+      </div>
+      <div class="tip">Approximation: when K ≪ 10⁻², the change x is tiny vs the initial concentration, so (1.00 − 2x) ≈ 1.00 — solve x = √(K·[A]₀²) directly.</div>
+    </div></details>
+
+    <details class="lesson"><summary>3.9 — Le Chatelier's principle &amp; the four factors<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Le Chatelier:</strong> a system at equilibrium that is stressed shifts to counteract the disturbance. Four factors: concentration, pressure, temperature, catalyst. Slides use 6CO₂(g) + 6H₂O(g) ⇌ C₆H₁₂O₆(s) + 6O₂(g), ΔH = +2816 kJ.</p>
+      <ul>
+        <li><strong>Concentration:</strong> add reactant (↑[CO₂]) → shifts right; add product (↑[O₂]) → shifts left; remove a solid/liquid → no shift.</li>
+        <li><strong>Pressure (↑ by ↓volume):</strong> shifts to the side with <strong>fewer gas moles</strong>. Adding inert gas at constant volume → no shift (partial pressures unchanged). ↑volume → shifts to side with more gas moles.</li>
+        <li><strong>Temperature:</strong> endothermic (heat is a reactant) → ↑T shifts right and ↑K; exothermic (e.g. N₂+3H₂⇌2NH₃, ΔH=−42.6 kJ) → ↑T shifts left and ↓K.</li>
+        <li><strong>Catalyst:</strong> lowers Eₐ for both directions equally → <strong>no shift</strong>; reaches equilibrium faster (changes rate &amp; k, not the position).</li>
+      </ul>
+      <table style="width:100%;border-collapse:collapse;font-size:.85rem;margin:.5rem 0">
+        <tr style="background:var(--c);color:#fff"><th style="padding:.4rem">Stress</th><th>Shift</th><th>Result</th></tr>
+        <tr><td style="padding:.4rem">[reactant] ↑</td><td>right</td><td>[product] ↑</td></tr>
+        <tr style="background:#faf6f7"><td style="padding:.4rem">[reactant] ↓</td><td>left</td><td>[product] ↓</td></tr>
+        <tr><td style="padding:.4rem">[product] ↑</td><td>left</td><td>[reactant] ↑</td></tr>
+        <tr style="background:#faf6f7"><td style="padding:.4rem">[product] ↓</td><td>right</td><td>[reactant] ↓</td></tr>
+      </table>
+    </div></details>
+
+    <details class="lesson"><summary>3.10 — Solubility equilibrium &amp; Ksp<span class="chev">▶</span></summary><div class="body">
+      <p>Equilibrium between a <strong>slightly soluble solid</strong> and its dissolved ions. <em>Solubility</em> = g/L; <em>molar solubility</em> = mol/L. For M<sub>a</sub>X<sub>b</sub>(s) ⇌ aM<sup>b+</sup> + bX<sup>a−</sup>:</p>
+      <div class="math">Ksp = [M<sup>b+</sup>]ᵃ[X<sup>a−</sup>]ᵇ</div>
+      <p>Examples: AgCl → Ksp=[Ag⁺][Cl⁻]=1.6×10⁻¹⁰; Ca(OH)₂ → [Ca²⁺][OH⁻]²=6.5×10⁻⁶; Fe(OH)₃ → [Fe³⁺][OH⁻]³=1.1×10⁻³⁶.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE (from slides) — PbCl₂</span>
+        <p>Ksp(PbCl₂) = 1.7×10⁻⁴. Find molar solubility &amp; solubility (MW = 278.2).</p>
+        <div class="step"><span class="num">1</span><span class="txt">PbCl₂ ⇌ Pb²⁺ + 2Cl⁻ → Ksp = (x)(2x)² = 4x³ = 1.7×10⁻⁴.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">x = ∛(1.7×10⁻⁴/4) = <span class="ans">3.5×10⁻² mol/dm³</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Solubility = 3.5×10⁻² × 278.2 = <span class="ans">9.74 g/dm³</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE (from slides) — Ag₂S</span>
+        <p>Solubility 1.24×10⁻¹⁴ g/L (MW = 248). Find Ksp.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Molar solubility x = 1.24×10⁻¹⁴/248 = 5.00×10⁻¹⁷ mol/L.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Ag₂S ⇌ 2Ag⁺ + S²⁻ → Ksp = (2x)²(x) = <span class="ans">5.00×10⁻⁴⁹ M³</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>3.11 — The common ion effect<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Common ions</strong> are ions from an external source that match ions already in equilibrium. Adding them causes a <strong>decrease in solubility</strong> and an <strong>increase in precipitation</strong> (equilibrium shifts left).</p>
+      <p>e.g. Ag₂SO₄(s) ⇌ 2Ag⁺ + SO₄²⁻ — adding AgNO₃ (extra Ag⁺) → too much product → shifts left → Ag₂SO₄ precipitates.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE (from slides) — will PbSO₄ precipitate?</span>
+        <p>Mix 0.10 L of 0.003 M Pb(NO₃)₂ with 0.40 L of 0.005 M Na₂SO₄. Ksp(PbSO₄) = 1.6×10⁻⁸.</p>
+        <div class="step"><span class="num">1</span><span class="txt">mol Pb²⁺ = 3×10⁻⁴; mol SO₄²⁻ = 2×10⁻³; total V = 0.50 L.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">[Pb²⁺]₀ = 6×10⁻⁴ M; [SO₄²⁻]₀ = 4×10⁻³ M.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Q = (6×10⁻⁴)(4×10⁻³) = 2.4×10⁻⁶.</span></div>
+        <div class="step"><span class="num">4</span><span class="txt">Q &gt; Ksp → shifts left → <span class="ans">yes, PbSO₄ precipitates</span>.</span></div>
       </div>
     </div></details>
   </section>
