@@ -567,7 +567,7 @@
     </div></details>
 
     <details class="lesson"><summary>Lesson 3.5 — Curve Sketching &amp; Asymptotes<span class="chev">▶</span></summary><div class="body">
-      <p>The 7-step procedure:</p>
+      <p>Sketching pulls together everything in this topic: intercepts tell you <em>where</em> the curve meets the axes, f′ tells you where it turns, f″ tells you how it bends, and asymptotes tell you its long-range behaviour. Follow the 7-step procedure:</p>
       <ol>
         <li>Find the x- and y-intercepts.</li>
         <li>Find f′(x) and f″(x).</li>
@@ -577,7 +577,22 @@
         <li>Find horizontal &amp; vertical asymptotes.</li>
         <li>Sketch using all the information.</li>
       </ol>
-      <div class="note"><strong>Vertical asymptote:</strong> set the denominator of a rational function = 0. <strong>Horizontal asymptote:</strong> take lim<sub>x→±∞</sub> f(x) by dividing by the highest power of x in the denominator. e.g. f(x) = (4−5x)/(1−x) has vertical asymptote x = 1 and horizontal asymptote y = 5.</div>
+      <h4>Asymptotes</h4>
+      <ul>
+        <li><strong>Vertical asymptote:</strong> set the denominator of a rational function = 0 (the function blows up to ±∞ there).</li>
+        <li><strong>Horizontal asymptote:</strong> take lim<sub>x→±∞</sub> f(x) by dividing every term by the highest power of x in the denominator.</li>
+      </ul>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — asymptotes of f(x) = (4 − 5x)/(1 − x)</span>
+        <div class="step"><span class="num">1</span><span class="txt">Vertical: denominator 1 − x = 0 → <span class="ans">x = 1</span>.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Horizontal: divide top &amp; bottom by x → (4/x − 5)/(1/x − 1). As x → ∞: (0 − 5)/(0 − 1) = <span class="ans">y = 5</span>.</span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — sketch f(x) = x³ − 3x²</span>
+        <div class="step"><span class="num">1</span><span class="txt">Intercepts: x²(x−3) = 0 → x = 0, 3; y-intercept (0, 0).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">f′ = 3x² − 6x = 3x(x−2) = 0 → critical x = 0, 2.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">f″ = 6x − 6. At x = 0: −6 &lt; 0 → max (0, 0). At x = 2: +6 &gt; 0 → min (2, −4).</span></div>
+        <div class="step"><span class="num">4</span><span class="txt">f″ = 0 → x = 1 → inflection (1, −2). No asymptotes (polynomial).</span></div>
+        <div class="step"><span class="num">5</span><span class="txt">Curve: rises to max <span class="ans">(0,0)</span>, falls to min <span class="ans">(2,−4)</span>, then rises; bends from ∩ to ∪ at (1,−2).</span></div>
+      </div>
     </div></details>
 
     <details class="lesson"><summary>Lesson 3.6 — Absolute Max/Min &amp; Optimisation<span class="chev">▶</span></summary><div class="body">
@@ -589,8 +604,25 @@
         <div class="step"><span class="num">3</span><span class="txt">Absolute max = <span class="ans">3</span> (at x=1); absolute min = <span class="ans">−18</span> (at x=−2) — both at endpoints.</span></div>
       </div>
       <h4>Optimisation</h4>
-      <p>Write the quantity as a function of one variable (use a constraint to eliminate the other), differentiate, set f′ = 0, then use the second derivative test (f″ &gt; 0 min, f″ &lt; 0 max).</p>
-      <div class="note">Example: closed cylinder holding 600 cm³ → A = 2πr² + 1200/r. A′ = 4πr − 1200/r² = 0 → r ≈ 4.57 cm, h ≈ 9.14 cm, minimum area ≈ 393.81 cm². Open square-base box, surface 144 cm² → V = 36x − ¼x³, V′ = 0 → x = √48, max volume ≈ 166.08 cm³.</div>
+      <p>The real-world payoff: find the biggest volume, smallest cost, etc. The method:</p>
+      <ol>
+        <li>Write the quantity to optimise as a function of <strong>one</strong> variable (use the constraint to eliminate the other).</li>
+        <li>Differentiate and set f′ = 0 to find the critical value.</li>
+        <li>Confirm max or min with the second derivative test (f″ &gt; 0 min, f″ &lt; 0 max).</li>
+      </ol>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — minimum-surface closed cylinder, volume 600 cm³</span>
+        <div class="step"><span class="num">1</span><span class="txt">Constraint: V = πr²h = 600 → h = 600/(πr²).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Surface A = 2πr² + 2πrh = 2πr² + 1200/r.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">A′ = 4πr − 1200/r² = 0 → r³ = 300/π → <span class="ans">r ≈ 4.57 cm</span>, h ≈ 9.14 cm.</span></div>
+        <div class="step"><span class="num">4</span><span class="txt">A″ = 4π + 2400/r³ &gt; 0 → minimum. A ≈ <span class="ans">393.81 cm²</span>.</span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — maximum-volume open box, square base, surface 144 cm²</span>
+        <div class="step"><span class="num">1</span><span class="txt">Let base = x, height = h. Open box surface = x² + 4xh = 144 → h = (144 − x²)/(4x).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">V = x²h = x²·(144 − x²)/(4x) = 36x − ¼x³.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">V′ = 36 − ¾x² = 0 → x² = 48 → <span class="ans">x = √48 ≈ 6.93 cm</span>.</span></div>
+        <div class="step"><span class="num">4</span><span class="txt">V″ = −(3/2)x &lt; 0 → maximum. V ≈ <span class="ans">166.08 cm³</span>.</span></div>
+      </div>
+      <div class="tip">⚠️ Always check your critical point is a max/min (not the other), and that it lies in the allowed range — and don't forget to convert back to find the second dimension (like h) if the question asks for it.</div>
     </div></details>
   </section>
 
