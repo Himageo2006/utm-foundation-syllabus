@@ -1000,19 +1000,92 @@
   <!-- TOPIC 8 -->
   <section class="topic" id="t8">
     <div class="topic-head"><span class="n">8</span><h2>Numerical Methods</h2></div>
-    <details class="lesson"><summary>Lesson 8.1 — Newton–Raphson & the trapezoidal rule<span class="chev">▶</span></summary><div class="body">
-      <p>When exact answers are hard, approximate them.</p>
-      <h4>Newton–Raphson (finding roots)</h4>
-      <div class="math">xₙ₊₁ = xₙ − f(xₙ)/f′(xₙ)</div>
-      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
-        <p>Use one Newton–Raphson step on f(x) = x² − 2, starting at x₀ = 1.5 (finding √2).</p>
-        <div class="step"><span class="num">1</span><span class="txt">f(x) = x² − 2, f′(x) = 2x. At x₀ = 1.5: f = 0.25, f′ = 3.</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">x₁ = 1.5 − 0.25/3 = 1.5 − 0.0833 = <span class="ans">1.4167</span> (√2 ≈ 1.4142 — very close already).</span></div>
+
+    <details class="lesson" open><summary>Lesson 8.1 — Locating roots: graphs, tables & IVT<span class="chev">▶</span></summary><div class="body">
+      <p>To solve f(x) = 0 when the exact (analytical) solution is hard, we use <strong>numerical methods</strong>. First step: locate a small interval that contains a root.</p>
+      <h4>Graphical method</h4>
+      <p>The real zeros of f(x) are where y = f(x) crosses the x-axis. If y = f(x) is awkward to draw, rearrange f(x) = 0 into p(x) = q(x) and find the <strong>intersection</strong> of the two easier curves.</p>
+      <div class="note">Example: x⁵ − x − 1 = 0 ⟹ x⁵ = x + 1. Plot p = x⁵ and q = x + 1; they cross at x* ∈ (1, 2). Similarly e^(−x) − x = 0 ⟹ e^(−x) = x gives a root ≈ 0.6.</div>
+      <h4>Table of values & Intermediate Value Theorem (IVT)</h4>
+      <p>If f is continuous on [a,b] and <strong>f(a)·f(b) &lt; 0</strong> (opposite signs), then a root lies in (a, b).</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — table</span>
+        <p>f(x) = x⁵ − x − 1 on [0,2], step h = 0.5.</p>
+        <div class="step"><span class="num">1</span><span class="txt">f: −1 (x=0), −1.47 (0.5), −1 (1.0), 5 (1.5), 29 (2.0).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Sign change between 1.0 and 1.5 ⟹ <span class="ans">root in (1, 1.5)</span>.</span></div>
       </div>
-      <h4>Trapezoidal rule (approximate area)</h4>
-      <div class="math">∫ₐᵇ f(x) dx ≈ (h/2)[y₀ + 2y₁ + 2y₂ + … + yₙ], &nbsp; h = (b−a)/n</div>
-      <div class="tip">Simpson's rule is similar but more accurate, using the pattern [1, 4, 2, 4, …, 4, 1].</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — IVT</span>
+        <p>Verify 4 sin x = e^(−x) has a root in (0, 1.5). Let f(x) = e^(−x) − 4 sin x (x in radians).</p>
+        <div class="step"><span class="num">1</span><span class="txt">f(0)·f(1.5) = (1)(−3.7668) = −3.7668 &lt; 0 ⟹ <span class="ans">root exists in (0, 1.5)</span>.</span></div>
+      </div>
     </div></details>
+
+    <details class="lesson"><summary>Lesson 8.2 — Fixed-point iteration<span class="chev">▶</span></summary><div class="body">
+      <p>Rewrite f(x) = 0 as <strong>x = g(x)</strong>, then iterate <strong>xᵢ₊₁ = g(xᵢ)</strong>. The iteration <em>converges</em> only if <strong>|g′(x)| &lt; 1</strong> near the root — otherwise it diverges. Stop when |xᵢ − xᵢ₋₁| &lt; ε.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — choosing a suitable g</span>
+        <p>x³ + x² − 1 = 0 has a root in (0,1). Three rearrangements (test at x₀ = 0.75):</p>
+        <div class="step"><span class="num">i</span><span class="txt">g = 1/√(x+1): |g′(0.75)| = 0.216 &lt; 1 ✓ <strong>suitable</strong>.</span></div>
+        <div class="step"><span class="num">ii</span><span class="txt">g = 1/x − x²: |g′(0.75)| = 3.28 &gt; 1 ✗ diverges.</span></div>
+        <div class="step"><span class="num">iii</span><span class="txt">g = √(1 − x³): |g′(0.75)| = 1.48 &gt; 1 ✗ diverges.</span></div>
+        <div class="step"><span class="num">→</span><span class="txt">Iterate (i): x₁ = 0.7559, x₂ = 0.7546, |x₂−x₁| = 0.0013 &lt; 0.005 ⟹ <span class="ans">root ≈ 0.755 (3 d.p.)</span>.</span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>x³ − 2x − 5 = 0, root in (2,3). Suitable form x = (2x + 5)^(1/3) (|g′(2)| = 0.154 &lt; 1).</p>
+        <div class="step"><span class="num">1</span><span class="txt">x₀=2 → 2.08008 → 2.09235 → 2.09422 → 2.09450 → 2.09454.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">|x₄−x₃| = 0.00028 &lt; 0.0005 ⟹ <span class="ans">root ≈ 2.0945 (4 d.p.)</span>.</span></div>
+      </div>
+      <div class="tip">ε = 5 × 10⁻ᵐ where m = number of decimal places required.</div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 8.3 — Newton–Raphson method<span class="chev">▶</span></summary><div class="body">
+      <p>A special, faster case using the tangent line. Provided f′(xᵢ) ≠ 0:</p>
+      <div class="math">xᵢ₊₁ = xᵢ − f(xᵢ)/f′(xᵢ)</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>x³ = 6x − 4, i.e. f(x) = x³ − 6x + 4, f′(x) = 3x² − 6, x₀ = 1 (3 s.f.).</p>
+        <div class="step"><span class="num">1</span><span class="txt">x₁ = 1 − (−1)/(−3) = 0.667.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">x₂ = 0.7302, x₃ = 0.7320 (|x₃−x₂| = 0.0018 &lt; 0.005).</span></div>
+        <div class="step"><span class="num">3</span><span class="txt"><span class="ans">root ≈ 0.732 (3 s.f.)</span>.</span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — transcendental</span>
+        <p>e^x − 2/x = 0, f′(x) = e^x + 2/x², x₀ = 0.8, stop when |f(xᵢ)| ≤ 10⁻⁴.</p>
+        <div class="step"><span class="num">1</span><span class="txt">x₁ = 0.8 − (−0.2745)/(5.3505) = 0.8513; |f(x₁)| = 0.0066.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">x₂ = 0.8526; |f(x₂)| = 0.00003 &lt; 10⁻⁴ ⟹ <span class="ans">root ≈ 0.8526</span>.</span></div>
+      </div>
+      <div class="tip">Newton–Raphson usually converges in fewer steps than fixed-point iteration, but needs f′(x).</div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 8.4 — Numerical integration: Trapezoidal rule<span class="chev">▶</span></summary><div class="body">
+      <p>To approximate ∫ₐᵇ f(x) dx (the area under the curve) when f can't be integrated, split [a,b] into N strips of width h = (b−a)/N and join the tops with straight lines (trapezoids).</p>
+      <div class="math">∫ₐᵇ f(x) dx ≈ (h/2)[f₀ + f_N + 2(f₁ + f₂ + … + f_{N−1})]</div>
+      <div class="note">Counting: 5 ordinates = 4 strips; 6 subintervals = 6 strips. N = number of strips, h = width.</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — from a data table</span>
+        <p>x: 1.2,1.3,1.4,1.5,1.6,1.7; f: 2.2,2.1,4.7,6.2,5.5,5.0. N = 5, h = 0.1.</p>
+        <div class="step"><span class="num">1</span><span class="txt">A ≈ (0.1/2)[2.2 + 5.0 + 2(2.1+4.7+6.2+5.5)] = <span class="ans">2.21</span>.</span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — refining h</span>
+        <p>∫₁^1.6 f dx: with h = 0.2 (N=3) ⟹ 0.5504; with h = 0.1 (N=6) ⟹ <span class="ans">0.5487</span> (smaller h, more accurate).</p>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — from a function</span>
+        <p>∫₀⁸ √(1+x²) dx, N = 4, h = 2. f: 1, √5, √17, √37, √65.</p>
+        <div class="step"><span class="num">1</span><span class="txt">≈ (2/2)[1 + √65 + 2(√5+√17+√37)] = <span class="ans">33.9461</span>.</span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 8.5 — Numerical integration: Simpson's rule<span class="chev">▶</span></summary><div class="body">
+      <p>Fits <strong>parabolas</strong> instead of straight lines — more accurate than the trapezoidal rule. <strong>N must be EVEN.</strong></p>
+      <div class="math">∫ₐᵇ f(x) dx ≈ (h/3)[f₀ + f_N + 4(odd-index f) + 2(even-index f)]</div>
+      <div class="tip">Memory aid: (h/3)[FIRST + LAST + 4(sum of ODDs) + 2(sum of EVENs)].</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — data table</span>
+        <p>x: 2 → 3.2 step 0.2 (N=6); f: 1, 0.5, 0.333, 0.25, 0.2, 0.167, 0.143.</p>
+        <div class="step"><span class="num">1</span><span class="txt">≈ (0.2/3)[1 + 0.143 + 4(0.5+0.25+0.167) + 2(0.333+0.2)] = <span class="ans">0.3919</span>.</span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — function, 8 strips</span>
+        <p>∫₀² 1/(x²+x+1) dx, N = 8, h = 0.25.</p>
+        <div class="step"><span class="num">1</span><span class="txt">FIRST+LAST = 1.1429; sum of ODDs = 1.6286; sum of EVENs = 1.1152.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">≈ (0.25/3)[1.1429 + 4(1.6286) + 2(1.1152)] = <span class="ans">0.8240</span>.</span></div>
+      </div>
+      <div class="note">Trapezoidal needs no parity condition; Simpson's needs N even but is more accurate for the same h.</div>
+    </div></details>
+
     <div class="tip" style="margin-top:1.5rem">🎯 You've covered all 8 Calculus topics! Now practise with the real <a href="subject.html?s=calculus" style="color:var(--maroon);font-weight:700">Calculus past papers</a> and ask the AI Tutor for help on anything tricky.</div>
   </section>
 </main>
