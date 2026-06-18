@@ -939,13 +939,84 @@
   </section>
 
   <section class="topic" id="c10"><div class="topic-head"><span class="n">10</span><h2>Interference & Diffraction</h2></div>
-    <details class="lesson"><summary>Young's double slit & gratings<span class="chev">▶</span></summary><div class="body">
-      <p>Light is a wave, so two coherent beams <strong>interfere</strong>: in phase → bright (constructive), out of phase → dark (destructive). Bright fringes satisfy d·sinθ = mλ.</p>
-      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
-        <p>A grating with slit spacing d = 2×10⁻⁶ m, light λ = 5×10⁻⁷ m. Find the angle of the 1st-order maximum.</p>
-        <div class="step"><span class="num">1</span><span class="txt">d·sinθ = mλ, m = 1: sinθ = λ/d = (5×10⁻⁷)/(2×10⁻⁶) = 0.25</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">θ = <span class="ans">14.5°</span></span></div>
+
+    <details class="lesson"><summary>10-1 Huygens' Principle & Law of Refraction<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Wavefront:</strong> a line or surface, in the path of a wave motion, on which the disturbances at every point have the same phase. A wavefront is always perpendicular to the direction of wave propagation.</p>
+      <p><strong>Huygens' principle:</strong> every point on a wavefront can be considered as a source of secondary wavelets that spread out in the forward direction at the speed of the wave. The new wavefront is the envelope (tangent) of all the secondary wavelets.</p>
+      <p>The <strong>bending of waves behind obstacles is called diffraction</strong>. Diffraction occurs (a) around the edge of an obstacle, (b) through a large hole, (c) through a small hole whose size is on the order of the wavelength.</p>
+      <p>Huygens' principle also explains <strong>refraction</strong>: wavelets travel more slowly in the medium of higher refractive index, bending the wavefront. The frequency stays the same, but the wavelength changes:</p>
+      <p class="math">λ₂/λ₁ = v₂/v₁ = n₁/n₂ &nbsp;&nbsp;and&nbsp;&nbsp; λₙ = λ/n</p>
+      <p class="note">Highway mirages arise from a gradually changing index of refraction in heated air (hot air near the road is less dense → lower index → light bends and seems reflected off the road).</p>
+    </div></details>
+
+    <details class="lesson"><summary>10-2 Interference — Young's Double Slit<span class="chev">▶</span></summary><div class="body">
+      <p>Monochromatic light through a single slit S diffracts and reaches two slits S₁, S₂, which act as two coherent sources in phase (same wavefront, equal distance from S). They superpose to form bright (constructive) and dark (destructive) fringes on the screen.</p>
+      <p>The path difference between the two slits is d·sinθ. With d = slit separation, L = distance to screen, m = order (0, ±1, ±2, …):</p>
+      <p class="math"><strong>Bright (max):</strong> d·sinθ = mλ &nbsp;→&nbsp; yₘ = mλL/d</p>
+      <p class="math"><strong>Dark (min):</strong> d·sinθ = (m+½)λ &nbsp;→&nbsp; xₘ = (m+½)λL/d</p>
+      <p class="math"><strong>Fringe separation (consecutive bright or dark):</strong> Δy = λL/d</p>
+      <p class="note">Bright: m=0 central (zeroth order), m=±1 first order, … &nbsp; Dark: m=0 → 1st dark (zeroth order min), m=±1 → 2nd dark (1st order min), …</p>
+
+      <div class="ex"><span class="tag">EXAMPLE 1</span>
+        <p>A double-slit pattern is viewed on a screen 1.00 m from the slits. The third-order minima are 25.0 cm apart. Find (a) the ratio λ/d, and (b) the distance between the 1st-order minimum and 4th-order maximum.</p>
+        <div class="step"><span class="num">1</span><span class="txt">x₃ = Δx₃/2 = 0.25/2 = 0.125 m. Using x₃ = (3+½)λL/d: 0.125 = 3.5·λ(1.00)/d → <span class="ans">λ/d = 3.57×10⁻²</span>.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">x₁ = (1+½)λL/d = 1.5 λL/d; y₄ = 4λL/d. Δd = y₄ − x₁ = 2.5 λL/d = 2.5(3.57×10⁻²)(1.00) = <span class="ans">8.93×10⁻² m</span>.</span></div>
       </div>
+
+      <div class="ex"><span class="tag">EXAMPLE 2</span>
+        <p>With λ₁ = 600 nm the fringe separation is 7.0 mm. With a second source the fringe separation is 5.0 mm. Find the second wavelength.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Δy = λL/d → Δy₂/Δy₁ = λ₂/λ₁: (5.0×10⁻³)/(7.0×10⁻³) = λ₂/(600×10⁻⁹).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">λ₂ = <span class="ans">429×10⁻⁹ m (429 nm)</span>.</span></div>
+      </div>
+
+      <div class="ex"><span class="tag">EXAMPLE 3</span>
+        <p>Two coherent sources, d = 1.2 mm, screen L = 2.5 m away. (a) For f = 5.77×10¹⁴ Hz find (i) λ, (ii) the bright-fringe separation in air. (b) In water (n = 1.33), find the dark-fringe separation. (c = 3.00×10⁸ m/s.)</p>
+        <div class="step"><span class="num">1</span><span class="txt">c = fλ → λ = 3.00×10⁸/5.77×10¹⁴ = <span class="ans">520×10⁻⁹ m (520 nm)</span>.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Δy = λL/d = (520×10⁻⁹)(2.5)/(1.2×10⁻³) = <span class="ans">1.08×10⁻³ m</span>.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">In water: λ_w = λ/n = 520×10⁻⁹/1.33 = 3.91×10⁻⁷ m → Δx = λ_w L/d = <span class="ans">8.15×10⁻⁴ m</span>.</span></div>
+      </div>
+
+      <div class="ex"><span class="tag">EXAMPLE 4</span>
+        <p>Two slits 0.100 mm apart, screen 1.20 m away, λ = 500 nm. How far apart are adjacent bright fringes?</p>
+        <div class="step"><span class="num">1</span><span class="txt">Δy = λL/d = (500×10⁻⁹)(1.2)/(0.1×10⁻³) = <span class="ans">6×10⁻³ m (6 mm)</span>.</span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>10-3 Diffraction by a Single Slit<span class="chev">▶</span></summary><div class="body">
+      <p>Diffraction is the superposition of secondary wavelets from a continuous section of wavefront limited by an aperture or obstacle. The central fringe is bright, widest, and most intense; intensity falls off for higher orders.</p>
+      <p>With a = slit width, L = distance to screen (L ≫ a), n = order (1, 2, 3, …):</p>
+      <p class="math"><strong>Minima (dark):</strong> a·sinθₙ = nλ &nbsp;→&nbsp; yₙ = nλL/a</p>
+      <p class="math"><strong>Secondary maxima (bright):</strong> a·sinθₙ = (n+½)λ &nbsp;→&nbsp; yₙ = (n+½)λL/a</p>
+      <p class="math"><strong>Central maximum:</strong> width w = 2λL/a; angular width θ_w = 2·sin⁻¹(λ/a)</p>
+      <p class="note">Maximum number of orders: set θ = 90°, so for minima m_max = a/λ. Both sinθ ∝ λ and yₙ ∝ λ.</p>
+
+      <div class="ex"><span class="tag">EXAMPLE 6</span>
+        <p>Sodium light λ = 580 nm through a slit, screen 0.60 m away, central maximum width 5.0 cm. Find (a) the slit width, (b) the angular width of the central maximum, (c) the number of minima observed.</p>
+        <div class="step"><span class="num">1</span><span class="txt">w = 2λL/a → 5.0×10⁻² = 2(580×10⁻⁹)(0.60)/a → a = <span class="ans">1.39×10⁻⁵ m</span>.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">θ_w = 2·sin⁻¹(λ/a) = 2·sin⁻¹(580×10⁻⁹/1.39×10⁻⁵) = <span class="ans">4.78°</span>.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">a·sin90° = n_max·λ → n_max = 1.39×10⁻⁵/580×10⁻⁹ = 23.97 ≈ 23. Total = 23 × 2 = <span class="ans">46 fringes</span>.</span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>10-4 Diffraction Grating<span class="chev">▶</span></summary><div class="body">
+      <p>A diffraction grating is a large number of equally spaced parallel slits. With N lines per unit length the slit separation is <strong>d = 1/N</strong>. Transmission gratings are the usual type; reflection gratings include CDs/DVDs. The pattern is much narrower and sharper than a double slit.</p>
+      <p class="math"><strong>Maxima:</strong> d·sinθₙ = nλ, &nbsp; n = 0, ±1, ±2, … &nbsp;&nbsp; <strong>Max orders:</strong> n_max = d/λ (at θ = 90°)</p>
+      <p class="note">With white light, each higher order spreads into a rainbow (central fringe stays white).</p>
+
+      <div class="ex"><span class="tag">EXAMPLE 7</span>
+        <p>Monochromatic light falls normally on a grating of 3000 lines/cm. The angular separation between the two first-order maxima is 35°. Find (a) the wavelength, (b) the angular separation between the 2nd- and 3rd-order maxima.</p>
+        <div class="step"><span class="num">1</span><span class="txt">θ₁ = 35°/2 = 17.5°; d = 1/N = 1/3000 cm = 3.33×10⁻⁶ m.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">d·sinθ₁ = λ → (3.33×10⁻⁶)sin17.5° = <span class="ans">1.00×10⁻⁶ m</span>.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">d·sinθ₂ = 2λ → θ₂ = 36.9°; d·sinθ₃ = 3λ → θ₃ = 64.3°. Δθ₂₃ = 64.3° − 36.9° = <span class="ans">27.4°</span>.</span></div>
+      </div>
+
+      <div class="ex"><span class="tag">EXAMPLE 8</span>
+        <p>Find the angular positions of the 1st- and 2nd-order maxima for λ = 400 nm and 700 nm on a grating of 10,000 lines/cm. (d = 1×10⁻⁶ m.)</p>
+        <div class="step"><span class="num">1</span><span class="txt">400 nm: sinθ = nλ/d → 1st order <span class="ans">23.58°</span>, 2nd order <span class="ans">53.13°</span>.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">700 nm: 1st order <span class="ans">44.43°</span>; 2nd order has sinθ = 1.4 &gt; 1 → does not exist.</span></div>
+      </div>
+
+      <p class="note"><strong>Diffraction vs interference:</strong> diffraction — secondary maxima unequal, central maximum wide, secondary minima not fully zero. Interference — all bright bands equal, all fringes equal width, dark fringes completely zero.</p>
     </div></details>
   </section>
 
