@@ -1020,13 +1020,94 @@
     </div></details>
   </section>
 
-  <section class="topic" id="c11"><div class="topic-head"><span class="n">11</span><h2>Quantum Theory of the Atom</h2></div>
-    <details class="lesson"><summary>Photons & the photoelectric effect<span class="chev">▶</span></summary><div class="body">
-      <p>Light energy comes in packets (photons) of energy E = hf, h = 6.63×10⁻³⁴ J·s. In the <strong>photoelectric effect</strong>, a photon ejects an electron if hf exceeds the work function W₀: hf = W₀ + ½mv²(max).</p>
-      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
-        <p>Find the energy of a photon of frequency 5×10¹⁴ Hz.</p>
-        <div class="step"><span class="num">1</span><span class="txt">E = hf = (6.63×10⁻³⁴)(5×10¹⁴)</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">= <span class="ans">3.3×10⁻¹⁹ J</span> (≈ 2.07 eV).</span></div>
+  <section class="topic" id="c11"><div class="topic-head"><span class="n">11</span><h2>Early Quantum Theory & Models of the Atom</h2></div>
+
+    <details class="lesson"><summary>11-1 Planck's Quantum Hypothesis; Blackbody Radiation<span class="chev">▶</span></summary><div class="body">
+      <p>A <strong>black body</strong> is an ideal system that absorbs all radiation incident on it; the radiation it emits is black-body radiation. Total intensity is proportional to the fourth power of temperature: I = P/A = σeT⁴.</p>
+      <p>The peak wavelength shifts to shorter wavelengths as temperature rises (<strong>Wien's displacement law</strong>):</p>
+      <p class="math">λ_P · T = 2.90×10⁻³ m·K</p>
+      <p>Classical theories (Rayleigh–Jeans, Wien) failed to fit the experimental curve at all wavelengths. In 1900 <strong>Planck</strong> proposed that EM radiation from a black body is emitted in discrete packets (quanta); energy is quantised and depends on frequency:</p>
+      <p class="math">E = hf = hc/λ &nbsp;&nbsp;(h = 6.63×10⁻³⁴ J·s) &nbsp;&nbsp; Eₙ = nhf</p>
+      <p class="note">1 eV = 1.60×10⁻¹⁹ J. In 1905 Einstein extended this: EM radiation consists of particle-like packets called <strong>photons</strong>.</p>
+
+      <div class="ex"><span class="tag">EXAMPLE 1 — Sun's surface temperature</span>
+        <p>The Sun's peak intensity is at about 500 nm. Estimate its surface temperature.</p>
+        <div class="step"><span class="num">1</span><span class="txt">T = 2.9×10⁻³/λ_P = 2.9×10⁻³/(500×10⁻⁹) = <span class="ans">≈ 5800 K</span>.</span></div>
+      </div>
+
+      <div class="ex"><span class="tag">EXAMPLE 3 — green-light photon</span>
+        <p>Green light has λ = 740 nm. Find (a) its frequency, (b) its photon energy in joules and eV.</p>
+        <div class="step"><span class="num">1</span><span class="txt">c = fλ → f = 3.00×10⁸/(740×10⁻⁹) = <span class="ans">4.05×10¹⁴ Hz</span>.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">E = hf = (6.63×10⁻³⁴)(4.05×10¹⁴) = <span class="ans">2.69×10⁻¹⁹ J</span> = 2.69×10⁻¹⁹/1.60×10⁻¹⁹ = <span class="ans">1.66 eV</span>.</span></div>
+      </div>
+
+      <div class="ex"><span class="tag">EXAMPLE 4 — gamma photon</span>
+        <p>Gamma radiation of λ = 4.62×10⁻¹² m. Find the photon energy in eV.</p>
+        <div class="step"><span class="num">1</span><span class="txt">E = hc/λ = (6.63×10⁻³⁴)(3.00×10⁸)/(4.62×10⁻¹²) = 4.31×10⁻¹⁴ J = <span class="ans">2.69×10⁵ eV</span>.</span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>11-2 Photon Theory & the Photoelectric Effect<span class="chev">▶</span></summary><div class="body">
+      <p>The <strong>photoelectric effect</strong> is the emission of electrons from a metal surface when EM radiation of sufficiently high frequency strikes it. The emitted electron is a <strong>photoelectron</strong>. The effect does not occur if the frequency is too low.</p>
+      <p>The <strong>work function</strong> W₀ is the minimum energy needed to release an electron: W₀ = hf₀ = hc/λ₀, where f₀ is the threshold frequency and λ₀ the threshold wavelength.</p>
+      <p><strong>Einstein's photoelectric equation:</strong></p>
+      <p class="math">hf = ½mv²(max) + W₀ &nbsp;&nbsp;(E = K_max + W₀)</p>
+      <p class="note">Cases: hf &gt; W₀ (f &gt; f₀) → electron emitted with max KE; hf = W₀ → emitted with zero KE; hf &lt; W₀ → no electron emitted. Sample work functions (eV): Al 4.3, Na 2.3, Cu 4.7, Au 5.1, Ag 4.3.</p>
+
+      <div class="ex"><span class="tag">EXAMPLE 5 — photon energy (blue light)</span>
+        <p>Find the energy of a blue-light photon, λ = 450 nm.</p>
+        <div class="step"><span class="num">1</span><span class="txt">E = hc/λ = (6.63×10⁻³⁴)(3×10⁸)/(450×10⁻⁹) = <span class="ans">4.42×10⁻¹⁹ J</span>.</span></div>
+      </div>
+
+      <div class="ex"><span class="tag">EXAMPLE 5b — photons from a lightbulb</span>
+        <p>How many visible photons does a 100-W bulb emit per second at 3% efficiency (λ ≈ 500 nm)?</p>
+        <div class="step"><span class="num">1</span><span class="txt">Useful power = 100 × 0.03 = 3 J/s. E_photon = hc/λ ≈ 3.98×10⁻¹⁹ J.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">n = 3 / E_photon ≈ <span class="ans">7.5×10¹⁸ photons/s</span>.</span></div>
+      </div>
+
+      <div class="ex"><span class="tag">EXAMPLE 6 — photoelectron from sodium (W₀ = 2.28 eV)</span>
+        <p>Find the KE and speed of electrons ejected by light of (a) 410 nm, (b) 550 nm.</p>
+        <div class="step"><span class="num">1</span><span class="txt">(a) f = 7.32×10¹⁴ Hz; E = hf = 4.853×10⁻¹⁹ J = 3.033 eV. K_max = E − W₀ = 3.033 − 2.28 = 0.753 eV = <span class="ans">1.24×10⁻¹⁹ J</span>; v = <span class="ans">5.23×10⁵ m/s</span>.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(b) f = 5.45×10¹⁴ Hz; E = hf = 3.61×10⁻¹⁹ J = 2.26 eV &lt; W₀ → <span class="ans">no electron emitted</span>.</span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>11-3 Energy, Mass & Momentum of a Photon<span class="chev">▶</span></summary><div class="body">
+      <p>A photon travels at the speed of light, so its rest mass must be zero. Its momentum follows from the relativistic energy–momentum relation:</p>
+      <p class="math">p = E/c = hf/c = h/λ</p>
+
+      <div class="ex"><span class="tag">EXAMPLE 7 — photon momentum & force</span>
+        <p>The 10¹⁹ photons/s (λ = 500 nm) from a 100-W bulb are all absorbed by black paper. Find (a) one photon's momentum, (b) the force on the paper.</p>
+        <div class="step"><span class="num">1</span><span class="txt">p = h/λ = (6.63×10⁻³⁴)/(500×10⁻⁹) = <span class="ans">1.33×10⁻²⁷ kg·m/s</span>.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">F = Δp/Δt = nh/(λt) = <span class="ans">≈ 1.33×10⁻⁸ N</span>.</span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>11-4 Wave–Particle Duality & Complementarity<span class="chev">▶</span></summary><div class="body">
+      <p>Diffraction and interference show light is a <strong>wave</strong>; the photoelectric and Compton effects show it is a <strong>particle</strong>. Light has a dual wave–particle nature.</p>
+      <p>The <strong>principle of complementarity</strong>: both the wave and particle aspects are fundamental to light's nature. The <strong>de Broglie</strong> relation links them:</p>
+      <p class="math">λ = h/p = h/mv</p>
+      <p class="note">Wave evidence: Young's double slit, diffraction. &nbsp; Particle evidence: photoelectric effect, Compton effect.</p>
+    </div></details>
+
+    <details class="lesson"><summary>11-5 Wave Nature of Matter<span class="chev">▶</span></summary><div class="body">
+      <p>The wave nature of matter is most important for very light particles such as electrons. Electron wavelengths can be on the order of 10⁻¹⁰ m, so electrons can be diffracted by crystals like X-rays. de Broglie: λ = h/mv. For an electron accelerated through a voltage V, ½mv² = eV.</p>
+
+      <div class="ex"><span class="tag">EXAMPLE 8 — photon momentum & energy</span>
+        <p>Light of λ = 550 nm on a sodium surface. Find the photon's momentum and energy.</p>
+        <div class="step"><span class="num">1</span><span class="txt">p = h/λ = (6.63×10⁻³⁴)/(550×10⁻⁹) = <span class="ans">1.21×10⁻²⁷ kg·m/s</span>.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">E = hc/λ = <span class="ans">3.62×10⁻¹⁹ J</span>.</span></div>
+      </div>
+
+      <div class="ex"><span class="tag">EXAMPLE 9 — de Broglie wavelengths</span>
+        <p>Find λ for (a) a 77-kg jogger at 4.1 m/s, (b) an electron (9.11×10⁻³¹ kg) at 3.25×10⁵ m/s.</p>
+        <div class="step"><span class="num">1</span><span class="txt">(a) λ = h/mv = (6.63×10⁻³⁴)/(77×4.1) = <span class="ans">2.1×10⁻³⁶ m</span>.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(b) λ = (6.63×10⁻³⁴)/(9.11×10⁻³¹×3.25×10⁵) = <span class="ans">2.24×10⁻⁹ m</span>.</span></div>
+      </div>
+
+      <div class="ex"><span class="tag">EXAMPLE 10 — wavelength of a ball</span>
+        <p>Find λ for a 0.20-kg ball at 15 m/s.</p>
+        <div class="step"><span class="num">1</span><span class="txt">λ = h/mv = (6.63×10⁻³⁴)/(0.20×15) = <span class="ans">2.21×10⁻³⁴ m</span>.</span></div>
       </div>
     </div></details>
   </section>
