@@ -728,12 +728,40 @@
   </section>
 
   <section class="topic" id="c7"><div class="topic-head"><span class="n">7</span><h2>Electromagnetic Waves</h2></div>
-    <details class="lesson"><summary>The spectrum & wave equation<span class="chev">▶</span></summary><div class="body">
-      <p>EM waves are oscillating electric &amp; magnetic fields travelling at c = 3×10⁸ m/s in vacuum. The spectrum (long→short wavelength): radio, microwave, infrared, visible, ultraviolet, X-ray, gamma. Relation: c = fλ.</p>
-      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
-        <p>Find the frequency of green light, wavelength 5×10⁻⁷ m.</p>
-        <div class="step"><span class="num">1</span><span class="txt">f = c/λ = (3×10⁸)/(5×10⁻⁷)</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">= <span class="ans">6×10¹⁴ Hz</span></span></div>
+
+    <details class="lesson"><summary>7.1 — Electromagnetic Waves<span class="chev">▶</span></summary><div class="body">
+      <p>Since a changing electric field produces a magnetic field, and a changing magnetic field produces an electric field, once sinusoidal fields are created they can propagate on their own. These propagating fields are called <strong>electromagnetic waves</strong>.</p>
+      <p>The electric field E and magnetic field B are <strong>perpendicular to each other and to the direction of propagation</strong> (a transverse wave). The whole pattern moves in the direction perpendicular to both E and B.</p>
+    </div></details>
+
+    <details class="lesson"><summary>7.2 — EM waves and their speed<span class="chev">▶</span></summary><div class="body">
+      <p>For a wave of wavelength λ and frequency f, the fields are E = E₀·sin(kx − ωt) and B = B₀·sin(kx − ωt), with:</p>
+      <div class="math">k = 2π/λ,&nbsp;&nbsp;ω = 2πf,&nbsp;&nbsp;v = fλ = ω/k,&nbsp;&nbsp;E/B = v</div>
+      <p>From Maxwell's equations the speed in vacuum is:</p>
+      <div class="math">v = c = 1/√(ε₀μ₀) = 3.0×10⁸ m/s&nbsp;&nbsp;(exactly the measured speed of light)</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 1 (from slides)</span>
+        <p>A 60-Hz EM wave propagates in the z direction with E along x, E₀ = 2.0 V/m. Write E and B as functions of position and time.</p>
+        <div class="step"><span class="num">1</span><span class="txt">ω = 2πf = 2π(60) = 120π rad/s. λ = c/f = 3×10⁸/60 = 5×10⁶ m.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">k = 2π/λ = 2π/(5×10⁶) = 1.25×10⁻⁶ m⁻¹.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">E_x = 2.0·sin(1.25×10⁻⁶ z − 120πt) V/m.</span></div>
+        <div class="step"><span class="num">4</span><span class="txt">B₀ = E₀/c = 2/(3×10⁸) = <span class="ans">6.67×10⁻⁹ T</span>; B_y = 6.67×10⁻⁹·sin(1.25×10⁻⁶ z − 120πt) T.</span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>7.3 — Light & the electromagnetic spectrum<span class="chev">▶</span></summary><div class="body">
+      <p>The frequency of an EM wave is related to its wavelength and the speed of light:</p>
+      <div class="math">c = λf</div>
+      <p>EM waves can have any wavelength; we name the parts of the spectrum (long→short wavelength / low→high frequency): <strong>radio waves, microwaves, infrared, visible light, ultraviolet, X-rays, gamma rays</strong>. Visible light spans λ ≈ 7.5×10⁻⁷ m (red, f = 4×10¹⁴ Hz) to 4.0×10⁻⁷ m (violet, f = 7.5×10¹⁴ Hz).</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 2 (from slides)</span>
+        <p>Calculate the wavelength of (a) a 60-Hz EM wave, (b) a 93.3-MHz FM radio wave, (c) red laser light at 4.74×10¹⁴ Hz.</p>
+        <div class="step"><span class="num">1</span><span class="txt">(a) λ = c/f = 3×10⁸/60 = <span class="ans">5.0×10⁶ m</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(b) λ = 3×10⁸/(93.3×10⁶) = <span class="ans">3.22 m</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">(c) λ = 3×10⁸/(4.74×10¹⁴) = <span class="ans">6.33×10⁻⁷ m</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 3 (from slides)</span>
+        <p>A cell phone antenna is ¼ wavelength long. The rod is 8.5 cm. Estimate the operating frequency.</p>
+        <div class="step"><span class="num">1</span><span class="txt">λ = 4 × 8.5 cm = 34 cm = 0.34 m.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">f = c/λ = 3×10⁸/0.34 = <span class="ans">8.82×10⁸ Hz</span></span></div>
       </div>
     </div></details>
   </section>
