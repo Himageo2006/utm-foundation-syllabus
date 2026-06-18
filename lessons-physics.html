@@ -584,12 +584,145 @@
   </section>
 
   <section class="topic" id="c6"><div class="topic-head"><span class="n">6</span><h2>Electromagnetic Induction</h2></div>
-    <details class="lesson"><summary>Faraday's & Lenz's laws<span class="chev">▶</span></summary><div class="body">
-      <p>A <strong>changing</strong> magnetic flux Φ induces an EMF. <strong>Faraday:</strong> ε = −N·dΦ/dt. <strong>Lenz:</strong> the induced current opposes the change (that's the minus sign). Basis of generators &amp; transformers.</p>
-      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
-        <p>A coil of 200 turns has its flux change by 0.01 Wb in 0.5 s. Find the induced EMF.</p>
-        <div class="step"><span class="num">1</span><span class="txt">ε = N·ΔΦ/Δt = 200 × (0.01/0.5)</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">= 200 × 0.02 = <span class="ans">4 V</span></span></div>
+
+    <details class="lesson"><summary>6.1 — Induced EMF<span class="chev">▶</span></summary><div class="body">
+      <p>Faraday looked for evidence that a magnetic field induces a current using a coil, battery, switch and galvanometer. He found <strong>no</strong> current when the current was steady, but a current was induced when the switch was turned on or off.</p>
+      <p>Moving a bar magnet relative to a coil:</p>
+      <ul>
+        <li>Magnet stationary → galvanometer shows no deflection (no current).</li>
+        <li>Magnet moved towards the coil → momentary deflection one way; moved away → deflects the opposite way.</li>
+      </ul>
+      <p><strong>Conclusion:</strong> when the magnetic field lines through a coil change, an induced emf exists across the coil. The magnitude depends on the speed of relative motion — v increases → induced emf increases (induced emf ∝ v).</p>
+    </div></details>
+
+    <details class="lesson"><summary>6.2.1 — Magnetic flux<span class="chev">▶</span></summary><div class="body">
+      <p>Magnetic flux is the scalar product of the magnetic flux density B and the area vector A:</p>
+      <div class="math">Φ = B·A = BA·cosϕ&nbsp;&nbsp;(unit: weber, Wb = T·m²)</div>
+      <p>ϕ is the angle between B and the area vector A (which is always normal to the surface). Φ is maximum (= BA) when ϕ = 0° (B ⊥ surface, parallel to A), and zero when ϕ = 90°. Flux ∝ number of field lines through the area.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 1 (from slides)</span>
+        <p>A single circular coil of diameter 3.0 cm sits in a uniform field. The plane of the coil makes 30° with the field. The flux is 1.20 mWb. Find B.</p>
+        <div class="step"><span class="num">1</span><span class="txt">A = πd²/4 = π(3.0×10⁻²)²/4 = 7.07×10⁻⁴ m²</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">ϕ = 90° − 30° = 60° (angle to area vector).</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Φ = BA·cosϕ → 1.20×10⁻³ = B(7.07×10⁻⁴)cos60° → B = <span class="ans">3.40 T</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>6.2 — Faraday's Law of Induction<span class="chev">▶</span></summary><div class="body">
+      <p>Faraday's law: the magnitude of the induced emf is proportional to the rate of change of magnetic flux. The minus sign (Lenz's law) shows the induced emf opposes the change producing it.</p>
+      <div class="math">ε = −dΦ/dt&nbsp;&nbsp;and for N turns&nbsp;&nbsp;ε = −N·dΦ/dt = −N(Φ_f − Φ_i)/dt</div>
+      <p>For a coil in series with a resistor R: ε = IR. Three factors change the flux: change in B, change in area A, or change in orientation angle θ:</p>
+      <div class="math">ε = −NA·cosθ·(ΔB)/Δt&nbsp;|&nbsp;ε = −NB·cosθ·(ΔA)/Δt&nbsp;|&nbsp;ε = −NBA·(Δcosθ)/Δt</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 2 (from slides)</span>
+        <p>A coil of area 8.0 cm² and 50 turns lies perpendicular to a 0.20 T field. The field is reduced to zero in 0.50 s. Find (a) the initial flux linkage, (b) the induced emf.</p>
+        <div class="step"><span class="num">1</span><span class="txt">(a) NΦᵢ = NBᵢA·cos0° = 50·0.20·8.0×10⁻⁴ = <span class="ans">8.0×10⁻³ Wb</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(b) ε = −NA·cosϕ·(B_f − Bᵢ)/dt = −50·8.0×10⁻⁴·(0−0.20)/0.50 = <span class="ans">1.6×10⁻² V</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 3 (from slides)</span>
+        <p>A 10-turn coil, diameter 4.0 cm, is perpendicular to a 1.20 T field. After 0.25 s the diameter increases to 5.3 cm. (a) Find the change in area. (b) If R = 2.4 Ω, find the induced current.</p>
+        <div class="step"><span class="num">1</span><span class="txt">(a) dA = (π/4)(d_f² − dᵢ²) = (π/4)((5.3×10⁻²)² − (4.0×10⁻²)²) = <span class="ans">9.5×10⁻⁴ m²</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(b) ε = NB·cosϕ·(dA/dt) = 10·1.2·(9.5×10⁻⁴/0.25) = 4.56×10⁻² V</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">I = ε/R = 4.56×10⁻²/2.4 = <span class="ans">1.9×10⁻² A</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 4 (from slides)</span>
+        <p>A square loop of side ℓ = 5.0 cm in a uniform 0.16 T field. (a) Flux when B ⊥ face. (b) Flux when B is at 30° to area A. (c) Average current if R = 0.012 Ω and it rotates from (b) to (a) in 0.14 s.</p>
+        <div class="step"><span class="num">1</span><span class="txt">A = (5.0×10⁻²)² = 25×10⁻⁴ m². (a) Φ = BA·cos0° = 0.16·25×10⁻⁴ = <span class="ans">4×10⁻⁴ Wb</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(b) Φ = BA·cos30° = <span class="ans">3.5×10⁻⁴ Wb</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">(c) ε = ΔΦ/t = (1×5×10⁻⁵)/0.14 ≈ 3.57×10⁻⁴ V; I = ε/R = 3.57×10⁻⁴/0.012 = <span class="ans">0.03 A</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>6.2.2 — Lenz's Law<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Lenz's law:</strong> an induced emf is always in a direction that opposes the original change in flux that caused it (the current produces a field that tends to restore the changed flux). It is used to find the direction of the induced current.</p>
+      <p>To produce an induced current you need a closed conducting loop and an external flux through it that changes in time. Steps:</p>
+      <ol>
+        <li>Decide whether Φ_B = BA·cosθ is increasing, decreasing or unchanged.</li>
+        <li>B_induced: if Φ_B is <strong>decreasing</strong> → same direction as external field; if <strong>increasing</strong> → opposite direction; if <strong>unchanged</strong> → zero.</li>
+        <li>Use the right-hand rule on B_induced to get the induced current direction.</li>
+      </ol>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 6 (from slides)</span>
+        <p>A 100-loop square coil, side ℓ = 5.00 cm, R = 100 Ω, is pulled from a uniform 0.600 T field to a field-free region in 0.100 s. Find (a) rate of change of flux, (b) emf and current, (c) energy dissipated, (d) average force.</p>
+        <div class="step"><span class="num">1</span><span class="txt">(a) dΦ/dt = ΔBA·cosθ/t = (−0.6·25×10⁻⁴)/0.1 = <span class="ans">−15×10⁻³ Wb/s</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(b) ε = −N(dΦ/dt) = −100(−15×10⁻³) = <span class="ans">1.5 V</span>; I = ε/R = 1.5/100 = <span class="ans">0.015 A</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">(c) P = I²R = 0.015²·100 = 22.5×10⁻³ W; E = Pt = 22.5×10⁻³·0.1 = <span class="ans">2.25×10⁻³ J</span></span></div>
+        <div class="step"><span class="num">4</span><span class="txt">(d) F = IℓB = 15×10⁻³·0.05·0.6 (×N loops) ≈ <span class="ans">0.045 N</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>6.3 — EMF induced in a moving conductor<span class="chev">▶</span></summary><div class="body">
+      <p>A straight conductor of length ℓ moving with velocity v perpendicular to a field B sweeps area A = ℓx, giving Φ = Bℓx. By Faraday's law, ε = dΦ/dt = Bℓ(dx/dt) = Bℓv. In general:</p>
+      <div class="math">ε = Bℓv·sinθ&nbsp;&nbsp;(θ = angle between v and B)</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 7 (from slides)</span>
+        <p>An airplane flies at 1000 km/h where the Earth's field is ≈5×10⁻⁵ T (nearly vertical). Wing tips are 70 m apart. Find the induced potential difference.</p>
+        <div class="step"><span class="num">1</span><span class="txt">v = 1000 km/h = 277.8 m/s; ε = Bℓv·sin90° = 5×10⁻⁵·70·277.8</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">ε = <span class="ans">0.97 V</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 8 (from slides)</span>
+        <p>Electromagnetic blood-flow meter: vessel 2.0 mm diameter, B = 0.080 T, measured emf 0.10 mV. Find the blood flow velocity.</p>
+        <div class="step"><span class="num">1</span><span class="txt">ε = Bℓv·sin90° → 0.1×10⁻³ = 0.08·(2×10⁻³)·v</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">v = <span class="ans">0.625 m/s</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>6.4 — Electric Generators<span class="chev">▶</span></summary><div class="body">
+      <p>A rectangular coil of N turns, area A, rotating at constant angular velocity ω in a field B has flux Φ = BA·cosωt. By Faraday's law the induced emf is:</p>
+      <div class="math">ε = NBAω·sinωt&nbsp;&nbsp;with&nbsp;&nbsp;ε_max = NBAω,&nbsp;&nbsp;ω = 2πf = 2π/T</div>
+      <p>It can also be written ε = NBAω·sinϕ (ϕ = angle between A and B). A coil rotating at constant ω produces a sinusoidally alternating emf — the basis of the generator/dynamo.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 9 (from slides)</span>
+        <p>A 100-turn coil, 10 cm × 15 cm, rotates at 200 rpm in a 5.0 T field. Find (a) max emf, (b) the emf when the plane of the coil makes 38° with the field.</p>
+        <div class="step"><span class="num">1</span><span class="txt">A = 1.5×10⁻² m²; ω = 200·(2π)/60 = 20.9 rad/s.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(a) ε_max = NBAω = 100·5.0·1.5×10⁻²·20.9 = <span class="ans">157 V</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">(b) ϕ = 90° − 38° = 52°; ε = 157·sin52° = <span class="ans">124 V</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>6.5 — Transformers & power transmission<span class="chev">▶</span></summary><div class="body">
+      <p>A transformer is two coils linked by an iron core; a changing emf in the primary induces an emf in the secondary. The emf ratio equals the turns ratio, and (energy conserved) the current ratio is the inverse:</p>
+      <div class="math">V_S/V_P = N_S/N_P&nbsp;&nbsp;and&nbsp;&nbsp;I_S/I_P = N_P/N_S&nbsp;&nbsp;|&nbsp;&nbsp;P = VI</div>
+      <p>Step-up: V_S &gt; V_P (more secondary turns). Transformers work only with changing (ac) current — one reason electricity is transmitted as ac, stepped up to high voltage to cut transmission loss (P_loss = I²R).</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 10 (from slides)</span>
+        <p>A phone charger steps 120 V ac down to 5.0 V ac. Secondary has 30 turns and supplies 700 mA. Find (a) primary turns, (b) primary current, (c) power transformed.</p>
+        <div class="step"><span class="num">1</span><span class="txt">(a) 5/120 = 30/N_P → N_P = <span class="ans">720 turns</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(b) 30/720 = I_P/700 mA → I_P = <span class="ans">29 mA</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">(c) P = VI = 5·(700×10⁻³) = <span class="ans">3.5 W</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 11 (from slides)</span>
+        <p>120 kW is sent 10 km on lines of total resistance 0.40 Ω. Find the power loss at (a) 240 V, (b) 24,000 V.</p>
+        <div class="step"><span class="num">1</span><span class="txt">(a) I = P/V = 120000/240 = 547.72 A; P_loss = I²R = 547.72²·0.4 = <span class="ans">≈99,918 W</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(b) I = 120000/24000 = 5 A; P_loss = 5²·0.4 = <span class="ans">10 W</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>6.6 — Self-Inductance<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Self-induction:</strong> producing an induced emf in a coil due to a change of current in the same coil. By Lenz's law the induced (back) emf opposes the change — when I increases the induced emf opposes the current; when I decreases it acts in the same direction. (Demonstrated by a lamp with an iron-core coil brightening slowly vs. a lamp with a resistor lighting instantly.)</p>
+      <div class="math">Φ_L = LI,&nbsp;&nbsp;ε = −L·dI/dt,&nbsp;&nbsp;L = NΦ/I = Φ_L/I&nbsp;&nbsp;(unit: henry, H)</div>
+      <p>For an air-core solenoid: L = μ₀N²A/ℓ. The inductor stores energy in its magnetic field.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 12 (from slides)</span>
+        <p>A 500-turn solenoid 8.0 cm long: current rises 0 → 2.5 A in 0.35 s, induced emf 0.012 V. Find (a) inductance, (b) cross-sectional area, (c) final flux linkage. (μ₀ = 4π×10⁻⁷)</p>
+        <div class="step"><span class="num">1</span><span class="txt">(a) ε = L·dI/dt → 0.012 = L(2.5/0.35) → L = <span class="ans">1.68×10⁻³ H</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(b) L = μ₀N²A/ℓ → A = <span class="ans">4.28×10⁻⁴ m²</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">(c) (Φ_L)_f = LI_f = 1.68×10⁻³·2.5 = <span class="ans">4.2×10⁻³ Wb</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE (solenoid inductance, from slides)</span>
+        <p>L = μ₀N²A/ℓ. With N = 100, ℓ = 5.0 cm, A = 0.30 cm², air-filled:</p>
+        <div class="step"><span class="num">1</span><span class="txt">L = (4π×10⁻⁷·100²·0.3×10⁻⁴)/0.05 = <span class="ans">7.5×10⁻⁶ H</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>6.7 — Energy stored in a magnetic field<span class="chev">▶</span></summary><div class="body">
+      <p>Building current against the back emf stores energy. Integrating dU = LI·dI from 0 to I:</p>
+      <div class="math">U = ½LI²&nbsp;&nbsp;(analogous to U = ½CV² for a capacitor)</div>
+      <p>For a long air-core solenoid (L = μ₀N²A/ℓ): U = ½(μ₀N²AI²/ℓ). The energy density of a magnetic field is u = ½B²/μ₀.</p>
+    </div></details>
+
+    <details class="lesson"><summary>6.8 — Mutual Inductance<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Mutual induction:</strong> producing an induced emf in one coil due to the change of current in another coil that is magnetically linked. For coils with N₁, N₂ turns:</p>
+      <div class="math">ε₂ = −M·dI₁/dt,&nbsp;&nbsp;ε₁ = −M·dI₂/dt,&nbsp;&nbsp;M = N₂Φ₂/I₁ = N₁Φ₁/I₂&nbsp;&nbsp;(unit: H)</div>
+      <p>For two coaxial solenoids with no flux leakage: M = μ₀N₁N₂A/ℓ.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 13 (from slides)</span>
+        <p>3.0 A in coil C produces 0.75 Wb in it; bringing coil D near produces 0.25 Wb in D. C has 1000 turns, D has 5000 turns. Find (a) L_C and energy stored in C, (b) mutual inductance, (c) emf in D if I in C falls 3.0 A → 0 in 0.25 s.</p>
+        <div class="step"><span class="num">1</span><span class="txt">(a) L_C = N_CΦ_C/I_C = 1000·0.75/3.0 = <span class="ans">250 H</span>; U_C = ½L_CI_C² = ½·250·3.0² = <span class="ans">1125 J</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(b) M = N_DΦ_D/I_C = 5000·0.25/3.0 = <span class="ans">≈417 H</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">(c) ε_D = −M·dI_C/dt = −417·(−3.0/0.25) = <span class="ans">≈5004 V</span></span></div>
       </div>
     </div></details>
   </section>
