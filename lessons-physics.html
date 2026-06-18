@@ -453,12 +453,132 @@
   </section>
 
   <section class="topic" id="c5"><div class="topic-head"><span class="n">5</span><h2>Magnetism</h2></div>
-    <details class="lesson"><summary>Magnetic force on charges & wires<span class="chev">▶</span></summary><div class="body">
-      <p>A moving charge in a magnetic field feels a force F = qvB·sinθ. A current-carrying wire feels F = BIL·sinθ. Direction: Fleming's left-hand rule.</p>
-      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
-        <p>A wire of length 0.2 m carries 3 A perpendicular to a 0.5 T field. Find the force.</p>
-        <div class="step"><span class="num">1</span><span class="txt">θ = 90° so sinθ = 1.</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">F = BIL = (0.5)(3)(0.2) = <span class="ans">0.3 N</span></span></div>
+
+    <details class="lesson" open><summary>5.1 — Magnets and Magnetic Fields<span class="chev">▶</span></summary><div class="body">
+      <p>Magnets have two ends — <strong>poles</strong> — called <strong>north (N)</strong> and <strong>south (S)</strong>. <strong>Like poles repel; unlike poles attract.</strong></p>
+      <p>If you cut a magnet in half, you don't get a separate north pole and south pole — you get two smaller magnets (each with both N and S). A single magnetic pole has never been found; poles always come in pairs.</p>
+      <div class="note">The Earth's magnetic field is similar to that of a bar magnet. Note that the Earth's geographic "North Pole" is really a <strong>south magnetic pole</strong>, since the north ends of magnets are attracted to it.</div>
+      <p><strong>Magnetic field</strong> is defined as a region around a magnet where a magnetic force can be experienced.</p>
+      <ul>
+        <li>A <strong>stationary</strong> electric charge is surrounded by an electric field <em>only</em>.</li>
+        <li>When an electric charge <strong>moves</strong>, it is surrounded by both an electric field and a magnetic field — the motion of the charge produces the magnetic field.</li>
+      </ul>
+      <p><strong>Magnetic field lines</strong> represent a magnetic field. By convention, field lines <strong>leave the north pole and enter the south pole</strong>. The tangent to a curved field line at a point gives the direction of the field at that point. The pattern can be shown using compass needles or by sprinkling iron filings on paper.</p>
+      <div class="tip">A <strong>neutral point</strong> is a point where the resultant magnetic force is zero (e.g. between two like poles).</div>
+    </div></details>
+
+    <details class="lesson"><summary>5.2 — Ampère's Law, definition of the Ampere<span class="chev">▶</span></summary><div class="body">
+      <p>Ampère's law relates the magnetic field around a closed loop to the total current flowing through the loop:</p>
+      <div class="math">∮ B·dℓ = μ₀ I_encl</div>
+      <p>The integral is taken around the edge of the closed loop. For a long straight wire, use a circular path with the wire at the centre; then B is tangent to dℓ at every point and μ₀I = ∮B·dℓ = B(2πr), giving B = μ₀I/2πr.</p>
+      <div class="note"><strong>Definition of the ampere:</strong> one ampere is the current flowing in each of two long parallel wires 1 m apart that results in a force of exactly 2×10⁻⁷ N per metre of length. The <strong>coulomb</strong> is then defined as exactly one ampere-second.</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 1 (from slides)</span>
+        <p>Field inside and outside a wire. A long straight cylindrical conductor of radius R carries a current I of uniform current density. With R = 2.0 mm and I = 60 A, find B at r = 1.0 mm, 2.0 mm and 3.0 mm.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Outside (r &gt; R): B = μ₀I/2πr. Inside (r &lt; R): B = μ₀Ir/2πR² (since I_encl = I·πr²/πR²).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">r = 1.0 mm (inside): B = (4π×10⁻⁷·60·1×10⁻³)/(2π(2×10⁻³)²) = <span class="ans">6×10⁻⁶ T</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">r = 2.0 mm (= R): B = μ₀I/2πr = (4π×10⁻⁷·60)/(2π·2×10⁻³) = <span class="ans">6×10⁻³ T</span></span></div>
+        <div class="step"><span class="num">4</span><span class="txt">r = 3.0 mm (outside): B = (4π×10⁻⁷·60)/(2π·3×10⁻³) = <span class="ans">4×10⁻³ T</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>5.3.1 — Magnetic field due to a straight wire<span class="chev">▶</span></summary><div class="body">
+      <p>An electric current produces a magnetic field. The direction is given by the <strong>right-hand grip rule</strong>: thumb points along the current, the curled fingers give the field direction (clockwise or anticlockwise circles around the wire).</p>
+      <p>Magnitude of the magnetic flux density at distance r from a long straight wire:</p>
+      <div class="math">B = μ₀I / 2πr&nbsp;&nbsp;&nbsp;(μ₀ = 4π×10⁻⁷ T·m·A⁻¹)</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 2 (from slides)</span>
+        <p>A wire carries a dc current of 25 A vertically upward. Find B at a point P 10 cm due north of the wire.</p>
+        <div class="step"><span class="num">1</span><span class="txt">B = μ₀I/2πr = (4π×10⁻⁷·25)/(2π·0.1)</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">B = <span class="ans">5×10⁻⁵ T</span>, directed into the page.</span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 3 (from slides)</span>
+        <p>Two parallel wires 10.0 cm apart carry currents in opposite directions: I₁ = 5.0 A out of the page, I₂ = 7.0 A into the page. Find the field halfway between them. The midpoint is 0.05 m from each wire.</p>
+        <div class="step"><span class="num">1</span><span class="txt">B₁ = (4π×10⁻⁷·5.0)/(2π·0.05) = 2.0×10⁻⁵ T into the page.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">B₂ = (4π×10⁻⁷·7.0)/(2π·0.05) = 2.8×10⁻⁵ T into the page.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Both into the page: B = 2.0×10⁻⁵ + 2.8×10⁻⁵ = <span class="ans">4.8×10⁻⁵ T into the page</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 4 (from slides)</span>
+        <p>Wire X (50 A) is 5.0 cm from a parallel wire Y (10 A), currents in the <em>same</em> direction. (a) Find B midway between them. (b) Find the point between X and Y where B = 0. Sign convention: out of page = +, into page = −. r_X = r_Y = 2.5×10⁻² m.</p>
+        <div class="step"><span class="num">1</span><span class="txt">B_X = (4π×10⁻⁷·50)/(2π·2.5×10⁻²) = 4.0×10⁻⁴ T (into page, −).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">B_Y = (4π×10⁻⁷·10)/(2π·2.5×10⁻²) = 8.0×10⁻⁵ T (out of page, +).</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">(a) B_A = −B_X + B_Y = −4.0×10⁻⁴ + 8.0×10⁻⁵ = <span class="ans">−3.2×10⁻⁴ T (into page)</span></span></div>
+        <div class="step"><span class="num">4</span><span class="txt">(b) Set B_X = B_Y: 50/r = 10/(5.0×10⁻² − r) → <span class="ans">r = 4.2×10⁻² m from X</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>5.3.2 — Magnetic field of a solenoid<span class="chev">▶</span></summary><div class="body">
+      <p>A <strong>solenoid</strong> is a long wire wound into a succession of closely spaced loops (a helix). The right-hand grip rule for a solenoid: fingers follow the current in the coils, thumb points to the north pole.</p>
+      <p>At the <strong>centre</strong> (inside) of an N-turn solenoid, with n = N/ℓ turns per unit length:</p>
+      <div class="math">B = μ₀NI/ℓ = μ₀nI</div>
+      <p>At the <strong>end</strong> of the solenoid the field is half this value:</p>
+      <div class="math">B = ½ μ₀nI</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 5 (from slides)</span>
+        <p>A thin 10-cm-long solenoid has 400 turns and carries 2.0 A. Find the field inside near the centre.</p>
+        <div class="step"><span class="num">1</span><span class="txt">n = N/ℓ = 400/0.1 = 4000 turns/m.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">B = μ₀nI = 4π×10⁻⁷ · 4000 · 2.0 = <span class="ans">0.01 T</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>5.4.1 — Force on a current-carrying conductor<span class="chev">▶</span></summary><div class="body">
+      <p>When a current-carrying conductor is placed in a magnetic field B, it experiences a magnetic force:</p>
+      <div class="math">F = IℓB·sinθ&nbsp;&nbsp;(vector: F = I ℓ × B)</div>
+      <p>θ is the angle between the current direction and B. The force is <strong>maximum</strong> (F = IℓB) when the conductor is perpendicular to B (θ = 90°), and <strong>zero</strong> when the conductor is parallel to B (θ = 0°).</p>
+      <div class="note"><strong>Fleming's left-hand rule:</strong> Thumb = Force, First finger = Field, Second finger = Current.</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 6 (from slides)</span>
+        <p>A wire 100 cm long is perpendicular to a 1.20 Wb·m⁻² field. (a) Force when I = 15 A. (b) Force when length extended to 150 cm. (c) If F = 60×10⁻² N at I = 12 A and ℓ = 1.50 m, find B.</p>
+        <div class="step"><span class="num">1</span><span class="txt">(a) F = IℓB·sin90° = 15·1.00·1.20 = <span class="ans">18 N</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(b) F = 15·1.50·1.20 = <span class="ans">27 N</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">(c) 60×10⁻² = 12·1.50·B → B = <span class="ans">3.33×10⁻² T</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 7 (from slides)</span>
+        <p>A wire carries 30 A over length ℓ = 12 cm at θ = 60° in a uniform 0.90 T field. Find the force.</p>
+        <div class="step"><span class="num">1</span><span class="txt">F = IℓB·sinθ = 30·0.12·0.90·sin60°</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">F = <span class="ans">2.81 N</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 8 (from slides)</span>
+        <p>Measuring a field. A horizontal wire ab (ℓ = 10.0 cm) carries I = 0.245 A; the balance measures a downward magnetic force F = 3.48×10⁻² N. Find B.</p>
+        <div class="step"><span class="num">1</span><span class="txt">F = IℓB·sin90° → 3.48×10⁻² = 0.245·0.1·B</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">B = <span class="ans">1.42 T</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>5.4.2 — Force on a moving electric charge<span class="chev">▶</span></summary><div class="body">
+      <p>A stationary charge in a magnetic field feels no force, but a charge moving with velocity v feels:</p>
+      <div class="math">F = qvB·sinθ&nbsp;&nbsp;(vector: F = q v × B)</div>
+      <p>θ is the angle between v and B. Direction: Fleming's <strong>left</strong> hand for a positive charge, Fleming's <strong>right</strong> hand for a negative charge (Thumb = Force, First finger = Field, Second finger = Velocity).</p>
+      <p>When v ⊥ B the charge moves in a <strong>circle</strong>: the magnetic force provides the centripetal force, F_B = F_c, so qvB = mv²/r and</p>
+      <div class="math">r = mv / Bq</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 9 (from slides)</span>
+        <p>A proton (q = +1.60×10⁻¹⁹ C) travels at 5.0×10⁷ m·s⁻¹ in a 1.5 Wb·m⁻² field. Find F when (a) v ⊥ B, (b) v at 50° to B.</p>
+        <div class="step"><span class="num">1</span><span class="txt">(a) F = qvB·sin90° = 1.60×10⁻¹⁹·5.0×10⁷·1.5 = <span class="ans">1.20×10⁻¹¹ N</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(b) F = 1.60×10⁻¹⁹·5.0×10⁷·1.5·sin50° = <span class="ans">9.19×10⁻¹² N</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 10 (from slides)</span>
+        <p>A field exerts 8.0×10⁻¹⁴ N west on a proton moving vertically up at 5.0×10⁶ m/s; zero force when moving north. Find B (q = 1.6×10⁻¹⁹ C).</p>
+        <div class="step"><span class="num">1</span><span class="txt">F = qvB·sin90° → 8.0×10⁻¹⁴ = 1.6×10⁻¹⁹·5.0×10⁶·B</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">B = <span class="ans">0.1 T</span> (directed north, since force is zero when v is along B).</span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 11 (from slides)</span>
+        <p>An electron (m = 9.11×10⁻³¹ kg) travels at 2.0×10⁷ m/s perpendicular to a 0.010 T field. Find the radius of its circular path.</p>
+        <div class="step"><span class="num">1</span><span class="txt">r = mv/qB = (9.11×10⁻³¹·2.0×10⁷)/(1.6×10⁻¹⁹·0.010)</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">r = <span class="ans">0.0114 m</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>5.5 — Force between two parallel wires<span class="chev">▶</span></summary><div class="body">
+      <p>Two parallel conductors carrying currents I₁ and I₂ separated by d exert equal and opposite forces on each other. The field of wire 1 at wire 2 is B₁ = μ₀I₁/2πd, so the force on length ℓ is F₁₂ = I₂ℓB₁:</p>
+      <div class="math">|F₁₂| = |F₂₁| = F = μ₀I₁I₂ℓ / 2πd</div>
+      <p>Force per unit length:</p>
+      <div class="math">F/ℓ = μ₀I₁I₂ / 2πd</div>
+      <div class="note">Currents in the <strong>same direction</strong> → wires <strong>attract</strong>. Currents in <strong>opposite directions</strong> → wires <strong>repel</strong>.</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 12 (from slides)</span>
+        <p>Two parallel wires 0.25 m apart each carry 2.4 A in the same direction. (b) Find the force per unit length. (c) If one current is reduced to 0.64 A, find the current needed in the other wire to keep the same F/ℓ.</p>
+        <div class="step"><span class="num">1</span><span class="txt">(b) F/ℓ = μ₀I₁I₂/2πd = (4π×10⁻⁷·2.4·2.4)/(2π·0.25) = <span class="ans">4.6×10⁻⁶ N·m⁻¹</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(c) 4.6×10⁻⁶ = (4π×10⁻⁷·0.64·I₂)/(2π·0.25) → I₂ = <span class="ans">8.98 A</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 13 (from slides)</span>
+        <p>A horizontal wire carries I₁ = 80 A. A parallel wire 20 cm below (mass 0.12 g per metre) must carry what current I₂ to be suspended against gravity?</p>
+        <div class="step"><span class="num">1</span><span class="txt">Balance weight with magnetic force: mg/ℓ = μ₀I₁I₂/2πd</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(0.12×10⁻³·9.8)/1 = (4π×10⁻⁷·80·I₂)/(2π·0.2), solve for I₂.</span></div>
       </div>
     </div></details>
   </section>
