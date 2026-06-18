@@ -1112,13 +1112,81 @@
     </div></details>
   </section>
 
-  <section class="topic" id="c12"><div class="topic-head"><span class="n">12</span><h2>Nuclear Physics</h2></div>
-    <details class="lesson"><summary>Radioactivity & half-life<span class="chev">▶</span></summary><div class="body">
-      <p>Unstable nuclei decay by emitting α (helium nucleus), β (electron), or γ (photon). <strong>Half-life</strong> T½ is the time for half the nuclei to decay: N = N₀·(½)^(t/T½). Mass defect → binding energy via E = mc².</p>
-      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
-        <p>A sample has 800 atoms; half-life is 5 days. How many remain after 15 days?</p>
-        <div class="step"><span class="num">1</span><span class="txt">Number of half-lives = 15/5 = 3.</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">N = 800 × (½)³ = 800 × 1/8 = <span class="ans">100 atoms</span></span></div>
+  <section class="topic" id="c12"><div class="topic-head"><span class="n">12</span><h2>Nuclear Physics & Radioactivity</h2></div>
+
+    <details class="lesson"><summary>12-1 Structure & Properties of the Nucleus<span class="chev">▶</span></summary><div class="body">
+      <p>A nucleus is made of protons and neutrons (collectively <strong>nucleons</strong>). Proton charge +e (1.60×10⁻¹⁹ C), mass 1.672×10⁻²⁷ kg; neutron uncharged, mass 1.675×10⁻²⁷ kg. In a neutral atom, number of protons = number of electrons.</p>
+      <p><strong>Atomic number Z</strong> = protons; <strong>neutron number N</strong>; <strong>mass number A</strong> = nucleons, with <strong>A = Z + N</strong>. A nuclide is written ᴬ_Z X.</p>
+      <p><strong>Isotopes</strong> are nuclides with the same Z but different A (same protons/electrons, different neutrons) — e.g. ¹H, ²H (deuterium), ³H (tritium); ¹⁶O, ¹⁷O, ¹⁸O.</p>
+      <p>Nuclear radius: r ≈ (1.2×10⁻¹⁵ m)·A^(1/3). Masses are referenced to carbon-12 (exactly 12 u), where <strong>1 u = 1.6605×10⁻²⁷ kg = 931.5 MeV/c²</strong>. A stable nucleus has less mass than its separate nucleons; the missing mass becomes energy.</p>
+    </div></details>
+
+    <details class="lesson"><summary>12-2 Binding Energy & Nuclear Forces<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Mass defect:</strong> Δm = (Z·m_p + N·m_n) − M_A. The <strong>binding energy</strong> (energy to separate all nucleons) is the energy equivalent of the mass defect:</p>
+      <p class="math">E_B = (Δm)c² &nbsp;&nbsp; Binding energy per nucleon = E_B / A</p>
+      <p class="note">1 MeV = 1.60×10⁻¹³ J. The higher the binding energy per nucleon, the more stable the nucleus (⁵⁶Fe is near the peak). Nucleons are held by the short-range <strong>strong nuclear force</strong> (≈0 beyond ~10⁻¹⁵ m); the long-range Coulomb force is why high-Z nuclei need extra neutrons. The <strong>weak nuclear force</strong> governs beta decay.</p>
+
+      <div class="ex"><span class="tag">EXAMPLE 2 — binding energy of ²⁷₁₃Al</span>
+        <p>Given m_n = 1.00867 u, m_p = 1.00782 u, M_Al = 26.98154 u. (Z = 13, N = 14.)</p>
+        <div class="step"><span class="num">1</span><span class="txt">Δm = [13(1.00782) + 14(1.00867)] − 26.98154 = <span class="ans">0.2415 u</span>.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Δm = 0.2415 × 1.66×10⁻²⁷ = 4.0089×10⁻²⁸ kg; E_B = Δmc² = 3.608×10⁻¹¹ J.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">E_B = 3.608×10⁻¹¹ / 1.60×10⁻¹³ = <span class="ans">226 MeV</span>.</span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>12-3 Radioactivity: alpha, beta, gamma<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Radioactivity</strong> is the random, spontaneous emission of radiation when an unstable nuclide decays — unplanned, unpredictable, independent of physical/chemical conditions.</p>
+      <p><strong>Alpha (α):</strong> a helium nucleus ⁴₂He, +2e. <span class="math">ᴬ_Z X → ᴬ⁻⁴_(Z−2) Y + ⁴₂He</span> &nbsp; Q = M_P c² − (M_D + m_α)c².</p>
+      <p><strong>Beta-minus (β⁻):</strong> an electron. <span class="math">ᴬ_Z X → ᴬ_(Z+1) Y + ⁰₋₁e + ν̄</span> (A unchanged, Z +1). <strong>Beta-plus (β⁺):</strong> a positron, Z −1.</p>
+      <p><strong>Gamma (γ):</strong> high-energy photon, uncharged, zero mass; emitted when a nucleus drops from an excited state (X*) to a lower state — no change to Z or A.</p>
+      <p class="note"><strong>Comparison:</strong> charge α +2e, β ∓1e, γ 0. Deflected by fields: α yes, β yes, γ no. Ionizing power: α strong, β moderate, γ weak. Penetration: α weak, β moderate, γ strong.</p>
+
+      <div class="ex"><span class="tag">EXAMPLE 5 — uranium decay energy</span>
+        <p>²³²₉₂U (232.037156 u) → ²²⁸₉₀Th (228.028741 u) + α (4.002603 u). Find Q.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Q = [232.037156 − (228.028741 + 4.002603)] u × c², converted to MeV = <span class="ans">5.41 MeV</span>.</span></div>
+      </div>
+
+      <div class="ex"><span class="tag">EXAMPLE 6 — energy in ¹⁴C β decay</span>
+        <p>¹⁴₆C → ¹⁴₇N + ⁰₋₁e + ν. m_P = 14.003242, m_D = 14.003074 (β mass negligible).</p>
+        <div class="step"><span class="num">1</span><span class="txt">Q = (m_P − m_D)c² = 0.000168 u × c² = <span class="ans">0.156 MeV</span>.</span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>12-4 Half-Life & Rate of Decay<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Decay constant λ</strong> (s⁻¹) — probability a nucleus decays per second: dN/dt = −λN. Integrating gives the <strong>exponential decay law:</strong></p>
+      <p class="math">N = N₀ e^(−λt)</p>
+      <p><strong>Half-life</strong> T₁/₂ — time for half the nuclei to decay:</p>
+      <p class="math">T₁/₂ = ln2 / λ = 0.693 / λ</p>
+      <p><strong>Activity</strong> A (decays/s) = decay rate: A = λN = A₀ e^(−λt). Units: 1 Ci = 3.7×10¹⁰ decays/s; 1 Bq = 1 decay/s.</p>
+
+      <div class="ex"><span class="tag">EXAMPLE 7 — nuclide B formed</span>
+        <p>A → B, T₁/₂ of A = 5.0 days, N₀ = 1.0×10²⁰. Find the number of B after 20 days.</p>
+        <div class="step"><span class="num">1</span><span class="txt">λ = ln2/5.0 = 0.139 day⁻¹. N = 1.0×10²⁰·e^(−0.139×20) = 6.2×10¹⁸ nuclei remain.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">B formed = 1.0×10²⁰ − 6.2×10¹⁸ = <span class="ans">9.38×10¹⁹ nuclei</span>.</span></div>
+      </div>
+
+      <div class="ex"><span class="tag">EXAMPLE 8 — 80% decays in 4.0 days</span>
+        <p>Find (i) the decay constant, (ii) the half-life.</p>
+        <div class="step"><span class="num">1</span><span class="txt">N = 0.2N₀ → 0.2 = e^(−4.0λ) → λ = <span class="ans">0.402 day⁻¹</span>.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">T₁/₂ = ln2/0.402 = <span class="ans">1.72 days</span>.</span></div>
+      </div>
+
+      <div class="ex"><span class="tag">EXAMPLE 11 — sample activity of ¹⁴C</span>
+        <p>T₁/₂ = 5730 yr, sample has 1.00×10²² nuclei. Find the activity.</p>
+        <div class="step"><span class="num">1</span><span class="txt">λ = ln2/T₁/₂ = 3.83×10⁻¹² s⁻¹.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">A = λN = (3.83×10⁻¹²)(1.00×10²²) = <span class="ans">3.84×10¹⁰ decays/s</span>.</span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>12-5 Decay Series & 12-6 Radioactive Dating<span class="chev">▶</span></summary><div class="body">
+      <p>A <strong>decay series</strong> occurs when one radioactive isotope decays to another radioactive isotope, which decays again, and so on (e.g. the ²³⁸U series ending at stable ²⁰⁶Pb).</p>
+      <p><strong>Radioactive dating:</strong> the ¹⁴C/¹²C ratio in the atmosphere is roughly constant. A living organism keeps that ratio; when it dies, exchange stops and ¹⁴C (T₁/₂ ≈ 5730 yr) decays away. Measuring the remaining fraction gives the age. Objects older than ~60,000 yr have too little ¹⁴C. ²³⁸U (T₁/₂ = 4.5×10⁹ yr) dates the oldest rocks (~4 billion yr).</p>
+
+      <div class="ex"><span class="tag">EXAMPLE 13 — age of an ancient bone</span>
+        <p>200 g of carbon registers an activity of 16 decays/s. Find its age. (¹⁴C/¹²C ≈ 1.3×10⁻¹².)</p>
+        <div class="step"><span class="num">1</span><span class="txt">N(¹²C) in 200 g ≈ 1×10²⁵; N₀(¹⁴C) = 1.3×10⁻¹²·1×10²⁵ = 1.3×10¹³.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">λ = ln2/T₁/₂ = 3.8×10⁻¹² s⁻¹; A₀ = λN₀ = 49.4 decays/s.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">A = A₀e^(−λt), 16 = 49.4·e^(−λt) → t ≈ <span class="ans">9417 years</span>.</span></div>
       </div>
     </div></details>
   </section>
