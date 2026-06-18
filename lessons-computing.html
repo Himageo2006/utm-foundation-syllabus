@@ -1157,13 +1157,97 @@ do {
   </section>
 
   <section class="topic" id="t7"><div class="topic-head"><span class="n">7</span><h2>Files (Input & Output)</h2></div>
-    <details class="lesson"><summary>Reading & writing files<span class="chev">▶</span></summary><div class="body">
-      <p>Files let data survive after the program ends. Open with <code>fopen</code> (mode: "r" read, "w" write, "a" append), then close with <code>fclose</code>.</p>
-      <pre>FILE *fp = fopen("data.txt", "w");
-fprintf(fp, "Score: %d\n", 95);
-fclose(fp);</pre>
-      <p>Read back with <code>fscanf(fp, "%d", &amp;x)</code>. Always check the file opened (<code>if (fp == NULL) ...</code>).</p>
-    </div></details>
+
+    <details class="lesson"><summary>7·1 Introduction to Files<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>You can use <strong>files</strong> instead of the keyboard and monitor for program input and output.</li>
+        <li>A <strong>file</strong> is a set of data stored on a computer (often on a disk drive) — it allows data to be retained between program runs.</li>
+        <li>Programs can read from and/or write to files. Used in many applications: word processing, databases, spreadsheets, compilers.</li>
+      </ul>
+      <p><strong>Three steps to use a file:</strong></p>
+      <div class="ex"><span class="tag">FILE STEPS</span>
+        <div class="step"><span class="num">1</span><span class="txt"><strong>Open</strong> the file</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><strong>Use</strong> the file (read from, write to, or both)</span></div>
+        <div class="step"><span class="num">3</span><span class="txt"><strong>Close</strong> the file</span></div>
+      </div>
+    </details></div>
+
+    <details class="lesson"><summary>7·2 File Operations &amp; Stream Types<span class="chev">▶</span></summary><div class="body">
+      <p>File handling requires the <code>fstream</code> header (<code>#include &lt;fstream&gt;</code>). There are three stream data types:</p>
+      <ul>
+        <li><strong><code>ifstream</code></strong> — input files: opened for <strong>input only</strong> (cannot be written to); <strong>open fails if the file does not exist</strong>.</li>
+        <li><strong><code>ofstream</code></strong> — output files: opened for <strong>output only</strong> (cannot be read from); the file is <strong>created if it doesn't exist</strong>, and its contents are <strong>erased if it does exist</strong>.</li>
+        <li><strong><code>fstream</code></strong> — for both input and output; you must specify the <strong>mode</strong> on the open statement.</li>
+      </ul>
+      <div class="ex"><span class="tag">fstream MODES</span>
+        <div class="step"><span class="num">ios::in</span><span class="txt">input mode</span></div>
+        <div class="step"><span class="num">ios::out</span><span class="txt">output mode</span></div>
+        <div class="step"><span class="num">ios::binary</span><span class="txt">binary mode</span></div>
+        <div class="step"><span class="num">ios::app</span><span class="txt">append mode — output is added to the end of the file's current content</span></div>
+      </div>
+    </details></div>
+
+    <details class="lesson"><summary>7·3 Opening &amp; Checking Files<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>Opening a file creates a link between the file name (outside the program) and the file stream object (inside). The filename may include drive/path info.</li>
+        <li><code>ifstream</code>/<code>ofstream</code> use the <code>open()</code> member function: <code>infile.open("inventory.dat"); outfile.open("report.txt");</code></li>
+        <li><code>fstream</code> uses <code>open()</code> with mode(s): <code>infile.open("inventory.dat", ios::in);</code> — modes can be combined: <code>dFile.open("class.txt", ios::in | ios::out);</code></li>
+        <li>You can also open a file at declaration: <code>ifstream gradeList("grades.txt");</code> or <code>fstream file("class.txt", ios::in | ios::out);</code></li>
+        <li>An output file is created if necessary (existing one erased first); an input file must exist for open to work.</li>
+      </ul>
+      <p><strong>Checking the open succeeded</strong> — the file stream object is 0 (false) if open failed:</p>
+      <pre>if (!input) { cout << "ERROR: Cannot open file\n"; exit(1); }
+if (input.fail())      { /* open error */ }
+if (!input.is_open())  { /* file not open */ }</pre>
+    </details></div>
+
+    <details class="lesson"><summary>7·4 Using &amp; Closing Files<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>Use the output file object and <code>&lt;&lt;</code> to send data to a file: <code>outfile &lt;&lt; "Inventory report";</code></li>
+        <li>Use the input file object and <code>&gt;&gt;</code> to copy data from the file into variables: <code>infile &gt;&gt; partNum;</code> or <code>infile &gt;&gt; qtyInStock &gt;&gt; qtyOnOrder;</code></li>
+        <li>Use the <code>eof()</code> member function to test for the end of an input file.</li>
+        <li><strong>Close</strong> files with <code>close()</code>: <code>infile.close(); outfile.close();</code></li>
+      </ul>
+      <div class="note">Don't wait for the operating system to close files at program end: there may be a limit on the number of open files, and there may be buffered output data still waiting to be written.</div>
+    </details></div>
+
+    <details class="lesson"><summary>7·5 File Operations — Worked Examples<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Example 1 — copy 10 numbers between files (fstream):</strong></p>
+      <pre>#include &lt;fstream&gt;
+using namespace std;
+int main() {
+    fstream infile("input.txt", ios::in);
+    fstream outfile("output.txt", ios::out);
+    int num;
+    for (int i = 1; i <= 10; i++) {
+        infile >> num;       // use the files
+        outfile << num;
+    }
+    infile.close();
+    outfile.close();
+}</pre>
+      <p><strong>Example 2 — write data to a file (ofstream):</strong></p>
+      <pre>ofstream outputFile;
+outputFile.open("demofile.txt");
+outputFile << "Bach\n";
+outputFile << "Beethoven\n";
+outputFile << "Mozart\n";
+outputFile << "Schubert\n";
+outputFile.close();</pre>
+      <p><strong>Example 5 — double each number, with open check:</strong></p>
+      <pre>ifstream inp("input.txt");      // open input
+ofstream out("output.txt");     // open output
+if (!inp.is_open()) {
+    cout << "Input file could not be opened! Terminating!\n";
+    return 0;
+}
+while (inp >> num)              // read until end
+    out << num * 2 << endl;     // write doubled value
+inp.close();
+out.close();</pre>
+      <div class="note">Example 4 reads a whole file line-by-line: <code>ifstream input("inputfile.txt"); while(!input.eof()){ input.getline(str, 80); cout &lt;&lt; str &lt;&lt; endl; }</code> — checking <code>if (!input)</code> first to confirm the file opened.</div>
+    </details></div>
+    <div class="tip" style="margin-top:1.4rem">💻 Type these examples into a C++ compiler (Dev-C++) and run them — you learn programming by doing. Stuck? Ask the AI Tutor to debug your code step by step.</div>
   </section>
 
   <section class="topic" id="t8"><div class="topic-head"><span class="n">8</span><h2>Functions</h2></div>
