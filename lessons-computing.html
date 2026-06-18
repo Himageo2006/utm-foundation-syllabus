@@ -257,16 +257,180 @@
   </section>
 
   <section class="topic" id="t2"><div class="topic-head"><span class="n">2</span><h2>Programming Concepts</h2></div>
-    <details class="lesson"><summary>Algorithms, flowcharts & pseudocode<span class="chev">▶</span></summary><div class="body">
-      <p>Before coding, plan the logic. An <strong>algorithm</strong> is a step-by-step recipe. We express it as a <strong>flowchart</strong> (boxes &amp; arrows) or <strong>pseudocode</strong> (plain-English steps).</p>
-      <div class="ex"><span class="tag">EXAMPLE — algorithm for "add two numbers"</span>
-        <div class="step"><span class="num">1</span><span class="txt">START</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">READ a, b</span></div>
-        <div class="step"><span class="num">3</span><span class="txt">sum = a + b</span></div>
-        <div class="step"><span class="num">4</span><span class="txt">PRINT sum</span></div>
-        <div class="step"><span class="num">5</span><span class="txt">END</span></div>
+
+    <details class="lesson"><summary>2·1 Computer Languages — Machine, Assembly &amp; Compiled<span class="chev">▶</span></summary><div class="body">
+      <div class="note">"Everybody should learn how to program a computer… because it teaches you how to think." — <strong>Steve Jobs</strong></div>
+      <ul>
+        <li>The first programmable computers required programmers to write explicit instructions to directly manipulate the hardware — <strong>machine language</strong>.</li>
+        <li>Machine language was very tedious to write by hand and is referred to as a <strong>low-level language</strong>, since the code directly manipulates the hardware. (Early computers were programmed through switches as input; results showed via blinking lights as output.)</li>
+        <li>By contrast, higher-level languages such as C, C++, Pascal, Cobol, Fortran, ADA and Java are called <strong>compiled languages</strong>.</li>
+      </ul>
+      <p><strong>In a compiled language:</strong></p>
+      <ul>
+        <li>The programmer writes more general instructions.</li>
+        <li>A <strong>compiler</strong> (a special piece of software) automatically translates these high-level instructions into machine language.</li>
+        <li>The machine language is then executed by the computer.</li>
+      </ul>
+      <div class="tip">The translation chain: High-level language → (C/Java/Fortran compiler) → Assembly language → (assembler) → Machine language (source code → object code).</div>
+    </details></div>
+
+    <details class="lesson"><summary>2·2 Translators — Compiler vs Interpreter<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li><strong>Compiler</strong> — all code is translated before execution; an executable file is created at compile time and the program is run later. Programs execute faster than other types, but changes to the source require re-compilation (re-creating the executable).</li>
+        <li><strong>Incremental compiler</strong> — a compromise between the other two; high-level code is interpreted, but sections used repeatedly are compiled and stored for later use as needed.</li>
+        <li><strong>Interpreter</strong> — when the program is executed it takes one instruction at a time and finds the equivalent machine-code instruction. Each time the program runs, translation must occur, therefore execution is slow — but error correction is easiest.</li>
+      </ul>
+      <div class="note">Top programming languages (by popularity): Java 13.27%, C 10.16%, C++ 4.72%, Python 3.78%, C# 2.82%, JavaScript 2.47%, VB.NET 2.47%, R 1.91%, PHP 1.59%, MATLAB 1.57%, …</div>
+    </details></div>
+
+    <details class="lesson"><summary>2·3 Generations of Languages<span class="chev">▶</span></summary><div class="body">
+      <h4>Low-Level Languages</h4>
+      <ul>
+        <li><strong>First Generation — Direct Machine Code:</strong> machine language directly understood by the computer (e.g. 0011000000111…). + Speedy processing, can use Hex to reduce errors, complete control of hardware, still used to program ROM. − Processor dependent, lengthy coding when hardware changes, requires very accurate programming.</li>
+        <li><strong>Second Generation — Assembler (SAP, SPS):</strong> needs an assembler program to translate mnemonics into binary (e.g. ADD x, 100). + Mnemonic codes, greater accuracy, symbolic references rather than direct references. − Processor dependent, but less code than machine language.</li>
+      </ul>
+      <h4>High-Level Languages</h4>
+      <ul>
+        <li><strong>Third Generation — COBOL, FORTRAN, VB, Pascal, Ada, C, C++, BASIC:</strong> needs a translator (interpreter or compiler). + Processor independent, minimal hardware knowledge required, uses 3 basic control structures. − Source code converted to object code (slower); few standard versions.</li>
+        <li><strong>Fourth Generation — Dbase, SQL, LOGO:</strong> + as third gen, plus intervention, form filling and computer-aided graphics. − Many are database/data-dictionary dependent.</li>
+        <li><strong>Fifth Generation — LISP, Prolog, ICOT:</strong> + uses inference engines, knowledge bases and expert-system structures. − Often processor dependent, requires parallel processors, has not evolved past the experimental stage.</li>
+      </ul>
+    </details></div>
+
+    <details class="lesson"><summary>2·4 Syntax &amp; Errors — Hello World in Many Languages<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>Different programming languages have different <strong>syntax</strong> — a "correct" way to write down code (source code) that lets the language understand what you are telling it to do.</li>
+        <li>A program's source code must have correct syntax to compile correctly; otherwise it fails to compile and produces a <strong>syntax error</strong> — e.g. a missing parenthesis or a forgotten semicolon.</li>
+        <li>Syntax errors are also called <strong>compile-time errors</strong>, since they can prevent a program from compiling.</li>
+        <li>Errors that occur while a program is running are called <strong>runtime errors</strong>.</li>
+      </ul>
+      <div class="ex"><span class="tag">SAME OUTPUT "Hello World" — DIFFERENT SYNTAX</span>
+        <pre>// C
+#include &lt;stdio.h&gt;
+void main() {
+    printf("Hello World");
+}</pre>
+        <pre>// C++
+#include &lt;iostream&gt;
+int main() {
+    cout &lt;&lt; "Hello World";
+    return 0;
+}</pre>
+        <pre>{ Pascal }
+program helloworld (output);
+begin
+    writeln('Hello World');
+end.</pre>
       </div>
-    </div></details>
+    </details></div>
+
+    <details class="lesson"><summary>2·5 Models of Programming — Procedural vs OOP<span class="chev">▶</span></summary><div class="body">
+      <h4>Object-Oriented Programming (OOP)</h4>
+      <ul>
+        <li>First, identify the components called <strong>objects</strong> which form the basis of the solution.</li>
+        <li>Then determine how objects interact with one another.</li>
+      </ul>
+      <h4>Procedural Programming (PP)</h4>
+      <ul>
+        <li>The programmer specifies the sequence of operations to be performed.</li>
+        <li>Divide a problem into smaller subproblems; each subproblem is analyzed and solved; the solutions combine to solve the overall problem.</li>
+      </ul>
+      <div class="ex"><span class="tag">PP vs OOP</span>
+        <div class="step"><span class="num">1</span><span class="txt">PP is divided into <strong>functions</strong>; OOP is divided into <strong>objects</strong>.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">PP has no access specifier; OOP has <code>public</code>, <code>private</code>, <code>protected</code>, etc.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">PP has no proper way to hide data (less secure); OOP provides <strong>data hiding</strong> (more security).</span></div>
+        <div class="step"><span class="num">4</span><span class="txt">PP uses global data shared freely between functions; OOP controls access (public/private).</span></div>
+        <div class="step"><span class="num">5</span><span class="txt">PP examples: C, VB, FORTRAN, Pascal. OOP examples: C++, Java, VB.NET, C#.NET.</span></div>
+      </div>
+      <div class="note">PP breaks a problem down by <strong>functional decomposition</strong>; OOP uses classes and objects that pass messages to request a service or information.</div>
+    </details></div>
+
+    <details class="lesson"><summary>2·6 How a Program Solves a Problem — Software Life Cycle<span class="chev">▶</span></summary><div class="body">
+      <p>A computer is not intelligent, but it frees people from repetitive and boring tasks. The <strong>Software Life Cycle</strong> has these phases:</p>
+      <div class="ex"><span class="tag">PHASES</span>
+        <div class="step"><span class="num">1</span><span class="txt"><strong>Problem-Solving Phase</strong> — Analyze the problem &amp; specify what the solution must do; develop a general solution (<strong>algorithm</strong> = a step-by-step procedure for solving a problem); verify that the solution really solves the problem.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><strong>Implementation Phase</strong> — Translating the algorithm into a programming language is called <strong>coding</strong>. <strong>Testing</strong> means running (executing) the program to see if it produces correct results; if not, find and fix the problem — called <strong>debugging</strong>.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt"><strong>Maintenance Phase</strong> — begins when the program is put into use; use and modify it to meet changing requirements or correct errors that show up.</span></div>
+      </div>
+    </details></div>
+
+    <details class="lesson"><summary>2·7 The C++ Programming Language<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>C++ (pronounced "see-plus-plus") was developed by <strong>Bjarne Stroustrup</strong>.</li>
+        <li>A general-purpose <strong>object-oriented</strong> language — an <strong>extension of the C language</strong> (a procedural language).</li>
+        <li>It is therefore possible to code C++ in "C style" — Procedural (PP) — <em>which is what we use in our class</em> — or in "Object-oriented style" (OOP).</li>
+        <li>Initially called "C with classes" (all the properties of C plus the concept of "classes"); renamed <strong>C++ in 1983</strong>.</li>
+        <li>C++ is considered an <strong>intermediate-level language</strong> as it encapsulates both high- and low-level language features.</li>
+        <li>First standardized in 1998 (C++98), then amended by C++03, C++11, C++14; the C++17 standard supersedes these with new features and an enlarged standard library.</li>
+      </ul>
+      <div class="note">Timeline: 1979 Stroustrup starts "C with Classes" at Bell Labs · 1983 renamed "C++" · 1985 first edition of <em>The C++ Programming Language</em> · 1989 C++ 2.0 · 1998 first ISO standard (C++98) · 2003 C++03 · 2011 C++11 · 2014 C++14 · 2017 C++17.</div>
+    </details></div>
+
+    <details class="lesson"><summary>2·8 Programming Language Structure — The Building Blocks<span class="chev">▶</span></summary><div class="body">
+      <p>A C++ program is built from these parts. Below is the structure shown on the slides (a palindrome-checker):</p>
+      <pre>#include &lt;iostream&gt;          // pre-processor directive (header file)
+using namespace std;
+
+int main()
+{
+    int n, num, digit, rev = 0;   // variable declaration
+
+    cout &lt;&lt; "Enter a positive number: ";   // sequence
+    cin &gt;&gt; num;
+    n = num;
+
+    do {                          // loop (repetition)
+        digit = num % 10;
+        rev = (rev * 10) + digit;
+        num = num / 10;
+    } while (num != 0);
+
+    cout &lt;&lt; " The reverse of the number is: " &lt;&lt; rev &lt;&lt; endl;
+
+    if (n == rev)                 // branch (selection)
+        cout &lt;&lt; " The number is a palindrome.";
+    else
+        cout &lt;&lt; " The number is not a palindrome.";
+
+    return 0;
+}</pre>
+      <h4>Header file</h4>
+      <ul>
+        <li>Header files contain definitions of <strong>functions and variables</strong>, imported into a C++ program using the pre-processor <code>#include</code> statement.</li>
+        <li>A header shows the external functionality of a program while omitting the implementation details — it gives a list of function names and how to call them.</li>
+        <li>The <code>&lt;iostream&gt;</code> header contains code that allows a C++ program to display output on the screen and read input from the keyboard.</li>
+      </ul>
+      <h4>Variable declaration</h4>
+      <ul>
+        <li>Instructs the system to <strong>allocate memory space</strong> and name it.</li>
+        <li>The name is a <strong>symbolic name for an address</strong> — the programmer doesn't need to know the actual address.</li>
+        <li>Variables generally contain <strong>garbage</strong> if you neglect to initialize them.</li>
+      </ul>
+    </details></div>
+
+    <details class="lesson"><summary>2·9 The Three Control Structures<span class="chev">▶</span></summary><div class="body">
+      <h4>Sequence</h4>
+      <ul>
+        <li>Unless directed otherwise, the computer executes C++ statements one after the other, in the order they are written — in <strong>sequence</strong>.</li>
+        <li>The program must perform each action in order, with no possibility of skipping an action.</li>
+      </ul>
+      <h4>Loop (Repetition)</h4>
+      <ul>
+        <li>When a sequence of instructions is executed repeatedly, it is called a <strong>loop</strong>. Each execution of the set of instructions is called an <strong>iteration</strong>.</li>
+        <li>Forms: <code>do statement while (condition);</code>, <code>while (expression) statement</code>, <code>for (initialization; condition; increase) statement;</code></li>
+      </ul>
+      <h4>Branch (Selection)</h4>
+      <ul>
+        <li>Determines the order in which statements are executed — performs different actions depending on whether a programmer-specified <strong>Boolean condition</strong> evaluates to True or False.</li>
+        <li>Forms: <code>if (condition) statement</code>, <code>if (condition) statement1 else statement2</code>, <code>switch (expression) { case .. }</code></li>
+      </ul>
+      <h4>Function</h4>
+      <ul>
+        <li>For a big program, you chunk it into smaller subprograms or modules called <strong>functions</strong>.</li>
+        <li>A function is a group of program statements to solve a specific problem — <strong>divide and conquer</strong> to make problem-solving more manageable.</li>
+      </ul>
+      <div class="note">"I do not fear computers. I fear the lack of them." — Isaac Asimov</div>
+    </details></div>
   </section>
 
   <section class="topic" id="t3"><div class="topic-head"><span class="n">3</span><h2>Programming Environment</h2></div>
