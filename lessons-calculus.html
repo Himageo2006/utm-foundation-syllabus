@@ -101,16 +101,30 @@
     <!-- 1.1 -->
     <details class="lesson" open><summary>Lesson 1.1 — What is a limit?<span class="chev">▶</span></summary>
       <div class="body">
-        <p>Consider this function, which is <strong>not defined</strong> at <em>x</em> = 1 (you'd divide by zero):</p>
+        <p>The <strong>limit</strong> of a function is the value f(x) <em>heads toward</em> as <em>x</em> gets closer and closer to some number — written</p>
+        <div class="math">lim<sub>x→a</sub> f(x) = L</div>
+        <p>and read "the limit of f(x), as x approaches a, equals L." The crucial idea: we care about the <strong>journey, not the destination</strong>. The function need not even be defined <em>at</em> a — we only watch what happens <em>near</em> a.</p>
+
+        <h4>Why we need limits</h4>
+        <p>Consider this function, which is <strong>not defined</strong> at <em>x</em> = 1 (substituting 1 gives 0/0, division by zero):</p>
         <div class="math">f(x) = (x − 1) / (x² − 1)</div>
-        <p>Even though we can't plug in <em>x</em> = 1, we can ask: <em>what value does f(x) get close to as x gets close to 1?</em> Build a table approaching 1 from both sides:</p>
-        <h4>From the left (x &lt; 1)</h4>
+        <p>We can't plug in <em>x</em> = 1, but we can still ask: <em>what value does f(x) get close to as x gets close to 1?</em> Build a table approaching 1 from both sides:</p>
+        <h4>From the left (x &lt; 1, sliding up toward 1)</h4>
         <div class="math">x = 0.9 → 0.5263 &nbsp;·&nbsp; 0.99 → 0.5025 &nbsp;·&nbsp; 0.999 → 0.5003</div>
-        <h4>From the right (x &gt; 1)</h4>
+        <h4>From the right (x &gt; 1, sliding down toward 1)</h4>
         <div class="math">x = 1.1 → 0.4762 &nbsp;·&nbsp; 1.01 → 0.4975 &nbsp;·&nbsp; 1.001 → 0.4998</div>
-        <p>Both sides head toward <strong>0.5</strong>. So we write:</p>
+        <p>Both columns squeeze toward the same number, <strong>0.5</strong>. So even though f(1) doesn't exist, the limit does:</p>
         <div class="math">lim<sub>x→1</sub> (x−1)/(x²−1) = 0.5</div>
-        <div class="note">The small <strong>−</strong> means approaching from the <strong>left</strong>; the small <strong>+</strong> means from the <strong>right</strong>. These are called <strong>one-sided limits</strong>.</div>
+        <div class="note">The small <strong>−</strong> means approaching from the <strong>left</strong> (lim<sub>x→a⁻</sub>); the small <strong>+</strong> means from the <strong>right</strong> (lim<sub>x→a⁺</sub>). These are called <strong>one-sided limits</strong>.</div>
+
+        <div class="ex">
+          <span class="tag">WORKED EXAMPLE — the limit can differ from the value</span>
+          <p>Let g(x) = x + 3 for x ≠ 2, but g(2) = 10 (a single "misplaced" point). Find lim<sub>x→2</sub> g(x).</p>
+          <div class="step"><span class="num">1</span><span class="txt">Near x = 2 the rule is g(x) = x + 3, so the values head to 2 + 3 = <strong>5</strong>.</span></div>
+          <div class="step"><span class="num">2</span><span class="txt">The actual point g(2) = 10 is irrelevant — the limit ignores it.</span></div>
+          <div class="step"><span class="num">3</span><span class="txt">lim<sub>x→2</sub> g(x) = <span class="ans">5</span>, even though g(2) = 10. Limit ≠ value here.</span></div>
+        </div>
+        <div class="tip">Three things to keep straight: the <strong>left limit</strong>, the <strong>right limit</strong>, and the <strong>actual value</strong> f(a). They can all be different — limits only look at the first two.</div>
       </div>
     </details>
 
@@ -120,9 +134,10 @@
         <p>The key rule:</p>
         <div class="note">The limit <strong>exists</strong> only if the left-hand limit and the right-hand limit are <strong>equal</strong>.</div>
         <div class="math">If &nbsp; lim<sub>x→a⁺</sub> f(x) = lim<sub>x→a⁻</sub> f(x) = L &nbsp;&nbsp;⇒&nbsp;&nbsp; lim<sub>x→a</sub> f(x) = L</div>
-        <p>If the two sides give <strong>different</strong> values, the limit <strong>does not exist (DNE)</strong>.</p>
+        <p>If the two sides give <strong>different</strong> values, the two-sided limit <strong>does not exist (DNE)</strong> — even though each one-sided limit is perfectly fine on its own.</p>
+
         <div class="ex">
-          <span class="tag">WORKED EXAMPLE</span>
+          <span class="tag">WORKED EXAMPLE 1 — limit does NOT exist (a jump)</span>
           <p>Determine whether the limit exists for the piecewise function:</p>
           <div class="math">f(x) = { x − 1, &nbsp;if x &lt; 2 ; &nbsp; x + 2, &nbsp;if x ≥ 2 }</div>
           <p>Find lim<sub>x→2</sub> f(x).</p>
@@ -130,26 +145,51 @@
           <div class="step"><span class="num">2</span><span class="txt">Right side (use x + 2): &nbsp; lim<sub>x→2⁺</sub> (x + 2) = 2 + 2 = <strong>4</strong></span></div>
           <div class="step"><span class="num">3</span><span class="txt">Left (1) ≠ Right (4), so the limit <span class="ans">does not exist</span>.</span></div>
         </div>
+
+        <div class="ex">
+          <span class="tag">WORKED EXAMPLE 2 — limit DOES exist</span>
+          <p>Same idea, but a function that matches up at the join:</p>
+          <div class="math">h(x) = { x² , &nbsp;if x ≤ 3 ; &nbsp; 6x − 9, &nbsp;if x &gt; 3 }</div>
+          <p>Find lim<sub>x→3</sub> h(x).</p>
+          <div class="step"><span class="num">1</span><span class="txt">Left side (use x²): &nbsp; lim<sub>x→3⁻</sub> x² = 3² = <strong>9</strong></span></div>
+          <div class="step"><span class="num">2</span><span class="txt">Right side (use 6x − 9): &nbsp; lim<sub>x→3⁺</sub> (6x − 9) = 18 − 9 = <strong>9</strong></span></div>
+          <div class="step"><span class="num">3</span><span class="txt">Both sides agree, so lim<sub>x→3</sub> h(x) = <span class="ans">9</span> (the limit exists).</span></div>
+        </div>
+
+        <div class="ex">
+          <span class="tag">WORKED EXAMPLE 3 — reading a graph</span>
+          <p>A common exam style: you're given a graph and asked to read limits at a point where there's an open circle at (4, 2) and a filled dot at (4, 5).</p>
+          <div class="step"><span class="num">1</span><span class="txt">Both branches of the curve approach height 2 as x → 4 from each side ⇒ lim<sub>x→4</sub> f(x) = <strong>2</strong>.</span></div>
+          <div class="step"><span class="num">2</span><span class="txt">The filled dot says f(4) = <strong>5</strong> — that's the value, not the limit.</span></div>
+          <div class="step"><span class="num">3</span><span class="txt">So lim<sub>x→4</sub> f(x) = <span class="ans">2</span> while f(4) = 5. (The graph is discontinuous here — see Lesson 1.7.)</span></div>
+        </div>
       </div>
     </details>
 
     <!-- 1.3 -->
     <details class="lesson"><summary>Lesson 1.3 — Rules of limits (the fast way)<span class="chev">▶</span></summary>
       <div class="body">
-        <p>For "nice" functions you don't need a table — just <strong>substitute</strong> the value, using these rules:</p>
+        <p>For "nice" (continuous) functions you don't need a table — just <strong>substitute</strong> the value. These limit laws make it legal:</p>
         <ul>
-          <li>lim<sub>x→a</sub> c = c &nbsp;(limit of a constant is itself)</li>
-          <li>lim<sub>x→a</sub> x = a</li>
-          <li>lim<sub>x→a</sub> xⁿ = aⁿ</li>
-          <li>Sum/difference, product, quotient and power of limits all split apart (as long as you don't divide by 0).</li>
+          <li><strong>Constant:</strong> lim<sub>x→a</sub> c = c</li>
+          <li><strong>Identity:</strong> lim<sub>x→a</sub> x = a, &nbsp; and lim<sub>x→a</sub> xⁿ = aⁿ</li>
+          <li><strong>Constant multiple:</strong> lim<sub>x→a</sub> [c·f(x)] = c·lim f(x)</li>
+          <li><strong>Sum / difference:</strong> lim [f ± g] = lim f ± lim g</li>
+          <li><strong>Product:</strong> lim [f · g] = (lim f)(lim g)</li>
+          <li><strong>Quotient:</strong> lim [f / g] = (lim f)/(lim g), provided lim g ≠ 0</li>
+          <li><strong>Power / root:</strong> lim [f(x)]ⁿ = (lim f)ⁿ, and the same for nth roots</li>
         </ul>
+        <p>In short: for polynomials, and for rational/root functions where the denominator isn't 0, <strong>direct substitution just works.</strong></p>
         <div class="ex">
           <span class="tag">WORKED EXAMPLES</span>
           <div class="step"><span class="num">a</span><span class="txt">lim<sub>x→½</sub> (2x + 7) = 2(½) + 7 = <span class="ans">8</span></span></div>
           <div class="step"><span class="num">b</span><span class="txt">lim<sub>x→2</sub> 5x²(x − 4) = 5(2)²(2 − 4) = 5·4·(−2) = <span class="ans">−40</span></span></div>
-          <div class="step"><span class="num">c</span><span class="txt">lim<sub>x→π</sub> (x² − 4)/(x + 2) = factor top = (x−2)(x+2)/(x+2) = (x − 2) → <span class="ans">π − 2</span></span></div>
-          <div class="step"><span class="num">d</span><span class="txt">lim<sub>x→−2</sub> √(5x² − 4) = √(5(−2)² − 4) = √16 = <span class="ans">4</span></span></div>
+          <div class="step"><span class="num">c</span><span class="txt">lim<sub>x→3</sub> (x² + 2x − 1) = 9 + 6 − 1 = <span class="ans">14</span> &nbsp;(plain polynomial → substitute)</span></div>
+          <div class="step"><span class="num">d</span><span class="txt">lim<sub>x→1</sub> (2x + 3)/(x + 4) = (2 + 3)/(1 + 4) = 5/5 = <span class="ans">1</span> &nbsp;(bottom ≠ 0, so substitute)</span></div>
+          <div class="step"><span class="num">e</span><span class="txt">lim<sub>x→π</sub> (x² − 4)/(x + 2) = factor top = (x−2)(x+2)/(x+2) = (x − 2) → <span class="ans">π − 2</span></span></div>
+          <div class="step"><span class="num">f</span><span class="txt">lim<sub>x→−2</sub> √(5x² − 4) = √(5(−2)² − 4) = √16 = <span class="ans">4</span></span></div>
         </div>
+        <div class="tip">⚠️ Substitution only fails when you hit <strong>0/0</strong> (an indeterminate form). Then switch to factorizing or rationalizing — that's exactly what Lesson 1.4 is about.</div>
       </div>
     </details>
 
