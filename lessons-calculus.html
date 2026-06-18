@@ -82,14 +82,14 @@
   <div class="toc">
     <h2>📘 Calculus topics</h2>
     <ol>
-      <li class="done"><a href="#t1"><strong>Topic 1 — Limits &amp; Continuity</strong> ✅ (full lessons below)</a></li>
-      <li class="soon">Topic 2 — Differentiation <em>(coming next)</em></li>
-      <li class="soon">Topic 3 — Applications of Differentiation</li>
-      <li class="soon">Topic 4 — Integration</li>
-      <li class="soon">Topic 5 — Integration of Trigonometric Functions</li>
-      <li class="soon">Topic 6 — Applications of Integration</li>
-      <li class="soon">Topic 7 — Ordinary Differential Equations</li>
-      <li class="soon">Topic 8 — Numerical Methods</li>
+      <li class="done"><a href="#t1"><strong>Topic 1 — Limits &amp; Continuity</strong></a></li>
+      <li class="done"><a href="#t2"><strong>Topic 2 — Differentiation</strong></a></li>
+      <li class="done"><a href="#t3"><strong>Topic 3 — Applications of Differentiation</strong></a></li>
+      <li class="done"><a href="#t4"><strong>Topic 4 — Integration</strong></a></li>
+      <li class="done"><a href="#t5"><strong>Topic 5 — Integration of Trigonometric Functions</strong></a></li>
+      <li class="done"><a href="#t6"><strong>Topic 6 — Applications of Integration</strong></a></li>
+      <li class="done"><a href="#t7"><strong>Topic 7 — Ordinary Differential Equations</strong></a></li>
+      <li class="done"><a href="#t8"><strong>Topic 8 — Numerical Methods</strong></a></li>
     </ol>
   </div>
 
@@ -274,6 +274,144 @@
     </details>
 
     <div class="tip" style="margin-top:1.5rem">✏️ <strong>Practice yourself:</strong> Your slides include "Practise 1.1–1.7" exercises after each section. Try them, then check using the methods above.</div>
+  </section>
+
+  <!-- TOPIC 2 -->
+  <section class="topic" id="t2">
+    <div class="topic-head"><span class="n">2</span><h2>Differentiation</h2></div>
+    <p>The <strong>derivative</strong> f′(x) measures the instantaneous rate of change — the slope of the tangent to the curve at each point.</p>
+    <details class="lesson"><summary>Lesson 2.1 — The rules of differentiation<span class="chev">▶</span></summary><div class="body">
+      <h4>The rules you'll use most</h4>
+      <ul>
+        <li><strong>Power rule:</strong> d/dx(xⁿ) = n·xⁿ⁻¹</li>
+        <li><strong>Constant:</strong> d/dx(c) = 0</li>
+        <li><strong>Product rule:</strong> (uv)′ = u′v + uv′</li>
+        <li><strong>Quotient rule:</strong> (u/v)′ = (u′v − uv′)/v²</li>
+        <li><strong>Chain rule:</strong> dy/dx = dy/du · du/dx</li>
+      </ul>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — power rule</span>
+        <p>Differentiate f(x) = 3x⁴ − 5x² + 7.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Differentiate term by term using n·xⁿ⁻¹.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">3x⁴ → 12x³ ; −5x² → −10x ; 7 → 0</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">f′(x) = <span class="ans">12x³ − 10x</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — chain rule</span>
+        <p>Differentiate y = (2x + 1)⁵.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Let u = 2x+1, so y = u⁵. Then dy/du = 5u⁴ and du/dx = 2.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">dy/dx = 5u⁴ · 2 = 10(2x+1)⁴</span></div>
+        <div class="step"><span class="num">3</span><span class="txt"><span class="ans">dy/dx = 10(2x + 1)⁴</span></span></div>
+      </div>
+      <div class="note">Also learn: d/dx(sin x)=cos x, d/dx(cos x)=−sin x, d/dx(eˣ)=eˣ, d/dx(ln x)=1/x.</div>
+    </div></details>
+  </section>
+
+  <!-- TOPIC 3 -->
+  <section class="topic" id="t3">
+    <div class="topic-head"><span class="n">3</span><h2>Applications of Differentiation</h2></div>
+    <p>Use derivatives to find maximum/minimum points, analyse curves, and solve optimisation problems.</p>
+    <details class="lesson"><summary>Lesson 3.1 — Maxima, minima & optimisation<span class="chev">▶</span></summary><div class="body">
+      <h4>The method</h4>
+      <ol>
+        <li>Find f′(x) and set f′(x) = 0 → these are the <strong>critical points</strong>.</li>
+        <li>Use the second derivative: f″(x) &gt; 0 → minimum; f″(x) &lt; 0 → maximum.</li>
+      </ol>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>Find and classify the turning point of f(x) = x² − 4x + 1.</p>
+        <div class="step"><span class="num">1</span><span class="txt">f′(x) = 2x − 4. Set = 0 → 2x − 4 = 0 → x = 2.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">f(2) = 4 − 8 + 1 = −3, so the point is (2, −3).</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">f″(x) = 2 &gt; 0 → it's a <span class="ans">minimum at (2, −3)</span>.</span></div>
+      </div>
+      <div class="tip">Optimisation problems (largest area, least cost) reduce to: write the quantity as a function, differentiate, set to zero, solve.</div>
+    </div></details>
+  </section>
+
+  <!-- TOPIC 4 -->
+  <section class="topic" id="t4">
+    <div class="topic-head"><span class="n">4</span><h2>Integration</h2></div>
+    <p>Integration reverses differentiation and adds up infinitely many small pieces — used for areas and totals.</p>
+    <details class="lesson"><summary>Lesson 4.1 — Basic integration & substitution<span class="chev">▶</span></summary><div class="body">
+      <div class="math">∫ xⁿ dx = xⁿ⁺¹/(n+1) + C &nbsp;(n ≠ −1) &nbsp;·&nbsp; ∫ₐᵇ f(x) dx = F(b) − F(a)</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — indefinite</span>
+        <p>Find ∫ (6x² + 4) dx.</p>
+        <div class="step"><span class="num">1</span><span class="txt">∫6x² dx = 6·x³/3 = 2x³ ; ∫4 dx = 4x</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">= <span class="ans">2x³ + 4x + C</span> (don't forget +C!)</span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — definite</span>
+        <p>Evaluate ∫₁³ 2x dx.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Antiderivative of 2x is x².</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">= [x²]₁³ = 3² − 1² = 9 − 1 = <span class="ans">8</span></span></div>
+      </div>
+      <h4>Substitution</h4>
+      <p>When the integrand contains a function and its derivative, let u = inner function. e.g. ∫2x(x²+1)⁵ dx: let u = x²+1, du = 2x dx → ∫u⁵ du = u⁶/6 + C = (x²+1)⁶/6 + C.</p>
+    </div></details>
+  </section>
+
+  <!-- TOPIC 5 -->
+  <section class="topic" id="t5">
+    <div class="topic-head"><span class="n">5</span><h2>Integration of Trigonometric Functions</h2></div>
+    <details class="lesson"><summary>Lesson 5.1 — Standard trig integrals<span class="chev">▶</span></summary><div class="body">
+      <div class="math">∫ sin x dx = −cos x + C &nbsp;·&nbsp; ∫ cos x dx = sin x + C &nbsp;·&nbsp; ∫ sec²x dx = tan x + C</div>
+      <p>For powers or products, use trig identities first (e.g. sin²x = ½(1 − cos 2x)).</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>Evaluate ∫₀^(π/2) cos x dx.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Antiderivative of cos x is sin x.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">= [sin x]₀^(π/2) = sin(π/2) − sin(0) = 1 − 0 = <span class="ans">1</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — using an identity</span>
+        <p>Find ∫ sin²x dx.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Replace sin²x = ½(1 − cos 2x).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">∫½(1 − cos 2x) dx = ½x − ¼ sin 2x + C</span></div>
+        <div class="step"><span class="num">3</span><span class="txt"><span class="ans">= ½x − ¼ sin 2x + C</span></span></div>
+      </div>
+    </div></details>
+  </section>
+
+  <!-- TOPIC 6 -->
+  <section class="topic" id="t6">
+    <div class="topic-head"><span class="n">6</span><h2>Applications of Integration</h2></div>
+    <details class="lesson"><summary>Lesson 6.1 — Area under a curve & between curves<span class="chev">▶</span></summary><div class="body">
+      <div class="math">Area under f = ∫ₐᵇ f(x) dx &nbsp;·&nbsp; Area between = ∫ₐᵇ [top − bottom] dx</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>Find the area under y = x² between x = 0 and x = 3.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Area = ∫₀³ x² dx = [x³/3]₀³</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">= 3³/3 − 0 = 27/3 = <span class="ans">9 square units</span></span></div>
+      </div>
+      <div class="note">Volumes of revolution: V = π∫ₐᵇ [f(x)]² dx (rotating about the x-axis).</div>
+    </div></details>
+  </section>
+
+  <!-- TOPIC 7 -->
+  <section class="topic" id="t7">
+    <div class="topic-head"><span class="n">7</span><h2>Ordinary Differential Equations (ODEs)</h2></div>
+    <details class="lesson"><summary>Lesson 7.1 — Separable equations<span class="chev">▶</span></summary><div class="body">
+      <p>An ODE links a function to its derivatives. The simplest to solve are <strong>separable</strong>: get all the y's on one side and x's on the other, then integrate both sides.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>Solve dy/dx = 2x·y.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Separate: (1/y) dy = 2x dx</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Integrate both sides: ln|y| = x² + C</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Solve for y: y = Ae^(x²) &nbsp;(A = e^C). <span class="ans">y = A·e^(x²)</span></span></div>
+      </div>
+      <div class="tip">A general solution has a constant (A or C); use an <strong>initial condition</strong> like y(0)=2 to find it.</div>
+    </div></details>
+  </section>
+
+  <!-- TOPIC 8 -->
+  <section class="topic" id="t8">
+    <div class="topic-head"><span class="n">8</span><h2>Numerical Methods</h2></div>
+    <details class="lesson"><summary>Lesson 8.1 — Newton–Raphson & the trapezoidal rule<span class="chev">▶</span></summary><div class="body">
+      <p>When exact answers are hard, approximate them.</p>
+      <h4>Newton–Raphson (finding roots)</h4>
+      <div class="math">xₙ₊₁ = xₙ − f(xₙ)/f′(xₙ)</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>Use one Newton–Raphson step on f(x) = x² − 2, starting at x₀ = 1.5 (finding √2).</p>
+        <div class="step"><span class="num">1</span><span class="txt">f(x) = x² − 2, f′(x) = 2x. At x₀ = 1.5: f = 0.25, f′ = 3.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">x₁ = 1.5 − 0.25/3 = 1.5 − 0.0833 = <span class="ans">1.4167</span> (√2 ≈ 1.4142 — very close already).</span></div>
+      </div>
+      <h4>Trapezoidal rule (approximate area)</h4>
+      <div class="math">∫ₐᵇ f(x) dx ≈ (h/2)[y₀ + 2y₁ + 2y₂ + … + yₙ], &nbsp; h = (b−a)/n</div>
+      <div class="tip">Simpson's rule is similar but more accurate, using the pattern [1, 4, 2, 4, …, 4, 1].</div>
+    </div></details>
+    <div class="tip" style="margin-top:1.5rem">🎯 You've covered all 8 Calculus topics! Now practise with the real <a href="subject.html?s=calculus" style="color:var(--maroon);font-weight:700">Calculus past papers</a> and ask the AI Tutor for help on anything tricky.</div>
   </section>
 </main>
 

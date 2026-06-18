@@ -1,8 +1,9 @@
 /* UTM Foundation Hub — service worker (offline shell) */
-const CACHE = "utm-hub-v1";
+const CACHE = "utm-hub-v2";
 const ASSETS = [
   "index.html", "subject.html",
   "lessons-calculus.html", "lessons-physics.html", "lessons-chemistry.html", "lessons-computing.html",
+  "lessons-english.html", "lessons-statistics.html",
   "assets/data.js", "assets/papers.js", "assets/tutor.js", "assets/tutor.css", "assets/lessons.css", "assets/icon.svg",
   "manifest.json"
 ];

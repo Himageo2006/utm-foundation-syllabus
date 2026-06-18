@@ -67,7 +67,7 @@ window.HUB_DATA = {
       icon: "🗣️",
       color: "#b8761d",
       blurb: "Confident academic English: impromptu speech, presentations, discussion and listening.",
-      lessons: "",
+      lessons: "lessons-english.html",
       topics: [
         "Impromptu Speech (2×10%)", "Oral Presentation (10%)", "Group Discussion (10%)",
         "Listening Test (2×10%)", "Final Listening Exam (40%)"
@@ -81,7 +81,7 @@ window.HUB_DATA = {
       icon: "📊",
       color: "#8c5a1d",
       blurb: "Descriptive statistics, probability, distributions and data analysis.",
-      lessons: "",
+      lessons: "lessons-statistics.html",
       topics: [
         "Descriptive Statistics", "Probability", "Probability Distributions", "Data Analysis"
       ],

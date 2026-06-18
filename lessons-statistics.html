@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Statistics & Probability — Lessons · UTM Foundation Hub</title>
+<meta name="theme-color" content="#8c5a1d">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/lessons.css">
+<link rel="stylesheet" href="assets/tutor.css">
+<style>:root{--c:#8c5a1d}</style>
+</head>
+<body>
+<header class="nav"><div class="nav-inner">
+  <a class="brand" href="index.html"><span class="logo" style="background:#8c5a1d;color:#fff">UTM</span><span>Foundation Hub<small>Statistics &amp; Probability</small></span></a>
+  <nav class="nav-links"><a href="subject.html?s=statistics">← Statistics</a><a href="index.html">Home</a></nav>
+</div></header>
+
+<div class="hero"><div class="hero-inner">
+  <span class="eyebrow">Statistics &amp; Probability</span>
+  <h1>Statistics — step by step</h1>
+  <p>Describing data, probability, and distributions — each explained simply with worked examples.</p>
+</div></div>
+
+<main>
+  <div class="toc"><h2>📘 Topics</h2><ol>
+    <li><a href="#t1">Descriptive Statistics</a></li>
+    <li><a href="#t2">Probability</a></li>
+    <li><a href="#t3">Probability Distributions</a></li>
+    <li><a href="#t4">Data Analysis</a></li>
+  </ol></div>
+
+  <section class="topic" id="t1"><div class="topic-head"><span class="n">1</span><h2>Descriptive Statistics</h2></div>
+    <details class="lesson" open><summary>Mean, median, mode & standard deviation<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li><strong>Mean</strong> = sum of values ÷ how many.</li>
+        <li><strong>Median</strong> = the middle value when sorted.</li>
+        <li><strong>Mode</strong> = the most frequent value.</li>
+        <li><strong>Standard deviation</strong> = how spread out the data is.</li>
+      </ul>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>Find the mean and median of: 4, 8, 6, 5, 2.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Mean = (4+8+6+5+2)/5 = 25/5 = <span class="ans">5</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Sort: 2, 4, 5, 6, 8 → middle value = <span class="ans">5</span> (median).</span></div>
+      </div>
+      <div class="math">Standard deviation σ = √( Σ(x − x̄)² / n )</div>
+    </div></details>
+  </section>
+
+  <section class="topic" id="t2"><div class="topic-head"><span class="n">2</span><h2>Probability</h2></div>
+    <details class="lesson"><summary>Basic probability rules<span class="chev">▶</span></summary><div class="body">
+      <div class="math">P(event) = favourable outcomes / total outcomes &nbsp; (between 0 and 1)</div>
+      <ul>
+        <li><strong>Addition (OR):</strong> P(A or B) = P(A) + P(B) − P(A and B).</li>
+        <li><strong>Multiplication (AND, independent):</strong> P(A and B) = P(A)·P(B).</li>
+        <li><strong>Complement:</strong> P(not A) = 1 − P(A).</li>
+      </ul>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>A fair die is rolled. Find P(rolling an even number).</p>
+        <div class="step"><span class="num">1</span><span class="txt">Even outcomes = {2, 4, 6} → 3 favourable. Total = 6.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">P = 3/6 = <span class="ans">1/2</span></span></div>
+      </div>
+    </div></details>
+  </section>
+
+  <section class="topic" id="t3"><div class="topic-head"><span class="n">3</span><h2>Probability Distributions</h2></div>
+    <details class="lesson"><summary>Binomial & normal distributions<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Binomial</strong> — for n independent trials each with success probability p:</p>
+      <div class="math">P(X = r) = ⁿCᵣ · pʳ · (1−p)ⁿ⁻ʳ</div>
+      <p><strong>Normal</strong> — the bell curve, described by mean μ and standard deviation σ. Convert to the standard normal with the z-score:</p>
+      <div class="math">z = (x − μ) / σ</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — z-score</span>
+        <p>Marks are normally distributed with μ = 60, σ = 10. Find the z-score for a mark of 75.</p>
+        <div class="step"><span class="num">1</span><span class="txt">z = (75 − 60)/10</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">= 15/10 = <span class="ans">1.5</span> (the mark is 1.5 standard deviations above the mean).</span></div>
+      </div>
+    </div></details>
+  </section>
+
+  <section class="topic" id="t4"><div class="topic-head"><span class="n">4</span><h2>Data Analysis</h2></div>
+    <details class="lesson"><summary>Presenting & interpreting data<span class="chev">▶</span></summary><div class="body">
+      <p>Organise data with frequency tables, then visualise it:</p>
+      <ul>
+        <li><strong>Bar chart</strong> — compare categories.</li>
+        <li><strong>Histogram</strong> — show distribution of continuous data.</li>
+        <li><strong>Pie chart</strong> — show proportions of a whole.</li>
+        <li><strong>Scatter plot</strong> — show relationship between two variables (correlation).</li>
+      </ul>
+      <div class="tip">Interpreting: look for the centre (average), the spread (range/SD), and the shape (symmetric? skewed? outliers?).</div>
+    </div></details>
+    <div class="tip" style="margin-top:1.4rem">📝 Note: these lessons cover the standard foundation-level scope. Confirm exact topics with your lecturer's outline, and practise with the <a href="subject.html?s=statistics" style="color:var(--c);font-weight:700">Statistics materials</a>.</div>
+  </section>
+</main>
+
+<footer><div class="foot-inner"><p><strong>UTM Foundation Hub · Statistics &amp; Probability lessons.</strong> Standard foundation-level scope — confirm against your lecturer's materials. <a href="index.html">← Back to the platform</a></p></div></footer>
+<script src="assets/tutor.js"></script>
+</body>
+</html>
