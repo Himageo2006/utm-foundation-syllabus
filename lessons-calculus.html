@@ -888,15 +888,112 @@
   <!-- TOPIC 7 -->
   <section class="topic" id="t7">
     <div class="topic-head"><span class="n">7</span><h2>Ordinary Differential Equations (ODEs)</h2></div>
-    <details class="lesson"><summary>Lesson 7.1 — Separable equations<span class="chev">▶</span></summary><div class="body">
-      <p>An ODE links a function to its derivatives. The simplest to solve are <strong>separable</strong>: get all the y's on one side and x's on the other, then integrate both sides.</p>
-      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
-        <p>Solve dy/dx = 2x·y.</p>
-        <div class="step"><span class="num">1</span><span class="txt">Separate: (1/y) dy = 2x dx</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">Integrate both sides: ln|y| = x² + C</span></div>
-        <div class="step"><span class="num">3</span><span class="txt">Solve for y: y = Ae^(x²) &nbsp;(A = e^C). <span class="ans">y = A·e^(x²)</span></span></div>
+
+    <details class="lesson" open><summary>Lesson 7.1 — Introduction & basic concepts<span class="chev">▶</span></summary><div class="body">
+      <p>An <strong>Ordinary Differential Equation (ODE)</strong> is an equation involving derivatives of a function y with respect to a <em>single</em> independent variable x. They lie at the core of physics — Newton's laws, Maxwell's equations, Schrödinger's equation are all differential equations.</p>
+      <div class="ex"><span class="tag">REAL-WORLD ODEs (from the slides)</span>
+        <div class="step"><span class="num">1</span><span class="txt"><strong>Radioactive decay:</strong> du/dt = −k·u(t), k &gt; 0 — amount of material decreases over time.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><strong>Newton's law of cooling:</strong> dθ/dt = −k(θ − θ₀) — a hot object cools toward its surroundings θ₀.</span></div>
       </div>
-      <div class="tip">A general solution has a constant (A or C); use an <strong>initial condition</strong> like y(0)=2 to find it.</div>
+      <h4>Order of an ODE</h4>
+      <p>The <strong>order</strong> is the highest derivative that appears.</p>
+      <div class="math">a) dy/dx − 2y = eˣ → order 1 &nbsp;·&nbsp; b) d²y/dx² − 4 dy/dx + 3y → order 2 &nbsp;·&nbsp; c) eˣ dy/dx + xy² = 0 → order 1</div>
+      <div class="note">An equation that contains at least one of dy/dx, d²y/dx², …, dⁿy/dxⁿ is an ODE. Here x is the independent variable and y is a function of x.</div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 7.2 — Formation of differential equations<span class="chev">▶</span></summary><div class="body">
+      <p>A differential equation can be <strong>formed by eliminating the arbitrary constants</strong> from an algebraic equation. Differentiate as many times as there are constants, then eliminate them.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — one constant</span>
+        <p>Form an ODE from y = x + A/x.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Multiply by x: xy = x² + A.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Differentiate implicitly: x dy/dx + y = 2x. <span class="ans">x dy/dx + y = 2x</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — eliminating A</span>
+        <p>Form an ODE from y = sin x + A/sin x.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Multiply by sin x: y sin x = sin²x + A.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Differentiate: dy/dx·sin x + y cos x = 2 sin x cos x.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Rearrange: <span class="ans">tan x dy/dx + y = 2 sin x</span> (first order).</span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — two constants → 2nd order</span>
+        <p>Form an ODE from y = e^(−2t)(A cos 3t + B sin 3t).</p>
+        <div class="step"><span class="num">1</span><span class="txt">Differentiate twice; A and B cancel using the original relation.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Result: <span class="ans">d²y/dt² + 4 dy/dt + 13y = 0</span> (second order — two constants give order 2).</span></div>
+      </div>
+      <div class="tip">Number of arbitrary constants = order of the resulting ODE.</div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 7.3 — Solutions of ODEs (general, particular, IVP)<span class="chev">▶</span></summary><div class="body">
+      <p>y = φ(x) is a <strong>solution</strong> if substituting it produces an identity for all x in an interval.</p>
+      <ul>
+        <li>A solution containing arbitrary constants is a <strong>general solution</strong>.</li>
+        <li>Fixing the constants gives a <strong>particular solution</strong>.</li>
+        <li>An ODE together with initial conditions is an <strong>Initial Value Problem (IVP)</strong>.</li>
+      </ul>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — verify a solution</span>
+        <p>Show xy = 2(x − 1) solves (x² − x) dy/dx = y.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Differentiate: x dy/dx + y = 2 ⟹ dy/dx = (2 − y)/x.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Substitute: (x² − x)(2 − y)/x = (x − 1)(2 − y) = 2x − xy − 2 + y = 2x − 2(x − 1) − 2 + y = y. ✓</span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — find the constant</span>
+        <p>y = 1 + A·e^(−sin x) solves dy/dx = (1 − y)cos x. Find A if y = 2 when x = 0.</p>
+        <div class="step"><span class="num">1</span><span class="txt">At x = 0: 2 = 1 + A·e⁰ ⟹ <span class="ans">A = 1</span>, so y = 1 + e^(−sin x).</span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 7.4 — Separable variables equations<span class="chev">▶</span></summary><div class="body">
+      <p>dy/dx = f(x,y) is <strong>separable</strong> when f(x,y) = u(x)·v(y), so it rearranges to <strong>dy/v(y) = u(x) dx</strong>. Then integrate both sides; apply the initial condition if given.</p>
+      <div class="note">dy/dx + xy = x ⟹ dy/(1−y) = x dx ✓ separable. But dy/dx = (x+y)/x = 1 + y/x ✗ not separable.</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>Solve dy/dx = 3x/(y − 2).</p>
+        <div class="step"><span class="num">1</span><span class="txt">Separate: (y − 2) dy = 3x dx.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Integrate: y²/2 − 2y = (3/2)x² + c ⟹ y² − 4y = 3x² + k.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Complete the square: (y − 2)² = 3x² + C ⟹ <span class="ans">y = 2 + √(3x² + C)</span>.</span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>Solve cot y dy/dx = cot x.</p>
+        <div class="step"><span class="num">1</span><span class="txt">(cos y/sin y) dy = (cos x/sin x) dx ⟹ ln|sin y| = ln|sin x| + k.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><span class="ans">sin y = C sin x</span> (C = eᵏ).</span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — IVP with partial fractions</span>
+        <p>Solve dy/dx = y/(x² − 1), y(2) = 1.</p>
+        <div class="step"><span class="num">1</span><span class="txt">(1/y) dy = dx/(x² − 1); split 1/(x²−1) = ½/(x−1) − ½/(x+1).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">ln y = ½ln|x−1| − ½ln|x+1| + C; at (2,1): C = ½ln 3.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt"><span class="ans">y = √[3(x−1)/(x+1)]</span>.</span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 7.5 — Linear equations & the integrating factor<span class="chev">▶</span></summary><div class="body">
+      <p>A first-order <strong>linear</strong> ODE: a(x) dy/dx + b(x) y = c(x). Procedure:</p>
+      <div class="math">1) Standard form dy/dx + P(x)y = Q(x) &nbsp; 2) ∫P dx &nbsp; 3) Integrating factor ρ = e^(∫P dx) &nbsp; 4) d/dx(ρy) = ρQ &nbsp; 5) Integrate</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>Solve dy/dx + y/x = x³.</p>
+        <div class="step"><span class="num">1</span><span class="txt">P = 1/x, ∫P dx = ln x, ρ = e^(ln x) = x.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">d/dx(xy) = x³·x = x⁴ ⟹ xy = x⁵/5 + c.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt"><span class="ans">y = x⁴/5 + c/x</span>.</span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — IVP</span>
+        <p>Solve x dy/dx − y = x/(x+1), y(1) = 0.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Standard form: dy/dx − (1/x)y = 1/(x+1). P = −1/x, ρ = e^(−ln x) = 1/x.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">d/dx(y/x) = 1/[x(x+1)] = 1/x − 1/(x+1) ⟹ y/x = ln x − ln(x+1) + C.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">At (1,0): C = ln 2 ⟹ <span class="ans">y = x·ln[2x/(x+1)]</span>.</span></div>
+      </div>
+      <div class="tip">Useful facts: e^(ln P) = P, ∫dx = x, ∫dy = y. Always reduce dy/dx to coefficient 1 before reading off P(x).</div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 7.6 — Applications of ODEs<span class="chev">▶</span></summary><div class="body">
+      <div class="ex"><span class="tag">WORKED EXAMPLE — population (linear ODE)</span>
+        <p>dR/dt = 0.07 − 0.1R, R(0) = 7000. Find R after 10 years.</p>
+        <div class="step"><span class="num">1</span><span class="txt">dR/dt + 0.1R = 0.07; ρ = e^(0.1t). d/dt(R e^(0.1t)) = 0.07 e^(0.1t).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">R = 0.7 + C/e^(0.1t); R(0)=7000 ⟹ C = 6999.3.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">At t = 10: <span class="ans">R ≈ 2576 rats</span>.</span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — falling object</span>
+        <p>dv/dt = g − 4v, v(0) = 0. Show v = (g/4)(1 − e^(−4t)) and find v as t → ∞.</p>
+        <div class="step"><span class="num">1</span><span class="txt">dv/dt + 4v = g; ρ = e^(4t). d/dt(v e^(4t)) = g e^(4t) ⟹ v e^(4t) = (g/4)e^(4t) + C.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">v(0)=0 ⟹ C = −g/4, so <span class="ans">v = (g/4)(1 − e^(−4t))</span>.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">As t → ∞: e^(−4t) → 0, so <span class="ans">v → g/4</span> (terminal velocity).</span></div>
+      </div>
+      <div class="tip">Newton's cooling worked example from the slides: dθ/dt = −k(θ − 18) with data θ=70 at t=0, θ=50 at t=5 gives k = 0.058; the object reaches θ = 40° at t ≈ 14.83 minutes.</div>
     </div></details>
   </section>
 
