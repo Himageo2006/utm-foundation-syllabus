@@ -146,6 +146,7 @@
     if (p.tutorials) pills.push(`${p.tutorials} tutorials`);
     if (p.tests) pills.push(`${p.tests} tests`);
     if (p.finals) pills.push(`${p.finals} finals`);
+    if (p.other) pills.push(`${p.other} ${p.note || 'papers'}`);
     if (p.note && !pills.length) pills.push(p.note);
     const el = document.createElement('a');
     el.className = 'subj';

@@ -50,6 +50,15 @@
   .pcat .big{font-size:2.2rem;font-weight:800;color:var(--c);font-family:Fraunces}
   .pcat .lbl{font-weight:700;margin-top:.2rem}
   .pcat .sub{font-size:.8rem;color:var(--muted)}
+  .pgroup{margin-bottom:1.6rem}
+  .pgh{font-size:1.15rem;display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem}
+  .pgh .cnt{font-family:Manrope;font-size:.72rem;font-weight:800;background:var(--c);color:#fff;border-radius:999px;padding:.1rem .55rem}
+  .plist{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.6rem}
+  .pitem{display:flex;align-items:center;gap:.6rem;background:#fff;border:1px solid var(--line);border-radius:10px;padding:.65rem .8rem;box-shadow:var(--shadow);transition:transform .12s,border-color .12s}
+  .pitem:hover{transform:translateY(-2px);border-color:var(--c)}
+  .pi-ic{font-size:1.1rem}
+  .pi-t{flex:1;font-size:.86rem;font-weight:600;line-height:1.3}
+  .pi-go{font-size:.74rem;font-weight:700;color:var(--c);white-space:nowrap}
   .empty{text-align:center;color:var(--muted);padding:2rem;background:#fff;border:1px dashed var(--line);border-radius:var(--radius)}
   .note{background:#fff7e6;border-left:4px solid var(--gold);border-radius:8px;padding:.8rem 1rem;font-size:.88rem;color:var(--muted);margin-top:1rem}
   footer{border-top:1px solid var(--line);margin-top:2rem;padding:1.5rem 1.2rem;text-align:center;color:var(--muted);font-size:.8rem}
@@ -80,6 +89,7 @@
 <footer>UTM Foundation Hub · <a href="index.html" style="color:var(--maroon);font-weight:700">Home</a></footer>
 
 <script src="assets/data.js"></script>
+<script src="assets/papers.js"></script>
 <script>
   const id = new URLSearchParams(location.search).get('s') || 'calculus';
   const s = HUB_DATA.subjects.find(x => x.id === id) || HUB_DATA.subjects[0];
@@ -102,20 +112,23 @@
     lessons.innerHTML = `<div class="empty"><h3 style="margin-bottom:.4rem">Lessons coming soon ✍️</h3><p>Step-by-step lessons for ${s.name} are being written. Meanwhile, use the AI Tutor for any topic.</p><br><button class="btn primary" onclick="document.getElementById('tutor-fab')?.click()">✨ Ask the AI Tutor</button></div>`;
   }
 
-  // Papers
-  const p = s.papers || {};
-  const cats = [
-    {k:'slides',lbl:'Lecture Slides',sub:'Chapter notes'},
-    {k:'tutorials',lbl:'Tutorials',sub:'Practice sets'},
-    {k:'tests',lbl:'Tests',sub:'Test 1 & 2 papers'},
-    {k:'finals',lbl:'Final Exams',sub:'Many with answers'}
-  ].filter(c=>p[c.k]);
+  // Papers — real files from manifest
+  const LBL = { slides:'📑 Lecture Slides', tutorials:'✏️ Tutorials', tests:'📝 Tests', finals:'🎯 Final Exams', other:'📂 Notes & Extra Papers' };
+  const pdata = (window.HUB_PAPERS && window.HUB_PAPERS[id]) || {};
   const papers = document.getElementById('p-papers');
-  if (cats.length) {
-    papers.innerHTML = `<div class="paper-cats">${cats.map(c=>`<div class="pcat"><div class="big">${p[c.k]}</div><div class="lbl">${c.lbl}</div><div class="sub">${c.sub}</div></div>`).join('')}</div>
-      <div class="note">📂 The PDF files are being uploaded to the platform. Once live, each paper opens here in your browser. For now, ask the AI Tutor to generate practice questions in this subject.</div>`;
+  const order = ['slides','tutorials','tests','finals','other'];
+  const groups = order.filter(k => pdata[k] && pdata[k].length);
+  if (groups.length) {
+    papers.innerHTML = groups.map(k => `
+      <div class="pgroup">
+        <h3 class="pgh">${LBL[k]} <span class="cnt">${pdata[k].length}</span></h3>
+        <div class="plist">
+          ${pdata[k].map(item => `<a class="pitem" href="${encodeURI(item.f)}" target="_blank" rel="noopener"><span class="pi-ic">📄</span><span class="pi-t">${item.t}</span><span class="pi-go">Open ↗</span></a>`).join('')}
+        </div>
+      </div>`).join('') +
+      `<div class="note">💡 Tip: open a past paper, then ask the AI Tutor to explain any question you're stuck on.</div>`;
   } else {
-    papers.innerHTML = `<div class="empty"><h3>${p.note || 'Materials being added'}</h3></div>`;
+    papers.innerHTML = `<div class="empty"><h3>${(s.papers&&s.papers.note) || 'Materials being added'}</h3></div>`;
   }
 
   // Practice

@@ -72,7 +72,7 @@ window.HUB_DATA = {
         "Impromptu Speech (2×10%)", "Oral Presentation (10%)", "Group Discussion (10%)",
         "Listening Test (2×10%)", "Final Listening Exam (40%)"
       ],
-      papers: { slides: 0, tutorials: 0, tests: 0, finals: 0, note: "Assessment specifications & rubrics" }
+      papers: { other: 1, note: "Assessment specs & rubrics" }
     },
     {
       id: "statistics",
@@ -85,7 +85,7 @@ window.HUB_DATA = {
       topics: [
         "Descriptive Statistics", "Probability", "Probability Distributions", "Data Analysis"
       ],
-      papers: { slides: 0, tutorials: 0, tests: 0, finals: 0, note: "Materials being added" }
+      papers: { other: 9, note: "Notes & papers" }
     }
   ]
 };

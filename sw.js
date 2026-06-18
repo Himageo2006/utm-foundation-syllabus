@@ -2,7 +2,7 @@
 const CACHE = "utm-hub-v1";
 const ASSETS = [
   "index.html", "subject.html", "lessons-calculus.html",
-  "assets/data.js", "assets/tutor.js", "assets/tutor.css", "assets/icon.svg",
+  "assets/data.js", "assets/papers.js", "assets/tutor.js", "assets/tutor.css", "assets/icon.svg",
   "manifest.json"
 ];
 self.addEventListener("install", e => {
