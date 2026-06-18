@@ -898,13 +898,14 @@
     </div></details>
 
     <details class="lesson"><summary>Lesson 5.5 — Trig substitution: √(Ax²+Bx+C)<span class="chev">▶</span></summary><div class="body">
-      <p>Complete the square to get one of three forms, then substitute to kill the root:</p>
+      <p>Complete the square to get one of three forms, then substitute to kill the root. Each choice is built so a <strong>Pythagorean identity collapses the square root</strong>:</p>
       <div class="math">
-        √(x²+k²) → x = k tan θ<br>
-        √(x²−k²) → x = k sec θ<br>
-        √(k²−x²) → x = k sin θ
+        √(x²+k²) → x = k tan θ &nbsp;(uses 1 + tan²θ = sec²θ)<br>
+        √(x²−k²) → x = k sec θ &nbsp;(uses sec²θ − 1 = tan²θ)<br>
+        √(k²−x²) → x = k sin θ &nbsp;(uses 1 − sin²θ = cos²θ)
       </div>
-      <p>(With (ax+b)² instead of x², use ax+b = k tan θ / k sec θ / k sin θ.)</p>
+      <p>For example √(k²−x²) with x = k sin θ becomes √(k²−k²sin²θ) = √(k²cos²θ) = k cos θ — no root left. (With (ax+b)² instead of x², use ax+b = k tan θ / k sec θ / k sin θ.)</p>
+      <div class="tip">💡 Match the <strong>sign pattern</strong> to pick the substitution: "+x²" → tan; "−k²" after the x² → sec; "−x²" (constant minus x²) → sin. At the end, convert θ back to x using a right triangle.</div>
       <div class="ex"><span class="tag">WORKED EXAMPLE — sin substitution</span>
         <p>∫ √(5 − x²) dx, x = √5 sin θ → √(5−x²) = √5 cos θ, dx = √5 cos θ dθ:</p>
         <div class="step"><span class="num">1</span><span class="txt">= 5∫cos²θ dθ = (5/2)∫(1 + cos 2θ) dθ</span></div>
