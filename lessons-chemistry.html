@@ -31,15 +31,84 @@
   </ol></div>
 
   <section class="topic" id="c1"><div class="topic-head"><span class="n">1</span><h2>Thermochemistry</h2></div>
-    <details class="lesson" open><summary>Heat changes, enthalpy & Hess's law<span class="chev">▶</span></summary><div class="body">
-      <p>Thermochemistry studies heat (energy) exchanged in reactions. <strong>Exothermic</strong> releases heat (ΔH negative); <strong>endothermic</strong> absorbs heat (ΔH positive).</p>
-      <div class="math">q = m·c·ΔT &nbsp;·&nbsp; ΔH(reaction) = ΣΔH(products) − ΣΔH(reactants)</div>
-      <p><strong>Hess's law:</strong> total enthalpy change is the same whatever the route — so you can add reactions.</p>
-      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
-        <p>50 g of water (c = 4.18 J/g°C) rises by 20°C. Find the heat absorbed.</p>
-        <div class="step"><span class="num">1</span><span class="txt">q = m·c·ΔT = (50)(4.18)(20)</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">= <span class="ans">4180 J = 4.18 kJ</span></span></div>
+    <p>Thermochemistry is the study of <strong>energy (heat) changes during chemical reactions</strong>. These lessons follow the chapter slides exactly.</p>
+
+    <details class="lesson" open><summary>1.1 — Systems, surroundings &amp; the First Law<span class="chev">▶</span></summary><div class="body">
+      <p>The <strong>system</strong> is the part of the universe we study; the <strong>surroundings</strong> are everything else. Four types:</p>
+      <ul>
+        <li><strong>Open</strong> — exchanges mass <em>and</em> energy (open beaker).</li>
+        <li><strong>Closed</strong> — exchanges energy only (coffee-cup calorimeter).</li>
+        <li><strong>Insulated</strong> — no energy exchange (adiabatic).</li>
+        <li><strong>Isolated</strong> — no mass <em>or</em> energy exchange (thermoflask).</li>
+      </ul>
+      <h4>First Law of Thermodynamics</h4>
+      <p>Energy cannot be created or destroyed: E(universe) = E(system) + E(surroundings) = 0.</p>
+      <div class="math">ΔE = q + w &nbsp; (q = heat, w = work = PΔV)</div>
+      <p>Sign convention: +q heat enters the system; −q heat leaves. +w work done on the system; −w work done by the system.</p>
+    </div></details>
+
+    <details class="lesson"><summary>1.2 — Enthalpy, exothermic &amp; endothermic<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Enthalpy (H)</strong> is the heat content at constant pressure. We measure the <strong>change</strong>, ΔH:</p>
+      <div class="math">ΔH = ΔU + PΔV &nbsp;·&nbsp; ΔH(reaction) = H(products) − H(reactants)</div>
+      <p>At constant pressure ΔH = q<sub>p</sub>; at constant volume ΔH = q<sub>v</sub>.</p>
+      <h4>Two types</h4>
+      <ul>
+        <li><strong>Exothermic</strong> — releases heat, surroundings warm up (T<sub>final</sub> &gt; T<sub>initial</sub>), <strong>ΔH negative</strong>. Heat is a product.</li>
+        <li><strong>Endothermic</strong> — absorbs heat, surroundings cool, <strong>ΔH positive</strong>. Heat is a reactant.</li>
+      </ul>
+      <p>Example (exothermic): H₂(g) + ½O₂(g) → H₂O(l), ΔH = −q kJ.</p>
+    </div></details>
+
+    <details class="lesson"><summary>1.3 — Calorimetry: q = mcΔT (solution &amp; bomb)<span class="chev">▶</span></summary><div class="body">
+      <p>A <strong>calorimeter</strong> measures heats of reaction. Two types: the <strong>solution (coffee-cup)</strong> calorimeter (constant pressure) and the <strong>bomb</strong> calorimeter (constant volume, for combustion).</p>
+      <div class="math">q = (m·s·ΔT) + (C<sub>p</sub>·ΔT) &nbsp;·&nbsp; ΔH = −( q / moles of limiting reactant )</div>
+      <p>m = mass of solution, s = specific heat, C<sub>p</sub> = calorimeter heat capacity (often negligible → q = m·s·ΔT). For a bomb: q = C·ΔT.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE (from slides) — solution calorimeter</span>
+        <p>100 mL of 0.1 M CuSO₄ at 15.0 °C is mixed with excess zinc; T rises to 19.9 °C. (C<sub>p</sub>=22.95 J/°C, s=4.2 J/g°C, ρ=1.0 g/mL.)</p>
+        <div class="step"><span class="num">1</span><span class="txt">q = [(100×1)×4.2×(19.9−15.0)] + [22.95×(19.9−15.0)] = <strong>2170 J</strong></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">mol CuSO₄ = 0.100 L × 0.1 = 0.01 mol</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">ΔH = −(2170/0.01) = <span class="ans">−217 kJ/mol</span></span></div>
+        <div class="step"><span class="num">4</span><span class="txt">Zn(s) + CuSO₄(aq) → ZnSO₄(aq) + Cu(s), ΔH = −217 kJ/mol.</span></div>
       </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE (from slides) — bomb calorimeter</span>
+        <p>1.5 g CH₄ burned; ΔT = 7.3 °C; calorimeter constant C = 11.3 kJ/°C.</p>
+        <div class="step"><span class="num">1</span><span class="txt">q = C·ΔT = 11.3 × 7.3 = 83 kJ</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">mol CH₄ = 1.5/16.04 = 0.094 mol</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">ΔH = −(83/0.094) = <span class="ans">−883 kJ/mol</span> (exothermic). CH₄+2O₂→CO₂+2H₂O.</span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>1.4 — Standard enthalpies (formation, combustion, neutralisation, solution)<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Standard conditions:</strong> 1 atm, 1.0 M solutions, 298 K (25 °C), substances in standard states. The most stable allotrope has ΔH°<sub>f</sub> = 0 (e.g. graphite, O₂, H₂).</p>
+      <ul>
+        <li><strong>ΔH°<sub>f</sub> (formation)</strong> — heat change forming <em>1 mole of compound from its elements</em>. e.g. H₂+½O₂→H₂O(l), ΔH°<sub>f</sub> = −286 kJ/mol.</li>
+        <li><strong>ΔH°<sub>c</sub> (combustion)</strong> — heat when <em>1 mole is completely burned</em> in excess O₂; always negative.</li>
+        <li><strong>ΔH°<sub>n</sub> (neutralisation)</strong> — heat when 1 mol H⁺ + 1 mol OH⁻ → 1 mol H₂O. Strong acid+strong base ≈ <strong>−57.3 kJ/mol</strong>; weak acids/bases give less (energy used to dissociate them).</li>
+        <li><strong>ΔH°<sub>soln</sub> (solution)</strong> — heat when 1 mol solute dissolves: ΔH<sub>soln</sub> = (−ΔH<sub>latt</sub>) + ΔH<sub>hyd,cation</sub> + ΔH<sub>hyd,anion</sub>.</li>
+      </ul>
+      <div class="ex"><span class="tag">WORKED EXAMPLE (from slides)</span>
+        <p>Enthalpy of solution of NaCl: ΔH<sub>hyd</sub>(Na⁺) = −390, ΔH<sub>hyd</sub>(Cl⁻) = −380, lattice energy = −776 kJ/mol.</p>
+        <div class="step"><span class="num">1</span><span class="txt">ΔH<sub>soln</sub> = (+776) + (−390) + (−380) = <span class="ans">+6 kJ/mol</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>1.5 — Hess's Law &amp; Born–Haber cycle<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Hess's Law:</strong> the total enthalpy change is independent of the route — add the steps. The equation form:</p>
+      <div class="math">ΔH<sub>reaction</sub> = ΣΔH°<sub>f</sub>(products) − ΣΔH°<sub>f</sub>(reactants)</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE (from slides)</span>
+        <p>Combustion of methane. ΔH°<sub>f</sub>: CH₄ = −74, CO₂ = −393, H₂O = −286 kJ/mol.</p>
+        <div class="step"><span class="num">1</span><span class="txt">CH₄ + 2O₂ → CO₂ + 2H₂O</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">ΔH<sub>c</sub> = [(−393) + 2(−286)] − [(−74) + 0]</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">= −965 + 74 = <span class="ans">−891 kJ/mol</span></span></div>
+      </div>
+      <h4>Born–Haber cycle</h4>
+      <p>An energy cycle for ionic solids linking formation with lattice energy (which can't be measured directly): ΔH<sub>f(solid)</sub> = ΔH<sub>a</sub> + ΔH<sub>ion</sub> + ΔH<sub>affinity</sub> + ΔH<sub>latt</sub>.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE (from slides) — NaCl</span>
+        <p>ΔH<sub>f</sub>=−411; Na: ΔH<sub>a</sub>=+108, IE=+500; Cl: ΔH<sub>a</sub>=+121, EA=−364 kJ. Find lattice energy.</p>
+        <div class="step"><span class="num">1</span><span class="txt">ΔH<sub>latt</sub> = ΔH<sub>f</sub> − (ΔH<sub>a</sub>(Na)+ΔH<sub>a</sub>(Cl)+IE+EA)</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">= −411 − (108+121+500−364) = −411 − 365 = <span class="ans">−776 kJ/mol</span></span></div>
+      </div>
+      <div class="tip">⚛️ Also covered in the slides: enthalpy of atomization (ΔH°<sub>a</sub>, always +ve, breaking bonds) and bond energy, with ΔH<sub>f</sub> = ΔH<sub>a</sub> − ΔH<sub>bond</sub>.</div>
     </div></details>
   </section>
 
