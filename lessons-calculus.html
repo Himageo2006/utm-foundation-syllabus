@@ -698,19 +698,99 @@
   <!-- TOPIC 5 -->
   <section class="topic" id="t5">
     <div class="topic-head"><span class="n">5</span><h2>Integration of Trigonometric Functions</h2></div>
-    <details class="lesson"><summary>Lesson 5.1 — Standard trig integrals<span class="chev">▶</span></summary><div class="body">
-      <div class="math">∫ sin x dx = −cos x + C &nbsp;·&nbsp; ∫ cos x dx = sin x + C &nbsp;·&nbsp; ∫ sec²x dx = tan x + C</div>
-      <p>For powers or products, use trig identities first (e.g. sin²x = ½(1 − cos 2x)).</p>
+    <p>Three families: (1) odd powers of sin/cos, (2) even powers of sin/cos, (3) products sin ax cos bx etc. Plus integration of irrational functions by trig substitution. Key identity: sin²x + cos²x = 1; note cos(−x) = cos x, but sin(−x) ≠ sin x.</p>
+
+    <details class="lesson"><summary>Lesson 5.1 — Odd powers of sin x / cos x<span class="chev">▶</span></summary><div class="body">
+      <p>For ∫ sinᵐx cosⁿx dx where <b>m is odd</b>: split off one sin x, convert the rest using sin²x = 1 − cos²x, then let u = cos x. If <b>n is odd</b>: split off one cos x, use cos²x = 1 − sin²x, let u = sin x.</p>
       <div class="ex"><span class="tag">WORKED EXAMPLE</span>
-        <p>Evaluate ∫₀^(π/2) cos x dx.</p>
-        <div class="step"><span class="num">1</span><span class="txt">Antiderivative of cos x is sin x.</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">= [sin x]₀^(π/2) = sin(π/2) − sin(0) = 1 − 0 = <span class="ans">1</span></span></div>
+        <p>∫ sin⁵x dx = ∫ (1 − cos²x)² sin x dx. Let u = cos x, du = −sin x dx:</p>
+        <div class="step"><span class="num">1</span><span class="txt">= −∫(1 − u²)² du = ∫(−1 + 2u² − u⁴) du</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><span class="ans">= −cos x + (2/3)cos³x − (1/5)cos⁵x + C</span></span></div>
       </div>
-      <div class="ex"><span class="tag">WORKED EXAMPLE — using an identity</span>
-        <p>Find ∫ sin²x dx.</p>
-        <div class="step"><span class="num">1</span><span class="txt">Replace sin²x = ½(1 − cos 2x).</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">∫½(1 − cos 2x) dx = ½x − ¼ sin 2x + C</span></div>
-        <div class="step"><span class="num">3</span><span class="txt"><span class="ans">= ½x − ¼ sin 2x + C</span></span></div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — definite</span>
+        <p>∫₀^(π/2) cos⁵x dx = [sin x − (2/3)sin³x + (1/5)sin⁵x]₀^(π/2) = 1 − 2/3 + 1/5 = <span class="ans">8/15</span></p>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — mixed</span>
+        <p>∫ sin³x cos²x dx = ∫(1 − cos²x)cos²x sin x dx. Let u = cos x:</p>
+        <div class="step"><span class="num">1</span><span class="txt">= ∫(u⁴ − u²) du = <span class="ans">(1/5)cos⁵x − (1/3)cos³x + C</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — fractional power</span>
+        <p>∫ (sin x)^(1/2) cos³x dx. n odd → let u = sin x, cos³x = (1−sin²x)cos x:</p>
+        <div class="step"><span class="num">1</span><span class="txt">= ∫(u^(1/2) − u^(5/2)) du = <span class="ans">(2/3)(sin x)^(3/2) − (2/7)(sin x)^(7/2) + C</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 5.2 — Even powers of sin x / cos x<span class="chev">▶</span></summary><div class="body">
+      <p>When m or n is <b>even</b>, no simple substitution works — reduce powers with the half-angle identities, applied repeatedly until only first-power cosines remain.</p>
+      <div class="math">sin²x = ½(1 − cos 2x) &nbsp;·&nbsp; cos²x = ½(1 + cos 2x)</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — basics</span>
+        <p>∫ sin²x dx = ½∫(1 − cos 2x) dx = <span class="ans">½x − ¼ sin 2x + C</span></p>
+        <p>∫ cos²x dx = ½∫(1 + cos 2x) dx = <span class="ans">½x + ¼ sin 2x + C</span></p>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — sin⁴x</span>
+        <p>∫ sin⁴x dx. sin⁴x = ¼(1 − cos 2x)² = ¼(3/2 − 2cos 2x + ½cos 4x):</p>
+        <div class="step"><span class="num">1</span><span class="txt">= ¼(3/2 x − sin 2x + ⅛ sin 4x)</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><span class="ans">= (1/32)(12x − 8 sin 2x + sin 4x) + C</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — sin²x cos⁴x</span>
+        <p>Reduce with half-angle + product identities to (1/32)(2 + cos 2x − 2cos 4x − cos 6x):</p>
+        <div class="step"><span class="num">1</span><span class="txt"><span class="ans">= (1/32)(2x + ½ sin 2x − ½ sin 4x − ⅙ sin 6x) + C</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 5.3 — Products sin ax cos bx, etc.<span class="chev">▶</span></summary><div class="body">
+      <p>Convert products of different-frequency sines/cosines into sums using the product-to-sum identities:</p>
+      <div class="math">
+        sin ax cos bx = ½[sin(a+b)x + sin(a−b)x]<br>
+        cos ax sin bx = ½[sin(a+b)x − sin(a−b)x]<br>
+        sin ax sin bx = −½[cos(a+b)x − cos(a−b)x]<br>
+        cos ax cos bx = ½[cos(a+b)x + cos(a−b)x]
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>∫ cos 7x sin 2x dx = ½∫(sin 9x − sin 5x) dx = <span class="ans">½(−cos 9x/9 + cos 5x/5) + C</span></p>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>∫ sin 4x sin 6x dx = ½∫(cos 10x − cos 2x) dx = <span class="ans">(1/20)(5 sin 2x − sin 10x) + C</span></p>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>∫ cos 3x cos 5x dx = ½∫(cos 8x + cos 2x) dx = <span class="ans">(1/16)(sin 8x + 4 sin 2x) + C</span></p>
+      </div>
+      <div class="tip">cos(−x) = cos x, so cos(a−b)x with a&lt;b can be flipped freely.</div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 5.4 — Irrational functions: √(ax+b)<span class="chev">▶</span></summary><div class="body">
+      <p>For a single root √(ax+b), substitute <b>z² = ax+b</b> (so 2z dz = a dx), turning the integrand into a polynomial in z.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
+        <p>∫ x√(x+1) dx. Let z² = x+1 → x = z²−1, dx = 2z dz:</p>
+        <div class="step"><span class="num">1</span><span class="txt">= ∫(z²−1)·z·2z dz = ∫(2z⁴ − 2z²) dz</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><span class="ans">= (2/5)(x+1)^(5/2) − (2/3)(x+1)^(3/2) + C</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — definite</span>
+        <p>∫₁² x⁴√(2x⁵+1) dx. Let z² = 2x⁵+1, 2z dz = 10x⁴ dx:</p>
+        <div class="step"><span class="num">1</span><span class="txt">= ∫₁² (1/5)z²·... → [z³/15] from z=√3 to √33 = 8/15 − 1/15 = <span class="ans">7/15</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 5.5 — Trig substitution: √(Ax²+Bx+C)<span class="chev">▶</span></summary><div class="body">
+      <p>Complete the square to get one of three forms, then substitute to kill the root:</p>
+      <div class="math">
+        √(x²+k²) → x = k tan θ<br>
+        √(x²−k²) → x = k sec θ<br>
+        √(k²−x²) → x = k sin θ
+      </div>
+      <p>(With (ax+b)² instead of x², use ax+b = k tan θ / k sec θ / k sin θ.)</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — sin substitution</span>
+        <p>∫ √(5 − x²) dx, x = √5 sin θ → √(5−x²) = √5 cos θ, dx = √5 cos θ dθ:</p>
+        <div class="step"><span class="num">1</span><span class="txt">= 5∫cos²θ dθ = (5/2)∫(1 + cos 2θ) dθ</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><span class="ans">= (5/2)(θ + sin θ cos θ) + C</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — tan substitution</span>
+        <p>∫₀¹ 1/(x²+1)^(3/2) dx, x = tan θ → reduces to ∫cos θ dθ:</p>
+        <div class="step"><span class="num">1</span><span class="txt">= [sin θ]₀^(π/4) = <span class="ans">√2/2</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — completing the square + sec</span>
+        <p>∫ 1/√(x²+x−6) dx. x²+x−6 = (x+½)² − 25/4. Let x+½ = (5/2)sec θ:</p>
+        <div class="step"><span class="num">1</span><span class="txt">= ∫sec θ dθ = <span class="ans">ln|sec θ + tan θ| + C</span></span></div>
       </div>
     </div></details>
   </section>
