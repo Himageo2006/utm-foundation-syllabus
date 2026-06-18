@@ -176,15 +176,89 @@
     </div></details>
   </section>
 
-  <section class="topic" id="c2"><div class="topic-head"><span class="n">2</span><h2>Capacitors</h2></div>
-    <details class="lesson"><summary>Capacitance & stored energy<span class="chev">▶</span></summary><div class="body">
-      <p>A capacitor stores charge. <strong>Capacitance</strong> C = Q/V (farads). Energy stored: E = ½CV².</p>
-      <h4>Combinations</h4>
-      <ul><li>Parallel: C = C₁ + C₂ + …</li><li>Series: 1/C = 1/C₁ + 1/C₂ + …</li></ul>
-      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
-        <p>A 100 µF capacitor is charged to 12 V. Find the charge and energy stored.</p>
-        <div class="step"><span class="num">1</span><span class="txt">Q = CV = (100×10⁻⁶)(12) = <span class="ans">1.2×10⁻³ C</span></span></div>
-        <div class="step"><span class="num">2</span><span class="txt">E = ½CV² = ½(100×10⁻⁶)(12²) = ½(100×10⁻⁶)(144) = <span class="ans">7.2×10⁻³ J</span></span></div>
+  <section class="topic" id="c2"><div class="topic-head"><span class="n">2</span><h2>Capacitor and Dielectric</h2></div>
+
+    <details class="lesson"><summary>2.1 — Capacitors and capacitance<span class="chev">▶</span></summary><div class="body">
+      <p>A <strong>capacitor</strong> is a device capable of storing electric charge or electric potential energy — two conducting plates separated by a small air gap or a thin insulator (a <strong>dielectric</strong> such as mica, ceramics, paper or oil). Plates may be cylindrical, spherical or parallel.</p>
+      <p><strong>Capacitance</strong> C is the ratio of the charge on either plate to the potential difference between them. It is a scalar, always positive; unit farad (F) = C·V⁻¹.</p>
+      <div class="math">C = Q/V&nbsp;&nbsp;→&nbsp;&nbsp;Q = CV&nbsp;&nbsp;(Q ∝ V)&nbsp;&nbsp;·&nbsp;&nbsp;1 µF = 10⁻⁶ F, 1 pF = 10⁻¹² F</div>
+      <p>For a vacuum parallel-plate capacitor: E = Q/(Aε₀), V = dQ/(Aε₀), so</p>
+      <div class="math">C₀ = ε₀A/d&nbsp;&nbsp;·&nbsp;&nbsp;ε₀ = 8.85×10⁻¹² C²·N⁻¹·m⁻²</div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 1 (from slides)</span>
+        <p>Plates of area 280 cm² separated 0.550 mm in vacuum, V = 20.1 V. Find (a) C, (b) charge per plate, (c) field strength.</p>
+        <div class="step"><span class="num">1</span><span class="txt">A = 280×10⁻⁴ m², d = 0.550×10⁻³ m.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">C = (8.85×10⁻¹²)(280×10⁻⁴)/(0.550×10⁻³) = <span class="ans">4.51×10⁻¹⁰ F</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Q = CV = (4.51×10⁻¹⁰)(20.1) = <span class="ans">9.07×10⁻⁹ C</span></span></div>
+        <div class="step"><span class="num">4</span><span class="txt">E = V/d = 20.1/(0.550×10⁻³) = <span class="ans">3.66×10⁴ V·m⁻¹</span></span></div>
+      </div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 2 (from slides)</span>
+        <p>Plates 20 cm × 3.0 cm, 1.0-mm air gap, 12-V battery.</p>
+        <div class="step"><span class="num">1</span><span class="txt">(a) C = Aε₀/d = (6×10⁻³)(8.85×10⁻¹²)/(1×10⁻³) = <span class="ans">5.31×10⁻¹¹ F</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(b) Q = CV = (5.31×10⁻¹⁰)... = <span class="ans">6.372×10⁻⁹ C</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">(c) E = V/d = 12/(1×10⁻³) = <span class="ans">1.2×10⁴ V/m</span></span></div>
+        <div class="step"><span class="num">4</span><span class="txt">(d) For C = 1 F with same gap: A = <span class="ans">≈ 1.13×10⁸ m²</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>2.2 — Capacitors in series and parallel<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Series:</strong> same charge on each (Q = Q₁ = Q₂ = Q₃), voltages add (V = V₁+V₂+V₃):</p>
+      <div class="math">1/C_eff = 1/C₁ + 1/C₂ + 1/C₃ + … + 1/Cₙ</div>
+      <p><strong>Parallel:</strong> same voltage on each (V = V₁ = V₂ = V₃), charges add (Q = Q₁+Q₂+Q₃):</p>
+      <div class="math">C_eff = C₁ + C₂ + C₃ + … + Cₙ</div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 3 (from slides)</span>
+        <p>Seven identical 2 µF capacitors in the network of Figure 5. Solve from the left end to the terminal.</p>
+        <div class="step"><span class="num">1</span><span class="txt">C₁,C₂,C₃ in series: 1/Cₓ = ½+½+½ → Cₓ = <span class="ans">⅔ µF</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Cₓ ∥ C₄: C_y = ⅔ + 2 = <span class="ans">8/3 µF</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">C_y,C₅,C₆ in series: 1/C_z = 3/8+½+½ → C_z = <span class="ans">8/11 µF</span></span></div>
+        <div class="step"><span class="num">4</span><span class="txt">C_z ∥ C₇: C_eff = 8/11 + 2 = <span class="ans">30/11 µF ≈ 2.73 µF</span></span></div>
+      </div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 4 (from slides)</span>
+        <p>C₁ = 100 µF, C₂ = 200 µF (parallel), in series with C₃ = 300 µF; V_AB = 8.0 V.</p>
+        <div class="step"><span class="num">1</span><span class="txt">C₁₂ = 100+200 = 300 µF; 1/C_eff = 1/300+1/300 → C_eff = <span class="ans">150 µF</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Q_T = C_eff·V_AB = (150µ)(8.0) = 1200 µC = Q₃ = Q₁₂.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">V₃ = 1200µ/300µ = 4.0 V; V₁₂ = 8.0−4.0 = <span class="ans">4.0 V</span> = V₁ = V₂.</span></div>
+        <div class="step"><span class="num">4</span><span class="txt">Q₁ = C₁V₁ = (100µ)(4) = <span class="ans">400 µC</span>; Q₂ = (200µ)(4) = <span class="ans">800 µC</span>; V_AD = V₁₂ = 4.0 V.</span></div>
+      </div>
+
+      <div class="note"><strong>Example 6 (slides):</strong> C = 3.0 µF, V = 4.0 V, C₂₃ = 2C = 6 µF parallel-then-series with C₁. Q_T = 8 µC; V₂₃ = 4/3 V; Q₂ = Q₃ = 4 µC; V₁ = 2.7 V.</div>
+    </div></details>
+
+    <details class="lesson"><summary>2.3 — Electric energy storage<span class="chev">▶</span></summary><div class="body">
+      <p>A charged capacitor stores energy equal to the work done to charge it:</p>
+      <div class="math">U = ½Q²/C = ½CV² = ½QV</div>
+      <p><strong>Energy density</strong> (energy per unit volume) of any electric field:</p>
+      <div class="math">u = ½ε₀E²</div>
+      <div class="tip">Sudden discharge can be harmful or fatal — capacitors retain charge even when disconnected. Heart defibrillators use this discharge to restart the heart.</div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 7 (from slides) — camera flash</span>
+        <p>A 150-µF capacitor at 200 V releases its energy in 1.0 ms.</p>
+        <div class="step"><span class="num">1</span><span class="txt">U = ½CV² = ½(150µ)(200²) = <span class="ans">3 J</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">P = U/t = 3/(1×10⁻³) = <span class="ans">3000 W</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>2.4 — Dielectrics<span class="chev">▶</span></summary><div class="body">
+      <p>A <strong>dielectric</strong> is a non-conducting material placed between the plates. Inserting it increases C by the <strong>dielectric constant</strong> ε_r (κ). Advantages: more capacitance, higher operating voltage, mechanical support (smaller d, larger C).</p>
+      <div class="math">ε_r = C/C₀ = ε/ε₀ = V₀/V = E₀/E&nbsp;&nbsp;(no unit)&nbsp;&nbsp;·&nbsp;&nbsp;C = ε_r·ε₀A/d = Kε₀A/d</div>
+      <p><strong>Dielectric strength</strong> = the field at which breakdown occurs and the material becomes a conductor. Battery connected → V constant, C and Q rise. Battery disconnected → Q constant, V drops.</p>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 8 (from slides)</span>
+        <p>Vacuum cap A = 150 cm², d = 2 mm, charged to V₀ = 2000 V, battery removed; with dielectric V drops to 500 V.</p>
+        <div class="step"><span class="num">1</span><span class="txt">(a) C₀ = ε₀A/d = (8.85×10⁻¹²)(150×10⁻⁴)/(2×10⁻³) = <span class="ans">6.63×10⁻¹¹ F</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(b) Q₀ = C₀V₀ = (6.63×10⁻¹¹)(2000) = <span class="ans">1.33×10⁻⁷ C</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">(c) C = Q₀/V = 1.33×10⁻⁷/500 = <span class="ans">2.66×10⁻¹⁰ F</span></span></div>
+        <div class="step"><span class="num">4</span><span class="txt">(d) ε_r = C/C₀ = <span class="ans">4.01</span>; (e) ε = ε_rε₀ = <span class="ans">3.55×10⁻¹¹ C²·N⁻¹·m⁻²</span></span></div>
+        <div class="step"><span class="num">5</span><span class="txt">(f) E₀ = V₀/d = 2000/(2×10⁻³) = <span class="ans">1.00×10⁶ V·m⁻¹</span>; (g) E = E₀/ε_r = <span class="ans">2.49×10⁵ V·m⁻¹</span></span></div>
+      </div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 9 (from slides) — dielectric removal</span>
+        <p>K = 3.4, 100-V battery then disconnected, A = 4.0 m², d = 4.0 mm.</p>
+        <div class="step"><span class="num">1</span><span class="txt">(a) C = Kε₀A/d = <span class="ans">3×10⁻⁸ F</span>; Q = CV = <span class="ans">3×10⁻⁶ C</span>; E = V/d = <span class="ans">2.5×10⁵ V/m</span>; U = ½QV = <span class="ans">1.5×10⁻⁴ J</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(b) Dielectric removed (Q constant): C = ε₀A/d = <span class="ans">8.85×10⁻⁹ F</span>; V = 3.4×100 = 340 V; E = <span class="ans">8.5×10⁴ N/C</span>; U = ½QV = <span class="ans">5.1×10⁻⁴ J</span></span></div>
       </div>
     </div></details>
   </section>
