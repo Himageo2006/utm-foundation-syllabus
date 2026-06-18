@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Subject · UTM Foundation Hub</title>
+<meta name="theme-color" content="#8c1d40">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tutor.css">
+<style>
+  :root{--maroon:#8c1d40;--maroon-dark:#5e1230;--gold:#d4a017;--ink:#1f2530;--muted:#5c6675;--bg:#f6f4f1;--card:#fff;--line:#e7e2dc;--radius:16px;--shadow:0 8px 30px rgba(40,20,30,.09);--c:#8c1d40}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  h1,h2,h3,.brand-name{font-family:"Fraunces",Georgia,serif;letter-spacing:-.5px}
+  a{text-decoration:none;color:inherit}
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(246,244,241,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav-in{max-width:1000px;margin:0 auto;padding:.75rem 1.2rem;display:flex;align-items:center;gap:1rem}
+  .brand{display:flex;align-items:center;gap:.6rem;font-weight:800}
+  .brand .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--maroon),var(--maroon-dark));color:#fff;display:grid;place-items:center;font-weight:800;font-size:.8rem;font-family:Manrope}
+  .brand-name{font-size:1rem}
+  .nav-in .back{margin-left:auto;font-size:.85rem;font-weight:700;color:var(--maroon)}
+  .hero{background:linear-gradient(135deg,var(--c),#000a);color:#fff;padding:2.8rem 1.2rem}
+  .hero-in{max-width:1000px;margin:0 auto}
+  .hero .ic{font-size:2.6rem}
+  .hero h1{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:800;margin:.4rem 0}
+  .hero .code{opacity:.85;font-weight:700;letter-spacing:1px}
+  .hero p{opacity:.92;max-width:60ch;margin-top:.6rem}
+  main{max-width:1000px;margin:0 auto;padding:0 1.2rem}
+  .tabs{display:flex;gap:.4rem;margin:1.5rem 0;flex-wrap:wrap;position:sticky;top:60px;background:var(--bg);padding:.6rem 0;z-index:20}
+  .tab{padding:.55rem 1rem;border-radius:999px;font-weight:700;font-size:.88rem;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--muted)}
+  .tab.active{background:var(--maroon);color:#fff;border-color:var(--maroon)}
+  .panel{display:none;margin-bottom:3rem}
+  .panel.active{display:block;animation:fade .2s}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+  .topics{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.8rem}
+  .topic{background:#fff;border:1px solid var(--line);border-left:4px solid var(--c);border-radius:12px;padding:1rem;box-shadow:var(--shadow)}
+  .topic .n{font-size:.72rem;font-weight:800;color:var(--c)}
+  .topic .t{font-weight:700;margin-top:.15rem}
+  .banner{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.4rem 1.6rem;box-shadow:var(--shadow);display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-bottom:1.4rem}
+  .banner .txt{flex:1;min-width:200px}
+  .banner h3{font-size:1.2rem}.banner p{color:var(--muted);font-size:.9rem;margin-top:.2rem}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.2rem;border-radius:999px;font-weight:700;font-size:.9rem;cursor:pointer;border:none;font-family:inherit}
+  .btn.primary{background:linear-gradient(135deg,var(--maroon),var(--maroon-dark));color:#fff}
+  .btn.ghost{background:#fff;border:1px solid var(--line);color:var(--ink)}
+  .paper-cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+  .pcat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:1.3rem;box-shadow:var(--shadow);text-align:center}
+  .pcat .big{font-size:2.2rem;font-weight:800;color:var(--c);font-family:Fraunces}
+  .pcat .lbl{font-weight:700;margin-top:.2rem}
+  .pcat .sub{font-size:.8rem;color:var(--muted)}
+  .empty{text-align:center;color:var(--muted);padding:2rem;background:#fff;border:1px dashed var(--line);border-radius:var(--radius)}
+  .note{background:#fff7e6;border-left:4px solid var(--gold);border-radius:8px;padding:.8rem 1rem;font-size:.88rem;color:var(--muted);margin-top:1rem}
+  footer{border-top:1px solid var(--line);margin-top:2rem;padding:1.5rem 1.2rem;text-align:center;color:var(--muted);font-size:.8rem}
+</style>
+</head>
+<body>
+<header class="nav"><div class="nav-in">
+  <a class="brand" href="index.html"><span class="logo">UTM</span><span class="brand-name">Foundation Hub</span></a>
+  <a class="back" href="index.html">← All subjects</a>
+</div></header>
+
+<div class="hero"><div class="hero-in" id="hero"></div></div>
+
+<main>
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-p="topics">📚 Topics</button>
+    <button class="tab" data-p="lessons">📖 Lessons</button>
+    <button class="tab" data-p="papers">📝 Past papers</button>
+    <button class="tab" data-p="practice">🧠 Practice</button>
+  </div>
+
+  <div class="panel active" id="p-topics"></div>
+  <div class="panel" id="p-lessons"></div>
+  <div class="panel" id="p-papers"></div>
+  <div class="panel" id="p-practice"></div>
+</main>
+
+<footer>UTM Foundation Hub · <a href="index.html" style="color:var(--maroon);font-weight:700">Home</a></footer>
+
+<script src="assets/data.js"></script>
+<script>
+  const id = new URLSearchParams(location.search).get('s') || 'calculus';
+  const s = HUB_DATA.subjects.find(x => x.id === id) || HUB_DATA.subjects[0];
+  document.documentElement.style.setProperty('--c', s.color);
+  document.title = s.name + ' · UTM Foundation Hub';
+
+  document.getElementById('hero').innerHTML =
+    `<div class="ic">${s.icon}</div><div class="code">${s.code}</div><h1>${s.name}</h1><p>${s.blurb}</p>`;
+
+  // Topics
+  document.getElementById('p-topics').innerHTML =
+    `<div class="topics">${s.topics.map((t,i)=>`<div class="topic"><div class="n">TOPIC ${i+1}</div><div class="t">${t}</div></div>`).join('')}</div>
+     <div class="note">💡 Want any topic explained step by step? Open the <b>AI Tutor</b> (bottom-right) and ask — it knows this subject's syllabus.</div>`;
+
+  // Lessons
+  const lessons = document.getElementById('p-lessons');
+  if (s.lessons) {
+    lessons.innerHTML = `<div class="banner"><div class="txt"><h3>Step-by-step lessons</h3><p>Full worked lessons for every ${s.name} topic, built from the lecture slides.</p></div><a class="btn primary" href="${s.lessons}">Open lessons →</a></div>`;
+  } else {
+    lessons.innerHTML = `<div class="empty"><h3 style="margin-bottom:.4rem">Lessons coming soon ✍️</h3><p>Step-by-step lessons for ${s.name} are being written. Meanwhile, use the AI Tutor for any topic.</p><br><button class="btn primary" onclick="document.getElementById('tutor-fab')?.click()">✨ Ask the AI Tutor</button></div>`;
+  }
+
+  // Papers
+  const p = s.papers || {};
+  const cats = [
+    {k:'slides',lbl:'Lecture Slides',sub:'Chapter notes'},
+    {k:'tutorials',lbl:'Tutorials',sub:'Practice sets'},
+    {k:'tests',lbl:'Tests',sub:'Test 1 & 2 papers'},
+    {k:'finals',lbl:'Final Exams',sub:'Many with answers'}
+  ].filter(c=>p[c.k]);
+  const papers = document.getElementById('p-papers');
+  if (cats.length) {
+    papers.innerHTML = `<div class="paper-cats">${cats.map(c=>`<div class="pcat"><div class="big">${p[c.k]}</div><div class="lbl">${c.lbl}</div><div class="sub">${c.sub}</div></div>`).join('')}</div>
+      <div class="note">📂 The PDF files are being uploaded to the platform. Once live, each paper opens here in your browser. For now, ask the AI Tutor to generate practice questions in this subject.</div>`;
+  } else {
+    papers.innerHTML = `<div class="empty"><h3>${p.note || 'Materials being added'}</h3></div>`;
+  }
+
+  // Practice
+  document.getElementById('p-practice').innerHTML =
+    `<div class="banner"><div class="txt"><h3>Quiz yourself with AI</h3><p>Generate practice questions and flashcards for any ${s.name} topic, and get instant feedback.</p></div><button class="btn primary" onclick="quiz()">🧠 Start a quiz</button></div>
+     <div class="topics">${s.topics.map(t=>`<button class="topic" style="cursor:pointer;text-align:left;font:inherit" onclick="quizTopic('${t.replace(/'/g,"")}')"><div class="n">QUIZ</div><div class="t">${t}</div></button>`).join('')}</div>`;
+
+  window.quiz = () => { askTutor(`Give me a 5-question mixed quiz on ${s.name}. Ask one question at a time and wait for my answer before revealing the solution.`); };
+  window.quizTopic = (t) => { askTutor(`Quiz me with 4 questions on "${t}" from ${s.name}. Ask one at a time, wait for my answer, then explain.`); };
+  function askTutor(q){ localStorage.setItem('utm_tutor_prefill', q); document.getElementById('tutor-fab')?.click(); }
+
+  // tabs
+  document.querySelectorAll('.tab').forEach(t => t.onclick = () => {
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('p-'+t.dataset.p).classList.add('active');
+  });
+
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+</script>
+<script src="assets/tutor.js"></script>
+</body>
+</html>

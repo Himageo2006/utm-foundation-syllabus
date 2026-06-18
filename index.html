@@ -2,519 +2,167 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UTM Foundation Programme · Semester 3 Full Syllabus Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>UTM Foundation Hub — Study Platform for Foundation in Science</title>
+<meta name="description" content="UTM Foundation Hub — a free study platform for UTM Foundation in Science students. Step-by-step lessons, AI tutor, past papers, quizzes and flashcards for Calculus, Physics, Chemistry, Computing, English and Statistics.">
+<meta name="theme-color" content="#8c1d40">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="assets/icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/tutor.css">
 <style>
-  body{font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif !important}
-  .hero h1,.section-head h2,.brand,.ov-card h3{font-family:"Fraunces",Georgia,serif !important;letter-spacing:-.5px}
-  :root{
-    --maroon:#8c1d40;--maroon-dark:#5e1230;--maroon-light:#b03a5b;
-    --gold:#d4a017;--ink:#1f2530;--muted:#5c6675;--bg:#f6f4f1;
-    --card:#ffffff;--line:#e7e2dc;--radius:16px;--shadow:0 6px 24px rgba(40,20,30,.08);
-  }
+  :root{--maroon:#8c1d40;--maroon-dark:#5e1230;--gold:#d4a017;--ink:#1f2530;--muted:#5c6675;--bg:#f6f4f1;--card:#fff;--line:#e7e2dc;--radius:18px;--shadow:0 8px 30px rgba(40,20,30,.09)}
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65}
-  a{color:inherit;text-decoration:none}
+  body{font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  h1,h2,h3,.brand-name{font-family:"Fraunces",Georgia,serif;letter-spacing:-.5px}
+  a{text-decoration:none;color:inherit}
 
-  header.nav{position:sticky;top:0;z-index:50;background:rgba(140,29,64,.97);backdrop-filter:blur(8px);color:#fff;box-shadow:0 2px 14px rgba(0,0,0,.15)}
-  .nav-inner{max-width:1120px;margin:0 auto;padding:.7rem 1.2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
-  .brand{display:flex;align-items:center;gap:.6rem;font-weight:700;letter-spacing:.3px}
-  .brand .logo{width:34px;height:34px;border-radius:8px;background:var(--gold);color:var(--maroon-dark);display:grid;place-items:center;font-weight:800;font-size:.95rem}
-  .brand small{display:block;font-weight:400;font-size:.68rem;opacity:.85;letter-spacing:.5px}
-  .nav-links{margin-left:auto;display:flex;gap:.3rem;flex-wrap:wrap}
-  .nav-links a{padding:.4rem .7rem;border-radius:999px;font-size:.82rem;font-weight:500;transition:background .2s}
-  .nav-links a:hover{background:rgba(255,255,255,.18)}
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(246,244,241,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav-in{max-width:1140px;margin:0 auto;padding:.75rem 1.2rem;display:flex;align-items:center;gap:1rem}
+  .brand{display:flex;align-items:center;gap:.6rem;font-weight:800}
+  .brand .logo{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--maroon),var(--maroon-dark));color:#fff;display:grid;place-items:center;font-weight:800;font-size:.85rem;font-family:Manrope}
+  .brand-name{font-size:1.05rem}
+  .nav-links{margin-left:auto;display:flex;gap:.4rem}
+  .nav-links a{padding:.45rem .8rem;border-radius:999px;font-size:.85rem;font-weight:600;color:var(--muted)}
+  .nav-links a:hover{background:#fff;color:var(--maroon)}
+  #installBtn{display:none;background:var(--maroon);color:#fff;border:none;padding:.45rem .9rem;border-radius:999px;font-weight:700;font-size:.82rem;cursor:pointer;font-family:inherit}
 
-  .hero{background:linear-gradient(135deg,var(--maroon) 0%,var(--maroon-dark) 100%);color:#fff;padding:4rem 1.2rem 5rem;position:relative;overflow:hidden}
-  .hero::after{content:"";position:absolute;right:-80px;bottom:-80px;width:320px;height:320px;background:radial-gradient(circle,rgba(212,160,23,.35),transparent 70%)}
-  .hero-inner{max-width:1120px;margin:0 auto;position:relative;z-index:2}
-  .hero .eyebrow{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:.35rem .85rem;border-radius:999px;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:1.1rem}
-  .hero h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.1;font-weight:800;max-width:20ch}
-  .hero p.sub{margin-top:1.1rem;font-size:1.1rem;max-width:62ch;opacity:.92}
-  .hero .meta{margin-top:1.8rem;display:flex;gap:1.6rem;flex-wrap:wrap;font-size:.9rem}
-  .hero .meta strong{display:block;font-size:1.4rem;font-weight:800;color:var(--gold)}
+  .hero{max-width:1140px;margin:0 auto;padding:3.5rem 1.2rem 1rem;text-align:center}
+  .hero .badge{display:inline-block;background:#fff;border:1px solid var(--line);color:var(--maroon);padding:.4rem .9rem;border-radius:999px;font-size:.78rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;box-shadow:var(--shadow)}
+  .hero h1{font-size:clamp(2.2rem,6vw,3.8rem);font-weight:800;line-height:1.05;margin:1.2rem auto;max-width:16ch}
+  .hero h1 .hl{color:var(--maroon)}
+  .hero p{font-size:1.15rem;color:var(--muted);max-width:60ch;margin:0 auto 1.8rem}
+  .hero .cta{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.4rem;border-radius:999px;font-weight:700;font-size:.95rem;cursor:pointer;border:none;font-family:inherit}
+  .btn.primary{background:linear-gradient(135deg,var(--maroon),var(--maroon-dark));color:#fff;box-shadow:0 10px 28px rgba(92,18,48,.35)}
+  .btn.ghost{background:#fff;border:1px solid var(--line);color:var(--ink)}
+  .btn:hover{transform:translateY(-2px)}
+  .hero-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem;color:var(--muted);font-size:.9rem}
+  .hero-stats strong{display:block;font-size:1.7rem;color:var(--maroon);font-family:Fraunces;font-weight:800}
 
-  main{max-width:1120px;margin:0 auto;padding:0 1.2rem}
-  section.block{margin:3.5rem 0;scroll-margin-top:80px}
-  .section-head{display:flex;align-items:center;gap:.9rem;margin-bottom:1.4rem}
-  .section-head .num{flex:none;width:46px;height:46px;border-radius:12px;background:var(--maroon);color:#fff;display:grid;place-items:center;font-weight:800;font-size:1.1rem}
-  .section-head h2{font-size:1.6rem;font-weight:800;line-height:1.15}
-  .section-head .code{font-size:.8rem;color:var(--muted);font-weight:600;letter-spacing:.5px}
-  .intro-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem;box-shadow:var(--shadow)}
-  .lead{font-size:1.05rem;color:var(--muted)}
-  h3.sub-h{margin:2rem 0 .6rem;font-size:1.15rem}
+  main{max-width:1140px;margin:0 auto;padding:0 1.2rem}
+  .sec{margin:4rem 0}
+  .sec-head{text-align:center;margin-bottom:2rem}
+  .sec-head h2{font-size:2rem;font-weight:800}
+  .sec-head p{color:var(--muted);margin-top:.4rem}
 
-  .badges{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
-  .badge{font-size:.78rem;background:#f0e8eb;color:var(--maroon-dark);padding:.3rem .7rem;border-radius:999px;font-weight:600;border:1px solid #e6d6dc}
+  .subjects{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.2rem}
+  .subj{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);transition:transform .15s,box-shadow .15s;display:flex;flex-direction:column;position:relative;overflow:hidden}
+  .subj::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--c)}
+  .subj:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(40,20,30,.14)}
+  .subj .top{display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem}
+  .subj .ic{font-size:2rem}
+  .subj h3{font-size:1.25rem;font-weight:800;line-height:1.1}
+  .subj .code{font-size:.74rem;color:var(--muted);font-weight:700;letter-spacing:.5px}
+  .subj p{font-size:.9rem;color:var(--muted);flex:1;margin:.3rem 0 1rem}
+  .subj .meta{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem}
+  .subj .pill{font-size:.72rem;font-weight:700;background:#f4eef0;color:var(--maroon-dark);padding:.25rem .6rem;border-radius:999px}
+  .subj .go{font-weight:700;color:var(--maroon);font-size:.9rem}
 
-  /* overview */
-  .overview{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-top:1.4rem}
-  .ov-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1.3rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:.5rem;transition:transform .15s}
-  .ov-card:hover{transform:translateY(-4px)}
-  .ov-card .ic{font-size:1.8rem}.ov-card h3{font-size:1.05rem}.ov-card p{font-size:.85rem;color:var(--muted)}
-  .ov-card a.go{margin-top:auto;font-size:.82rem;font-weight:700;color:var(--maroon)}
+  .features{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem}
+  .feat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.4rem;box-shadow:var(--shadow)}
+  .feat .ic{font-size:1.8rem}
+  .feat h3{font-size:1.1rem;margin:.5rem 0 .3rem}
+  .feat p{font-size:.88rem;color:var(--muted)}
 
-  /* accordion topic */
-  details.topic{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--maroon-light);border-radius:12px;margin-top:.8rem;box-shadow:var(--shadow);overflow:hidden}
-  details.topic[open]{border-left-color:var(--gold)}
-  details.topic summary{list-style:none;cursor:pointer;padding:1rem 1.2rem;display:flex;align-items:center;gap:.8rem;font-weight:700}
-  details.topic summary::-webkit-details-marker{display:none}
-  .t-badge{flex:none;font-size:.7rem;font-weight:800;color:#fff;background:var(--maroon-light);padding:.2rem .55rem;border-radius:6px;letter-spacing:.5px}
-  details.topic[open] .t-badge{background:var(--maroon)}
-  .t-name{flex:1}
-  .chev{flex:none;color:var(--muted);transition:transform .2s;font-size:.9rem}
-  details.topic[open] .chev{transform:rotate(90deg)}
-  .t-body{padding:0 1.2rem 1.3rem;border-top:1px solid var(--line)}
-  .t-body p{margin-top:.9rem;font-size:.95rem}
-  .t-body h5{margin:1rem 0 .4rem;font-size:.82rem;text-transform:uppercase;letter-spacing:.5px;color:var(--maroon)}
-  .t-body ul{margin:.2rem 0 .2rem 1.1rem}
-  .t-body li{font-size:.92rem;margin:.25rem 0}
-  .formula{background:#f7f3ee;border:1px dashed #d8cfc4;border-radius:8px;padding:.6rem .9rem;font-family:"Cambria Math","Georgia",serif;font-size:.95rem;margin-top:.5rem;overflow-x:auto}
+  .cta-band{background:linear-gradient(135deg,var(--maroon),var(--maroon-dark));color:#fff;border-radius:24px;padding:3rem 2rem;text-align:center;margin:4rem 0}
+  .cta-band h2{font-size:1.9rem}
+  .cta-band p{opacity:.9;margin:.6rem auto 1.5rem;max-width:50ch}
+  .cta-band .btn.primary{background:var(--gold);color:var(--maroon-dark)}
 
-  /* table */
-  .table-wrap{overflow-x:auto;margin-top:1rem;border-radius:var(--radius);box-shadow:var(--shadow)}
-  table{width:100%;border-collapse:collapse;background:var(--card);min-width:520px}
-  th,td{padding:.85rem 1rem;text-align:left;border-bottom:1px solid var(--line);font-size:.92rem}
-  thead th{background:var(--maroon);color:#fff;font-weight:600}
-  tbody tr:nth-child(even){background:#faf8f6}
-  td.weight{font-weight:800;color:var(--maroon)}
-  tfoot td{background:var(--maroon-dark);color:#fff;font-weight:800}
-
-  .tips{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem;margin-top:1.3rem}
-  .tip{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.2rem;box-shadow:var(--shadow)}
-  .tip .ic{font-size:1.5rem}.tip h4{margin:.4rem 0 .3rem;font-size:1rem}.tip p{font-size:.86rem;color:var(--muted)}
-
-  .expand-all{display:inline-flex;align-items:center;gap:.4rem;margin:1rem 0 .2rem;font-size:.82rem;font-weight:700;color:var(--maroon);background:#f0e8eb;border:1px solid #e6d6dc;padding:.45rem .9rem;border-radius:999px;cursor:pointer}
-
-  footer{background:var(--maroon-dark);color:#fff;margin-top:4rem;padding:2.5rem 1.2rem}
-  .foot-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;font-size:.9rem;opacity:.92}
-  .disclaimer{font-size:.78rem;opacity:.65;margin-top:1.4rem;max-width:1120px;margin-inline:auto}
-  @media(max-width:620px){.nav-links{width:100%;margin-left:0}.hero{padding:3rem 1.2rem 3.5rem}}
+  footer{border-top:1px solid var(--line);margin-top:3rem;padding:2rem 1.2rem;text-align:center;color:var(--muted);font-size:.85rem}
+  footer .disc{font-size:.74rem;opacity:.7;margin-top:.8rem;max-width:70ch;margin-inline:auto}
+  @media(max-width:600px){.nav-links a:not(#installBtn){display:none}}
 </style>
 </head>
 <body>
 
-<header class="nav">
-  <div class="nav-inner">
-    <div class="brand"><span class="logo">UTM</span><span>Foundation Programme<small>Semester 3 · Full Syllabus Guide</small></span></div>
-    <nav class="nav-links">
-      <a href="#overview">Overview</a><a href="#english">English</a><a href="#calculus">Calculus</a>
-      <a href="#chemistry">Chemistry II</a><a href="#physics">Physics II</a><a href="#computing">Computing</a><a href="#tips">Tips</a>
-    </nav>
-  </div>
-</header>
+<header class="nav"><div class="nav-in">
+  <a class="brand" href="index.html"><span class="logo">UTM</span><span class="brand-name">Foundation Hub</span></a>
+  <nav class="nav-links">
+    <a href="#subjects">Subjects</a>
+    <a href="#features">Features</a>
+    <a href="lessons-calculus.html">Lessons</a>
+    <button id="installBtn">⬇ Install app</button>
+  </nav>
+</div></header>
 
-<div class="hero"><div class="hero-inner">
-  <span class="eyebrow">UTM Foundation in Science</span>
-  <h1>Semester 3 — the complete syllabus, fully explained.</h1>
-  <p class="sub">Every subject, every topic, broken down: what it means, the key ideas you'll learn, and the formulas that matter. Click any topic to open its full explanation.</p>
-  <div class="meta">
-    <div><strong>5</strong>Subjects</div><div><strong>40+</strong>Topics explained</div><div><strong>100%</strong>Coverage</div>
+<section class="hero">
+  <span class="badge">UTM Foundation in Science</span>
+  <h1>Everything you need to <span class="hl">ace your foundation year</span>.</h1>
+  <p>Step-by-step lessons, an AI tutor that knows your syllabus, past papers with answers, and quizzes — all in one free platform built for UTM foundation students.</p>
+  <div class="cta">
+    <a class="btn primary" href="#subjects">Browse subjects →</a>
+    <button class="btn ghost" onclick="document.getElementById('tutor-fab')?.click()">✨ Ask the AI Tutor</button>
   </div>
-</div></div>
+  <div class="hero-stats">
+    <div><strong>6</strong>Subjects</div>
+    <div><strong>50+</strong>Topics</div>
+    <div><strong>100+</strong>Past papers</div>
+    <div><strong>24/7</strong>AI tutor</div>
+  </div>
+</section>
 
 <main>
+  <section class="sec" id="subjects">
+    <div class="sec-head"><h2>Your subjects</h2><p>Tap a subject to open its lessons, past papers and notes.</p></div>
+    <div class="subjects" id="subjectGrid"></div>
+  </section>
 
-  <!-- OVERVIEW -->
-  <section class="block" id="overview">
-    <div class="section-head"><span class="num">i</span><div><h2>Semester at a glance</h2><span class="code">What you're taking this semester</span></div></div>
-    <p class="lead">Tap a subject to jump to it. Inside each subject, every topic is an expandable card — click it to read the full explanation, key concepts and formulas.</p>
-    <div class="overview">
-      <div class="ov-card"><span class="ic">🗣️</span><h3>Academic Listening &amp; Speaking</h3><p>Confident academic English: speaking, presenting, discussing, listening. <strong>FSPE0022</strong></p><a class="go" href="#english">Open →</a></div>
-      <div class="ov-card"><span class="ic">📈</span><h3>Calculus</h3><p>Limits, differentiation, integration, differential equations, numerical methods.</p><a class="go" href="#calculus">Open →</a></div>
-      <div class="ov-card"><span class="ic">⚗️</span><h3>Chemistry II</h3><p>Energy, rates, equilibrium, acids &amp; bases, and organic chemistry.</p><a class="go" href="#chemistry">Open →</a></div>
-      <div class="ov-card"><span class="ic">🔬</span><h3>Physics II</h3><p>Electricity, magnetism, optics and modern physics — 13 chapters.</p><a class="go" href="#physics">Open →</a></div>
-      <div class="ov-card"><span class="ic">💻</span><h3>Fundamentals of Computing</h3><p>Programming in the C language, from zero to functions.</p><a class="go" href="#computing">Open →</a></div>
+  <section class="sec" id="features">
+    <div class="sec-head"><h2>How it helps you study</h2><p>Built around how foundation students actually revise.</p></div>
+    <div class="features">
+      <div class="feat"><div class="ic">📖</div><h3>Step-by-step lessons</h3><p>Every topic explained from your lecture slides, with worked examples solved one step at a time.</p></div>
+      <div class="feat"><div class="ic">✨</div><h3>AI tutor</h3><p>Ask anything, get instant step-by-step help. It knows all 6 subjects and your assessment structure.</p></div>
+      <div class="feat"><div class="ic">📝</div><h3>Past papers</h3><p>Real tests and final exams — many with full answers — organised per subject for focused revision.</p></div>
+      <div class="feat"><div class="ic">🧠</div><h3>Quizzes & flashcards</h3><p>Test yourself per topic with AI-generated questions and quick-recall flashcards.</p></div>
+      <div class="feat"><div class="ic">📱</div><h3>Installable app</h3><p>Add it to your phone's home screen and study offline — it works like a real app.</p></div>
+      <div class="feat"><div class="ic">🆓</div><h3>Free forever</h3><p>No paywalls. Built by students, for UTM foundation students.</p></div>
     </div>
   </section>
 
-  <!-- ENGLISH -->
-  <section class="block" id="english">
-    <div class="section-head"><span class="num">1</span><div><h2>Academic Listening &amp; Speaking Skills</h2><span class="code">FSPE0022 · Language Academy, UTMJB</span></div></div>
-    <div class="intro-card">
-      <p class="lead">This subject trains you to <strong>communicate confidently in academic English</strong>. Your grade is built from four spoken/listening coursework tasks plus a final listening exam. Below: each assessment explained, and what graders look for.</p>
-      <div class="badges"><span class="badge">Speaking</span><span class="badge">Presentations</span><span class="badge">Discussion</span><span class="badge">Listening</span></div>
-    </div>
-
-    <h3 class="sub-h">📋 Assessment breakdown</h3>
-    <div class="table-wrap"><table>
-      <thead><tr><th>Assessment</th><th>Weight</th><th>Details</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Impromptu Speech</strong></td><td class="weight">2×10% = 20%</td><td>Spontaneous speech on a current issue, 2–4 min, semi-formal.</td></tr>
-        <tr><td><strong>Oral Presentation</strong></td><td class="weight">10%</td><td>Informative talk on your field, 5–7 min, formal, with visual aids.</td></tr>
-        <tr><td><strong>Group Discussion</strong></td><td class="weight">10%</td><td>10–15 min group; present a view, support, agree/disagree, take turns.</td></tr>
-        <tr><td><strong>Listening Test</strong></td><td class="weight">2×10% = 20%</td><td>Audio-based, textbook Units 1–8, 30 min each, via IQ Skills Online.</td></tr>
-        <tr><td><strong>Final Examination</strong></td><td class="weight">40%</td><td>1-hour listening exam covering all listening objectives.</td></tr>
-      </tbody>
-      <tfoot><tr><td>Total</td><td>100%</td><td>Coursework 60% + Final 40%</td></tr></tfoot>
-    </table></div>
-
-    <h3 class="sub-h">🔍 Each task explained</h3>
-
-    <details class="topic"><summary><span class="t-badge">20%</span><span class="t-name">Impromptu Speech</span><span class="chev">▶</span></summary>
-      <div class="t-body">
-        <p>You're given a current-issue topic and must speak with little preparation. The goal is to <strong>organise your thoughts on the spot</strong> and deliver them confidently. Done twice (10% each).</p>
-        <h5>Structure expected</h5>
-        <ul><li><strong>Introduction</strong> — state your stance clearly.</li><li><strong>Body</strong> — give your opinion with reasons.</li><li><strong>Conclusion</strong> — wrap up your position.</li></ul>
-        <h5>What graders score (rubric)</h5>
-        <ul><li><strong>Organisation</strong> — clear intro, body, conclusion.</li><li><strong>Clarity of ideas</strong> — supported, with correct grammar &amp; vocabulary.</li><li><strong>Delivery</strong> — not scripted, conversational tone, gestures, eye contact.</li><li><strong>Time management</strong> — best score for 2–3 minutes.</li></ul>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">10%</span><span class="t-name">Oral Presentation</span><span class="chev">▶</span></summary>
-      <div class="t-body">
-        <p>A prepared, <strong>formal informative speech</strong> (5–7 min) on a topic related to your field of study. You prepare, practise, then present.</p>
-        <h5>Scored on</h5>
-        <ul><li><strong>Speaking skills</strong> — language use, pronunciation, fluency, body language.</li><li><strong>Content</strong> — strong introduction, two well-developed main points, clear conclusion, smooth transitions.</li><li><strong>Visual aids</strong> — relevant, clear graphics; accurate, concise text.</li><li><strong>Time management.</strong></li></ul>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">10%</span><span class="t-name">Group Discussion</span><span class="chev">▶</span></summary>
-      <div class="t-body">
-        <p>In groups, you discuss a current-issue situation (10–15 min). It runs in two parts: a short individual presentation (Task A), then group interaction to reach a decision (Task B).</p>
-        <h5>Scored on</h5>
-        <ul><li><strong>Task fulfilment</strong> — logical, relevant ideas supported by facts/examples.</li><li><strong>Language</strong> — correct expressions for inviting/giving opinions, agreeing &amp; disagreeing, encouraging others.</li><li><strong>Interactive ability</strong> — responding, taking turns, including others, concluding well.</li><li><strong>Time management.</strong></li></ul>
-        <p style="font-size:.85rem;color:var(--muted)">Example situation: <em>"A neighbourhood park keeps getting vandalised — discuss the most effective way to prevent it."</em></p>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">20%+40%</span><span class="t-name">Listening Test &amp; Final Exam</span><span class="chev">▶</span></summary>
-      <div class="t-body">
-        <p>Audio-based assessments testing comprehension. Two coursework tests (10% each, Units 1–8) plus a 1-hour final exam (40%).</p>
-        <h5>Skills tested</h5>
-        <ul><li>Identify the <strong>main idea</strong> and supporting details.</li><li>Make <strong>inferences</strong> and listen for <strong>opinions</strong>.</li><li>Identify <strong>cause and effect</strong>; <strong>predict</strong> what comes next.</li><li>Substitute/replace words with given words.</li></ul>
-        <h5>Question types</h5>
-        <ul><li>Match key words to definitions.</li><li>Multiple choice (circle the correct answer).</li><li>Fill in the blanks; information-transfer tasks.</li></ul>
-      </div>
-    </details>
+  <section class="cta-band">
+    <h2>Stuck on a problem right now?</h2>
+    <p>The AI tutor solves calculus, physics and chemistry problems step by step, explains any topic simpler, and quizzes you — instantly.</p>
+    <button class="btn primary" onclick="document.getElementById('tutor-fab')?.click()">✨ Open the AI Tutor</button>
   </section>
-
-  <!-- CALCULUS -->
-  <section class="block" id="calculus">
-    <div class="section-head"><span class="num">2</span><div><h2>Calculus</h2><span class="code">Mathematics · Semester 3</span></div></div>
-    <div class="intro-card"><p class="lead">Calculus is the mathematics of <strong>change</strong> (differentiation) and <strong>accumulation</strong> (integration). It starts with limits, builds the two core operations, applies them to real problems, and ends with differential equations and numerical approximation. Every topic builds on the previous one.</p>
-    <p style="margin-top:1rem"><a href="lessons-calculus.html" style="display:inline-block;background:var(--maroon);color:#fff;padding:.6rem 1.1rem;border-radius:999px;font-weight:700;font-size:.9rem">📖 Open step-by-step Calculus lessons →</a></p></div>
-
-    <details class="topic"><summary><span class="t-badge">TOPIC 1</span><span class="t-name">Limits &amp; Continuity</span><span class="chev">▶</span></summary>
-      <div class="t-body">
-        <p>A <strong>limit</strong> describes the value a function approaches as the input approaches some point — the single most important idea underpinning all of calculus. <strong>Continuity</strong> means a function has no breaks, jumps or holes.</p>
-        <h5>Key concepts</h5>
-        <ul><li>Evaluating limits by substitution, factoring, and rationalising.</li><li>One-sided limits (left and right).</li><li>Limits at infinity and infinite limits (asymptotes).</li><li>The three conditions for continuity at a point.</li></ul>
-        <h5>Key idea</h5>
-        <div class="formula">lim<sub>x→a</sub> f(x) = L &nbsp;·&nbsp; continuous at a ⟺ lim<sub>x→a</sub> f(x) = f(a)</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">TOPIC 2</span><span class="t-name">Differentiation</span><span class="chev">▶</span></summary>
-      <div class="t-body">
-        <p>The <strong>derivative</strong> measures the instantaneous rate of change — the slope of the tangent to a curve. You'll learn the rules that let you differentiate almost any function.</p>
-        <h5>Key concepts</h5>
-        <ul><li>Derivative from first principles (the limit definition).</li><li>Power, product, quotient and chain rules.</li><li>Derivatives of trigonometric, exponential and logarithmic functions.</li><li>Implicit differentiation and higher-order derivatives.</li></ul>
-        <div class="formula">f′(x) = lim<sub>h→0</sub> [f(x+h) − f(x)] / h &nbsp;·&nbsp; (uv)′ = u′v + uv′ &nbsp;·&nbsp; chain: dy/dx = dy/du · du/dx</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">TOPIC 3</span><span class="t-name">Applications of Differentiation</span><span class="chev">▶</span></summary>
-      <div class="t-body">
-        <p>Using derivatives to understand and optimise real situations — where things are largest, smallest, increasing or decreasing.</p>
-        <h5>Key concepts</h5>
-        <ul><li>Increasing/decreasing functions and critical points.</li><li>Maximum and minimum (optimisation problems).</li><li>Concavity, points of inflection, and the second-derivative test.</li><li>Related rates and curve sketching.</li></ul>
-        <div class="formula">Max/min where f′(x)=0 ; concave up if f″(x)&gt;0, concave down if f″(x)&lt;0</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">TOPIC 4</span><span class="t-name">Integration</span><span class="chev">▶</span></summary>
-      <div class="t-body">
-        <p>Integration is the <strong>reverse of differentiation</strong> and a way to add up infinitely many small pieces — used to find areas and totals.</p>
-        <h5>Key concepts</h5>
-        <ul><li>Indefinite integrals (antiderivatives) and the constant of integration.</li><li>Definite integrals and the Fundamental Theorem of Calculus.</li><li>Integration by substitution.</li><li>Integration by parts.</li></ul>
-        <div class="formula">∫ xⁿ dx = xⁿ⁺¹/(n+1) + C &nbsp;·&nbsp; ∫ₐᵇ f(x) dx = F(b) − F(a)</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">TOPIC 5</span><span class="t-name">Integration of Trigonometric Functions</span><span class="chev">▶</span></summary>
-      <div class="t-body">
-        <p>Specialised techniques for integrating expressions involving sin, cos, tan and their powers.</p>
-        <h5>Key concepts</h5>
-        <ul><li>Standard trig integrals (∫sin, ∫cos, ∫sec², …).</li><li>Using trig identities to simplify before integrating.</li><li>Powers of sine and cosine.</li><li>Trigonometric substitution.</li></ul>
-        <div class="formula">∫ sin x dx = −cos x + C &nbsp;·&nbsp; ∫ cos x dx = sin x + C &nbsp;·&nbsp; ∫ sec²x dx = tan x + C</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">TOPIC 6</span><span class="t-name">Applications of Integration</span><span class="chev">▶</span></summary>
-      <div class="t-body">
-        <p>Putting integration to work to compute geometric and physical quantities.</p>
-        <h5>Key concepts</h5>
-        <ul><li>Area under a curve and area between two curves.</li><li>Volumes of revolution (disk and shell methods).</li><li>Average value of a function.</li><li>Applications to physics (distance, work).</li></ul>
-        <div class="formula">Area = ∫ₐᵇ [f(x) − g(x)] dx &nbsp;·&nbsp; Volume = π ∫ₐᵇ [f(x)]² dx</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">TOPIC 7</span><span class="t-name">Ordinary Differential Equations (ODEs)</span><span class="chev">▶</span></summary>
-      <div class="t-body">
-        <p>Equations that relate a function to its derivatives — the standard way to model growth, decay, motion and many natural processes.</p>
-        <h5>Key concepts</h5>
-        <ul><li>Order and degree of a differential equation.</li><li>Separable first-order equations.</li><li>Linear first-order equations (integrating factor).</li><li>General vs particular solutions; initial conditions.</li></ul>
-        <div class="formula">Separable: ∫ 1/g(y) dy = ∫ f(x) dx &nbsp;·&nbsp; e.g. dy/dx = ky ⇒ y = Ce^{kx}</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">TOPIC 8</span><span class="t-name">Numerical Methods</span><span class="chev">▶</span></summary>
-      <div class="t-body">
-        <p>When an exact answer is impossible or hard, these methods give accurate <strong>approximations</strong> using arithmetic steps.</p>
-        <h5>Key concepts</h5>
-        <ul><li>Root-finding: bisection method and Newton–Raphson method.</li><li>Numerical integration: trapezoidal rule and Simpson's rule.</li><li>Error and accuracy of approximations.</li></ul>
-        <div class="formula">Newton–Raphson: xₙ₊₁ = xₙ − f(xₙ)/f′(xₙ)</div>
-      </div>
-    </details>
-  </section>
-
-  <!-- CHEMISTRY -->
-  <section class="block" id="chemistry">
-    <div class="section-head"><span class="num">3</span><div><h2>Chemistry II</h2><span class="code">Physical &amp; Organic Chemistry · Semester 3</span></div></div>
-    <div class="intro-card"><p class="lead">Chemistry II is about <strong>energy, speed, balance and reactions</strong>: how much heat reactions exchange, how fast they happen, where they settle, how acids and bases behave — then an introduction to carbon-based (organic) chemistry.</p></div>
-
-    <details class="topic"><summary><span class="t-badge">CHAPTER 1</span><span class="t-name">Thermochemistry</span><span class="chev">▶</span></summary>
-      <div class="t-body">
-        <p>The study of <strong>heat (energy) changes</strong> that accompany chemical reactions.</p>
-        <h5>Key concepts</h5>
-        <ul><li>System vs surroundings; exothermic vs endothermic reactions.</li><li>Enthalpy change (ΔH) and enthalpy diagrams.</li><li>Heat of reaction, formation, combustion and neutralisation.</li><li>Hess's Law and calorimetry calculations.</li></ul>
-        <div class="formula">q = mcΔT &nbsp;·&nbsp; ΔH<sub>reaction</sub> = ΣΔH<sub>products</sub> − ΣΔH<sub>reactants</sub></div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">CHAPTER 2</span><span class="t-name">Chemical Kinetics</span><span class="chev">▶</span></summary>
-      <div class="t-body">
-        <p>How <strong>fast</strong> reactions go and what controls their speed.</p>
-        <h5>Key concepts</h5>
-        <ul><li>Rate of reaction and how to measure it.</li><li>Factors affecting rate: concentration, temperature, surface area, catalyst.</li><li>Rate law, rate constant and order of reaction.</li><li>Collision theory and activation energy.</li></ul>
-        <div class="formula">Rate = k[A]ᵐ[B]ⁿ &nbsp;·&nbsp; higher temperature ⇒ more successful collisions</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">CHAPTER 3</span><span class="t-name">Chemical Equilibrium</span><span class="chev">▶</span></summary>
-      <div class="t-body">
-        <p>Reversible reactions reach a <strong>dynamic balance</strong> where forward and reverse rates are equal.</p>
-        <h5>Key concepts</h5>
-        <ul><li>Reversible reactions and dynamic equilibrium.</li><li>Equilibrium constant K<sub>c</sub> (and K<sub>p</sub>).</li><li>Le Chatelier's principle: effect of concentration, pressure, temperature.</li><li>Industrial applications (e.g. the Haber process).</li></ul>
-        <div class="formula">K<sub>c</sub> = [products]/[reactants] (each raised to its coefficient)</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">CHAPTER 4</span><span class="t-name">Acids &amp; Bases</span><span class="chev">▶</span></summary>
-      <div class="t-body">
-        <p>The behaviour of acids and bases in solution, and how we measure acidity.</p>
-        <h5>Key concepts</h5>
-        <ul><li>Arrhenius and Brønsted–Lowry definitions.</li><li>Strong vs weak acids/bases; the pH scale.</li><li>Ionisation, K<sub>a</sub> / K<sub>b</sub>, and the ionic product of water.</li><li>Neutralisation, titration and buffer solutions.</li></ul>
-        <div class="formula">pH = −log[H⁺] &nbsp;·&nbsp; K<sub>w</sub> = [H⁺][OH⁻] = 1×10⁻¹⁴ at 25 °C</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">CHAPTER 6</span><span class="t-name">Organic Chemistry</span><span class="chev">▶</span></summary>
-      <div class="t-body">
-        <p>The chemistry of <strong>carbon compounds</strong> — the basis of fuels, plastics and life itself.</p>
-        <h5>Key concepts</h5>
-        <ul><li>Hydrocarbons: alkanes, alkenes, alkynes.</li><li>Functional groups (alcohols, carboxylic acids, etc.) and homologous series.</li><li>IUPAC naming (nomenclature) and isomerism.</li><li>Typical reactions: substitution, addition, combustion.</li></ul>
-      </div>
-    </details>
-    <p style="margin-top:1rem;font-size:.85rem;color:var(--muted)">📝 Based on the available lecture slides. Confirm the full chapter list (including any Chapter 5 content) with your lecturer's official course outline.</p>
-  </section>
-
-  <!-- PHYSICS -->
-  <section class="block" id="physics">
-    <div class="section-head"><span class="num">4</span><div><h2>Physics II</h2><span class="code">Electricity, Magnetism, Optics &amp; Modern Physics</span></div></div>
-    <div class="intro-card"><p class="lead">Physics II moves through four themes: <strong>electricity</strong> (charge &amp; circuits), <strong>magnetism</strong>, <strong>optics</strong> (light &amp; waves), and <strong>modern physics</strong> (quantum &amp; nuclear). The early electricity chapters are the foundation for everything later.</p>
-      <div class="badges"><span class="badge">⚡ Electricity</span><span class="badge">🧲 Magnetism</span><span class="badge">🔦 Optics</span><span class="badge">⚛️ Modern Physics</span></div>
-    </div>
-
-    <details class="topic"><summary><span class="t-badge">CH 1</span><span class="t-name">Electrostatics — Charge &amp; Electric Field</span><span class="chev">▶</span></summary>
-      <div class="t-body"><p>Stationary electric charges and the forces and fields they create.</p>
-        <h5>Key concepts</h5><ul><li>Electric charge, conductors and insulators.</li><li>Coulomb's law of electrostatic force.</li><li>Electric field and field lines.</li><li>Electric potential and potential energy.</li></ul>
-        <div class="formula">F = k q₁q₂ / r² &nbsp;·&nbsp; E = F/q</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">CH 2</span><span class="t-name">Capacitors</span><span class="chev">▶</span></summary>
-      <div class="t-body"><p>Devices that store electric charge and energy.</p>
-        <h5>Key concepts</h5><ul><li>Capacitance and the parallel-plate capacitor.</li><li>Effect of dielectrics.</li><li>Capacitors in series and parallel.</li><li>Energy stored in a capacitor.</li></ul>
-        <div class="formula">C = Q/V &nbsp;·&nbsp; E = ½CV²</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">CH 3</span><span class="t-name">Electric Current &amp; Resistance</span><span class="chev">▶</span></summary>
-      <div class="t-body"><p>The flow of charge and what opposes it.</p>
-        <h5>Key concepts</h5><ul><li>Current, drift velocity and Ohm's law.</li><li>Resistance, resistivity and factors affecting it.</li><li>Electrical power and energy.</li></ul>
-        <div class="formula">V = IR &nbsp;·&nbsp; P = VI = I²R</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">CH 4</span><span class="t-name">DC Circuits</span><span class="chev">▶</span></summary>
-      <div class="t-body"><p>Analysing direct-current circuits with multiple components.</p>
-        <h5>Key concepts</h5><ul><li>Resistors in series and parallel.</li><li>EMF and internal resistance.</li><li>Kirchhoff's current and voltage laws.</li></ul>
-        <div class="formula">Series: R = R₁+R₂+… &nbsp;·&nbsp; Parallel: 1/R = 1/R₁+1/R₂+…</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">CH 5</span><span class="t-name">Magnetism</span><span class="chev">▶</span></summary>
-      <div class="t-body"><p>Magnetic fields and the forces they exert on moving charges and currents.</p>
-        <h5>Key concepts</h5><ul><li>Magnetic field and field lines.</li><li>Force on a moving charge and on a current-carrying wire.</li><li>Magnetic field due to currents (wire, loop, solenoid).</li></ul>
-        <div class="formula">F = qvB sinθ &nbsp;·&nbsp; F = BIL sinθ</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">CH 6</span><span class="t-name">Electromagnetic Induction</span><span class="chev">▶</span></summary>
-      <div class="t-body"><p>How a changing magnetic field generates electricity — the basis of generators.</p>
-        <h5>Key concepts</h5><ul><li>Magnetic flux.</li><li>Faraday's law of induction.</li><li>Lenz's law (direction of induced current).</li><li>Generators and transformers.</li></ul>
-        <div class="formula">ε = −dΦ/dt</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">CH 7</span><span class="t-name">Electromagnetic Waves</span><span class="chev">▶</span></summary>
-      <div class="t-body"><p>Self-propagating waves of electric and magnetic fields — from radio to gamma rays.</p>
-        <h5>Key concepts</h5><ul><li>Nature and properties of EM waves.</li><li>The electromagnetic spectrum.</li><li>Speed, wavelength and frequency relationship.</li></ul>
-        <div class="formula">c = fλ ≈ 3×10⁸ m/s</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">CH 8</span><span class="t-name">Light — Reflection &amp; Refraction</span><span class="chev">▶</span></summary>
-      <div class="t-body"><p>How light bounces off surfaces and bends when it changes medium.</p>
-        <h5>Key concepts</h5><ul><li>Laws of reflection; mirrors.</li><li>Refraction and Snell's law.</li><li>Refractive index and total internal reflection.</li></ul>
-        <div class="formula">n₁ sinθ₁ = n₂ sinθ₂</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">CH 9</span><span class="t-name">Lenses</span><span class="chev">▶</span></summary>
-      <div class="t-body"><p>How converging and diverging lenses form images.</p>
-        <h5>Key concepts</h5><ul><li>Convex and concave lenses.</li><li>Ray diagrams and image formation.</li><li>The lens equation and magnification.</li></ul>
-        <div class="formula">1/f = 1/v − 1/u &nbsp;·&nbsp; m = v/u</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">CH 10</span><span class="t-name">Interference &amp; Diffraction</span><span class="chev">▶</span></summary>
-      <div class="t-body"><p>Wave behaviour of light: how light waves combine and spread.</p>
-        <h5>Key concepts</h5><ul><li>Constructive and destructive interference.</li><li>Young's double-slit experiment.</li><li>Diffraction and the diffraction grating.</li></ul>
-        <div class="formula">d sinθ = mλ (bright fringes)</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">CH 11</span><span class="t-name">Quantum Theory of the Atom</span><span class="chev">▶</span></summary>
-      <div class="t-body"><p>The quantum picture: energy comes in discrete packets, and atoms have energy levels.</p>
-        <h5>Key concepts</h5><ul><li>Photoelectric effect and photons.</li><li>Energy of a photon; wave–particle duality.</li><li>Bohr model and atomic energy levels/spectra.</li></ul>
-        <div class="formula">E = hf &nbsp;·&nbsp; photoelectric: hf = W₀ + ½mv²<sub>max</sub></div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">CH 12</span><span class="t-name">Nuclear Physics</span><span class="chev">▶</span></summary>
-      <div class="t-body"><p>Inside the nucleus: its structure, stability and radioactivity.</p>
-        <h5>Key concepts</h5><ul><li>Nucleons, isotopes, mass number &amp; atomic number.</li><li>Radioactivity: alpha, beta, gamma decay.</li><li>Half-life and radioactive decay.</li><li>Mass defect and binding energy.</li></ul>
-        <div class="formula">N = N₀ (½)^{t/T½} &nbsp;·&nbsp; E = mc²</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">CH 13</span><span class="t-name">Nuclear Reactions</span><span class="chev">▶</span></summary>
-      <div class="t-body"><p>How nuclei change and release energy.</p>
-        <h5>Key concepts</h5><ul><li>Nuclear fission and chain reactions.</li><li>Nuclear fusion.</li><li>Energy released in nuclear reactions.</li><li>Applications: reactors and nuclear energy.</li></ul>
-      </div>
-    </details>
-  </section>
-
-  <!-- COMPUTING -->
-  <section class="block" id="computing">
-    <div class="section-head"><span class="num">5</span><div><h2>Fundamentals of Computing</h2><span class="code">Programming in C · Semester 3</span></div></div>
-    <div class="intro-card"><p class="lead">No experience needed. You'll go from understanding computers to writing real programs in the <strong>C language</strong> — variables, input/output, decisions, loops, files and functions. The secret to passing: practise coding every week.</p>
-      <div class="badges"><span class="badge">C language</span><span class="badge">Problem solving</span><span class="badge">Hands-on coding</span></div>
-    </div>
-
-    <details class="topic"><summary><span class="t-badge">TOPIC 1</span><span class="t-name">Introduction to IT</span><span class="chev">▶</span></summary>
-      <div class="t-body"><p>The big picture of computing before you start coding.</p>
-        <h5>Key concepts</h5><ul><li>What a computer is; hardware vs software.</li><li>Input, processing, output, storage.</li><li>Data representation (bits, bytes, binary basics).</li><li>Types of software and operating systems.</li></ul>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">TOPIC 2</span><span class="t-name">Programming Concepts</span><span class="chev">▶</span></summary>
-      <div class="t-body"><p>How to think like a programmer before writing any code.</p>
-        <h5>Key concepts</h5><ul><li>Algorithms — step-by-step problem solving.</li><li>Flowcharts and pseudocode.</li><li>The program development cycle.</li><li>Programming languages and compilers.</li></ul>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">TOPIC 3</span><span class="t-name">Programming Environment</span><span class="chev">▶</span></summary>
-      <div class="t-body"><p>Setting up and using the tools to write and run C programs.</p>
-        <h5>Key concepts</h5><ul><li>Structure of a C program (main function, headers).</li><li>Writing, compiling and running code.</li><li>Comments, syntax and fixing errors.</li><li>Your first <code>printf</code> program.</li></ul>
-        <div class="formula">#include &lt;stdio.h&gt;<br>int main(){ printf("Hello, world!"); return 0; }</div>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">TOPIC 4</span><span class="t-name">Elementary Programming (Parts 1 &amp; 2)</span><span class="chev">▶</span></summary>
-      <div class="t-body"><p>The building blocks: storing and working with data.</p>
-        <h5>Key concepts</h5><ul><li>Variables and data types (<code>int</code>, <code>float</code>, <code>char</code>, …).</li><li>Constants and naming rules.</li><li>Arithmetic, assignment and operators.</li><li>Operator precedence and type conversion.</li></ul>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">TOPIC 5</span><span class="t-name">Input &amp; Output</span><span class="chev">▶</span></summary>
-      <div class="t-body"><p>Communicating with the user — reading input and displaying results.</p>
-        <h5>Key concepts</h5><ul><li><code>printf()</code> for formatted output.</li><li><code>scanf()</code> for reading input.</li><li>Format specifiers (<code>%d</code>, <code>%f</code>, <code>%c</code>, <code>%s</code>).</li><li>Escape sequences (<code>\n</code>, <code>\t</code>).</li></ul>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">TOPIC 6</span><span class="t-name">Branching &amp; Loops (Parts 1 &amp; 2)</span><span class="chev">▶</span></summary>
-      <div class="t-body"><p>Making decisions and repeating actions — where programs become powerful.</p>
-        <h5>Key concepts</h5><ul><li>Relational and logical operators.</li><li>Branching: <code>if</code>, <code>if–else</code>, <code>switch</code>.</li><li>Loops: <code>for</code>, <code>while</code>, <code>do–while</code>.</li><li><code>break</code>, <code>continue</code> and nested loops.</li></ul>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">TOPIC 7</span><span class="t-name">Input &amp; Output Files</span><span class="chev">▶</span></summary>
-      <div class="t-body"><p>Saving and loading data so it persists after the program ends.</p>
-        <h5>Key concepts</h5><ul><li>File pointers and opening modes (read/write/append).</li><li><code>fopen()</code>, <code>fclose()</code>.</li><li>Reading/writing with <code>fscanf()</code> / <code>fprintf()</code>.</li><li>Checking for end-of-file and errors.</li></ul>
-      </div>
-    </details>
-
-    <details class="topic"><summary><span class="t-badge">TOPIC 8</span><span class="t-name">Functions (Parts 1 &amp; 2)</span><span class="chev">▶</span></summary>
-      <div class="t-body"><p>Breaking a program into reusable, named blocks — the key to clean code.</p>
-        <h5>Key concepts</h5><ul><li>Defining and calling functions.</li><li>Parameters, arguments and return values.</li><li>Function prototypes.</li><li>Local vs global variables; scope.</li></ul>
-        <div class="formula">int add(int a, int b){ return a + b; }</div>
-      </div>
-    </details>
-  </section>
-
-  <!-- TIPS -->
-  <section class="block" id="tips">
-    <div class="section-head"><span class="num">★</span><div><h2>How to succeed this semester</h2><span class="code">Practical advice</span></div></div>
-    <div class="tips">
-      <div class="tip"><span class="ic">🗓️</span><h4>Coursework adds up</h4><p>Marks are spread across tests, presentations and quizzes. Consistent effort beats cramming.</p></div>
-      <div class="tip"><span class="ic">🔗</span><h4>Topics build on each other</h4><p>In Calculus and Physics, each chapter depends on the last. Never skip the basics.</p></div>
-      <div class="tip"><span class="ic">🗣️</span><h4>Practise speaking aloud</h4><p>For English, rehearse presentations out loud — delivery and timing are graded.</p></div>
-      <div class="tip"><span class="ic">💻</span><h4>Code every week</h4><p>For Computing, write and run small C programs often. You learn by doing.</p></div>
-      <div class="tip"><span class="ic">❓</span><h4>Ask early</h4><p>Confused? Ask the same week — gaps only get harder to fix later.</p></div>
-      <div class="tip"><span class="ic">📚</span><h4>Use the slides</h4><p>Your lecture slides are the primary study material. Review before and after class.</p></div>
-    </div>
-  </section>
-
 </main>
 
 <footer>
-  <div class="foot-inner">
-    <div><strong style="font-size:1.05rem">UTM Foundation Programme</strong><br>Semester 3 Full Syllabus Guide for foundation students.</div>
-    <div>Academic Listening &amp; Speaking · Calculus ·<br>Chemistry II · Physics II · Fundamentals of Computing</div>
-  </div>
-  <p class="disclaimer">This guide is a student-friendly summary compiled from the official course materials and lecture slides. Topic explanations reflect the standard foundation-level scope of each subject; always confirm exact topics, depth and assessment weights against your lecturer's official course outline (pro forma), as details may vary between semesters.</p>
+  <strong style="font-family:Fraunces;color:var(--maroon)">UTM Foundation Hub</strong> · Study platform for Foundation in Science (Semester materials).
+  <p class="disc">A free student-built study companion compiled from official course materials. Topic lists, lessons and answers should always be confirmed against your lecturer's official course outline. Not an official UTM product.</p>
 </footer>
 
+<script src="assets/data.js"></script>
 <script>
-  // expand/collapse all per section
-  document.querySelectorAll('.expand-all').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      const sec=btn.closest('section');
-      const items=sec.querySelectorAll('details.topic');
-      const anyClosed=[...items].some(d=>!d.open);
-      items.forEach(d=>d.open=anyClosed);
-      btn.textContent=anyClosed?'▾ Collapse all':'▸ Expand all';
-    });
+  const grid = document.getElementById('subjectGrid');
+  HUB_DATA.subjects.forEach(s => {
+    const p = s.papers || {};
+    const pills = [];
+    if (p.slides) pills.push(`${p.slides} slides`);
+    if (p.tutorials) pills.push(`${p.tutorials} tutorials`);
+    if (p.tests) pills.push(`${p.tests} tests`);
+    if (p.finals) pills.push(`${p.finals} finals`);
+    if (p.note && !pills.length) pills.push(p.note);
+    const el = document.createElement('a');
+    el.className = 'subj';
+    el.href = `subject.html?s=${s.id}`;
+    el.style.setProperty('--c', s.color);
+    el.innerHTML = `
+      <div class="top"><span class="ic">${s.icon}</span><div><h3>${s.name}</h3><span class="code">${s.code}</span></div></div>
+      <p>${s.blurb}</p>
+      <div class="meta">${pills.map(x=>`<span class="pill">${x}</span>`).join('')}</div>
+      <span class="go">Open subject →</span>`;
+    grid.appendChild(el);
   });
+
+  // PWA install
+  let deferred;
+  window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferred = e; const b=document.getElementById('installBtn'); b.style.display='inline-block'; b.onclick=async()=>{deferred.prompt();deferred=null;b.style.display='none';}; });
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
 <script src="assets/tutor.js"></script>
 </body>

@@ -1,0 +1,12 @@
+{
+  "name": "UTM Foundation Hub",
+  "short_name": "UTM Hub",
+  "description": "Study platform for UTM Foundation in Science: lessons, AI tutor, past papers and quizzes.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#f6f4f1",
+  "theme_color": "#8c1d40",
+  "icons": [
+    { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

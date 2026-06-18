@@ -136,6 +136,12 @@ If a question is outside this syllabus, still help, but gently relate it back to
     panel.classList.add("open");
     const hasKey = !!TUTOR_CONFIG.proxyUrl || !!localStorage.getItem(STORAGE_KEY);
     hasKey ? chatView() : setupView();
+    // auto-submit a prefilled prompt (e.g. from a "Quiz me" button)
+    const pre = localStorage.getItem("utm_tutor_prefill");
+    if (pre && hasKey) {
+      localStorage.removeItem("utm_tutor_prefill");
+      setTimeout(() => submit(pre), 150);
+    }
   }
   function closePanel() {
     panel.classList.remove("open");
