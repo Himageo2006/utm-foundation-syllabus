@@ -101,6 +101,7 @@
     <!-- 1.1 -->
     <details class="lesson" open><summary>Lesson 1.1 — What is a limit?<span class="chev">▶</span></summary>
       <div class="body">
+        <div class="note">🟢 <strong>In plain words:</strong> A limit asks one simple question — "as I walk x toward a certain number, where is the function <em>heading</em>?" Think of walking toward a doorway: we care about where you're <em>going</em>, not whether you've stepped through yet. The function might not even exist at that exact spot, but it can still clearly be heading somewhere.</div>
         <p>The <strong>limit</strong> of a function is the value f(x) <em>heads toward</em> as <em>x</em> gets closer and closer to some number — written</p>
         <div class="math">lim<sub>x→a</sub> f(x) = L</div>
         <p>and read "the limit of f(x), as x approaches a, equals L." The crucial idea: we care about the <strong>journey, not the destination</strong>. The function need not even be defined <em>at</em> a — we only watch what happens <em>near</em> a.</p>
@@ -131,6 +132,7 @@
     <!-- 1.2 -->
     <details class="lesson"><summary>Lesson 1.2 — When does a limit exist?<span class="chev">▶</span></summary>
       <div class="body">
+        <div class="note">🟢 <strong>In plain words:</strong> Imagine two people walking toward the same point — one coming from the left, one from the right. If they meet at the <em>same</em> spot, the limit exists. If they're heading to two different spots, there's no single answer, so we say the limit "does not exist." Simple as that: <strong>both sides must agree.</strong></div>
         <p>The key rule:</p>
         <div class="note">The limit <strong>exists</strong> only if the left-hand limit and the right-hand limit are <strong>equal</strong>.</div>
         <div class="math">If &nbsp; lim<sub>x→a⁺</sub> f(x) = lim<sub>x→a⁻</sub> f(x) = L &nbsp;&nbsp;⇒&nbsp;&nbsp; lim<sub>x→a</sub> f(x) = L</div>
@@ -169,6 +171,7 @@
     <!-- 1.3 -->
     <details class="lesson"><summary>Lesson 1.3 — Rules of limits (the fast way)<span class="chev">▶</span></summary>
       <div class="body">
+        <div class="note">🟢 <strong>In plain words:</strong> Building a table every time is slow. For most ordinary functions there's a shortcut — just <strong>plug the number straight in</strong>. The rules below are simply permission slips that say "yes, plugging in is allowed here." The only time it's <em>not</em> allowed is when plugging in gives 0÷0 (covered next lesson).</div>
         <p>For "nice" (continuous) functions you don't need a table — just <strong>substitute</strong> the value. These limit laws make it legal:</p>
         <ul>
           <li><strong>Constant:</strong> lim<sub>x→a</sub> c = c</li>
@@ -196,6 +199,7 @@
     <!-- 1.4 -->
     <details class="lesson"><summary>Lesson 1.4 — Tricky limits: factorize or rationalize (0/0)<span class="chev">▶</span></summary>
       <div class="body">
+        <div class="note">🟢 <strong>In plain words:</strong> Sometimes plugging in gives 0÷0, which is meaningless — like the calculator shrugging. This usually means the top and bottom share a hidden common factor that's causing a fake problem. We <strong>tidy the expression first</strong> (factor it, or for roots multiply by the "conjugate") so the troublemaker cancels — <em>then</em> plug in and it works.</div>
         <p>Sometimes substituting gives <strong>0/0</strong> — an "indeterminate" form. Don't give up! Simplify first by <strong>factorizing</strong> or <strong>rationalizing</strong> (multiplying by the conjugate), then substitute.</p>
 
         <h4>Method A — Factorizing</h4>
@@ -226,6 +230,7 @@
     <!-- 1.5 -->
     <details class="lesson"><summary>Lesson 1.5 — Infinite limits (vertical asymptotes)<span class="chev">▶</span></summary>
       <div class="body">
+        <div class="note">🟢 <strong>In plain words:</strong> When you divide by a number that's getting tinier and tinier (close to zero), the answer gets huge. So near certain x-values the graph rockets up to +∞ or plunges down to −∞. The vertical line it hugs but never touches is called a <strong>vertical asymptote</strong> — like an invisible wall the curve runs alongside.</div>
         <p>Sometimes, as <em>x</em> approaches a value, f(x) shoots up to +∞ or down to −∞. Then we say f has an <strong>infinite limit</strong>, and the line x = a is a <strong>vertical asymptote</strong>.</p>
         <div class="ex">
           <span class="tag">EXAMPLE</span>
@@ -247,6 +252,7 @@
     <!-- 1.6 -->
     <details class="lesson"><summary>Lesson 1.6 — Limits at infinity (horizontal asymptotes)<span class="chev">▶</span></summary>
       <div class="body">
+        <div class="note">🟢 <strong>In plain words:</strong> Instead of asking "where does the graph go near a point?", we now ask "where does it settle if I zoom <em>way</em> out to the far right or far left?" Often it flattens out toward a fixed height — that height is a <strong>horizontal asymptote</strong>. The trick: tiny pieces like 1/x become basically 0 when x is enormous, so they just drop out.</div>
         <p>Now let <em>x</em> get huge (x → ∞) or hugely negative (x → −∞). We're studying the <strong>end behaviour</strong> of the graph.</p>
         <div class="note">Key theorem: for any positive power r, &nbsp;lim<sub>x→∞</sub> c/xʳ = 0. &nbsp;(Big bottom ⇒ fraction shrinks to 0.)</div>
         <h4>The method for fractions</h4>
@@ -272,6 +278,7 @@
     <!-- 1.7 -->
     <details class="lesson"><summary>Lesson 1.7 — Continuity at a point<span class="chev">▶</span></summary>
       <div class="body">
+        <div class="note">🟢 <strong>In plain words:</strong> A function is <strong>continuous</strong> if you can draw it without lifting your pen off the paper — no holes, no jumps, no gaps. To be continuous at one spot, three things must all be true: (1) the point actually exists, (2) both sides head to the same place, and (3) that place <em>is</em> where the point sits. If any one fails, the pen has to lift.</div>
         <p>A function is <strong>continuous</strong> at <em>x = a</em> if you can draw it through that point without lifting your pen. Formally, <strong>all three</strong> conditions must hold:</p>
         <ol>
           <li>f(a) is <strong>defined</strong> (a is in the domain).</li>
@@ -295,6 +302,7 @@
     <!-- 1.8 -->
     <details class="lesson"><summary>Lesson 1.8 — Types of discontinuity &amp; continuity on an interval<span class="chev">▶</span></summary>
       <div class="body">
+        <div class="note">🟢 <strong>In plain words:</strong> There are three ways the pen has to lift. A <strong>hole</strong> (one missing point — easily "filled"), a <strong>jump</strong> (the graph steps up or down suddenly), or an <strong>infinite</strong> break (it shoots off to ±∞). Knowing which kind you have tells you how "bad" the break is.</div>
         <h4>Three types of discontinuity</h4>
         <ul>
           <li><strong>Removable</strong> — there's a hole, but the limit exists (you could "fill" the point). e.g. (x²−x−2)/(x−2) at x = 2.</li>
