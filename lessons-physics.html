@@ -35,16 +35,144 @@
   </ol></div>
 
   <section class="topic" id="c1"><div class="topic-head"><span class="n">1</span><h2>Electrostatics</h2></div>
-    <details class="lesson" open><summary>Charge, Coulomb's law & electric field<span class="chev">▶</span></summary><div class="body">
-      <p>Electric charge comes in two kinds (+ and −). Like charges repel, opposite charges attract. <strong>Coulomb's law</strong> gives the force between two point charges:</p>
-      <div class="math">F = k·q₁q₂ / r²,&nbsp; k = 9×10⁹ N·m²/C²</div>
-      <p>The <strong>electric field</strong> E is the force per unit charge: E = F/q (units N/C).</p>
-      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
-        <p>Find the force between charges q₁ = 2 µC and q₂ = 3 µC placed 0.1 m apart.</p>
-        <div class="step"><span class="num">1</span><span class="txt">Convert: 2 µC = 2×10⁻⁶ C, 3 µC = 3×10⁻⁶ C.</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">F = (9×10⁹)(2×10⁻⁶)(3×10⁻⁶)/(0.1)²</span></div>
-        <div class="step"><span class="num">3</span><span class="txt">= (9×10⁹)(6×10⁻¹²)/0.01 = (0.054)/0.01 = <span class="ans">5.4 N</span> (repulsive).</span></div>
+
+    <details class="lesson" open><summary>1.1 — Static electricity, charge & its conservation<span class="chev">▶</span></summary><div class="body">
+      <p>Objects can be charged by <strong>rubbing</strong>. Charge comes in two types, <strong>positive</strong> and <strong>negative</strong>; <strong>like charges repel and opposite charges attract</strong>.</p>
+      <p><strong>Law of conservation of electric charge:</strong> the net amount of electric charge produced in any process is zero — no net electric charge can be created or destroyed. The arithmetic sum of the total charge cannot change in any interaction.</p>
+      <div class="math">Q = ne&nbsp;&nbsp;·&nbsp;&nbsp;e = 1.61×10⁻¹⁹ C&nbsp;&nbsp;·&nbsp;&nbsp;µ = ×10⁻⁶&nbsp;&nbsp;n = ×10⁻⁹</div>
+      <div class="note">Charge is <strong>quantized</strong> in units of e (charge on the electron e = 1.602×10⁻¹⁹ C).</div>
+    </div></details>
+
+    <details class="lesson"><summary>1.1.1 — Insulators and conductors<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Conductor:</strong> a material in which charge flows freely. The most common conductors are metals.</p>
+      <p><strong>Insulator:</strong> a material in which almost no charge flows. Most non-metallic materials are insulators.</p>
+      <div class="tip">Two spheres connected by a <strong>metal nail</strong> (conductor) share charge from one to the other; connected by <strong>wood</strong> (insulator), almost no charge is conducted.</div>
+    </div></details>
+
+    <details class="lesson"><summary>1.1.2 — Induced charge; the electroscope<span class="chev">▶</span></summary><div class="body">
+      <p>Metal objects can be charged by <strong>conduction</strong> (charge by contact) and by <strong>induction</strong> (either while connected to ground or not).</p>
+      <ul>
+        <li>A charged object brought near a neutral metal rod causes a <strong>separation of charge</strong> — the rod stays neutral overall.</li>
+        <li><strong>Nonconductors</strong> won't become charged by conduction or induction, but will experience <strong>charge separation</strong>.</li>
+      </ul>
+      <p>The <strong>electroscope</strong> (metal knob → rod → gold leaves, in a glass case) can be used for detecting charge, and a charged electroscope can determine the sign of an unknown charge.</p>
+    </div></details>
+
+    <details class="lesson"><summary>1.2 — Coulomb's law<span class="chev">▶</span></summary><div class="body">
+      <p>The electric force between two charges is proportional to the product of the charges and inversely proportional to the square of the distance between them. It acts along the line connecting them — attractive if opposite, repulsive if the same.</p>
+      <div class="math">Fₑ = k|Q₁||Q₂| / r²&nbsp;&nbsp;·&nbsp;&nbsp;k = 1/(4πε₀) = 9.00×10⁹ N·m²/C²&nbsp;&nbsp;·&nbsp;&nbsp;ε₀ = 8.8542×10⁻¹² C²/N·m²</div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 1 (from slides)</span>
+        <p>Two point charges, Q₁ = 85 µC and Q₂ = −50 µC, are separated by 3.5 cm. Find the magnitude and direction of (a) the force Q₁ exerts on Q₂, and (b) the force Q₂ exerts on Q₁.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Q₁ = 85×10⁻⁶ C, Q₂ = 50×10⁻⁶ C, r = 3.5×10⁻² m.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">F = (9.0×10⁹)(85×10⁻⁶)(50×10⁻⁶)/(3.5×10⁻²)² = <span class="ans">3.12×10⁴ N</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">(a) F on Q₂: <span class="ans">to the left (towards Q₁)</span>. (b) F on Q₁: <span class="ans">to the right (towards Q₂)</span> — attractive, equal magnitude.</span></div>
       </div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 2 (from slides) — three charges in a line</span>
+        <p>Q₁ = −8.0 µC, Q₂ = +3.0 µC, Q₃ = −4.0 µC. Q₁→Q₂ = 0.30 m, Q₂→Q₃ = 0.20 m. Find the net force on Q₃.</p>
+        <div class="step"><span class="num">1</span><span class="txt">F₃₁ = (9×10⁹)(4×10⁻⁶)(8×10⁻⁶)/(0.5)² = <span class="ans">1.152 N</span> (to right, +).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">F₃₂ = (9×10⁹)(4×10⁻⁶)(3×10⁻⁶)/(0.2)² = 2.7 N → <span class="ans">−2.7 N</span> (to left).</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Fₑ = −2.7 + 1.152 = <span class="ans">−1.548 N (to the left)</span></span></div>
+      </div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 3 (from slides) — net force in 2-D</span>
+        <p>Q₁ = −6.0 µC, Q₂ = +4.0 µC, Q₃ = −5.0 µC. r₁₂ = 20 cm (at 17° from vertical), r₂₃ = 12 cm (along x). Find the net force on Q₂.</p>
+        <div class="step"><span class="num">1</span><span class="txt">F₂₃ = (9×10⁹)(4×10⁻⁶)(5×10⁻⁶)/(0.12)² = <span class="ans">12.5 N</span> (along +x).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">F₂₁ = (9×10⁹)(6×10⁻⁶)(4×10⁻⁶)/(0.20)² = <span class="ans">5.4 N</span> (at 73° from +x).</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">ΣFₓ = 12.5 + 5.4cos73° = 14.08 N; ΣF_y = 5.4sin73° = 5.16 N.</span></div>
+        <div class="step"><span class="num">4</span><span class="txt">|F₂| = √(14.08² + 5.16²) = <span class="ans">15.0 N</span> at <span class="ans">θ = 20.1°</span> from +x axis.</span></div>
+      </div>
+
+      <div class="note"><strong>Example 4 (slides):</strong> net force on Q₃ from Q₁, Q₂ — answer ≈ <strong>290 N at 65°</strong> to the x axis (worked value 282.37 N at 61.74°).</div>
+    </div></details>
+
+    <details class="lesson"><summary>1.3 — The electric field<span class="chev">▶</span></summary><div class="body">
+      <p>The <strong>electric field strength</strong> at a point is the electric force per unit positive charge at that point, in the same direction as the force. It is a <strong>vector</strong>; units N·C⁻¹ or V·m⁻¹.</p>
+      <div class="math">E = Fₑ/q₀&nbsp;&nbsp;·&nbsp;&nbsp;E = kQ/r² = Q/(4πε₀r²)</div>
+      <div class="note">Direction of <strong>E</strong> depends on the sign of the point charge only; direction of <strong>F</strong> depends on both the point charge and the test charge.</div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 5 (from slides)</span>
+        <p>Q₁ = −3.0 µC and Q₂ = −5.0 µC are 12 cm and 30 cm from point P. Find (a) E at P, (b) force on q₀ = +1 µC at P, (c) distance from Q₁ where E = 0.</p>
+        <div class="step"><span class="num">1</span><span class="txt">E₁ₚ = (9×10⁹)(3.0×10⁻⁶)/(0.12)² = 1.88×10⁶ N/C (to left). E₂ₚ = (9×10⁹)(5.0×10⁻⁶)/(0.30)² = 5.00×10⁵ N/C (to right).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Eₚ = −1.88×10⁶ + 5.00×10⁵ = <span class="ans">−1.38×10⁶ N/C</span> (to the left, towards Q₁).</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">(b) Fₚ = q₀Eₚ = (1.0×10⁻⁶)(1.38×10⁶) = <span class="ans">1.38 N</span> (to the left).</span></div>
+        <div class="step"><span class="num">4</span><span class="txt">(c) 3.0×10⁻⁶/x² = 5.0×10⁻⁶/(0.42−x)² → <span class="ans">x = 0.183 m</span> from Q₁.</span></div>
+      </div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 6 (from slides)</span>
+        <p>Q₁ = −2.0 nC and Q₂ = +3.2 nC are 3.0 cm apart. Find the resultant E at point M (3-4-5 triangle, sin θ = 0.6, cos θ = 0.8).</p>
+        <div class="step"><span class="num">1</span><span class="txt">E₁ₘ = (9×10⁹)(2.0×10⁻⁹)/(0.05)² = 7.19×10³ N/C; E₂ₘ = (9×10⁹)(3.2×10⁻⁹)/(0.04)² = 1.80×10⁴ N/C.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">ΣEₓ = 1.80×10⁴ − 7.19×10³(0.8) = 1.23×10⁴ N/C; ΣE_y = 7.19×10³(0.6) = 4.31×10³ N/C.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Eₘ = √((1.23×10⁴)² + (4.31×10³)²) = <span class="ans">1.30×10⁴ N/C</span> at <span class="ans">α = 19.3°</span> from +x axis (anticlockwise).</span></div>
+      </div>
+
+      <div class="note"><strong>Example 7 (slides):</strong> field above two charges — (a) E = 4.5×10⁶ N/C at 76° above x axis; (b) E = 3.6×10⁶ N/C along the x axis.</div>
+    </div></details>
+
+    <details class="lesson"><summary>1.3.1 / 1.3.2 — Field lines & conductors<span class="chev">▶</span></summary><div class="body">
+      <p>The electric field can be drawn as <strong>field lines</strong> that start on positive charges and end on negative charges. Characteristics:</p>
+      <ol>
+        <li>Lines indicate the field direction (tangent to the line at any point).</li>
+        <li>Field magnitude ∝ number of lines per unit area — the closer the lines, the stronger the field.</li>
+        <li>Lines start on + and end on −; their number ∝ magnitude of the charge.</li>
+        <li>Field lines <strong>never cross</strong> (the field can't have two values at one point).</li>
+      </ol>
+      <p><strong>Electric fields and conductors:</strong> the static field <strong>inside a conductor is zero</strong> (else charges would move); net charge resides on the <strong>outer surface</strong>; and the field is <strong>perpendicular to the surface</strong>.</p>
+      <div class="tip">Between two oppositely charged parallel plates the field is uniform — parallel, equally spaced lines from + plate to − plate in the central region.</div>
+    </div></details>
+
+    <details class="lesson"><summary>1.4 — Electric potential due to point charges<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Electric potential</strong> V at a point is the potential energy per unit positive charge — or the work done bringing a positive test charge from infinity to that point per unit charge. It is a <strong>scalar</strong>; units Volt (V) or J·C⁻¹.</p>
+      <div class="math">V = U/q₀ = W∞/q₀&nbsp;&nbsp;·&nbsp;&nbsp;V = kQ/r = (1/4πε₀)(Q/r)&nbsp;&nbsp;[V = 0 at r = ∞]</div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 8 (from slides)</span>
+        <p>Q₁ = −40 µC, Q₂ = −30 µC, separated 15 cm. (a) Potential at A (5 cm from Q₁, 10 cm from Q₂); (b) potential at B (r₂ᵦ = 13 cm, r₁ᵦ = √(15²+13²) cm).</p>
+        <div class="step"><span class="num">1</span><span class="txt">Vₐ = 9×10⁹[(−40×10⁻⁶)/0.05 + (−30×10⁻⁶)/0.10] = <span class="ans">−9.89×10⁶ V</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Meaning: 9.89×10⁶ J of work is done by the field to bring 1 C of + charge from infinity to A.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">r₁ᵦ = √(0.15²+0.13²) = 19.9×10⁻² m → Vᵦ = 9×10⁹[(−40×10⁻⁶)/0.199 + (−30×10⁻⁶)/0.13] = <span class="ans">−3.88×10⁶ V</span></span></div>
+      </div>
+
+      <div class="note"><strong>Exercise (slides):</strong> four charges Q, 2Q, −3Q, 2Q (Q = 4.8 µC) at corners of an 8.0 cm square → potential at centre = <strong>1.53×10⁶ V</strong> (half-diagonal 0.0566 m).</div>
+
+      <h4>1.4.1 Electric potential energy</h4>
+      <p>The energy U of a charge q at a point where the potential is V:</p>
+      <div class="math">U = qV = kQq/r&nbsp;&nbsp;(show the sign of every charge)</div>
+
+      <h4>1.4.2 Electric potential difference</h4>
+      <p>Change in potential energy is the negative of the work done by the electric force:</p>
+      <div class="math">V_ba = V_b − V_a = (U_b − U_a)/q = −W_ba/q&nbsp;&nbsp;·&nbsp;&nbsp;W_ba = −q·ΔV_ba</div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 10 (from slides)</span>
+        <p>Around a +5.4 nC charge, S is 6.0 cm away and T is 10 cm away (8.0 cm leg). (a) Find V_ST; (b) work to bring −1.5 nC from T to S.</p>
+        <div class="step"><span class="num">1</span><span class="txt">V_S = (9×10⁹)(5.4×10⁻⁹)/0.06 = 810 V; V_T = (9×10⁹)(5.4×10⁻⁹)/0.10 = 486 V.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">V_ST = 810 − 486 = <span class="ans">324 V</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">W_TS = q₀V_TS = (−1.5×10⁻⁹)(324) = <span class="ans">−4.86×10⁻⁷ J</span></span></div>
+      </div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 11 (from slides) — electron in CRT</span>
+        <p>An electron is accelerated from rest through V_ba = +5000 V (m = 9.1×10⁻³¹ kg).</p>
+        <div class="step"><span class="num">1</span><span class="txt">ΔU = qV = (−1.6×10⁻¹⁹)(5000) = <span class="ans">−8×10⁻¹⁶ J</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">½mv² = −ΔU = 8×10⁻¹⁶ → v = <span class="ans">4.2×10⁷ m/s</span></span></div>
+      </div>
+
+      <h4>1.4.3 Relation between potential and field</h4>
+      <p>For a uniform field the simplest case is:</p>
+      <div class="math">V_ba = −∫E·dℓ&nbsp;&nbsp;→&nbsp;&nbsp;V_ba = −Ed&nbsp;&nbsp;[uniform E]</div>
+      <p>The negative sign means the potential decreases in the direction of the electric field.</p>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 12 (from slides)</span>
+        <p>Plates 5.0 mm apart, E = 1.0×10⁴ N/C, charge +4.0 nC moved across. (a) Work done; (b) potential difference.</p>
+        <div class="step"><span class="num">1</span><span class="txt">W = q₀Ed = (4.0×10⁻⁹)(1.0×10⁴)(5.0×10⁻³) = <span class="ans">2.0×10⁻⁷ J</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">V = Ed = (1.0×10⁴)(5.0×10⁻³) = <span class="ans">50 V</span></span></div>
+      </div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 13 (from slides)</span>
+        <p>Plates with V = 50 V, separation 0.050 m. Find E between the plates.</p>
+        <div class="step"><span class="num">1</span><span class="txt">V = Ed → 50 = E(0.05) → E = <span class="ans">1000 N·C⁻¹</span></span></div>
+      </div>
+
+      <div class="note"><strong>Example 14 (slides) — charged conducting sphere</strong> of radius r₀, total charge Q: for r &gt; r₀, V = (1/4πε₀)(Q/r); for r = r₀, V = (1/4πε₀)(Q/r₀); for r &lt; r₀, V = constant = surface value (E = 0 inside, so V ∝ 1/r outside and flat inside).</div>
     </div></details>
   </section>
 
