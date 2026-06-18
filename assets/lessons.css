@@ -1,0 +1,54 @@
+/* Shared styling for all UTM Foundation Hub lesson pages */
+:root{--maroon:#8c1d40;--maroon-dark:#5e1230;--maroon-light:#b03a5b;--gold:#d4a017;--ink:#1f2530;--muted:#5c6675;--bg:#f6f4f1;--card:#fff;--line:#e7e2dc;--radius:16px;--shadow:0 6px 24px rgba(40,20,30,.08);--c:#8c1d40}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65}
+h1,h2,h3,.brand-name{font-family:"Fraunces",Georgia,serif;letter-spacing:-.5px}
+a{color:inherit;text-decoration:none}
+header.nav{position:sticky;top:0;z-index:50;background:rgba(140,29,64,.97);backdrop-filter:blur(8px);color:#fff;box-shadow:0 2px 14px rgba(0,0,0,.15)}
+.nav-inner{max-width:980px;margin:0 auto;padding:.7rem 1.2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:800}
+.brand .logo{width:34px;height:34px;border-radius:8px;background:var(--gold);color:var(--maroon-dark);display:grid;place-items:center;font-weight:800;font-family:Manrope}
+.brand small{display:block;font-weight:400;font-size:.68rem;opacity:.85}
+.nav-links{margin-left:auto;display:flex;gap:.3rem;flex-wrap:wrap}
+.nav-links a{padding:.4rem .7rem;border-radius:999px;font-size:.82rem;font-weight:600}
+.nav-links a:hover{background:rgba(255,255,255,.18)}
+.hero{background:linear-gradient(135deg,var(--c),#222);color:#fff;padding:3rem 1.2rem 3.5rem}
+.hero-inner{max-width:980px;margin:0 auto}
+.hero .eyebrow{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:.35rem .85rem;border-radius:999px;font-size:.76rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:1rem}
+.hero h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800}
+.hero p{margin-top:.9rem;opacity:.92;max-width:62ch}
+main{max-width:980px;margin:0 auto;padding:0 1.2rem}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1.3rem 1.5rem;box-shadow:var(--shadow);margin:2rem 0}
+.toc h2{font-size:1.05rem;margin-bottom:.7rem;color:var(--c)}
+.toc ol{margin-left:1.1rem}
+.toc li{margin:.3rem 0;font-size:.95rem}
+.toc a{color:var(--c);font-weight:600}
+section.topic{margin:2.5rem 0;scroll-margin-top:80px}
+.topic-head{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem}
+.topic-head .n{flex:none;width:42px;height:42px;border-radius:12px;background:var(--c);color:#fff;display:grid;place-items:center;font-weight:800}
+.topic-head h2{font-size:1.45rem;font-weight:800}
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-top:1rem;box-shadow:var(--shadow);overflow:hidden}
+.lesson summary{cursor:pointer;list-style:none;padding:1rem 1.2rem;font-weight:700;display:flex;gap:.7rem;align-items:center;border-left:4px solid var(--maroon-light)}
+.lesson[open] summary{border-left-color:var(--gold);background:#faf6f7}
+.lesson summary::-webkit-details-marker{display:none}
+.lesson summary .chev{margin-left:auto;color:var(--muted);transition:transform .2s}
+.lesson[open] summary .chev{transform:rotate(90deg)}
+.body{padding:1rem 1.3rem 1.4rem}
+.body p{margin:.7rem 0}
+.body h4{margin:1.1rem 0 .4rem;font-size:.95rem;color:var(--c)}
+.body ul,.body ol{margin:.3rem 0 .3rem 1.2rem}
+.body li{margin:.3rem 0}
+.math{background:#f7f3ee;border:1px dashed #d8cfc4;border-radius:8px;padding:.55rem .9rem;font-family:"Cambria Math",Georgia,serif;font-size:1rem;margin:.5rem 0;overflow-x:auto}
+.ex{border:1px solid #e6d6dc;border-radius:10px;padding:.9rem 1.1rem;margin:1rem 0;background:#fcfbfa}
+.ex .tag{display:inline-block;background:var(--c);color:#fff;font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:6px;letter-spacing:.5px;margin-bottom:.5rem}
+.step{display:flex;gap:.7rem;margin:.5rem 0}
+.step .num{flex:none;width:24px;height:24px;border-radius:50%;background:var(--maroon-light);color:#fff;font-size:.78rem;font-weight:700;display:grid;place-items:center;margin-top:.1rem}
+.step .txt{flex:1}
+.ans{font-weight:800;color:var(--c)}
+.note{background:#eef5ee;border-left:4px solid #4a8b4a;border-radius:6px;padding:.7rem .9rem;font-size:.9rem;margin:.8rem 0}
+.tip{background:#fff7e6;border-left:4px solid var(--gold);border-radius:6px;padding:.7rem .9rem;font-size:.9rem;margin:.8rem 0}
+footer{background:var(--maroon-dark);color:#fff;margin-top:3rem;padding:2rem 1.2rem;font-size:.88rem}
+.foot-inner{max-width:980px;margin:0 auto}
+footer a{color:var(--gold)}
+@media(max-width:600px){.nav-links{width:100%;margin-left:0}}

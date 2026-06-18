@@ -25,7 +25,7 @@ window.HUB_DATA = {
       icon: "🔬",
       color: "#1d6b8c",
       blurb: "Electricity, magnetism, optics and modern physics across 13 connected chapters.",
-      lessons: "",
+      lessons: "lessons-physics.html",
       topics: [
         "Electrostatics", "Capacitors", "Current & Resistance", "DC Circuits", "Magnetism",
         "Electromagnetic Induction", "Electromagnetic Waves", "Reflection & Refraction", "Lenses",
@@ -40,7 +40,7 @@ window.HUB_DATA = {
       icon: "⚗️",
       color: "#2e8c4f",
       blurb: "Thermochemistry, kinetics, equilibrium, acids & bases, and organic chemistry.",
-      lessons: "",
+      lessons: "lessons-chemistry.html",
       topics: [
         "Thermochemistry", "Chemical Kinetics", "Chemical Equilibrium", "Acids & Bases", "Organic Chemistry"
       ],
@@ -53,7 +53,7 @@ window.HUB_DATA = {
       icon: "💻",
       color: "#6b3d8c",
       blurb: "Programming in the C language — from how computers work to functions and files.",
-      lessons: "",
+      lessons: "lessons-computing.html",
       topics: [
         "Introduction to IT", "Programming Concepts", "Programming Environment",
         "Elementary Programming", "Input & Output", "Branching & Loops", "Files", "Functions"

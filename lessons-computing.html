@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fundamentals of Computing — Step-by-Step Lessons · UTM Foundation Hub</title>
+<meta name="theme-color" content="#6b3d8c">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/lessons.css">
+<link rel="stylesheet" href="assets/tutor.css">
+<style>:root{--c:#6b3d8c} .body pre{background:#2b2533;color:#f5f0ea;padding:.8rem 1rem;border-radius:8px;overflow-x:auto;font-size:.85rem;margin:.5rem 0;line-height:1.5}</style>
+</head>
+<body>
+<header class="nav"><div class="nav-inner">
+  <a class="brand" href="index.html"><span class="logo" style="background:#6b3d8c;color:#fff">UTM</span><span>Foundation Hub<small>Computing · Step-by-Step Lessons</small></span></a>
+  <nav class="nav-links"><a href="subject.html?s=computing">← Computing</a><a href="index.html">Home</a></nav>
+</div></header>
+
+<div class="hero"><div class="hero-inner">
+  <span class="eyebrow">Fundamentals of Computing · FSPK0022</span>
+  <h1>Programming in C — step by step</h1>
+  <p>From "what is a computer?" to writing real C programs. Every topic explained with runnable code examples.</p>
+</div></div>
+
+<main>
+  <div class="toc"><h2>📘 Topics</h2><ol>
+    <li><a href="#t1">Introduction to IT</a></li><li><a href="#t2">Programming Concepts</a></li>
+    <li><a href="#t3">Programming Environment</a></li><li><a href="#t4">Elementary Programming</a></li>
+    <li><a href="#t5">Input & Output</a></li><li><a href="#t6">Branching & Loops</a></li>
+    <li><a href="#t7">Files</a></li><li><a href="#t8">Functions</a></li>
+  </ol></div>
+
+  <section class="topic" id="t1"><div class="topic-head"><span class="n">1</span><h2>Introduction to IT</h2></div>
+    <details class="lesson" open><summary>Computers, hardware & software<span class="chev">▶</span></summary><div class="body">
+      <p>A computer follows the <strong>input → process → output</strong> model, with storage. Key ideas:</p>
+      <ul><li><strong>Hardware</strong> = physical parts (CPU, RAM, disk, I/O devices).</li><li><strong>Software</strong> = programs (system software like the OS, and application software).</li><li>Data is stored in <strong>binary</strong> (bits → bytes).</li></ul>
+      <div class="tip">Foundation: 8 bits = 1 byte; a bit is 0 or 1. Everything (text, images) is ultimately binary.</div>
+    </div></details>
+  </section>
+
+  <section class="topic" id="t2"><div class="topic-head"><span class="n">2</span><h2>Programming Concepts</h2></div>
+    <details class="lesson"><summary>Algorithms, flowcharts & pseudocode<span class="chev">▶</span></summary><div class="body">
+      <p>Before coding, plan the logic. An <strong>algorithm</strong> is a step-by-step recipe. We express it as a <strong>flowchart</strong> (boxes &amp; arrows) or <strong>pseudocode</strong> (plain-English steps).</p>
+      <div class="ex"><span class="tag">EXAMPLE — algorithm for "add two numbers"</span>
+        <div class="step"><span class="num">1</span><span class="txt">START</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">READ a, b</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">sum = a + b</span></div>
+        <div class="step"><span class="num">4</span><span class="txt">PRINT sum</span></div>
+        <div class="step"><span class="num">5</span><span class="txt">END</span></div>
+      </div>
+    </div></details>
+  </section>
+
+  <section class="topic" id="t3"><div class="topic-head"><span class="n">3</span><h2>Programming Environment</h2></div>
+    <details class="lesson"><summary>Your first C program<span class="chev">▶</span></summary><div class="body">
+      <p>A C program needs a <code>main()</code> function and headers. You compile it, then run it.</p>
+      <pre>#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Hello, world!\n");
+    return 0;
+}</pre>
+      <ul><li><code>#include &lt;stdio.h&gt;</code> — brings in input/output functions.</li><li><code>printf</code> — prints text. <code>\n</code> = new line.</li><li><code>return 0;</code> — tells the OS the program ended successfully.</li></ul>
+    </div></details>
+  </section>
+
+  <section class="topic" id="t4"><div class="topic-head"><span class="n">4</span><h2>Elementary Programming</h2></div>
+    <details class="lesson"><summary>Variables, data types & operators<span class="chev">▶</span></summary><div class="body">
+      <p>A <strong>variable</strong> stores a value. Each has a <strong>type</strong>:</p>
+      <ul><li><code>int</code> — whole numbers</li><li><code>float</code> / <code>double</code> — decimals</li><li><code>char</code> — a single character</li></ul>
+      <pre>int age = 19;
+float price = 4.50;
+char grade = 'A';
+int total = age + 1;   // arithmetic</pre>
+      <div class="tip">Operators: + − * / and % (remainder). Watch out: <code>int</code>/<code>int</code> drops the decimal (7/2 = 3, not 3.5).</div>
+    </div></details>
+  </section>
+
+  <section class="topic" id="t5"><div class="topic-head"><span class="n">5</span><h2>Input & Output</h2></div>
+    <details class="lesson"><summary>printf & scanf<span class="chev">▶</span></summary><div class="body">
+      <p><code>printf</code> displays; <code>scanf</code> reads input. Format specifiers: <code>%d</code> int, <code>%f</code> float, <code>%c</code> char, <code>%s</code> string.</p>
+      <pre>int n;
+printf("Enter a number: ");
+scanf("%d", &amp;n);              // &amp; gives scanf the variable's address
+printf("You typed %d\n", n);</pre>
+      <div class="tip">Common beginner bug: forgetting the <code>&amp;</code> in <code>scanf("%d", &amp;n)</code>.</div>
+    </div></details>
+  </section>
+
+  <section class="topic" id="t6"><div class="topic-head"><span class="n">6</span><h2>Branching & Loops</h2></div>
+    <details class="lesson"><summary>Decisions (if/switch) and repetition (for/while)<span class="chev">▶</span></summary><div class="body">
+      <h4>Branching — make a decision</h4>
+      <pre>if (mark &gt;= 50) {
+    printf("Pass\n");
+} else {
+    printf("Fail\n");
+}</pre>
+      <h4>Loops — repeat</h4>
+      <pre>// print 1 to 5
+for (int i = 1; i &lt;= 5; i++) {
+    printf("%d ", i);
+}</pre>
+      <p>Also: <code>while</code> (repeat while a condition is true) and <code>do–while</code> (runs at least once). <code>break</code> exits a loop, <code>continue</code> skips to the next round.</p>
+    </div></details>
+  </section>
+
+  <section class="topic" id="t7"><div class="topic-head"><span class="n">7</span><h2>Files (Input & Output)</h2></div>
+    <details class="lesson"><summary>Reading & writing files<span class="chev">▶</span></summary><div class="body">
+      <p>Files let data survive after the program ends. Open with <code>fopen</code> (mode: "r" read, "w" write, "a" append), then close with <code>fclose</code>.</p>
+      <pre>FILE *fp = fopen("data.txt", "w");
+fprintf(fp, "Score: %d\n", 95);
+fclose(fp);</pre>
+      <p>Read back with <code>fscanf(fp, "%d", &amp;x)</code>. Always check the file opened (<code>if (fp == NULL) ...</code>).</p>
+    </div></details>
+  </section>
+
+  <section class="topic" id="t8"><div class="topic-head"><span class="n">8</span><h2>Functions</h2></div>
+    <details class="lesson"><summary>Reusable blocks of code<span class="chev">▶</span></summary><div class="body">
+      <p>A <strong>function</strong> packages code you can call repeatedly. It can take <strong>parameters</strong> and <strong>return</strong> a value.</p>
+      <pre>int add(int a, int b) {   // returns an int
+    return a + b;
+}
+
+int main() {
+    int sum = add(3, 4);  // sum = 7
+    printf("%d\n", sum);
+    return 0;
+}</pre>
+      <ul><li>Define the function (or a prototype) before you use it.</li><li><strong>Local</strong> variables live inside one function; <strong>global</strong> ones are shared.</li></ul>
+      <div class="ex"><span class="tag">WHY IT MATTERS</span><p>Functions keep programs short, readable and reusable — write the logic once, call it many times.</p></div>
+    </div></details>
+    <div class="tip" style="margin-top:1.4rem">💻 Type these examples into a C compiler and run them — you learn programming by doing. Stuck? Ask the AI Tutor to debug your code step by step.</div>
+  </section>
+</main>
+
+<footer><div class="foot-inner"><p><strong>UTM Foundation Hub · Computing (C) lessons.</strong> Based on the standard course scope — confirm against your lecturer's slides. <a href="index.html">← Back to the platform</a></p></div></footer>
+<script src="assets/tutor.js"></script>
+</body>
+</html>
