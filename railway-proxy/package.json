@@ -1,0 +1,16 @@
+{
+  "name": "utm-hub-ai-proxy",
+  "version": "1.0.0",
+  "description": "AI Tutor proxy for UTM Foundation Hub (keeps the Anthropic key secret).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5"
+  }
+}
