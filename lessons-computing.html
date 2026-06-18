@@ -1167,21 +1167,149 @@ fclose(fp);</pre>
   </section>
 
   <section class="topic" id="t8"><div class="topic-head"><span class="n">8</span><h2>Functions</h2></div>
-    <details class="lesson"><summary>Reusable blocks of code<span class="chev">▶</span></summary><div class="body">
-      <p>A <strong>function</strong> packages code you can call repeatedly. It can take <strong>parameters</strong> and <strong>return</strong> a value.</p>
-      <pre>int add(int a, int b) {   // returns an int
-    return a + b;
-}
 
+    <details class="lesson"><summary>8·1 What is a Function? — Overview<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>We use <strong>functions</strong> (a.k.a. modules, methods, procedures, subprograms) to perform a specific task. In algebra, a function is a rule between values (its <strong>arguments</strong>) and the unique resulting value.</li>
+        <li>Example: if <code>f(x) = 2x + 5</code>, then <code>f(1)=7</code>, <code>f(2)=9</code>, <code>f(3)=11</code> — the call <code>f(1)</code> returns 7. Here 1, 2, 3 are <strong>arguments</strong>; 7, 9, 11 are the resulting values.</li>
+        <li>A C++ function call has the format <code>functionName(argumentList)</code>, where the argument list is a comma-separated list of data sent into the function. Arguments may be <strong>constants, variables, or expressions</strong>.</li>
+      </ul>
+      <p><strong>Why use functions?</strong></p>
+      <ul>
+        <li><strong>Divide and conquer</strong> — break a complicated program into manageable components; focus on, debug and test one function; different developers can work on different functions at once.</li>
+        <li><strong>Reusability</strong> — usable in many places or programs; avoids code repetition and simplifies maintenance; callable multiple times from anywhere.</li>
+        <li><strong>Components</strong> — custom functions you write, plus prepackaged functions/classes from the C++ Standard Library.</li>
+      </ul>
+      <div class="note">Two types of C++ functions: <strong>standard (predefined/library)</strong> functions and <strong>user-defined</strong> functions.</div>
+    </details></div>
+
+    <details class="lesson"><summary>8·2 Library (Predefined) Functions<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li><strong>Predefined functions</strong> are "built-in" functions that come with the compiler, provided in function libraries. The source code (definition) does NOT appear in your program.</li>
+        <li>To use one, just <strong>include the proper header file</strong> (a <code>#include</code> compiler directive) and know the function's name. They work as a <strong>black box</strong>: e.g. input x=4 → <code>sqrt(x)</code> → output 2.</li>
+        <li>These functions return a value — to be printed (<code>cout &lt;&lt; sin(x);</code>), assigned (<code>y = pow(3, 4.5);</code>), or used in an expression (<code>3.14 * sqr(r)</code>).</li>
+      </ul>
+      <div class="ex"><span class="tag">COMMON HEADERS</span>
+        <div class="step"><span class="num">&lt;cctype&gt;</span><span class="txt">Character classification &amp; conversion</span></div>
+        <div class="step"><span class="num">&lt;cmath&gt;</span><span class="txt">Math functions</span></div>
+        <div class="step"><span class="num">&lt;cstdlib&gt;</span><span class="txt">Data conversion</span></div>
+        <div class="step"><span class="num">&lt;ctime&gt;</span><span class="txt">Time functions</span></div>
+      </div>
+      <div class="ex"><span class="tag">MATH FUNCTIONS (#include &lt;cmath&gt;)</span>
+        <div class="step"><span class="num">abs(x)</span><span class="txt">absolute value of an integer (e.g. abs(−5)=5)</span></div>
+        <div class="step"><span class="num">pow(x,y)</span><span class="txt">x to the power of y (e.g. pow(0.16,0.5)=0.4)</span></div>
+        <div class="step"><span class="num">sqrt(x)</span><span class="txt">non-negative square root, x ≥ 0 (e.g. sqrt(2.25)=1.5)</span></div>
+        <div class="step"><span class="num">ceil(x)</span><span class="txt">smallest integer not less than x (ceil(45.23)=46.0)</span></div>
+        <div class="step"><span class="num">floor(x)</span><span class="txt">largest integer not greater than x (floor(45.23)=45.0)</span></div>
+        <div class="step"><span class="num">log/log10</span><span class="txt">natural log / base-10 log</span></div>
+        <div class="step"><span class="num">sin/cos/tan</span><span class="txt">trig functions (angle in radians)</span></div>
+        <div class="step"><span class="num">exp(x)</span><span class="txt">e^x (e ≈ 2.71828)</span></div>
+      </div>
+      <pre>#include &lt;cmath&gt;
+area = 3.14159 * pow(radius, 2.0);   // area of a circle
+result = sqrt(nom1 + nom2);          // square root</pre>
+      <div class="note">Most cmath functions take a <code>double</code> and return a <code>double</code>; <code>abs</code> takes and returns an <code>int</code>.</div>
+    </details></div>
+
+    <details class="lesson"><summary>8·3 User-Defined Functions — Definition &amp; Calling<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li><strong>User-defined functions</strong> are created by you, the programmer — commonly to break a problem into small manageable pieces. You already know one: <code>int main()</code>. Ideally <code>main()</code> is short and consists mainly of function calls.</li>
+        <li>Every function needs a <strong>function definition</strong> (the statements that make it up) and a <strong>function call</strong> (the statement that causes it to execute).</li>
+      </ul>
+      <p>A function <strong>definition</strong> includes a <strong>return type</strong>, a <strong>name</strong> (same rules as variables), a <strong>parameter list</strong>, and a <strong>body</strong> in <code>{ }</code>. General form:</p>
+      <pre>function-returntype function-name(parameter-list)
+{
+    local-definitions;
+    function-implementation;
+}</pre>
+      <ul>
+        <li>If a function returns a value, its return type must be indicated (e.g. <code>int main()</code>). If it returns nothing, its return type is <code>void</code>.</li>
+        <li>To call a function, use its name followed by <code>()</code> and <code>;</code> — e.g. <code>printHeading();</code>. The program executes the body, then resumes at the point of call.</li>
+      </ul>
+      <pre>// Program 6-1
+void displayMessage()      // function definition
+{
+    cout << "Hello from the function displayMessage.\n";
+}
 int main() {
-    int sum = add(3, 4);  // sum = 7
-    printf("%d\n", sum);
+    cout << "Hello from main.\n";
+    displayMessage();      // function call
+    cout << "Back in function main again.\n";
     return 0;
 }</pre>
-      <ul><li>Define the function (or a prototype) before you use it.</li><li><strong>Local</strong> variables live inside one function; <strong>global</strong> ones are shared.</li></ul>
-      <div class="ex"><span class="tag">WHY IT MATTERS</span><p>Functions keep programs short, readable and reusable — write the logic once, call it many times.</p></div>
-    </div></details>
-    <div class="tip" style="margin-top:1.4rem">💻 Type these examples into a C compiler and run them — you learn programming by doing. Stuck? Ask the AI Tutor to debug your code step by step.</div>
+    </details></div>
+
+    <details class="lesson"><summary>8·4 Function Prototypes<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>The compiler must be notified about a function before it is called — either place the full definition before the call, or use a <strong>function prototype</strong> (declaration): like the header but with a semicolon and no body.</li>
+        <li>Header: <code>void printHeading()</code> → Prototype: <code>void printHeading();</code></li>
+      </ul>
+      <pre>#include &lt;iostream&gt;
+void first();      // function prototypes
+void second();
+int main() {
+    cout << "Starting in main function\n";
+    first();
+    second();
+    cout << "Control back to main\n";
+}
+void first()  { cout << "Inside the first function\n"; }
+void second() { cout << "Inside the second function\n"; }</pre>
+      <div class="note">Prototype notes: place prototypes near the top of the program; the program must include either a prototype OR the full definition before any call (compiler error otherwise); with prototypes, definitions can appear in any order.</div>
+    </details></div>
+
+    <details class="lesson"><summary>8·5 Parameters &amp; Passing Data by Value<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>You can pass values into a function when calling it: <code>c = pow(a, b);</code>. Values passed are <strong>arguments</strong>; the variables in the function that hold them are <strong>parameters</strong>.</li>
+        <li>A parameter is also called a <strong>formal parameter/argument</strong>; an argument is also called an <strong>actual parameter/argument</strong>.</li>
+        <li>For each argument, the prototype lists the parameter's <strong>data type</strong> in <code>()</code> and the header declares each parameter: <code>void evenOrOdd(int);</code> (prototype), <code>void evenOrOdd(int num)</code> (header), <code>evenOrOdd(val);</code> (call).</li>
+        <li><strong>Passing multiple arguments:</strong> the count must match the prototype and definition; the first argument initializes the first parameter, etc.</li>
+      </ul>
+      <pre>void displayValue(int num)         // num is a parameter
+{ cout << "The value is " << num << endl; }
+
+void showSum(int a, int b, int c)
+{ cout << "The sum: " << a + b + c; }</pre>
+      <p><strong>Pass by value:</strong> when an argument is passed, its value is <strong>copied</strong> into the parameter. Changes to the parameter in the function <strong>do not affect</strong> the argument.</p>
+      <div class="note">Example: with <code>int m = 612;</code> and <code>void f(int n){ n += 37; }</code>, calling <code>f(m)</code> changes n to 649 inside f, but m is still 612 back in main.</div>
+    </details></div>
+
+    <details class="lesson"><summary>8·6 The return Statement &amp; Returning a Value<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>The <code>return</code> statement ends execution of a function; it can be placed anywhere (statements after it don't run) and can prevent abnormal termination. A <code>void</code> function with no <code>return</code> ends at its last <code>}</code>.</li>
+        <li>A function can <strong>return a value</strong> to the caller (like <code>pow</code>). The prototype and definition must give the return type (not <code>void</code>), and the caller should use the value — assign it, send it to <code>cout</code>, or use it in an expression.</li>
+      </ul>
+      <pre>int sum(int num1, int num2)
+{
+    return num1 + num2;        // returns the value of the expression
+}
+// ...
+total = sum(value1, value2);   // return value assigned to total</pre>
+      <p><strong>Returning a Boolean:</strong> declare the return type as <code>bool</code>, and <code>return true</code> or <code>false</code>; the caller can use it in a condition:</p>
+      <pre>bool isEven(int number)
+{
+    if (number % 2)  return false;   // odd → has remainder
+    else             return true;    // even
+}
+if (isEven(val)) cout << val << " is even.\n";
+else             cout << val << " is odd.\n";</pre>
+      <div class="note">Guard example (Program 6-11): <code>void divide(double a, double b){ if (b==0.0){ cout&lt;&lt;"Sorry, I cannot divide by zero.\n"; return; } cout&lt;&lt;a/b; }</code> — <code>return;</code> exits early to avoid dividing by zero.</div>
+    </details></div>
+
+    <details class="lesson"><summary>8·7 Local &amp; Global Variables, Scope &amp; Lifetime<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>Variables defined inside a function are <strong>local</strong> to that function — hidden from other functions, which can have separate variables with the same name (e.g. <code>num=1</code> in main and <code>num=20</code> in anotherFunction stay independent).</li>
+        <li><strong>Local variable lifetime:</strong> local and parameter variables are created when the function begins and destroyed when it ends, so any value is lost between calls. Local variables are <strong>not</strong> automatically initialized.</li>
+        <li>A <strong>global variable</strong> is defined outside all functions; its scope runs from its definition to the end of the program, so all functions defined after it can access it. Global variables (not constants) are auto-initialized to 0/NULL.</li>
+        <li>Avoid global variables — they make programs hard to debug. Any global you create should be a <strong>global constant</strong>:
+          <pre>const double PAY_RATE = 22.55;
+const double BASE_HOURS = 40.0;
+const double OT_MULTIPLIER = 1.5;</pre>
+        </li>
+      </ul>
+      <div class="tip">Exercise tracing tip: with <code>int try3(int r){ return r*r; }</code>, calling <code>try3(c)</code> alone discards the result; you must use it — <code>c = try3(c);</code> or <code>cout &lt;&lt; try3(5);</code>. And <code>void try1(int p){ p++; }</code> doesn't change the caller's argument (pass by value).</div>
+    </details></div>
+    <div class="tip" style="margin-top:1.4rem">💻 Type these examples into a C++ compiler (Dev-C++) and run them — you learn programming by doing. Stuck? Ask the AI Tutor to debug your code step by step.</div>
   </section>
 </main>
 
