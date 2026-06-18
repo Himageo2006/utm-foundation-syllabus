@@ -17,7 +17,7 @@
     puterSrc: "https://js.puter.com/v2/",
     puterModel: "gpt-4o-mini",          // free via Puter; also try "claude-sonnet-4" or "meta-llama/llama-3.3-70b-instruct"
     // Optional advanced backends (leave blank to stay on free Puter):
-    proxyUrl: "",                       // e.g. "https://your-app.up.railway.app/api/tutor"
+    proxyUrl: "https://utm-foundation-syllabus-production.up.railway.app/api/tutor",
     apiUrl: "https://api.anthropic.com/v1/messages",
     defaultModel: "claude-opus-4-8",
     anthropicVersion: "2023-06-01",
