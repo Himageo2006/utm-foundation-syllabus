@@ -922,14 +922,83 @@ const int NUM_STATES = 50;</pre>
   </section>
 
   <section class="topic" id="t5"><div class="topic-head"><span class="n">5</span><h2>Input & Output</h2></div>
-    <details class="lesson"><summary>printf & scanf<span class="chev">▶</span></summary><div class="body">
-      <p><code>printf</code> displays; <code>scanf</code> reads input. Format specifiers: <code>%d</code> int, <code>%f</code> float, <code>%c</code> char, <code>%s</code> string.</p>
-      <pre>int n;
-printf("Enter a number: ");
-scanf("%d", &amp;n);              // &amp; gives scanf the variable's address
-printf("You typed %d\n", n);</pre>
-      <div class="tip">Common beginner bug: forgetting the <code>&amp;</code> in <code>scanf("%d", &amp;n)</code>.</div>
-    </div></details>
+
+    <details class="lesson"><summary>5·1 Input &amp; Output in C++ — Streams<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>C++ uses a convenient abstraction called <strong>streams</strong> to perform input and output operations in sequential media such as the screen, the keyboard, or a file.</li>
+        <li>The C++ iostream library is included with <code>#include &lt;iostream&gt;</code>:
+          <ul>
+            <li><strong>i</strong> – input: <code>cin</code> is the standard input stream — reads input from the keyboard.</li>
+            <li><strong>o</strong> – output: <code>cout</code> is the standard output stream — displays output to the screen.</li>
+          </ul>
+        </li>
+      </ul>
+    </details></div>
+
+    <details class="lesson"><summary>5·2 Input using cin<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li><code>cin</code> is the standard input object; like <code>cout</code> it requires the <code>iostream</code> file, and reads input from the keyboard.</li>
+        <li>Information is retrieved from <code>cin</code> with <code>&gt;&gt;</code> and stored in one or more variables.</li>
+        <li><code>cin</code> converts data to the type that matches the variable: <code>int height; cin &gt;&gt; height;</code></li>
+        <li>It can input more than one value: <code>cin &gt;&gt; height &gt;&gt; width;</code> — multiple values from the keyboard must be separated by spaces, and order matters (first value → first variable).</li>
+      </ul>
+      <pre>// Program 3-1 — area of a rectangle
+int length, width, area;
+cout &lt;&lt; "What is the length of the rectangle? ";
+cin  &gt;&gt; length;
+cout &lt;&lt; "What is the width of the rectangle? ";
+cin  &gt;&gt; width;
+area = length * width;
+cout &lt;&lt; "The area of the rectangle is " &lt;&lt; area &lt;&lt; ".\n";</pre>
+      <div class="note">A <strong>prompt</strong> is a message that instructs the user to enter data — you should always use <code>cout</code> to display a prompt before each <code>cin</code> statement.</div>
+    </details></div>
+
+    <details class="lesson"><summary>5·3 Output using cout &amp; New Lines<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li><code>cout</code> displays information on the screen; use <code>&lt;&lt;</code> to send information to it: <code>cout &lt;&lt; "Hello, there!";</code></li>
+        <li>You can send multiple items: <code>cout &lt;&lt; "Hello, " &lt;&lt; "there!";</code> — or use separate statements.</li>
+      </ul>
+      <p><strong>Starting a new line</strong> — two ways:</p>
+      <ul>
+        <li>Use <code>endl</code>: <code>cout &lt;&lt; "Value, 1!" &lt;&lt; endl;</code></li>
+        <li>Use <code>\n</code> <em>inside</em> the output string: <code>cout &lt;&lt; "Value, 1!\n";</code></li>
+      </ul>
+    </details></div>
+
+    <details class="lesson"><summary>5·4 Formatting Output — Manipulators<span class="chev">▶</span></summary><div class="body">
+      <p>You can control how output displays for numeric and string data — <strong>size, position, number of digits</strong> — using <strong>manipulators</strong> placed on the output stream. Most are in <code>&lt;iostream&gt;</code>; some require the <code>&lt;iomanip&gt;</code> header.</p>
+      <div class="ex"><span class="tag">STREAM MANIPULATORS</span>
+        <div class="step"><span class="num">setw(n)</span><span class="txt">Establishes a print field of n spaces</span></div>
+        <div class="step"><span class="num">fixed</span><span class="txt">Displays floating-point numbers in fixed-point notation</span></div>
+        <div class="step"><span class="num">setprecision(n)</span><span class="txt">Sets the number of significant digits (or decimal places with fixed)</span></div>
+      </div>
+      <h4>setw()</h4>
+      <ul>
+        <li>Outputs the value of the next expression in a specific number of columns, <strong>right-justified</strong> — e.g. width 8 with a 4-column value leaves 4 leading blanks.</li>
+        <li>If the specified columns are fewer than required, the output automatically expands.</li>
+      </ul>
+      <pre>#include &lt;iomanip&gt;   // required for setw
+cout &lt;&lt; "*" &lt;&lt; setw(6) &lt;&lt; -17 &lt;&lt; "*" &lt;&lt; endl;       // *   -17*
+cout &lt;&lt; "*" &lt;&lt; setw(20) &lt;&lt; "Hi there!" &lt;&lt; "*" &lt;&lt; endl;</pre>
+      <h4>fixed &amp; setprecision()</h4>
+      <ul>
+        <li><code>fixed</code> displays floating-point in fixed-point notation (e.g. 15.674000).</li>
+        <li><code>setprecision(n)</code> controls the number of significant digits; <strong>with</strong> <code>fixed</code> it sets the number of decimal places. Without <code>fixed</code>, a low precision prints in scientific notation.</li>
+      </ul>
+      <pre>cout &lt;&lt; fixed &lt;&lt; setprecision(2);
+cout &lt;&lt; 156.74 &lt;&lt; endl;   // 156.74</pre>
+    </details></div>
+
+    <details class="lesson"><summary>5·5 Formatted Input — setw, getline, get &amp; ignore<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li><strong>setw with cin</strong> — formats field width, useful for reading into a character array: <code>cin &gt;&gt; setw(SIZE) &gt;&gt; firstName;</code> reads one less character than SIZE.</li>
+        <li><strong>Problem with <code>cin &gt;&gt;</code>:</strong> reading a string with <code>cin &gt;&gt; name;</code> stops at the first whitespace, so it can't read a full line with spaces.</li>
+        <li><strong>getline()</strong> reads an entire line of input. For a character array, use two arguments (array name and size): <code>cin.getline(firstName, SIZE);</code></li>
+        <li><strong>get()</strong> reads a single character including whitespace: <code>cin.get(ch);</code> — whereas <code>cin &gt;&gt; ch;</code> skips blanks, tabs, and Enter.</li>
+        <li><strong>ignore()</strong> skips unneeded characters left in the keyboard buffer (mixing <code>cin &gt;&gt;</code> and <code>cin.get()</code> can cause hard-to-detect errors): <code>cin.ignore();</code> skips the next char; <code>cin.ignore(10, '\n');</code> skips up to 10 chars or until <code>\n</code>.</li>
+      </ul>
+      <div class="note">Exercise trap: after <code>cin &gt;&gt; id;</code> reading <code>202</code>, a following <code>cin.get(code);</code> reads the leftover newline (not the next line's 'L') — use <code>cin.ignore()</code> first to fix it.</div>
+    </details></div>
   </section>
 
   <section class="topic" id="t6"><div class="topic-head"><span class="n">6</span><h2>Branching & Loops</h2></div>
