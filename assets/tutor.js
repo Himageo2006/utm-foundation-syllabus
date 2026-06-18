@@ -12,12 +12,32 @@
   // don't need a key, set proxyUrl to your endpoint and it will POST
   // { system, messages, model } there instead of calling Anthropic directly.
   const TUTOR_CONFIG = {
+    // FREE by default: uses Puter.js (no key, no server). Students just click "allow" once.
+    freeMode: true,
+    puterSrc: "https://js.puter.com/v2/",
+    puterModel: "gpt-4o-mini",          // free via Puter; also try "claude-sonnet-4" or "meta-llama/llama-3.3-70b-instruct"
+    // Optional advanced backends (leave blank to stay on free Puter):
     proxyUrl: "",                       // e.g. "https://your-app.up.railway.app/api/tutor"
     apiUrl: "https://api.anthropic.com/v1/messages",
     defaultModel: "claude-opus-4-8",
     anthropicVersion: "2023-06-01",
     maxTokens: 2048,
   };
+
+  // Load the Puter SDK on demand (free, keyless AI)
+  let _puterPromise = null;
+  function loadPuter() {
+    if (window.puter) return Promise.resolve(window.puter);
+    if (_puterPromise) return _puterPromise;
+    _puterPromise = new Promise((resolve, reject) => {
+      const sc = document.createElement("script");
+      sc.src = TUTOR_CONFIG.puterSrc;
+      sc.onload = () => resolve(window.puter);
+      sc.onerror = () => reject(new Error("Could not load the free AI engine. Check your connection."));
+      document.head.appendChild(sc);
+    });
+    return _puterPromise;
+  }
 
   // --- Syllabus knowledge given to the AI --------------------
   const SYLLABUS = `You are the UTM Foundation Programme AI Tutor for Semester 3 (Foundation in Science) students at Universiti Teknologi Malaysia. Be friendly, encouraging, clear, and concise. Explain step by step. Use simple English. When solving maths/physics/chemistry, show each step. Use plain text math (^ for powers, / for division) unless asked otherwise. Keep answers focused.
@@ -101,26 +121,38 @@ If a question is outside this syllabus, still help, but gently relate it back to
 
   function setupView() {
     const hasProxy = !!TUTOR_CONFIG.proxyUrl;
+    const free = TUTOR_CONFIG.freeMode && !hasProxy;
     panel.innerHTML = header() + `
       <div class="tutor-setup">
         <h4>AI Tutor settings</h4>
-        ${hasProxy ? `<p>This tutor is connected to a school server — no key needed. 🎉</p>` : `
-        <p>To use the AI tutor, paste an <b>Anthropic API key</b>. It is stored <b>only in your browser</b> and sent directly to Anthropic — never to us.</p>
+        ${hasProxy ? `<p>This tutor is connected to a school server — no key needed. 🎉</p>` : free ? `
+        <p>✅ The tutor is <b>free</b> — no API key needed. It runs on Puter's free AI. (On first use your browser may ask you to allow / sign in to Puter once.)</p>
+        <details><summary style="cursor:pointer;font-size:.85rem;color:var(--t-maroon)">Advanced: use your own key instead</summary>
+        <label>Anthropic API key (optional)</label>
+        <input id="tutor-key" type="password" placeholder="sk-ant-... (leave blank for free)" value="${(localStorage.getItem(STORAGE_KEY)||"").replace(/"/g,'')}">
+        <div class="hint">Leave blank to keep the free engine. A key uses Claude directly.</div></details>` : `
+        <p>To use the AI tutor, paste an <b>Anthropic API key</b>. It is stored <b>only in your browser</b>.</p>
         <label>Anthropic API key</label>
         <input id="tutor-key" type="password" placeholder="sk-ant-..." value="${(localStorage.getItem(STORAGE_KEY)||"").replace(/"/g,'')}">
-        <div class="hint">Get a key at <b>console.anthropic.com</b> → API Keys. Keep it private.</div>`}
+        <div class="hint">Get a key at <b>console.anthropic.com</b> → API Keys.</div>`}
         <label>Model</label>
         <select id="tutor-model">
+          ${free ? `
+          <option value="gpt-4o-mini">GPT-4o mini — fast &amp; free (recommended)</option>
+          <option value="claude-sonnet-4">Claude Sonnet — free via Puter</option>
+          <option value="meta-llama/llama-3.3-70b-instruct">Llama 3.3 70B — free</option>
+          ` : `
           <option value="claude-opus-4-8">Claude Opus 4.8 — most capable</option>
-          <option value="claude-sonnet-4-6">Claude Sonnet 4.6 — balanced (cheaper)</option>
-          <option value="claude-haiku-4-5">Claude Haiku 4.5 — fastest (cheapest)</option>
+          <option value="claude-sonnet-4-6">Claude Sonnet 4.6 — balanced</option>
+          <option value="claude-haiku-4-5">Claude Haiku 4.5 — fastest</option>
+          `}
         </select>
         <button class="save" id="tutor-save">Save &amp; start learning</button>
       </div>`;
     document.getElementById("tutor-close").onclick = closePanel;
     document.getElementById("tutor-settings").onclick = setupView;
     const modelSel = document.getElementById("tutor-model");
-    modelSel.value = localStorage.getItem(MODEL_KEY) || TUTOR_CONFIG.defaultModel;
+    modelSel.value = localStorage.getItem(MODEL_KEY) || (free ? TUTOR_CONFIG.puterModel : TUTOR_CONFIG.defaultModel);
     document.getElementById("tutor-save").onclick = () => {
       if (!hasProxy) {
         const k = document.getElementById("tutor-key").value.trim();
@@ -134,11 +166,11 @@ If a question is outside this syllabus, still help, but gently relate it back to
   function openPanel() {
     fab.style.display = "none";
     panel.classList.add("open");
-    const hasKey = !!TUTOR_CONFIG.proxyUrl || !!localStorage.getItem(STORAGE_KEY);
-    hasKey ? chatView() : setupView();
-    // auto-submit a prefilled prompt (e.g. from a "Quiz me" button)
+    // Free mode (Puter) needs no key, so go straight to chat.
+    const ready = TUTOR_CONFIG.freeMode || !!TUTOR_CONFIG.proxyUrl || !!localStorage.getItem(STORAGE_KEY);
+    ready ? chatView() : setupView();
     const pre = localStorage.getItem("utm_tutor_prefill");
-    if (pre && hasKey) {
+    if (pre && ready) {
       localStorage.removeItem("utm_tutor_prefill");
       setTimeout(() => submit(pre), 150);
     }
@@ -200,6 +232,34 @@ If a question is outside this syllabus, still help, but gently relate it back to
   }
 
   async function streamReply(botEl) {
+    // ---- FREE engine: Puter.js (no key, no server) ----
+    const useFree = TUTOR_CONFIG.freeMode && !TUTOR_CONFIG.proxyUrl && !localStorage.getItem(STORAGE_KEY);
+    if (useFree) {
+      const puter = await loadPuter();
+      const msgs = [{ role: "system", content: SYLLABUS }].concat(
+        history.map(m => ({ role: m.role === "assistant" ? "assistant" : "user", content: m.content }))
+      );
+      const model = localStorage.getItem(MODEL_KEY) || TUTOR_CONFIG.puterModel;
+      botEl.innerHTML = "";
+      let out = "";
+      try {
+        const resp = await puter.ai.chat(msgs, { model, stream: true });
+        for await (const part of resp) {
+          const t = (part && (part.text || (part.message && part.message.content))) || "";
+          if (t) { out += t; botEl.innerHTML = renderMd(out); const b = document.getElementById("tutor-body"); if (b) b.scrollTop = b.scrollHeight; }
+        }
+      } catch (e) {
+        // fall back to non-streaming
+        try {
+          const r = await puter.ai.chat(msgs, { model });
+          out = (r && (r.text || (r.message && r.message.content) || (typeof r === "string" ? r : ""))) || "";
+          botEl.innerHTML = renderMd(out || "(No response — try again.)");
+        } catch (e2) { throw new Error("Free AI engine error. Try again, or add your own key in ⚙ settings."); }
+      }
+      if (!out) botEl.innerHTML = renderMd("(No response — try again.)");
+      return out;
+    }
+
     const model = localStorage.getItem(MODEL_KEY) || TUTOR_CONFIG.defaultModel;
     const payload = {
       model,
