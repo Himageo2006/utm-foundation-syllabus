@@ -413,20 +413,92 @@
   <!-- TOPIC 3 -->
   <section class="topic" id="t3">
     <div class="topic-head"><span class="n">3</span><h2>Applications of Differentiation</h2></div>
-    <p>Use derivatives to find maximum/minimum points, analyse curves, and solve optimisation problems.</p>
-    <details class="lesson"><summary>Lesson 3.1 — Maxima, minima & optimisation<span class="chev">▶</span></summary><div class="body">
-      <h4>The method</h4>
-      <ol>
-        <li>Find f′(x) and set f′(x) = 0 → these are the <strong>critical points</strong>.</li>
-        <li>Use the second derivative: f″(x) &gt; 0 → minimum; f″(x) &lt; 0 → maximum.</li>
-      </ol>
-      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
-        <p>Find and classify the turning point of f(x) = x² − 4x + 1.</p>
-        <div class="step"><span class="num">1</span><span class="txt">f′(x) = 2x − 4. Set = 0 → 2x − 4 = 0 → x = 2.</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">f(2) = 4 − 8 + 1 = −3, so the point is (2, −3).</span></div>
-        <div class="step"><span class="num">3</span><span class="txt">f″(x) = 2 &gt; 0 → it's a <span class="ans">minimum at (2, −3)</span>.</span></div>
+    <p>Use derivatives to find rates of change, tangents and normals, maximum/minimum points, sketch curves, and solve optimisation problems.</p>
+
+    <details class="lesson" open><summary>Lesson 3.1 — Rate of Change<span class="chev">▶</span></summary><div class="body">
+      <p>If y is a function of x, then dy/dx is the <strong>rate of change</strong> of y with respect to x (always state appropriate units). For time problems, chain related rates together:</p>
+      <div class="math">dr/dt = (dr/du) · (du/dt) &nbsp; and &nbsp; dr/dt = (change in r) / (change in t)</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — water in a container</span>
+        <p>V = 1.5h² + 8h, dV/dt = 12 cm³/s. Find dh/dt when h = 8.</p>
+        <div class="step"><span class="num">1</span><span class="txt">dV/dh = 3h + 12. So dh/dt = (dh/dV)·(dV/dt) = [1/(3h+12)]·12.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">At h = 8: 12/(24+12) = 12/36 = <span class="ans">⅓ cm/s</span></span></div>
       </div>
-      <div class="tip">Optimisation problems (largest area, least cost) reduce to: write the quantity as a function, differentiate, set to zero, solve.</div>
+      <div class="note">Sign matters: "increasing" → positive rate, "decreasing" → negative. Example: sphere with dr/dt = 2, find dV/dt when A = 8 → dV/dt = 4πr²·2 = 8πr²; with 4πr² = 8 → r² = 2/π → dV/dt = 16 ml³/s.</div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 3.2 — Tangents &amp; Normals to a Curve<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>The gradient of the tangent at a point is dy/dx evaluated there. Equation of a line: <strong>y − y₀ = m(x − x₀)</strong>.</li>
+        <li>The <strong>normal</strong> is perpendicular: (gradient of tangent) × (gradient of normal) = −1, so m<sub>normal</sub> = −1/m<sub>tangent</sub>.</li>
+      </ul>
+      <div class="ex"><span class="tag">TANGENT — y = x² − 5x + 3 at x = 3</span>
+        <div class="step"><span class="num">1</span><span class="txt">y(3) = 9 − 15 + 3 = −3, so point (3, −3).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">dy/dx = 2x − 5; at x = 3 → m = 1.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">y − (−3) = 1(x − 3) → <span class="ans">y = x − 6</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">NORMAL — y = 2x³ − 3x² + 5 at (2, 9)</span>
+        <div class="step"><span class="num">1</span><span class="txt">dy/dx = 6x² − 6x; at x = 2 → m<sub>tan</sub> = 12, so m<sub>normal</sub> = −1/12.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">y − 9 = −(1/12)(x − 2) → <span class="ans">12y + x = 110</span></span></div>
+      </div>
+      <div class="note">For implicit curves (e.g. the ellipse 3x² + 4y² = 48 at (2,3)), differentiate implicitly to get dy/dx = −6x/8y = −½, then write the tangent x + 2y = 8.</div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 3.3 — Increasing, Decreasing &amp; Critical Points<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>f′(x) &gt; 0 → function <strong>increasing</strong>; f′(x) &lt; 0 → <strong>decreasing</strong>; f′(x) = 0 → <strong>stationary</strong>.</li>
+        <li>A <strong>critical point</strong> (x₀, f(x₀)) occurs where f′(x₀) = 0 or f′(x₀) is undefined (but x₀ must be in the domain of f).</li>
+      </ul>
+      <div class="ex"><span class="tag">EXAMPLE — f(x) = 4x − x²</span>
+        <div class="step"><span class="num">1</span><span class="txt">f′(x) = 4 − 2x. Increasing where 4 − 2x &gt; 0 → x &lt; 2.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Decreasing where 4 − 2x &lt; 0 → x &gt; 2.</span></div>
+      </div>
+      <div class="note">Use a sign table: for f(x) = 2x³ − 3x² − 12x + 1, f′(x) = 6x² − 6x − 12 = 6(x−2)(x+1) — increasing for x &lt; −1 or x &gt; 2, decreasing for −1 &lt; x &lt; 2.</div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 3.4 — First &amp; Second Derivative Tests<span class="chev">▶</span></summary><div class="body">
+      <p><strong>First Derivative Test</strong> — examine the sign of f′ around the critical number:</p>
+      <ul>
+        <li>+ → 0 → − &nbsp;means a <strong>relative maximum</strong> (convex, ∩).</li>
+        <li>− → 0 → + &nbsp;means a <strong>relative minimum</strong> (concave, ∪).</li>
+      </ul>
+      <p><strong>Second Derivative Test</strong>:</p>
+      <ul>
+        <li>f″(x₀) &lt; 0 → convex → <strong>local maximum</strong>.</li>
+        <li>f″(x₀) &gt; 0 → concave → <strong>local minimum</strong>.</li>
+        <li>f″(x₀) = 0 or undefined → test fails; fall back to the First Derivative Test.</li>
+      </ul>
+      <div class="ex"><span class="tag">EXAMPLE — y = 4 + 12x − 3x² − 2x³</span>
+        <div class="step"><span class="num">1</span><span class="txt">f′(x) = 12 − 6x − 6x² = 0 → x = 1 or x = −2.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">f″(x) = −6 − 12x. At x = 1: −18 &lt; 0 → max <span class="ans">(1, 11)</span>. At x = −2: 18 &gt; 0 → min <span class="ans">(−2, −16)</span>.</span></div>
+      </div>
+      <div class="note">A <strong>point of inflection</strong> is where the curve changes concavity, found where f″(x) = 0. For the curve above, f″(x) = 0 → x = −½, giving inflection point (−½, −5/2).</div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 3.5 — Curve Sketching &amp; Asymptotes<span class="chev">▶</span></summary><div class="body">
+      <p>The 7-step procedure:</p>
+      <ol>
+        <li>Find the x- and y-intercepts.</li>
+        <li>Find f′(x) and f″(x).</li>
+        <li>Critical numbers: solve f′(x) = 0.</li>
+        <li>Second derivative test for local max/min.</li>
+        <li>Inflection points: solve f″(x) = 0 and test concavity.</li>
+        <li>Find horizontal &amp; vertical asymptotes.</li>
+        <li>Sketch using all the information.</li>
+      </ol>
+      <div class="note"><strong>Vertical asymptote:</strong> set the denominator of a rational function = 0. <strong>Horizontal asymptote:</strong> take lim<sub>x→±∞</sub> f(x) by dividing by the highest power of x in the denominator. e.g. f(x) = (4−5x)/(1−x) has vertical asymptote x = 1 and horizontal asymptote y = 5.</div>
+    </div></details>
+
+    <details class="lesson"><summary>Lesson 3.6 — Absolute Max/Min &amp; Optimisation<span class="chev">▶</span></summary><div class="body">
+      <h4>Absolute extrema on a closed interval [a, b]</h4>
+      <p>Find critical numbers inside the interval, then compare f at those points <em>and</em> at the endpoints a and b — the largest is the absolute maximum, the smallest the absolute minimum.</p>
+      <div class="ex"><span class="tag">EXAMPLE — f(x) = 2x³ − x² + 2 on −2 ≤ x ≤ 1</span>
+        <div class="step"><span class="num">1</span><span class="txt">f′(x) = 6x² − 2x = 0 → x = 0, ⅓.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Values: f(−2)=−18, f(0)=2, f(⅓)=53/27, f(1)=3.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Absolute max = <span class="ans">3</span> (at x=1); absolute min = <span class="ans">−18</span> (at x=−2) — both at endpoints.</span></div>
+      </div>
+      <h4>Optimisation</h4>
+      <p>Write the quantity as a function of one variable (use a constraint to eliminate the other), differentiate, set f′ = 0, then use the second derivative test (f″ &gt; 0 min, f″ &lt; 0 max).</p>
+      <div class="note">Example: closed cylinder holding 600 cm³ → A = 2πr² + 1200/r. A′ = 4πr − 1200/r² = 0 → r ≈ 4.57 cm, h ≈ 9.14 cm, minimum area ≈ 393.81 cm². Open square-base box, surface 144 cm² → V = 36x − ¼x³, V′ = 0 → x = √48, max volume ≈ 166.08 cm³.</div>
     </div></details>
   </section>
 
