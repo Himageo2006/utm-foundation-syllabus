@@ -31,11 +31,228 @@
     <li><a href="#t7">Files</a></li><li><a href="#t8">Functions</a></li>
   </ol></div>
 
-  <section class="topic" id="t1"><div class="topic-head"><span class="n">1</span><h2>Introduction to IT</h2></div>
-    <details class="lesson" open><summary>Computers, hardware & software<span class="chev">▶</span></summary><div class="body">
-      <p>A computer follows the <strong>input → process → output</strong> model, with storage. Key ideas:</p>
-      <ul><li><strong>Hardware</strong> = physical parts (CPU, RAM, disk, I/O devices).</li><li><strong>Software</strong> = programs (system software like the OS, and application software).</li><li>Data is stored in <strong>binary</strong> (bits → bytes).</li></ul>
-      <div class="tip">Foundation: 8 bits = 1 byte; a bit is 0 or 1. Everything (text, images) is ultimately binary.</div>
+  <section class="topic" id="t1"><div class="topic-head"><span class="n">1</span><h2>Introduction to Information Technology</h2></div>
+
+    <details class="lesson" open><summary>1·1 What is a Computer?<span class="chev">▶</span></summary><div class="body">
+      <p>A <strong>computer</strong> is a <strong>programmed device</strong> with a <strong>set of instructions</strong> to <strong>perform specific tasks</strong> and <strong>generate results</strong> at a very high speed.</p>
+      <p><strong>Computer functions:</strong></p>
+      <ul>
+        <li>Solve different problems</li>
+        <li>Process data</li>
+        <li>Store &amp; retrieve data</li>
+        <li>Perform calculations faster and more efficiently than humans</li>
+      </ul>
+      <div class="note">The <strong>first computers were people</strong> who did computations — those who compute are "computers", just like those who lecture are "lecturers" (e.g. the <em>Harvard Computers</em>).</div>
+    </div></details>
+
+    <details class="lesson"><summary>1·2 Hardware vs Software<span class="chev">▶</span></summary><div class="body">
+      <p>A computer is made of two parts: <strong>Hardware</strong> and <strong>Software</strong>.</p>
+      <h4>Hardware</h4>
+      <ul>
+        <li>Collection of <strong>physical elements</strong> that constitutes a computer system.</li>
+        <li>Refers to the physical parts or components of a computer.</li>
+      </ul>
+      <h4>Software</h4>
+      <ul>
+        <li><strong>Set of instructions</strong>/programs instructing a computer to do specific tasks.</li>
+        <li>Generic term for organized collections of computer data and instructions.</li>
+      </ul>
+    </div></details>
+
+    <details class="lesson"><summary>1·3 Hardware Components<span class="chev">▶</span></summary><div class="body">
+      <p>The hardware components of a computer are the <strong>CPU</strong>, <strong>Main Memory</strong>, <strong>Secondary Storage</strong>, and <strong>Input/Output (I/O)</strong> devices.</p>
+
+      <h4>Central Processing Unit (CPU)</h4>
+      <ul>
+        <li>The <strong>brain</strong> of a computer.</li>
+        <li>In general, the more powerful the CPU, the faster the computer.</li>
+        <li>Arithmetic and logical operations are carried out inside the CPU.</li>
+      </ul>
+
+      <h4>Main Memory / Random Access Memory (RAM)</h4>
+      <ul>
+        <li>An <strong>ordered sequence of cells</strong> (memory cells) connected directly to the CPU — each cell has a <strong>unique location</strong> called the <strong>address</strong> of the cell.</li>
+        <li>Stores everything as sequences of 0s and 1s; addresses are also expressed as sequences of 0s and 1s.</li>
+        <li>All programs must be loaded into main memory before they can be executed; all data must be brought into main memory before a program can manipulate it.</li>
+        <li>When the computer is turned off, everything in main memory is <strong>lost</strong> (volatile).</li>
+      </ul>
+
+      <h4>Secondary Storage</h4>
+      <ul>
+        <li>Information in main memory must be saved on another device for permanent storage (because main memory is lost when power is off).</li>
+        <li>Stores information <strong>permanently</strong>.</li>
+        <li>Example: hard disks, flash drives, CD-ROMs.</li>
+      </ul>
+
+      <h4>Input &amp; Output</h4>
+      <ul>
+        <li><strong>Input</strong> — devices that feed data into computers. e.g. keyboard, mouse, scanner, camera.</li>
+        <li><strong>Output</strong> — devices used to display results. e.g. monitor, printer.</li>
+      </ul>
+    </div></details>
+
+    <details class="lesson"><summary>1·4 Software: System vs Application<span class="chev">▶</span></summary><div class="body">
+      <p>Software are <strong>programs written to perform specific tasks</strong>. <strong>All software is written in programming languages.</strong></p>
+      <h4>System Software</h4>
+      <p>Responsible for <strong>controlling</strong>, <strong>integrating</strong>, and <strong>managing</strong> the individual hardware components of a computer system.</p>
+      <ul><li>e.g. operating system, utilities such as disk formatters, file managers, display managers, text editors, compiler, device driver.</li></ul>
+      <h4>Application Software</h4>
+      <p>Computer software designed to perform a group of coordinated functions, tasks, or activities <strong>for the benefit of the end user</strong>.</p>
+      <ul><li>e.g. Photoshop, Word, Excel, MySQL.</li></ul>
+    </div></details>
+
+    <details class="lesson"><summary>1·5 How Data is Represented on a Computer<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>Digital signals represent information with a sequence of 0s and 1s — <strong>0</strong> = low voltage, <strong>1</strong> = high voltage.</li>
+        <li>The smallest unit of data in a computer is a <strong>bit</strong>.</li>
+        <li>A <strong>bit</strong> is a single <strong>bi</strong>nary digi<strong>t</strong>, with either 1 (on) or 0 (off) value.</li>
+        <li>Eight bits combine to make a <strong>byte</strong>, which is an 8-digit binary number.</li>
+        <li>More bits represent more information:
+          <ul>
+            <li>single bit — 2 possibilities: 0 or 1 (e.g. 0–close/1–open, or 0–false/1–true)</li>
+            <li>8 bits — 2⁸ = 256 representations (e.g. no. of student 0..255; gray-scale brightness 0–dark, 255–brightest)</li>
+          </ul>
+        </li>
+      </ul>
+      <div class="ex"><span class="tag">UNITS OF DATA</span>
+        <div class="step"><span class="num">B</span><span class="txt">Byte = 8 bits</span></div>
+        <div class="step"><span class="num">KB</span><span class="txt">Kilobyte = 2¹⁰ bytes = 1,024 bytes</span></div>
+        <div class="step"><span class="num">MB</span><span class="txt">Megabyte = 1024 KB = 2²⁰ bytes = 1,048,576 bytes</span></div>
+        <div class="step"><span class="num">GB</span><span class="txt">Gigabyte = 1024 MB = 2³⁰ bytes = 1,073,741,824 bytes</span></div>
+        <div class="step"><span class="num">TB</span><span class="txt">Terabyte = 1024 GB = 2⁴⁰ bytes</span></div>
+        <div class="step"><span class="num">PB</span><span class="txt">Petabyte = 1024 TB = 2⁵⁰ bytes</span></div>
+        <div class="step"><span class="num">EB</span><span class="txt">Exabyte = 1024 PB = 2⁶⁰ bytes</span></div>
+        <div class="step"><span class="num">ZB</span><span class="txt">Zettabyte = 1024 EB = 2⁷⁰ bytes</span></div>
+      </div>
+      <div class="note">Note: KB = 2¹⁰ = 1024 bytes (binary) or KB = 10³ = 1000 bytes (decimal).</div>
+    </div></details>
+
+    <details class="lesson"><summary>1·6 Concept of Data Representation &amp; Why Binary<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>A computer is a <strong>numerical machine</strong> — it can only process in binary, in the form of numbers.</li>
+        <li>Any type of data — numbers, letters, special symbols, sound or pictures — must be <strong>converted to binary</strong> form.</li>
+      </ul>
+      <p><strong>Data representation media:</strong></p>
+      <ul>
+        <li><strong>Electronic circuit</strong> — using voltage: High (1) and Low (0).</li>
+        <li><strong>Magnetic media</strong> (e.g. hard disk) — a magnetic field in one direction = 1; the opposite direction = 0.</li>
+        <li><strong>Optical devices</strong> (e.g. DVD) — presence of light = 1; absence of light = 0.</li>
+      </ul>
+      <h4>Why Computer Uses Binary?</h4>
+      <ul>
+        <li>Natural (human) language — too difficult.</li>
+        <li>Computer circuit behaves like a switch (ON/OFF) — binary in nature, only two states: 1 or 0.</li>
+        <li>Decimal — difficult because it has 10 possibilities (0..9); earlier computers used decimal but finally all computers use binary.</li>
+        <li>Advantages of the binary digital system: more reliable, smaller than analog devices, uses less energy, and digital integrated circuits are easier to manufacture.</li>
+      </ul>
+    </div></details>
+
+    <details class="lesson"><summary>1·7 Number Systems<span class="chev">▶</span></summary><div class="body">
+      <p>A <strong>number system</strong> is a set of symbols used to represent values derived from a common <strong>base (radix)</strong>.</p>
+      <ul>
+        <li><strong>Base 10 (Decimal)</strong> — digits 0..9.</li>
+        <li><strong>Binary (base 2)</strong> — digits 0,1 — written as X₂ or X<sub>bin</sub>.</li>
+        <li><strong>Octal (base 8)</strong> — digits 0..7 — written as X₈ or X<sub>oct</sub>.</li>
+        <li><strong>Hexadecimal (base 16)</strong> — digits 0..9, A..F — written as X₁₆ or X<sub>hex</sub>.</li>
+      </ul>
+      <p>Octal and Hexadecimal are derived from base 2 and are used to <strong>reduce streams of binary digits into a manageable form</strong> — easier for users to use than binary and less prone to error.</p>
+      <div class="ex"><span class="tag">EXAMPLE — easier to write</span>
+        <div class="step"><span class="num">hex</span><span class="txt">C9BF3E₁₆</span></div>
+        <div class="step"><span class="num">bin</span><span class="txt">1100100110111111001111110₂ (same value, much longer)</span></div>
+      </div>
+      <div class="tip">In a programming language, the number system is specified by the literal prefix — Binary: <code>0b1010</code> / <code>0B110101111</code>; Octal: <code>0657</code> / <code>0377</code>; Hexadecimal: <code>0x1AF</code> / <code>0xFF</code>. Mnemonic: <strong>B</strong>inary, <strong>O</strong>ctal, <strong>H</strong>exadecimal.</div>
+    </div></details>
+
+    <details class="lesson"><summary>1·8 C++ Primitive Data Types &amp; Range<span class="chev">▶</span></summary><div class="body">
+      <p>C++ primitive types include: Integer, Character, Boolean, Floating Point, Double Floating Point, Valueless (Void), and Wide Character.</p>
+      <div class="ex"><span class="tag">TYPICAL BIT WIDTH &amp; RANGE</span>
+        <div class="step"><span class="num">char</span><span class="txt">1 byte — −127 to 127, or 0 to 255</span></div>
+        <div class="step"><span class="num">unsigned char</span><span class="txt">1 byte — 0 to 255</span></div>
+        <div class="step"><span class="num">signed char</span><span class="txt">1 byte — −127 to 127</span></div>
+        <div class="step"><span class="num">int</span><span class="txt">4 bytes — −2,147,483,648 to 2,147,483,647</span></div>
+        <div class="step"><span class="num">unsigned int</span><span class="txt">4 bytes — 0 to 4,294,967,295</span></div>
+        <div class="step"><span class="num">short int</span><span class="txt">2 bytes — −32,768 to 32,767</span></div>
+        <div class="step"><span class="num">unsigned short int</span><span class="txt">0 to 65,535</span></div>
+        <div class="step"><span class="num">long int</span><span class="txt">4 bytes — −2,147,483,648 to 2,147,483,647</span></div>
+        <div class="step"><span class="num">unsigned long int</span><span class="txt">4 bytes — 0 to 4,294,967,295</span></div>
+        <div class="step"><span class="num">float</span><span class="txt">4 bytes — ±3.4e±38 (~7 digits)</span></div>
+        <div class="step"><span class="num">double</span><span class="txt">8 bytes — ±1.7e±308 (~15 digits)</span></div>
+        <div class="step"><span class="num">long double</span><span class="txt">8 bytes — ±1.7e±308 (~15 digits)</span></div>
+        <div class="step"><span class="num">wchar_t</span><span class="txt">2 or 4 bytes — 1 wide character</span></div>
+      </div>
+      <div class="note">Sizes may differ depending on the compiler and computer used.</div>
+    </div></details>
+
+    <details class="lesson"><summary>1·9 Integer Representation &amp; 2's Complement<span class="chev">▶</span></summary><div class="body">
+      <h4>Unsigned integers — zero &amp; positive only</h4>
+      <ul>
+        <li>For an <em>n</em>-bit representation: range 0 .. 2ⁿ−1 (e.g. <code>unsigned short int</code> = 16 bits, range 0 .. 65535).</li>
+        <li>Each integer value is converted directly to its binary equivalent. e.g. 29 → <code>0000 0000 0001 1101₂</code>.</li>
+      </ul>
+      <h4>Signed integers — negative, zero &amp; positive</h4>
+      <ul>
+        <li>For an <em>n</em>-bit representation: range −2ⁿ⁻¹ .. +2ⁿ⁻¹−1 (e.g. <code>short int</code> = 16 bits, range −32768 .. +32767).</li>
+        <li>Each integer is converted to <strong>2's complement</strong> form: positive → sign = 0, magnitude in binary; negative → sign = 1, magnitude in 2's complement.</li>
+      </ul>
+      <p><strong>Getting the 2's complement:</strong></p>
+      <ul>
+        <li><strong>Method 1:</strong> find the 1's complement (change 0→1 and 1→0), then add 1. e.g. 2's complement of <strong>1</strong>01100 = 010011 + 1 = <strong>0</strong>10100.</li>
+        <li><strong>Method 2:</strong> scan right→left, leave all trailing zeroes unchanged, keep the first 1, then reverse the remaining bits to the left.</li>
+      </ul>
+      <div class="ex"><span class="tag">EXAMPLE — value of a stored number</span>
+        <div class="step"><span class="num">+</span><span class="txt">0100 0110 1001 1110₂ → MSB = 0 → positive → convert to decimal = <span class="ans">+18078</span></span></div>
+        <div class="step"><span class="num">−</span><span class="txt">1100 0110 1001 1110₂ → MSB = 1 → negative → invert (0011 1001 0110 0001) + 1 = 0011 1001 0110 0010 = <span class="ans">−14690</span></span></div>
+      </div>
+      <div class="note">The MSB (most significant bit) is the <strong>sign bit</strong>: 0 = positive, 1 = negative.</div>
+    </div></details>
+
+    <details class="lesson"><summary>1·10 Endianness — How Representation is Stored<span class="chev">▶</span></summary><div class="body">
+      <p>Different processors store a number bigger than one byte in different orders:</p>
+      <ul>
+        <li>Intel uses <strong>Little Endian</strong>, Atmel AVR32 uses <strong>Big Endian</strong>, and ARM6 onward can operate on both.</li>
+      </ul>
+      <div class="ex"><span class="tag">EXAMPLE — int x = 0x01234567; at address 0x100</span>
+        <p>x in binary: 0000 0001 0010 0011 0100 0101 0110 0111</p>
+        <div class="step"><span class="num">Big</span><span class="txt">0x100=01, 0x101=23, 0x102=45, 0x103=67 (most significant byte first)</span></div>
+        <div class="step"><span class="num">Little</span><span class="txt">0x100=67, 0x101=45, 0x102=23, 0x103=01 (least significant byte first)</span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>1·11 Symbolic Representation using Coding<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>In computing, a single character, number or symbol is represented by a group of bits.</li>
+        <li>The commonly used encoding scheme on personal computers is the seven-bit <strong>ASCII</strong> (American Standard Code for Information Interchange).</li>
+        <li>Character <strong>A</strong> is encoded as the binary number <code>1000001</code> (decimal 65).</li>
+      </ul>
+      <p><strong>Other encoding schemes:</strong></p>
+      <ul>
+        <li><strong>EBCDIC</strong> (used by IBM) — consists of 256 characters.</li>
+        <li><strong>Unicode</strong> — a more recent development; UCS-2 consists of 65,536 characters. Created to represent a variety of characters (including languages other than English) and is continuously expanding.</li>
+      </ul>
+      <div class="note">ASCII examples: 'A' = 65 (0x41), 'a' = 97 (0x61), '0' = 48 (0x30), [SPACE] = 32 (0x20).</div>
+    </div></details>
+
+    <details class="lesson"><summary>1·12 Computer Basic Building Blocks — Logic Gates<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>Logic gates are the most basic building block of any digital system.</li>
+        <li>You need to know logic characteristics because logic is part of a programming language. e.g. <code>if (x&lt;2) &amp;&amp; (y&gt;10) then ...</code> — <code>&amp;&amp;</code> is the AND operator.</li>
+      </ul>
+      <p><strong>3 most basic gates:</strong></p>
+      <ul>
+        <li><strong>NOT</strong> — output is the complement of the input.</li>
+        <li><strong>AND</strong> — a 0 (LOW, FALSE) at any input makes the output 0.</li>
+        <li><strong>OR</strong> — a 1 (HIGH, TRUE) at any input makes the output 1.</li>
+      </ul>
+      <div class="ex"><span class="tag">TRUTH TABLES (A, B → X)</span>
+        <div class="step"><span class="num">NOT</span><span class="txt">0→1, 1→0</span></div>
+        <div class="step"><span class="num">AND</span><span class="txt">00→0, 01→0, 10→0, 11→1</span></div>
+        <div class="step"><span class="num">NAND</span><span class="txt">00→1, 01→1, 10→1, 11→0</span></div>
+        <div class="step"><span class="num">OR</span><span class="txt">00→0, 01→1, 10→1, 11→1</span></div>
+        <div class="step"><span class="num">NOR</span><span class="txt">00→1, 01→0, 10→0, 11→0</span></div>
+        <div class="step"><span class="num">XOR</span><span class="txt">00→0, 01→1, 10→1, 11→0</span></div>
+        <div class="step"><span class="num">XNOR</span><span class="txt">00→1, 01→0, 10→0, 11→1</span></div>
+      </div>
+      <div class="tip">Logical operators in C: AND <code>&amp;&amp;</code> (e.g. <code>grade&gt;=70 &amp;&amp; grade&lt;80</code>), OR <code>||</code> (e.g. <code>grade&gt;100 || grade&lt;1</code>), NOT <code>!</code> (e.g. <code>!grade&gt;=70</code>).</div>
     </div></details>
   </section>
 
