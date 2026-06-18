@@ -353,13 +353,101 @@
   </section>
 
   <section class="topic" id="c4"><div class="topic-head"><span class="n">4</span><h2>DC Circuits</h2></div>
-    <details class="lesson"><summary>Series, parallel & Kirchhoff's laws<span class="chev">▶</span></summary><div class="body">
-      <ul><li><strong>Series:</strong> R = R₁ + R₂ + … (same current).</li><li><strong>Parallel:</strong> 1/R = 1/R₁ + 1/R₂ + … (same voltage).</li></ul>
-      <p><strong>Kirchhoff:</strong> (1) current in = current out at a junction; (2) sum of voltage drops round a loop = sum of EMFs.</p>
-      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
-        <p>Two resistors 6 Ω and 3 Ω in parallel, across 12 V. Find total resistance and total current.</p>
-        <div class="step"><span class="num">1</span><span class="txt">1/R = 1/6 + 1/3 = 1/6 + 2/6 = 3/6 → R = <span class="ans">2 Ω</span></span></div>
-        <div class="step"><span class="num">2</span><span class="txt">I = V/R = 12/2 = <span class="ans">6 A</span></span></div>
+
+    <details class="lesson"><summary>4.1 — EMF and terminal voltage<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Electromotive force (emf) ε</strong> is the energy provided by the source (battery/cell) to each unit charge passing through the external <em>and</em> internal resistances. <strong>Terminal voltage V</strong> is the work done bringing unit charge from − to + terminal through the external resistance only. Both are in volts.</p>
+      <p>When current I flows there is an internal drop Ir, so:</p>
+      <div class="math">V = ε − Ir&nbsp;·&nbsp;V = IR&nbsp;·&nbsp;ε = I(R + r)&nbsp;&nbsp;(when no current, V = ε)</div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 1 (from slides)</span>
+        <p>Battery: ε = 9.0 V, r = 6.0 Ω. (a) Terminal V at I = 0.50 A? (b) Maximum current?</p>
+        <div class="step"><span class="num">1</span><span class="txt">(a) ε = V + Ir → 9.0 = V + (0.50)(6.0) → <span class="ans">V = 6.0 V</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(b) Max current at R = 0: 9.0 = I_max(0 + 6.0) → <span class="ans">I_max = 1.5 A</span></span></div>
+      </div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 2 (from slides)</span>
+        <p>R = 65.0 Ω across a battery ε = 12.0 V, r = 0.5 Ω. Find I, V_ab, and power in R and r.</p>
+        <div class="step"><span class="num">1</span><span class="txt">ε = I(R + r) → 12 = I(65.5) → <span class="ans">I = 0.183 A</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">V_ab = ε − Ir = 12 − 0.183(0.5) = <span class="ans">11.91 V</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">P_R = I²R = 0.183²(65) = <span class="ans">2.18 W</span>; P_r = I²r = 0.183²(0.5) = <span class="ans">0.017 W</span></span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>4.2 — Resistors in series and in parallel<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Series</strong> (same current I = I₁ = I₂ = I₃; voltages add V = V₁+V₂+V₃):</p>
+      <div class="math">R_eff = R₁ + R₂ + R₃</div>
+      <p><strong>Parallel</strong> (same voltage V = V₁ = V₂ = V₃; currents add I = I₁+I₂+I₃):</p>
+      <div class="math">1/R_eff = 1/R₁ + 1/R₂ + 1/R₃</div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 3 (from slides) — series + parallel</span>
+        <p>400 Ω in series with (500 Ω ∥ 700 Ω), across 12.0 V. Find total current and current in the 500-Ω resistor.</p>
+        <div class="step"><span class="num">1</span><span class="txt">R₁₂ (500∥700): 1/R₁₂ = 1/500 + 1/700 → R₁₂ = 291.67 Ω.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">R_eff = 291.67 + 400 = 691.67 Ω; I_T = 12/691.67 = <span class="ans">0.0173 A</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">V₁₂ = I_T·R₁₂ = 5.05 V; I₁ (500 Ω) = 5.05/500 = <span class="ans">0.0101 A</span></span></div>
+      </div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 4 (from slides)</span>
+        <p>(4.0 Ω + 12 Ω) in series, in parallel with 2.0 Ω, across 8.0 V (ignore internal r).</p>
+        <div class="step"><span class="num">1</span><span class="txt">R₁₂ = 4.0 + 12 = 16 Ω; 1/R_eff = 1/16 + 1/2 → <span class="ans">R_eff = 1.78 Ω</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">V₁₂ = 8.0 V; I through 12 Ω: I₂ = 8.0/16 = <span class="ans">0.50 A</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">V across 4.0 Ω: V₁ = I₁R₁ = 0.50(4.0) = <span class="ans">2.0 V</span></span></div>
+        <div class="step"><span class="num">4</span><span class="txt">Power: P = V²/R_eff = 8.0²/1.78 = <span class="ans">36.0 W</span></span></div>
+      </div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 5 (from slides) — network A–B</span>
+        <p>R₁ = R₂ = 5.0 Ω, R₃ = R₅ = 10 Ω, R₄ = 20 Ω. Find R_AB.</p>
+        <div class="step"><span class="num">1</span><span class="txt">R₁₂ = 5.0 + 5.0 = 10 Ω; R₁₂₃ (10∥10) = 5.0 Ω.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">R₁₂₃₄ = 5.0 + 20 = 25 Ω; R_eff (25∥10): 1/R = 1/25 + 1/10 → <span class="ans">R_eff = 7.14 Ω</span></span></div>
+      </div>
+      <div class="note"><strong>Exercise (slides):</strong> equivalent resistances of Figures 6, 7, 8 = <strong>0.80 Ω, 2.7 Ω, 8.0 Ω</strong>.</div>
+    </div></details>
+
+    <details class="lesson"><summary>4.3 — Kirchhoff's rules<span class="chev">▶</span></summary><div class="body">
+      <p><strong>First law (junction/current):</strong> ΣI_in = ΣI_out — charge is conserved at a junction.</p>
+      <p><strong>Second law (loop/voltage):</strong> Σε = ΣIR — round any closed loop the sum of emfs equals the sum of IR products.</p>
+      <div class="math">Sign convention — emf: + when loop goes − → +; IR: + when loop direction follows the current. A negative current means its real direction is opposite to that drawn.</div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 6 (from slides) — single loop</span>
+        <p>Loop: 15.0 V (4 Ω), 11.5 V (2 Ω), resistors 8.50 Ω, 6.22 Ω, 15.1 Ω. Find the current.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Σε = ΣIR → 15.0 + 11.5 = (15.1 + 6.22 + 2 + 8.50 + 4)I</span></div>
+        <div class="step"><span class="num">2</span><span class="txt"><span class="ans">I = 0.74 A</span> (anticlockwise)</span></div>
+      </div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 7 (from slides) — two loops</span>
+        <p>Branches: 12 V (3.9 Ω + 9.8 Ω, I₁), 1.2 Ω middle (I), 9.0 V (6.7 Ω, I₂).</p>
+        <div class="step"><span class="num">1</span><span class="txt">Junction: I₁ + I₂ = I. Loop 1: 13.7I₁ + 1.2I = 12. Loop 2: 6.7I₂ + 1.2I = 9.0.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Solve: <span class="ans">I₁ = 0.72 A, I₂ = 1.03 A, I = 1.75 A</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">(b) V across 6.7 Ω = I₂R = 1.03(6.7) = <span class="ans">6.90 V</span>; (c) P in 1.2 Ω = I²R = 1.75²(1.2) = <span class="ans">3.68 W</span></span></div>
+      </div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 8 (from slides) — three branches</span>
+        <p>30 Ω, 40 Ω; ε₁ = 80 V (r = 1 Ω), ε₂ = 45 V (r = 1 Ω), 20 Ω. Find I₁, I₂, I₃.</p>
+        <div class="step"><span class="num">1</span><span class="txt">I₁ + I₂ = I₃; Loop 1 (cw): 45 = 71I₁ + 41I₂; Loop 2 (ccw): 125 = 41I₁ + 62I₂.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Solve: <span class="ans">I₂ = 2.58 A, I₁ = −0.86 A, I₃ = 1.72 A</span> (I₁ negative ⇒ opposite to drawn).</span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>4.4 — RC circuits (resistor + capacitor)<span class="chev">▶</span></summary><div class="body">
+      <p>Closing the switch charges the capacitor: voltage rises, current falls. Around the loop ε = IR + Q/C.</p>
+      <p><strong>Charging:</strong></p>
+      <div class="math">Q = Q₀(1 − e^(−t/RC))&nbsp;·&nbsp;V = V₀(1 − e^(−t/RC))&nbsp;·&nbsp;I = I₀e^(−t/RC), I₀ = V₀/R</div>
+      <p><strong>Discharging:</strong></p>
+      <div class="math">Q = Q₀e^(−t/RC)&nbsp;·&nbsp;V = V₀e^(−t/RC)&nbsp;·&nbsp;I = −I₀e^(−t/RC), I₀ = Q₀/RC</div>
+      <p><strong>Time constant</strong> τ = RC (seconds): time to reach 63% of max charge when charging, or fall to 37% of initial value when discharging.</p>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 9 (from slides) — RC with emf</span>
+        <p>C = 0.30 µF, R = 20 kΩ, ε = 12 V.</p>
+        <div class="step"><span class="num">1</span><span class="txt">(a) τ = RC = 20000(0.3×10⁻⁶) = <span class="ans">0.006 s</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(b) Q₀ = CV = 12(0.3×10⁻⁶) = <span class="ans">3.6×10⁻⁶ C</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">(c) 99% charge: t = <span class="ans">0.0276 s</span></span></div>
+        <div class="step"><span class="num">4</span><span class="txt">(d) Q = ½Q₀ → ε = IR + Q/C → <span class="ans">I = 300 µA</span>; (e) I_max = ε/R = <span class="ans">600 µA</span></span></div>
+      </div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 10 (from slides) — discharging</span>
+        <p>ε = 20.0 V, C = 1.02 µF; current falls to 0.50 of initial in 40 µs.</p>
+        <div class="step"><span class="num">1</span><span class="txt">(a) Q₀ = CE = 1.02×10⁻⁶(20) = <span class="ans">20.4×10⁻⁶ C</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(b) 0.5 = e^(−40µ/(R·1.02µ)) → <span class="ans">R = 57 Ω</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">(c) Q at t = 60 µs = 20.4×10⁻⁶·e^(−60µ/(57·1.02µ)) = <span class="ans">7.3×10⁻⁶ C</span></span></div>
       </div>
     </div></details>
   </section>
