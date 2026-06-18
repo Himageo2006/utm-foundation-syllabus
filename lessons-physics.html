@@ -832,13 +832,108 @@
   </section>
 
   <section class="topic" id="c9"><div class="topic-head"><span class="n">9</span><h2>Lenses</h2></div>
-    <details class="lesson"><summary>Lens equation & magnification<span class="chev">▶</span></summary><div class="body">
-      <p>Convex (converging) and concave (diverging) lenses form images. <strong>Lens equation:</strong> 1/f = 1/v − 1/u. Magnification m = v/u. (Use a consistent sign convention from your slides.)</p>
-      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
-        <p>An object is 30 cm from a convex lens of focal length 10 cm. Find the image distance.</p>
-        <div class="step"><span class="num">1</span><span class="txt">1/f = 1/v + 1/u (real-is-positive form): 1/10 = 1/v + 1/30</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">1/v = 1/10 − 1/30 = 3/30 − 1/30 = 2/30</span></div>
-        <div class="step"><span class="num">3</span><span class="txt">v = <span class="ans">15 cm</span> (real image).</span></div>
+
+    <details class="lesson" open><summary>9-1 Thin Lenses<span class="chev">▶</span></summary><div class="body">
+      <p>A <strong>thin lens</strong> is a transparent material with two spherical refracting surfaces whose thickness is thin compared to the radii of curvature of the two refracting surfaces.</p>
+      <p>There are two types of thin lens: <strong>converging</strong> and <strong>diverging</strong>.</p>
+      <ul>
+        <li>Any lens that is <strong>thicker at its centre than at its edges</strong> is a <strong>converging</strong> lens.</li>
+        <li>Any lens that is <strong>thicker at its edges than at its centre</strong> is a <strong>diverging</strong> lens.</li>
+      </ul>
+      <p><strong>(a) Converging (convex) lenses</strong> — Biconvex (r₁ +ve, r₂ +ve), Plano-convex (r₁ +ve, r₂ ∞), Convex meniscus (r₁ +ve, r₂ −ve).</p>
+      <p><strong>(b) Diverging (concave) lenses</strong> — Biconcave (r₁ −ve, r₂ −ve), Plano-concave (r₁ −ve, r₂ ∞), Concave meniscus (r₁ +ve, r₂ −ve).</p>
+      <p class="note"><strong>Terms of thin lenses:</strong> <em>Centre of curvature</em> (C₁, C₂) — centre of the sphere of which the surface is a part. <em>Radius of curvature</em> (r₁, r₂) — radius of that sphere. <em>Principal (optical) axis</em> — the line joining the two centres of curvature. <em>Optical centre</em> (O) — the point at which any rays entering the lens pass without deviation.</p>
+      <p><strong>Focus (F₁, F₂):</strong> for a converging lens it is the point on the principal axis where parallel rays converge after passing through the lens (its focus is <strong>real</strong>); for a diverging lens it is the point from which parallel rays seem to diverge after passing through the lens (its focus is <strong>virtual</strong>).</p>
+      <p><strong>Focal length (f):</strong> the distance between the focus F and the optical centre O of the lens.</p>
+    </div></details>
+
+    <details class="lesson"><summary>9-1-1 Ray Tracing<span class="chev">▶</span></summary><div class="body">
+      <p>The three principal rays used to locate an image:</p>
+      <div class="step"><span class="num">1</span><span class="txt"><strong>Ray 1</strong> — a ray parallel to the axis emerges passing through the second focal point F₂ of a converging lens, or appears to come from F₂ of a diverging lens.</span></div>
+      <div class="step"><span class="num">2</span><span class="txt"><strong>Ray 2</strong> — a ray through the centre of the lens is not appreciably deviated (emerges along essentially the same line).</span></div>
+      <div class="step"><span class="num">3</span><span class="txt"><strong>Ray 3</strong> — a ray through (or proceeding toward) the first focal point F₁ emerges parallel to the axis.</span></div>
+      <p>The intersection of these rays (at least any two) determines the position and size of the image.</p>
+      <p class="note"><strong>Diverging (concave) lens</strong> — image is always: virtual, upright, diminished, and formed in front of the lens, for an object at any position.</p>
+      <p><strong>Image produced by a convex lens:</strong></p>
+      <ul>
+        <li>d₀ &gt; 2f → real, inverted, smaller than object</li>
+        <li>d₀ = 2f → real, inverted, same size as object</li>
+        <li>2f &gt; d₀ &gt; f → real, inverted, bigger than object</li>
+        <li>d₀ = f → real, inverted, bigger, image at infinity</li>
+        <li>d₀ &lt; f → virtual, upright, bigger than object</li>
+      </ul>
+      <p><strong>Image produced by a concave lens:</strong> any object position → virtual, upright, smaller than object.</p>
+    </div></details>
+
+    <details class="lesson"><summary>9-1-2 Thin Lens Equation & Magnification<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Thin lens equation:</strong> 1/d₀ + 1/dᵢ = 1/f. &nbsp; <strong>Magnification:</strong> m = hᵢ/h₀ = −dᵢ/d₀. &nbsp; <strong>Power:</strong> P = 1/f, measured in dioptres (1 D = 1 m⁻¹), positive if converging, negative if diverging.</p>
+      <p class="note"><strong>Sign conventions:</strong> object location u — +ve in front of lens; image location v — +ve behind lens (real), −ve in front (virtual); image height hᵢ — +ve upright, −ve inverted; focal length f — +ve converging, −ve diverging.</p>
+
+      <div class="ex"><span class="tag">EXAMPLE 1 — image formed by converging lens</span>
+        <p>What are (a) the position and (b) the size of the image of a 7.6-cm-high leaf placed 1.00 m from a +50.0-mm-focal-length camera lens?</p>
+        <div class="step"><span class="num">1</span><span class="txt">1/f = 1/d₀ + 1/dᵢ → 1/0.05 = 1/1.0 + 1/dᵢ → dᵢ = <span class="ans">0.05 m</span> (behind the lens, real image).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">m = −dᵢ/d₀ = hᵢ/h₀ → −0.05/1.0 = hᵢ/0.076 → hᵢ = <span class="ans">−3.8×10⁻³ m</span>.</span></div>
+      </div>
+
+      <div class="ex"><span class="tag">EXAMPLE 2 — object close to converging lens</span>
+        <p>An object is placed 10 cm from a 15-cm-focal-length converging lens. Determine the image position and size.</p>
+        <div class="step"><span class="num">1</span><span class="txt">d₀ = 0.1 m, f = 0.15 m. 1/dᵢ = 1/f − 1/d₀ = 1/0.15 − 1/0.1 → dᵢ = <span class="ans">−0.3 m</span> (virtual, in front of lens).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">m = −dᵢ/d₀ = 0.3/0.1 = <span class="ans">+3</span> → upright, magnified.</span></div>
+      </div>
+
+      <div class="ex"><span class="tag">EXAMPLE 3 — diverging lens</span>
+        <p>Where must a small insect be placed if a 25-cm-focal-length diverging lens is to form a virtual image 20 cm from the lens, on the same side as the object?</p>
+        <div class="step"><span class="num">1</span><span class="txt">f = −0.25 m, dᵢ = −0.2 m. 1/d₀ = 1/f − 1/dᵢ = 1/(−0.25) − 1/(−0.2).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">d₀ = <span class="ans">1 m (100 cm)</span>.</span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>9-2 Combinations of Lenses<span class="chev">▶</span></summary><div class="body">
+      <p>Many instruments (microscopes, telescopes) use two converging lenses. The 1st lens (closest to the object) is the <strong>objective</strong>; the 2nd (closest to the eye) is the <strong>eyepiece/ocular</strong>. The image formed by the 1st lens is the object for the 2nd lens, and the final image is the image formed by the 2nd lens.</p>
+      <p>Apply the thin lens formula to each lens separately. The overall magnification is the product of the separate magnifications: <strong>m = m₁ × m₂</strong>.</p>
+
+      <div class="ex"><span class="tag">EXAMPLE 4 — compound microscope</span>
+        <p>Objective and eyepiece are converging lenses with f₁ = 15.0 mm and f₂ = 25.5 mm, separated by d = 61.0 mm. A sample is placed 24.1 mm in front of the objective. Find (i) the final image position, (ii) the overall magnification, and (iii) the image characteristics.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Objective: 1/15.0 = 1/24.1 + 1/dᵢ₁ → dᵢ₁ = <span class="ans">+39.7 mm</span> (real).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Object for eyepiece: d₀₂ = d − dᵢ₁ = 61.0 − 39.7 = 21.3 mm.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Eyepiece: 1/25.5 = 1/21.3 + 1/dᵢ₂ → dᵢ₂ = <span class="ans">−129 mm</span> (in front of the 2nd lens).</span></div>
+        <div class="step"><span class="num">4</span><span class="txt">m = |39.7/24.1| × |−129/21.3| = <span class="ans">9.98</span>.</span></div>
+        <div class="step"><span class="num">5</span><span class="txt">Final image: virtual, inverted, magnified, formed in front of the 1st and 2nd lenses.</span></div>
+      </div>
+
+      <div class="ex"><span class="tag">EXAMPLE 5 — a two-lens system</span>
+        <p>Two converging lenses A and B, f_A = 20.0 cm and f_B = 25.0 cm, are 80.0 cm apart. An object is placed 60.0 cm in front of the first lens. Find (a) the final image position and (b) the magnification.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Lens A: 1/20 = 1/60 + 1/dᵢ → dᵢ = <span class="ans">30 cm</span> (real); m₁ = −30/60 = −0.5 (inverted, diminished).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Object for B: d₀ = 80 − 30 = 50 cm. 1/25 = 1/50 + 1/dᵢ → dᵢ = <span class="ans">50 cm</span>; m₂ = −50/50 = −1.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">m = m₁ × m₂ = (−0.5)(−1) = <span class="ans">0.5</span> → diminished, upright, real image.</span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>9-3 Lensmaker's Equation<span class="chev">▶</span></summary><div class="body">
+      <p>Relates the radii of curvature and the refractive index to the focal length. In air:</p>
+      <p class="math">1/f = (n − 1)(1/r₁ + 1/r₂)</p>
+      <p>In a surrounding medium (general form):</p>
+      <p class="math">1/f = (n_lens/n_medium − 1)(1/r₁ + 1/r₂)</p>
+
+      <div class="ex"><span class="tag">EXAMPLE 6 — biconvex camera lens</span>
+        <p>A person of height 1.75 m stands 2.50 m in front of a camera with a thin biconvex lens, radii of curvature 7.69 mm, crown glass n = 1.52. Find (a) f, (c) the image position and height, (d) characteristics.</p>
+        <div class="step"><span class="num">1</span><span class="txt">r₁ = r₂ = +7.69×10⁻³ m. 1/f = (1.52−1)(1/7.69×10⁻³ + 1/7.69×10⁻³) → f = <span class="ans">+7.39×10⁻³ m</span>.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">1/7.39×10⁻³ = 1/2.50 + 1/dᵢ → dᵢ = <span class="ans">7.41×10⁻³ m</span> (at the back of the lens).</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">m = hᵢ/h₀ = |dᵢ/d₀|: hᵢ/1.75 = |7.41×10⁻³/2.50| → hᵢ = <span class="ans">5.19×10⁻³ m (5.19 mm)</span>.</span></div>
+        <div class="step"><span class="num">4</span><span class="txt">Image: real, inverted, diminished, formed at the back of the lens.</span></div>
+      </div>
+
+      <div class="ex"><span class="tag">EXAMPLE 7 — plano-convex lens</span>
+        <p>A thin plano-convex lens of glass n = 1.66. When an object is set 10 cm from the lens, a virtual image ten times its size is formed. Find (a) f and (b) the radius of curvature of the convex surface.</p>
+        <div class="step"><span class="num">1</span><span class="txt">m = |dᵢ/d₀| = 10 → dᵢ = 10d₀; virtual → dᵢ = −10d₀ = −100 cm.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">1/f = 1/10 + 1/(−100) → f = <span class="ans">+11.1 cm</span>.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Plano-convex → r₂ = ∞. 1/11.1 = (1.66−1)(1/r₁ + 1/∞) → r₁ = <span class="ans">+7.33 cm</span>.</span></div>
+      </div>
+
+      <div class="ex"><span class="tag">EXAMPLE 8 — concave meniscus, air vs water</span>
+        <p>A thin concave meniscus lens, material n = 3/2, faces of radii 20 cm and 10 cm. Find f (a) in air, (b) immersed in water n = 4/3. Here r₁ = +20 cm, r₂ = −10 cm.</p>
+        <div class="step"><span class="num">1</span><span class="txt">In air: 1/f = (3/2 − 1)(1/+20 + 1/−10) → f = <span class="ans">−40 cm</span>.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">In water: 1/f = (n₂/n₁ − 1)(1/r₁ + 1/r₂) = ((3/2)/(4/3) − 1)(1/+20 + 1/−10) → f = <span class="ans">−160 cm</span>.</span></div>
       </div>
     </div></details>
   </section>
