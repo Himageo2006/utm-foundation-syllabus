@@ -1192,12 +1192,51 @@
   </section>
 
   <section class="topic" id="c13"><div class="topic-head"><span class="n">13</span><h2>Nuclear Reactions</h2></div>
-    <details class="lesson"><summary>Fission & fusion<span class="chev">▶</span></summary><div class="body">
-      <p><strong>Fission:</strong> a heavy nucleus splits into smaller ones, releasing energy (nuclear reactors). <strong>Fusion:</strong> light nuclei join (the Sun). Both release energy because the products have slightly less mass — that lost mass becomes energy via E = mc².</p>
-      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
-        <p>A reaction loses a mass of 3×10⁻²⁸ kg. How much energy is released?</p>
-        <div class="step"><span class="num">1</span><span class="txt">E = mc² = (3×10⁻²⁸)(3×10⁸)²</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">= (3×10⁻²⁸)(9×10¹⁶) = <span class="ans">2.7×10⁻¹¹ J</span></span></div>
+
+    <details class="lesson"><summary>13-1 Nuclear Reactions & Transmutation<span class="chev">▶</span></summary><div class="body">
+      <p>A <strong>nuclear reaction</strong> occurs when a nucleus is struck by another nucleus or particle. If the original nucleus is transformed into another, it is called <strong>transmutation</strong> — e.g. ⁴₂He + ¹⁴₇N → ¹⁷₈O + ¹₁H. Energy and momentum are conserved; ΣZ and ΣA are conserved.</p>
+      <p>For a generic reaction a + X → Y + b, the <strong>reaction energy Q</strong> (released as kinetic energy of products + any gamma photon):</p>
+      <p class="math">Q = (Δm)c², &nbsp; Δm = mᵢ − m_f = (M_a + M_X) − (M_b + M_Y)</p>
+      <p class="note">Q (or Δm) positive → <strong>exothermic (exoergic)</strong>, energy released. Negative → <strong>endothermic (endoergic)</strong>, energy must be absorbed. Also Q = (K_b + K_Y) − (K_a + K_X). 1 u = 931.5 MeV/c² = 1.66×10⁻²⁷ kg; neutrons are effective (no charge → not repelled).</p>
+
+      <div class="ex"><span class="tag">EXAMPLE 1 — polonium alpha decay</span>
+        <p>²¹²₈₄Po → ²⁰⁸₈₂Pb + ⁴₂He + Q. (m_Po = 211.98885 u, m_Pb = 207.97664 u, m_α = 4.0026 u.) Find (a) Q in MeV, (b) the gamma wavelength.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Δm = 211.98885 − (207.97664 + 4.0026) = 9.61×10⁻³ u → Q = 9.61×10⁻³ × 931.5 = <span class="ans">8.95 MeV</span> (≈8.98 via kg method).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Q = 1.436×10⁻¹² J; λ = hc/Q = (6.63×10⁻³⁴)(3×10⁸)/(1.436×10⁻¹²) = <span class="ans">1.39×10⁻¹³ m</span>.</span></div>
+      </div>
+
+      <div class="ex"><span class="tag">EXAMPLE 2 — slow neutron reaction</span>
+        <p>n + ¹⁰₅B → ⁷₃Li + ⁴₂He. With K_n ≈ 0, the He (4.0026 u) moves at 9.30×10⁶ m/s. Find (a) the Li (7.0160 u) kinetic energy, (b) Q.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Momentum conservation: 0 = m_Li v_Li + m_He v_He → v_Li = −5.323×10⁶ m/s. K_Li = ½m_Li v_Li² = 1.64×10⁻¹³ J = <span class="ans">1.025 MeV</span>.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">K_He = ½m_He v_He² = 1.7958 MeV; Q = (K_Li + K_He) − 0 = 1.03 + 1.8 = <span class="ans">2.83 MeV</span>.</span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>13-2 Nuclear Fission & Reactors<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Nuclear fission:</strong> a heavy nucleus splits into two lighter nuclei of nearly equal mass, emitting neutrons and energy. It releases far more energy than a chemical reaction, because the products' binding energy per nucleon exceeds the parent's. Types: <strong>spontaneous</strong> (rare) and <strong>induced</strong> (bombarding with slow/thermal neutrons, ~10⁻² eV).</p>
+      <p>The emitted neutrons can induce further fission — a <strong>chain reaction</strong>. A reactor keeps it self-sustaining but controlled: a <strong>moderator</strong> (heavy water, graphite) slows neutrons; natural uranium (0.7% fissionable) is usually <strong>enriched</strong> to 2–3%. Below the <strong>critical mass</strong> too many neutrons escape and the chain stops. An atomic bomb is a deliberate uncontrolled chain reaction.</p>
+
+      <div class="ex"><span class="tag">EXAMPLE 4 — energy from 20 kg of U-235</span>
+        <p>²³⁵₉₂U + n → ⁸⁹₃₆Kr + ¹⁴⁴₅₆Ba + 3n + Q. (m_U = 235.04393, m_n = 1.00867, m_Kr = 88.91756, m_Ba = 143.92273 u.)</p>
+        <div class="step"><span class="num">1</span><span class="txt">Δm = (235.04393 + 1.00867) − (88.91756 + 143.92273 + 3×1.00867) = <span class="ans">0.1863 u</span>.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Q per nucleus = 0.1863 × 931.5 = <span class="ans">174 MeV</span>.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Nuclei in 20 kg = (20/235×10⁻³)·6.02×10²³ = 5.12×10²⁵; total = 5.12×10²⁵ × 174 = <span class="ans">8.91×10²⁷ MeV</span>.</span></div>
+      </div>
+    </div></details>
+
+    <details class="lesson"><summary>13-3 Nuclear Fusion<span class="chev">▶</span></summary><div class="body">
+      <p><strong>Nuclear fusion:</strong> two light nuclei fuse into a heavier nucleus, releasing large energy (thermonuclear energy). Because both nuclei are positive, very high kinetic energies (temperatures ~10⁸ K) are needed to overcome Coulomb repulsion; reactants form a plasma. Fusion occurs in fusion bombs and stellar cores (the Sun fuses H → He: net 4¹₁H → ⁴₂He + 2e⁺ + 2ν + 2γ).</p>
+      <p class="note"><strong>Fission vs fusion:</strong> fission splits a heavy nucleus, occurs at controllable temperature, easier to sustain; fusion combines light nuclei, needs ~10⁸ K, hard to sustain. Both produce energy. On the binding-energy-per-nucleon curve, the rising part (low A) favours fusion, the falling part (high A) favours fission; ⁵⁶Fe is the most stable.</p>
+
+      <div class="ex"><span class="tag">EXAMPLE 5 — D-D fusion energy</span>
+        <p>²₁H + ²₁H → ³₁H + ¹₁H. (m_D = 2.014102, m_T = 3.016049, m_p = 1.007825 u.) Find (a) Q, (b) energy from 1.0 kg deuterium.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Δm = (2.014102 + 2.014102) − (3.016049 + 1.007825) = 4.33×10⁻³ u → Q = 4.33×10⁻³ × 931.5 = <span class="ans">4.03 MeV</span>.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">2 deuterium = 4×10⁻³ kg → 6.02×10²³ nuclei; 1.0 kg → 1.505×10²⁶ nuclei. Energy = 1.505×10²⁶ × 4.03 = <span class="ans">6.07×10²⁶ MeV</span>.</span></div>
+      </div>
+
+      <div class="ex"><span class="tag">EXAMPLE 6 — estimating fusion energy</span>
+        <p>²₁H + ²₁H → ⁴₂He. (m_D = 2.014 u, m_He = 4.0026 u.)</p>
+        <div class="step"><span class="num">1</span><span class="txt">Δm = 2.014 + 2.014 − 4.0026 = 0.0254 u → Q = 0.0254 × 931.5 = <span class="ans">≈ 23.66 MeV</span>.</span></div>
       </div>
     </div></details>
     <div class="tip" style="margin-top:1.4rem">✏️ Practise with the real <a href="subject.html?s=physics" style="color:var(--c);font-weight:700">Physics II past papers</a>, and ask the AI Tutor to explain any question step by step.</div>
