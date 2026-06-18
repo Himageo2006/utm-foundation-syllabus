@@ -594,15 +594,331 @@ int main() {
   </section>
 
   <section class="topic" id="t4"><div class="topic-head"><span class="n">4</span><h2>Elementary Programming</h2></div>
-    <details class="lesson"><summary>Variables, data types & operators<span class="chev">▶</span></summary><div class="body">
-      <p>A <strong>variable</strong> stores a value. Each has a <strong>type</strong>:</p>
-      <ul><li><code>int</code> — whole numbers</li><li><code>float</code> / <code>double</code> — decimals</li><li><code>char</code> — a single character</li></ul>
-      <pre>int age = 19;
-float price = 4.50;
-char grade = 'A';
-int total = age + 1;   // arithmetic</pre>
-      <div class="tip">Operators: + − * / and % (remainder). Watch out: <code>int</code>/<code>int</code> drops the decimal (7/2 = 3, not 3.5).</div>
-    </div></details>
+
+    <details class="lesson"><summary>4·1 What Is a Program Made Of?<span class="chev">▶</span></summary><div class="body">
+      <p>Common elements in programming languages:</p>
+      <ul>
+        <li><strong>Key Words</strong></li>
+        <li><strong>Programmer-Defined Identifiers</strong></li>
+        <li><strong>Operators</strong></li>
+        <li><strong>Punctuation</strong></li>
+        <li><strong>Syntax</strong></li>
+      </ul>
+      <p>We will trace these elements through this example program:</p>
+      <pre>#include &lt;iostream&gt;
+using namespace std;
+int main()
+{
+    double num1 = 5, num2, sum;
+    num2 = 12;
+    sum = num1 + num2;
+    cout &lt;&lt; "The sum is " &lt;&lt; sum;
+    return 0;
+}</pre>
+    </details></div>
+
+    <details class="lesson"><summary>4·2 Key Words, Operators &amp; Punctuation<span class="chev">▶</span></summary><div class="body">
+      <h4>Key Words</h4>
+      <ul>
+        <li>Also known as <strong>reserved words</strong>.</li>
+        <li>Have a special meaning in C++; cannot be used for another purpose.</li>
+        <li>Written using lowercase letters.</li>
+        <li>Examples: <code>using namespace std;</code> and <code>int main()</code>.</li>
+      </ul>
+      <h4>Operators</h4>
+      <ul>
+        <li>Used to perform operations on data. Many types:
+          <ul>
+            <li>Arithmetic: <code>+</code>, <code>−</code>, <code>*</code>, <code>/</code></li>
+            <li>Assignment: <code>=</code></li>
+          </ul>
+        </li>
+        <li>Examples: <code>num2 = 12;</code> and <code>sum = num1 + num2;</code></li>
+      </ul>
+      <h4>Punctuation</h4>
+      <ul>
+        <li>Characters that mark the end of a statement, or separate items in a list — e.g. the comma in <code>double num1 = 5, num2, sum;</code> and the semicolon ending <code>num2 = 12;</code></li>
+      </ul>
+    </details></div>
+
+    <details class="lesson"><summary>4·3 The #include Directive &amp; Comments<span class="chev">▶</span></summary><div class="body">
+      <h4>The #include directive</h4>
+      <ul>
+        <li>Inserts the contents of another file into the program.</li>
+        <li>Is a <strong>preprocessor directive</strong> — not part of the C++ language and not seen by the compiler.</li>
+        <li>Example: <code>#include &lt;iostream&gt;</code> — <strong>no semicolon</strong> goes here.</li>
+      </ul>
+      <h4>Comments</h4>
+      <ul>
+        <li>Used to document parts of a program, written for persons reading the source code — to indicate the program's purpose, describe variables, and explain complex sections. Comments are <strong>ignored by the compiler</strong>.</li>
+        <li><strong>Single-line comments</strong> begin with <code>//</code> through to the end of the line:
+          <pre>int length = 12; // length in inches
+int width  = 15; // width in inches
+int area;        // calculated area
+area = length * width;  // Calculate rectangle area</pre>
+        </li>
+        <li><strong>Multi-line comments</strong> begin with <code>/*</code> and end with <code>*/</code>, can span multiple lines, and can also be used as single-line comments:
+          <pre>/*----------------------------
+Here's a multi-line comment
+----------------------------*/
+int area; /* Calculated area */</pre>
+        </li>
+      </ul>
+    </details></div>
+
+    <details class="lesson"><summary>4·4 The Parts of a C++ Program &amp; Special Characters<span class="chev">▶</span></summary><div class="body">
+      <div class="ex"><span class="tag">PARTS OF A C++ PROGRAM</span>
+        <div class="step"><span class="num">//</span><span class="txt"><code>//Sample C++ program</code> — comment</span></div>
+        <div class="step"><span class="num">#</span><span class="txt"><code>#include &lt;iostream&gt;</code> — preprocessor directive</span></div>
+        <div class="step"><span class="num">ns</span><span class="txt"><code>using namespace std;</code> — which namespace to use</span></div>
+        <div class="step"><span class="num">fn</span><span class="txt"><code>int main()</code> — beginning of function named main</span></div>
+        <div class="step"><span class="num">{</span><span class="txt"><code>{</code> — beginning of block for main</span></div>
+        <div class="step"><span class="num">out</span><span class="txt"><code>cout &lt;&lt; "Hello, there!";</code> — output statement</span></div>
+        <div class="step"><span class="num">ret</span><span class="txt"><code>return 0;</code> — send 0 back to the operating system</span></div>
+        <div class="step"><span class="num">}</span><span class="txt"><code>}</code> — end of block for main</span></div>
+      </div>
+      <div class="ex"><span class="tag">SPECIAL CHARACTERS</span>
+        <div class="step"><span class="num">//</span><span class="txt">Double slash — begins a comment</span></div>
+        <div class="step"><span class="num">#</span><span class="txt">Pound sign — begins a preprocessor directive</span></div>
+        <div class="step"><span class="num">&lt; &gt;</span><span class="txt">Brackets — enclose filename in #include directive</span></div>
+        <div class="step"><span class="num">( )</span><span class="txt">Parentheses — used when naming a function</span></div>
+        <div class="step"><span class="num">{ }</span><span class="txt">Braces — enclose a group of statements</span></div>
+        <div class="step"><span class="num">" "</span><span class="txt">Quote marks — enclose a string of characters</span></div>
+        <div class="step"><span class="num">;</span><span class="txt">Semicolon — ends a programming statement</span></div>
+      </div>
+      <div class="note"><strong>Important details:</strong> C++ is <strong>case-sensitive</strong> — 'Main' is not the same as 'main'. Every <code>{</code> must have a corresponding <code>}</code>, and vice-versa.</div>
+    </details></div>
+
+    <details class="lesson"><summary>4·5 Variables<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>A <strong>variable</strong> is a named location in computer memory (in RAM). It holds a piece of data and must be <strong>defined</strong> before it can be used. Example: <code>double num1;</code></li>
+        <li>A variable has a <strong>name</strong> and a <strong>type</strong> of data it can hold (e.g. <code>char letter;</code> — <code>char</code> is the data type, <code>letter</code> is the variable name). The value stored can be changed (it can "vary").</li>
+        <li>If a new value is stored, it replaces the previous value, which is overwritten and can no longer be retrieved:
+          <pre>int age;
+age = 17;     // age is 17
+cout &lt;&lt; age;  // Displays 17
+age = 18;     // Now age is 18
+cout &lt;&lt; age;  // Displays 18</pre>
+        </li>
+      </ul>
+    </details></div>
+
+    <details class="lesson"><summary>4·6 Identifiers — Naming Rules<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>Identifiers are programmer-chosen names to represent parts of the program, such as variables.</li>
+        <li>The name should indicate the use of the identifier.</li>
+        <li>Cannot use C++ key words as identifiers.</li>
+        <li>Must begin with an alphabetic character or <code>_</code>, followed by alphabetic, numeric, or <code>_</code> characters. Alpha may be uppercase or lowercase.</li>
+      </ul>
+      <div class="ex"><span class="tag">VALID &amp; INVALID IDENTIFIERS</span>
+        <div class="step"><span class="num">✓</span><span class="txt"><code>totalSales</code> — valid</span></div>
+        <div class="step"><span class="num">✓</span><span class="txt"><code>total_Sales</code> — valid (underscore allowed)</span></div>
+        <div class="step"><span class="num">✗</span><span class="txt"><code>total.Sales</code> — invalid (a period is not allowed)</span></div>
+        <div class="step"><span class="num">✗</span><span class="txt"><code>4thQtrSales</code> — invalid (cannot begin with a digit)</span></div>
+        <div class="step"><span class="num">✗</span><span class="txt"><code>totalSale$</code> — invalid ($ is not allowed)</span></div>
+      </div>
+    </details></div>
+
+    <details class="lesson"><summary>4·7 Lines vs Statements &amp; Literals<span class="chev">▶</span></summary><div class="body">
+      <h4>Lines vs Statements</h4>
+      <ul>
+        <li>A <strong>line</strong> is all of the characters entered before a carriage return. Blank lines improve readability.</li>
+        <li>A <strong>statement</strong> is an instruction to the computer to perform an action. It may contain keywords, operators, identifiers, and punctuation, and may fit on one line or occupy multiple lines. Example of one statement on two lines: <code>double num1 = 5,</code> then <code>num2, sum;</code></li>
+      </ul>
+      <h4>Literals</h4>
+      <ul>
+        <li>A <strong>literal</strong> is a value written into a program's code — e.g. <code>"hello, there"</code> (string literal), <code>12</code> (integer literal).</li>
+        <li>In <code>apples = 20; cout &lt;&lt; "Today we sold " &lt;&lt; apples ...</code>, <code>20</code> is an integer literal and <code>"Today we sold "</code> is a string literal.</li>
+      </ul>
+    </details></div>
+
+    <details class="lesson"><summary>4·8 Number Systems &amp; Integer Data Types<span class="chev">▶</span></summary><div class="body">
+      <p>Numbers can be represented in various ways; the representation depends on the <strong>BASE</strong>, written as Number<sub>base</sub>. The four most common:</p>
+      <ul>
+        <li><strong>Decimal (base 10)</strong> — digits 0–9. e.g. 126₁₀ (normally just 126)</li>
+        <li><strong>Binary (base 2)</strong> — digits 0,1. e.g. 1111110₂</li>
+        <li><strong>Octal (base 8)</strong> — digits 0–7. e.g. 176₈</li>
+        <li><strong>Hexadecimal (base 16)</strong> — digits 0–9, A–F. e.g. 7E₁₆</li>
+      </ul>
+      <h4>Integer data types</h4>
+      <ul>
+        <li>Designed to hold whole numbers; can be <strong>signed</strong> or <strong>unsigned</strong> (12, −6, +3).</li>
+        <li>Available in different sizes: <code>short</code>, <code>int</code>, <code>long</code> — with size of <code>short</code> ≤ <code>int</code> ≤ <code>long</code>.</li>
+      </ul>
+      <h4>Integral constants</h4>
+      <ul>
+        <li>To store an integer constant in a long memory location, put <code>L</code> at the end: <code>1234L</code>.</li>
+        <li>Constants beginning with <code>0</code> (zero) are octal (base 8): <code>075</code>.</li>
+        <li>Constants beginning with <code>0x</code> are hexadecimal (base 16): <code>0x75A</code>.</li>
+      </ul>
+      <div class="note">Variables of the same type can be defined in separate statements or in one statement (<code>int length, width;</code>); variables of different types must be defined in separate statements.</div>
+    </details></div>
+
+    <details class="lesson"><summary>4·9 Floating-Point, bool &amp; char Types<span class="chev">▶</span></summary><div class="body">
+      <h4>Floating-point data types</h4>
+      <ul>
+        <li>Designed to hold real numbers (12.45, −3.8), stored in a form similar to scientific notation; all are signed.</li>
+        <li>Three types: <code>float</code>, <code>double</code>, <code>long double</code> (size of <code>float</code> ≤ <code>double</code> ≤ <code>long double</code>).</li>
+        <li>Floating-point constants: fixed-point (31.4159, 0.0000625) or E-notation (3.14159E1, 6.25e-5). They are <code>double</code> by default; force <code>float</code> with <code>3.14159F</code> or <code>long double</code> with <code>0.0000625L</code>.</li>
+        <li>Assigning a floating-point value to an integer variable <strong>truncates</strong> (chops off) the fraction — it is not rounded: <code>int rainfall = 3.88;</code> displays <code>3</code>.</li>
+      </ul>
+      <h4>The bool type</h4>
+      <ul>
+        <li>Represents <code>true</code> or <code>false</code>; stored as short integers — <code>false</code> = 0, <code>true</code> = 1. e.g. <code>bool allDone = true;</code></li>
+      </ul>
+      <h4>The char type</h4>
+      <ul>
+        <li>Holds single characters or very small integers; usually 1 byte. A numeric code representing the character is stored: <code>char letter = 'C';</code> stores 67.</li>
+      </ul>
+      <div class="ex"><span class="tag">SUMMARY OF DATA TYPES</span>
+        <div class="step"><span class="num">char</span><span class="txt">1 byte — signed −128..127, unsigned 0..255</span></div>
+        <div class="step"><span class="num">short</span><span class="txt">2 bytes — signed −32768..32767, unsigned 0..65535</span></div>
+        <div class="step"><span class="num">int</span><span class="txt">4 bytes — signed −2,147,483,648..2,147,483,647</span></div>
+        <div class="step"><span class="num">long</span><span class="txt">4 bytes — same range as int</span></div>
+        <div class="step"><span class="num">bool</span><span class="txt">1 byte — true or false</span></div>
+        <div class="step"><span class="num">float</span><span class="txt">4 bytes — ±3.4e±38 (~7 digits)</span></div>
+        <div class="step"><span class="num">double</span><span class="txt">8 bytes — ±1.7e±308 (~15 digits)</span></div>
+        <div class="step"><span class="num">long double</span><span class="txt">8 bytes — ±1.7e±308 (~15 digits)</span></div>
+      </div>
+      <div class="tip">Bug check: <code>letter = "Z";</code> is wrong — a single character must use <strong>single</strong> quotes <code>'Z'</code>; double quotes make a string.</div>
+    </details></div>
+
+    <details class="lesson"><summary>4·10 Constants — Named, #define, const &amp; Strings<span class="chev">▶</span></summary><div class="body">
+      <h4>Named constants</h4>
+      <ul>
+        <li>A <strong>named constant</strong> (constant variable) is a variable whose content cannot be changed during execution — used to represent constant values with descriptive names, often in UPPERCASE:
+          <pre>const double TAX_RATE = 0.0675;
+const int NUM_STATES = 50;</pre>
+        </li>
+      </ul>
+      <h4>#define vs const</h4>
+      <ul>
+        <li><code>#define identifier value</code> — a preprocessor directive placed <em>before</em> <code>int main()</code>: <code>#define PI 3.14159</code>, <code>#define NEWLINE '\n'</code>.</li>
+        <li><code>const</code> declares a typed constant <em>inside</em> the program like a variable: <code>const double PI = 3.14159;</code></li>
+      </ul>
+      <h4>String constants</h4>
+      <ul>
+        <li>A series of characters in consecutive memory, stored with the <strong>null terminator</strong> <code>\0</code> at the end (e.g. <code>"Hello"</code> = H e l l o \0); comprised of the characters between the <code>""</code>.</li>
+        <li>A <strong>character constant</strong> is a single character in single quotes: <code>'C'</code>. A <strong>string constant</strong> is a sequence in double quotes: <code>"Hello, there!"</code>. A single character in double quotes (<code>"C"</code>) is a string, not a character.</li>
+        <li>The C++ <strong>string class</strong>: <code>#include &lt;string&gt;</code>, then define (<code>string name;</code>), assign (<code>name = "George";</code>), and display (<code>cout &lt;&lt; name;</code>).</li>
+      </ul>
+      <div class="note">The <code>sizeof</code> operator gives the size of any data type or variable: <code>sizeof(float)</code>, <code>sizeof(amount)</code>.</div>
+    </details></div>
+
+    <details class="lesson"><summary>4·11 Assignment, Initialization &amp; Scope<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li><strong>Initialization</strong> gives an initial value to a variable when it is created; you can initialize some or all variables in a definition: <code>int length = 12;</code>, <code>int width = 7, height = 5, area;</code></li>
+        <li><strong>Assignment</strong> gives a value to a previously created variable; a single variable name must appear on the <em>left</em> of <code>=</code>: <code>size = 5;</code> is legal, <code>5 = size;</code> is not.</li>
+        <li><strong>Scope</strong> is the part of the program where a variable may be used — a variable <strong>cannot be used before it is defined</strong>. So <code>cin &gt;&gt; a;</code> after <code>int a;</code> is legal, but using <code>b</code> before <code>int b;</code> is illegal.</li>
+      </ul>
+    </details></div>
+
+    <details class="lesson"><summary>4·12 Arithmetic Operators &amp; Expressions<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>Arithmetic operators perform numeric calculations. C++ has <strong>unary</strong> (1 operand, e.g. <code>-5</code>), <strong>binary</strong> (2 operands, e.g. <code>13 - 7</code>), and <strong>ternary</strong> (3 operands, <code>exp1 ? exp2 : exp3</code>) operators.</li>
+      </ul>
+      <div class="ex"><span class="tag">BINARY ARITHMETIC OPERATORS (ans = 7 ? 3)</span>
+        <div class="step"><span class="num">+</span><span class="txt">Addition — 7 + 3 = <span class="ans">10</span></span></div>
+        <div class="step"><span class="num">−</span><span class="txt">Subtraction — 7 − 3 = <span class="ans">4</span></span></div>
+        <div class="step"><span class="num">*</span><span class="txt">Multiplication — 7 * 3 = <span class="ans">21</span></span></div>
+        <div class="step"><span class="num">/</span><span class="txt">Division — 7 / 3 = <span class="ans">2</span> (integer)</span></div>
+        <div class="step"><span class="num">%</span><span class="txt">Modulus — 7 % 3 = <span class="ans">1</span> (remainder)</span></div>
+      </div>
+      <ul>
+        <li>The <code>/</code> operator does <strong>integer division</strong> if both operands are integers: <code>13 / 5</code> → 2, <code>2 / 4</code> → 0. If either operand is floating-point, the result is floating-point: <code>13 / 5.0</code> → 2.6, <code>2.0 / 4</code> → 0.5.</li>
+        <li>The <code>%</code> (modulus) operator computes the remainder of integer division: <code>9 % 2</code> → 1. It requires <strong>integers</strong> for both operands — <code>9 % 2.0</code> is an error.</li>
+      </ul>
+    </details></div>
+
+    <details class="lesson"><summary>4·13 Order of Operations &amp; Associativity<span class="chev">▶</span></summary><div class="body">
+      <p>In an expression with more than one operator, evaluation order is:</p>
+      <ol>
+        <li><code>( )</code> — parentheses</li>
+        <li><code>−</code> (unary negation), right to left</li>
+        <li><code>*</code> <code>/</code> <code>%</code>, left to right</li>
+        <li><code>+</code> <code>−</code>, left to right</li>
+      </ol>
+      <div class="ex"><span class="tag">EXAMPLES (Table 3-2)</span>
+        <div class="step"><span class="num">1</span><span class="txt">5 + 2 * 4 = <span class="ans">13</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">10 / 2 − 3 = <span class="ans">2</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">8 + 12 * 2 − 4 = <span class="ans">28</span></span></div>
+        <div class="step"><span class="num">4</span><span class="txt">4 + 17 % 2 − 1 = <span class="ans">4</span></span></div>
+        <div class="step"><span class="num">5</span><span class="txt">6 − 3 * 2 + 7 − 1 = <span class="ans">6</span></span></div>
+      </div>
+      <p>Parentheses override the order:</p>
+      <div class="ex"><span class="tag">GROUPING (Table 3-4)</span>
+        <div class="step"><span class="num">1</span><span class="txt">2 + 2 * 2 − 2 = 4; (2 + 2) * 2 − 2 = 6; 2 + 2 * (2 − 2) = 2; (2 + 2) * (2 − 2) = 0</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(5 + 2) * 4 = <span class="ans">28</span>; 10 / (5 − 3) = <span class="ans">5</span>; 8 + 12 * (6 − 2) = <span class="ans">56</span>; (6 − 3) * (2 + 7) / 3 = <span class="ans">9</span></span></div>
+      </div>
+    </details></div>
+
+    <details class="lesson"><summary>4·14 Type Conversion &amp; Type Casting<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>Operations are performed between operands of the <strong>same type</strong>. If they differ, C++ converts one to the type of the other — which can affect the result.</li>
+        <li><strong>Type conversion</strong> is automatic conversion of an operand: <strong>promotion</strong> = convert to a higher type; <strong>demotion</strong> = convert to a lower type.</li>
+        <li><strong>Hierarchy of types</strong> (highest → lowest, by largest number they can hold): <code>long double</code>, <code>double</code>, <code>float</code>, <code>unsigned long</code>, <code>long</code>, <code>unsigned int</code>, <code>int</code>.</li>
+      </ul>
+      <p><strong>Conversion rules:</strong></p>
+      <ol>
+        <li><code>char</code>, <code>short</code>, <code>unsigned short</code> are automatically promoted to <code>int</code> for arithmetic (<code>char c='A'; 6+c</code> → int).</li>
+        <li>When operating on different types, the lower is promoted to the higher (<code>int i=25; 6.1+i</code> → float).</li>
+        <li>With <code>=</code>, the right-hand expression is converted to the type of the variable on the left (<code>int x; x = y + z;</code> → int).</li>
+      </ol>
+      <p><strong>Overflow/underflow</strong> occurs when assigning a value too large (overflow) or too small (underflow); the value "wraps around" the set of possible values, and different systems may warn, stop, or continue with the incorrect value.</p>
+      <p><strong>Type casting</strong> is manual conversion — useful for floating-point division with ints (<code>static_cast&lt;double&gt;(y2-y1)/(x2-x1)</code>) or to see the int value of a char (<code>static_cast&lt;int&gt;(ch)</code>). C-style <code>(int)ch</code> and prestandard <code>int(ch)</code> are supported, but <code>static_cast</code> is preferred.</p>
+      <div class="note">Type-cast example: <code>perMonth = static_cast&lt;double&gt;(books) / months;</code> with 30 books / 7 months → 4.28571 (without the cast it would be integer division = 4).</div>
+    </details></div>
+
+    <details class="lesson"><summary>4·15 Algebraic Expressions in C++<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>Multiplication requires an operator: <em>Area = lw</em> → <code>Area = l * w;</code></li>
+        <li>There is no exponentiation operator: <em>Area = s²</em> → <code>Area = pow(s, 2);</code></li>
+        <li>Parentheses may be needed to keep the order of operations: <em>m = (y₂−y₁)/(x₂−x₁)</em> → <code>m = (y2-y1) / (x2-x1);</code></li>
+      </ul>
+      <div class="ex"><span class="tag">ALGEBRAIC → C++ (Table 3-5)</span>
+        <div class="step"><span class="num">6B</span><span class="txt">6 times B → <code>6 * B</code></span></div>
+        <div class="step"><span class="num">(3)(12)</span><span class="txt">3 times 12 → <code>3 * 12</code></span></div>
+        <div class="step"><span class="num">4xy</span><span class="txt">4 times x times y → <code>4 * x * y</code></span></div>
+      </div>
+    </details></div>
+
+    <details class="lesson"><summary>4·16 Increment/Decrement, Multiple &amp; Combined Assignment<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li><strong>Postfix</strong> (<code>x = a++;</code>): use the value of <code>a</code> <em>before</em> increment, then <code>a = a + 1</code>.</li>
+        <li><strong>Prefix</strong> (<code>x = ++a;</code>): increment <code>a</code> by 1 <em>first</em>, then use the value of <code>a</code>.</li>
+        <li><strong>Multiple assignment:</strong> <code>x = y = z = 5;</code> — the value of <code>=</code> is the value assigned, and it associates right to left: <code>x = (y = (z = 5));</code></li>
+        <li><strong>Combined assignment:</strong> <code>sum = sum + 1;</code> is equivalent to <code>sum += 1;</code></li>
+      </ul>
+      <div class="ex"><span class="tag">COMBINED ASSIGNMENT OPERATORS</span>
+        <div class="step"><span class="num">+=</span><span class="txt"><code>i += 3</code> → <code>i = i + 3</code>; <code>i += j+3</code> → <code>i = i + (j+3)</code></span></div>
+        <div class="step"><span class="num">−=</span><span class="txt"><code>i -= 3</code> → <code>i = i - 3</code></span></div>
+        <div class="step"><span class="num">*=</span><span class="txt"><code>i *= 3</code> → <code>i = i * 3</code></span></div>
+        <div class="step"><span class="num">/=</span><span class="txt"><code>i /= 3</code> → <code>i = i / 3</code></span></div>
+        <div class="step"><span class="num">%=</span><span class="txt"><code>i %= 3</code> → <code>i = i % 3</code></span></div>
+      </div>
+    </details></div>
+
+    <details class="lesson"><summary>4·17 Logical, Relational &amp; Boolean Expressions<span class="chev">▶</span></summary><div class="body">
+      <ul>
+        <li>Logical data uses the <code>bool</code> type with two values: <code>true</code> and <code>false</code>. Casting bool→int: <code>true</code> → 1, <code>false</code> → 0 (so <code>2 + true</code> → 3). Casting int→bool: zero → false, non-zero → true.</li>
+      </ul>
+      <div class="ex"><span class="tag">LOGICAL OPERATORS (x, y → result)</span>
+        <div class="step"><span class="num">!</span><span class="txt">NOT — !false = true, !true = false</span></div>
+        <div class="step"><span class="num">&amp;&amp;</span><span class="txt">AND — true only when both are true</span></div>
+        <div class="step"><span class="num">||</span><span class="txt">OR — true when at least one is true</span></div>
+      </div>
+      <p>Short-circuit: <code>false &amp;&amp; (anything)</code> → false; <code>true || (anything)</code> → true.</p>
+      <div class="ex"><span class="tag">RELATIONAL OPERATORS</span>
+        <div class="step"><span class="num">&lt;</span><span class="txt">less than</span></div>
+        <div class="step"><span class="num">&lt;=</span><span class="txt">less than or equal</span></div>
+        <div class="step"><span class="num">&gt;</span><span class="txt">greater than</span></div>
+        <div class="step"><span class="num">&gt;=</span><span class="txt">greater than or equal</span></div>
+        <div class="step"><span class="num">==</span><span class="txt">equal</span></div>
+        <div class="step"><span class="num">!=</span><span class="txt">not equal</span></div>
+      </div>
+      <p>A relational expression evaluates to 1 (true) or 0 (false): with <code>int a = 10</code>, <code>(a == 1)</code> prints 0, <code>(a &gt; 1)</code> prints 1. Beware <code>(a = 5)</code> — that is an <strong>assignment</strong>, not a comparison, and prints 5.</p>
+      <p><strong>Complements:</strong> <code>&lt;</code>↔<code>&gt;=</code>, <code>&gt;</code>↔<code>&lt;=</code>, <code>==</code>↔<code>!=</code>; or just put <code>!</code> in front: complement of <code>n==0</code> is <code>!(n==0)</code>.</p>
+    </details></div>
   </section>
 
   <section class="topic" id="t5"><div class="topic-head"><span class="n">5</span><h2>Input & Output</h2></div>
