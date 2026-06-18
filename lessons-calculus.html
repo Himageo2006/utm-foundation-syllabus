@@ -319,10 +319,12 @@
   <!-- TOPIC 2 -->
   <section class="topic" id="t2">
     <div class="topic-head"><span class="n">2</span><h2>Differentiation</h2></div>
-    <p>The <strong>derivative</strong> f′(x) measures the instantaneous rate of change — the slope of the tangent to the curve at each point.</p>
+    <p>The <strong>derivative</strong> f′(x) measures the <strong>instantaneous rate of change</strong> — the slope of the tangent to the curve at each point. Where Topic 1's limits told us where a function <em>heads</em>, the derivative tells us how <em>fast</em> it changes. Notation: f′(x), dy/dx, and y′ all mean the same thing.</p>
 
     <details class="lesson"><summary>Lesson 2.1 — Differentiation from First Principle<span class="chev">▶</span></summary><div class="body">
-      <p>The <strong>first principle</strong> (the definition of differentiation):</p>
+      <p>Before the shortcut rules, you should understand <em>where they come from</em>. The slope between two points on a curve, (x, f(x)) and (x+δx, f(x+δx)), is "rise over run":</p>
+      <div class="math">slope of chord = [f(x + δx) − f(x)] / δx</div>
+      <p>As the second point slides toward the first (δx → 0), that chord becomes the <strong>tangent</strong>, and its slope becomes the derivative. That limit <em>is</em> the definition — the <strong>first principle</strong>:</p>
       <div class="math">f′(x) = lim<sub>δx→0</sub> [f(x + δx) − f(x)] / δx, &nbsp; when the limit exists.</div>
       <h4>The 4-step procedure</h4>
       <ol>
@@ -331,85 +333,134 @@
         <li>Divide by δx and simplify: [f(x + δx) − f(x)] / δx.</li>
         <li>Take the limit as δx → 0.</li>
       </ol>
-      <div class="ex"><span class="tag">WORKED EXAMPLE — y = 2x²</span>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 1 — y = 2x²</span>
         <div class="step"><span class="num">1</span><span class="txt">f(x + δx) = 2(x + δx)² = 2x² + 4x·δx + 2(δx)²</span></div>
         <div class="step"><span class="num">2</span><span class="txt">f(x + δx) − f(x) = 4x·δx + 2(δx)²</span></div>
         <div class="step"><span class="num">3</span><span class="txt">÷ δx → 4x + 2δx</span></div>
-        <div class="step"><span class="num">4</span><span class="txt">lim<sub>δx→0</sub> (4x + 2δx) = <span class="ans">4x</span></span></div>
+        <div class="step"><span class="num">4</span><span class="txt">lim<sub>δx→0</sub> (4x + 2δx) = <span class="ans">4x</span> &nbsp;(the +2δx term vanishes as δx → 0)</span></div>
       </div>
-      <div class="note">Other results from first principle: y = 1/x → f′(x) = −1/x²; &nbsp; y = √(x+5) → f′(x) = 1/(2√(x+5)) (multiply by the conjugate); &nbsp; y = √(2x−1) → 1/√(2x−1).</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 2 — a root, y = √(2x − 1)</span>
+        <p>Roots need the <strong>conjugate trick</strong> at step 3 (so the δx cancels).</p>
+        <div class="step"><span class="num">1</span><span class="txt">f(x+δx) − f(x) = √(2(x+δx)−1) − √(2x−1).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Multiply top &amp; bottom by the conjugate √(2(x+δx)−1) + √(2x−1); the numerator becomes [2(x+δx)−1] − [2x−1] = 2δx.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">÷ δx → 2 / [√(2(x+δx)−1) + √(2x−1)].</span></div>
+        <div class="step"><span class="num">4</span><span class="txt">As δx → 0: 2 / [2√(2x−1)] = <span class="ans">1/√(2x−1)</span>.</span></div>
+      </div>
+      <div class="note">Other first-principle results: y = 1/x → f′(x) = −1/x²; &nbsp; y = √(x+5) → 1/(2√(x+5)).</div>
+      <div class="tip">⚠️ Common mistake: forgetting to expand (x+δx)² fully — you must get the cross term 2x·δx, or the δx won't cancel.</div>
     </div></details>
 
     <details class="lesson"><summary>Lesson 2.2 — Differentiating Simple Algebraic Functions<span class="chev">▶</span></summary><div class="body">
+      <p>Doing first principles every time would be exhausting. Instead we use rules that the first principle proves once and for all. The workhorse is the <strong>power rule</strong>: bring the power down to the front, then subtract 1 from the power.</p>
       <ul>
-        <li><strong>Constant:</strong> if y = c then dy/dx = 0.</li>
+        <li><strong>Constant:</strong> if y = c then dy/dx = 0 (a flat line has zero slope).</li>
         <li><strong>Power rule:</strong> if y = xⁿ then dy/dx = n·xⁿ⁻¹.</li>
-        <li>Basic table: d/dx(mx+c)=m, d/dx(xᵃ)=axᵃ⁻¹, d/dx(eˣ)=eˣ, d/dx(ln x)=1/x.</li>
-        <li>Rewrite roots/fractions as powers first: 1/xⁿ = x⁻ⁿ, √x = x^(1/2), ∛x = x^(1/3).</li>
+        <li><strong>Constant multiple &amp; sum:</strong> (cu)′ = c·u′ and (u ± v)′ = u′ ± v′ — so you can differentiate a polynomial <em>term by term</em>.</li>
+        <li>Basic table: d/dx(mx+c)=m, d/dx(eˣ)=eˣ, d/dx(ln x)=1/x.</li>
+        <li><strong>First rewrite</strong> roots/fractions as powers: 1/xⁿ = x⁻ⁿ, √x = x^(1/2), ∛x = x^(1/3).</li>
       </ul>
-      <div class="ex"><span class="tag">WORKED EXAMPLES</span>
-        <div class="step"><span class="num">1</span><span class="txt">y = x¹⁵ → <span class="ans">15x¹⁴</span></span></div>
-        <div class="step"><span class="num">2</span><span class="txt">y = 4x³ + 2x² + 3x → <span class="ans">12x² + 4x + 3</span></span></div>
-        <div class="step"><span class="num">3</span><span class="txt">y = 1/x⁵ − 2/x³ + x³/2 → −5/x⁶ + 6/x⁴ + 3x²/2</span></div>
-        <div class="step"><span class="num">4</span><span class="txt">y = 3√x + ∛x → 3/(2√x) + 1/(3∛(x²))</span></div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 1 — straight power rule</span>
+        <div class="step"><span class="num">1</span><span class="txt">y = x¹⁵ → bring down 15, subtract 1 from power → <span class="ans">15x¹⁴</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">y = 4x³ + 2x² + 3x → term by term → <span class="ans">12x² + 4x + 3</span></span></div>
       </div>
-      <div class="note"><strong>Differentiation of multiples &amp; sums:</strong> (cu)′ = c·u′; (u + v)′ = u′ + v′. e.g. y = 2tan x − 3cos x → 2sec²x + 3sin x.</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 2 — fractions (negative powers)</span>
+        <p>y = 1/x⁵ − 2/x³ + x³/2.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Rewrite: y = x⁻⁵ − 2x⁻³ + ½x³.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Power rule each term: −5x⁻⁶ + 6x⁻⁴ + (3/2)x².</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Back to fractions: <span class="ans">−5/x⁶ + 6/x⁴ + 3x²/2</span>.</span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 3 — roots (fractional powers)</span>
+        <p>y = 3√x + ∛x.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Rewrite: y = 3x^(1/2) + x^(1/3).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Power rule: (3·½)x^(−1/2) + (1/3)x^(−2/3).</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">= <span class="ans">3/(2√x) + 1/(3∛(x²))</span>.</span></div>
+      </div>
+      <div class="tip">⚠️ Two classic slips: (1) the derivative of a <em>constant</em> is 0, not the constant; (2) you must rewrite roots/fractions as powers <strong>before</strong> applying the power rule — you can't differentiate √x while it still looks like a root.</div>
     </div></details>
 
     <details class="lesson"><summary>Lesson 2.3 — The Chain Rule<span class="chev">▶</span></summary><div class="body">
-      <p>For a composite function y = f(g(x)), let u = g(x). Then:</p>
-      <div class="math">dy/dx = dy/du · du/dx</div>
-      <div class="ex"><span class="tag">WORKED EXAMPLES</span>
-        <div class="step"><span class="num">a</span><span class="txt">y = (x³+6x−3)²⁰: u = x³+6x−3 → <span class="ans">20(x³+6x−3)¹⁹(3x²+6)</span></span></div>
-        <div class="step"><span class="num">b</span><span class="txt">y = sin(2x−5) → <span class="ans">2cos(2x−5)</span></span></div>
-        <div class="step"><span class="num">c</span><span class="txt">y = e^(3x+1) → <span class="ans">3e^(3x+1)</span></span></div>
-        <div class="step"><span class="num">d</span><span class="txt">y = ln 3x → (1/3x)·3 = <span class="ans">1/x</span></span></div>
+      <p>The chain rule handles a <strong>function inside a function</strong> (a composite) — like (x³+6x−3)²⁰ or sin(2x−5). The idea: differentiate the <em>outside</em> function (leaving the inside alone), then multiply by the derivative of the <em>inside</em>. Formally, with u = g(x):</p>
+      <div class="math">dy/dx = dy/du · du/dx &nbsp; ("derivative of outside × derivative of inside")</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — y = (x³ + 6x − 3)²⁰, shown in full</span>
+        <div class="step"><span class="num">1</span><span class="txt">Inside: u = x³ + 6x − 3, so du/dx = 3x² + 6.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Outside: y = u²⁰, so dy/du = 20u¹⁹.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Multiply &amp; put u back: <span class="ans">20(x³+6x−3)¹⁹(3x²+6)</span>.</span></div>
       </div>
+      <div class="ex"><span class="tag">MORE EXAMPLES (outside × inside)</span>
+        <div class="step"><span class="num">b</span><span class="txt">y = sin(2x−5) → cos(2x−5)·2 = <span class="ans">2cos(2x−5)</span></span></div>
+        <div class="step"><span class="num">c</span><span class="txt">y = e^(3x+1) → e^(3x+1)·3 = <span class="ans">3e^(3x+1)</span></span></div>
+        <div class="step"><span class="num">d</span><span class="txt">y = ln 3x → (1/3x)·3 = <span class="ans">1/x</span></span></div>
+        <div class="step"><span class="num">e</span><span class="txt">y = √(4x²+1) = (4x²+1)^½ → ½(4x²+1)^(−½)·8x = <span class="ans">4x/√(4x²+1)</span></span></div>
+      </div>
+      <div class="tip">⚠️ The #1 chain-rule error is forgetting the "× derivative of inside." If the inside were just x (so du/dx = 1) you'd never notice — but the moment the inside is 2x−5 or x³, that extra factor is essential.</div>
     </div></details>
 
     <details class="lesson"><summary>Lesson 2.4 — Product &amp; Quotient Rules<span class="chev">▶</span></summary><div class="body">
+      <p>Use these when two functions are <strong>multiplied</strong> or <strong>divided</strong>. ⚠️ A very common error is to think (uv)′ = u′v′ — that is <em>wrong</em>. Each rule has its own pattern.</p>
       <h4>Product rule</h4>
+      <p>"First times derivative of second, plus second times derivative of first."</p>
       <div class="math">if y = uv, &nbsp; dy/dx = u·v′ + v·u′</div>
-      <div class="ex"><span class="tag">EXAMPLES</span>
-        <div class="step"><span class="num">a</span><span class="txt">y = x³cos x → −x³sin x + 3x²cos x</span></div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — y = x³cos x, in full</span>
+        <div class="step"><span class="num">1</span><span class="txt">u = x³ (u′ = 3x²); v = cos x (v′ = −sin x).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">u·v′ + v·u′ = x³(−sin x) + cos x(3x²).</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">= <span class="ans">−x³sin x + 3x²cos x</span>.</span></div>
+      </div>
+      <div class="ex"><span class="tag">MORE PRODUCT EXAMPLES</span>
         <div class="step"><span class="num">b</span><span class="txt">y = 5x sin x → 5x cos x + 5 sin x</span></div>
-        <div class="step"><span class="num">c</span><span class="txt">y = x²ln x → x + 2x ln x</span></div>
+        <div class="step"><span class="num">c</span><span class="txt">y = x²ln x → x²(1/x) + ln x(2x) = x + 2x ln x</span></div>
       </div>
       <h4>Quotient rule</h4>
+      <p>"Bottom times derivative of top, minus top times derivative of bottom, all over bottom squared." (Order matters — the minus sign means you can't swap the two terms.)</p>
       <div class="math">if y = u/v (v ≠ 0), &nbsp; dy/dx = (v·u′ − u·v′)/v²</div>
-      <div class="ex"><span class="tag">EXAMPLES</span>
-        <div class="step"><span class="num">a</span><span class="txt">y = 1/(1−sin x) → cos x/(1−sin x)²</span></div>
-        <div class="step"><span class="num">b</span><span class="txt">y = (2x+5)/(3x+2) → −11/(3x+2)²</span></div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — y = (2x+5)/(3x+2), in full</span>
+        <div class="step"><span class="num">1</span><span class="txt">u = 2x+5 (u′ = 2); v = 3x+2 (v′ = 3).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">(v·u′ − u·v′)/v² = [(3x+2)(2) − (2x+5)(3)] / (3x+2)².</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Top = (6x+4) − (6x+15) = −11 → <span class="ans">−11/(3x+2)²</span>.</span></div>
       </div>
-      <div class="note">Function-value example: given f(1)=−2, f′(1)=3, g(1)=5, g′(1)=−4 — for y=(x−2)f(x), dy/dx at x=1 = (1−2)(3)+(−2)(1) = −5; for y=f(x)/g(x), = [5(3)−(−2)(−4)]/5² = 7/25.</div>
+      <div class="ex"><span class="tag">MORE QUOTIENT EXAMPLES</span>
+        <div class="step"><span class="num">b</span><span class="txt">y = 1/(1−sin x) → [(1−sin x)(0) − 1(−cos x)]/(1−sin x)² = cos x/(1−sin x)²</span></div>
+      </div>
+      <div class="note">Function-value style: given f(1)=−2, f′(1)=3, g(1)=5, g′(1)=−4 — for y=(x−2)f(x), dy/dx at x=1 = (1−2)(3)+(−2)(1) = −5; for y=f(x)/g(x), = [5(3)−(−2)(−4)]/5² = 7/25.</div>
     </div></details>
 
     <details class="lesson"><summary>Lesson 2.5 — Higher-Order Derivatives<span class="chev">▶</span></summary><div class="body">
-      <p>Differentiate repeatedly: y′ (first), y″ = d²y/dx² (second), y‴, y⁽⁴⁾, … y⁽ⁿ⁾.</p>
-      <div class="ex"><span class="tag">EXAMPLE</span>
-        <p>f(x) = 4x⁴ − 2x³ + 3 — first five derivatives:</p>
-        <div class="step"><span class="num">1</span><span class="txt">f′ = 16x³ − 6x²; f″ = 48x² − 12x; f‴ = 96x − 12</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">f⁽⁴⁾ = 96; f⁽⁵⁾ = 0, so f⁽ⁿ⁾ = 0 for n ≥ 5.</span></div>
+      <p>You can differentiate a derivative. Doing it again gives the <strong>second derivative</strong> y″, again the third y‴, and so on. These matter later: y′ is the slope (rate of change), and y″ tells you <strong>concavity</strong> — whether the curve bends up (∪) or down (∩) — which is the key to max/min tests in Topic 3.</p>
+      <div class="math">y′ &nbsp;→&nbsp; y″ = d²y/dx² &nbsp;→&nbsp; y‴ &nbsp;→&nbsp; y⁽⁴⁾ &nbsp;→&nbsp; … y⁽ⁿ⁾</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — f(x) = 4x⁴ − 2x³ + 3</span>
+        <div class="step"><span class="num">1</span><span class="txt">f′ = 16x³ − 6x²</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">f″ = 48x² − 12x</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">f‴ = 96x − 12</span></div>
+        <div class="step"><span class="num">4</span><span class="txt">f⁽⁴⁾ = 96 (a constant); f⁽⁵⁾ = 0, so <span class="ans">f⁽ⁿ⁾ = 0 for all n ≥ 5</span>.</span></div>
       </div>
-      <div class="note">For y = x²/(x−2): dy/dx = (x²−4x)/(x−2)², and d²y/dx² = 8/(x−2)³.</div>
+      <div class="note">Each derivative of a degree-n polynomial drops the degree by 1, so it eventually hits 0. For non-polynomials it never stops: y = x²/(x−2) gives dy/dx = (x²−4x)/(x−2)², and d²y/dx² = 8/(x−2)³.</div>
     </div></details>
 
     <details class="lesson"><summary>Lesson 2.6 — Exponential &amp; Logarithmic Functions<span class="chev">▶</span></summary><div class="body">
+      <p>eˣ is special: it is its <em>own</em> derivative. Everything else here is that fact plus the chain rule. ln x and eˣ are inverses, which is why the log rule produces a 1/u.</p>
       <h4>Exponential</h4>
       <ul>
-        <li>if y = eᵘ, then dy/dx = eᵘ·(du/dx). e.g. y = e^(x²+1) → 2x·e^(x²+1).</li>
-        <li>if y = aᵘ, then dy/dx = aᵘ·ln a·(du/dx). e.g. y = 10^(2x−5) → 2·10^(2x−5)·ln 10.</li>
+        <li>if y = eᵘ, then dy/dx = eᵘ·(du/dx).</li>
+        <li>if y = aᵘ, then dy/dx = aᵘ·ln a·(du/dx) — the extra <strong>ln a</strong> appears for any base other than e.</li>
       </ul>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — y = e^(x²+1)</span>
+        <div class="step"><span class="num">1</span><span class="txt">u = x²+1, du/dx = 2x.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">dy/dx = e^(x²+1)·2x = <span class="ans">2x·e^(x²+1)</span>.</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Base-10 version: y = 10^(2x−5) → <span class="ans">2·10^(2x−5)·ln 10</span>.</span></div>
+      </div>
       <h4>Logarithmic</h4>
       <ul>
-        <li>if y = ln u, then dy/dx = (1/u)·(du/dx). e.g. y = 3ln(x²+2x) → 6(x+1)/[x(x+2)].</li>
-        <li>if y = logₐ u, then dy/dx = (1/u)·logₐe·(du/dx) = (1/(u ln a))·(du/dx). e.g. y = log₂x⁵ → 5/(x ln 2).</li>
-        <li>Use log laws to split first: ln[(3x+1)/(x+1)] = ln(3x+1) − ln(x+1); ln√(...) = ½ln(...).</li>
+        <li>if y = ln u, then dy/dx = (1/u)·(du/dx).</li>
+        <li>if y = logₐ u, then dy/dx = (1/(u ln a))·(du/dx).</li>
       </ul>
-      <div class="note">d/dx(ln eˣ) = d/dx(x) = 1, since ln eˣ = x ln e = x.</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — y = 3 ln(x² + 2x)</span>
+        <div class="step"><span class="num">1</span><span class="txt">u = x²+2x, du/dx = 2x+2.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">dy/dx = 3·(2x+2)/(x²+2x) = <span class="ans">6(x+1)/[x(x+2)]</span>.</span></div>
+      </div>
+      <div class="tip">💡 Use <strong>log laws to split first</strong> — it's far easier: ln[(3x+1)/(x+1)] = ln(3x+1) − ln(x+1); ln√(…) = ½ln(…). Then differentiate each piece. And note ln eˣ = x, so d/dx(ln eˣ) = 1.</div>
     </div></details>
 
     <details class="lesson"><summary>Lesson 2.7 — Trigonometric Functions<span class="chev">▶</span></summary><div class="body">
+      <p>There are six trig derivatives to know. Learn the three "co-" ones (cos, cot, cosec) as the <strong>negative</strong> partners of the other three. The chain-rule factor u′ rides along just as before.</p>
       <div class="ex"><span class="tag">STANDARD DERIVATIVES (chain-rule form, u = f(x))</span>
         <div class="step"><span class="num">sin</span><span class="txt">d/dx sin u = cos u · u′</span></div>
         <div class="step"><span class="num">cos</span><span class="txt">d/dx cos u = −sin u · u′</span></div>
@@ -418,12 +469,13 @@
         <div class="step"><span class="num">sec</span><span class="txt">d/dx sec u = sec u tan u · u′</span></div>
         <div class="step"><span class="num">csc</span><span class="txt">d/dx cosec u = −cosec u cot u · u′</span></div>
       </div>
-      <div class="ex"><span class="tag">EXAMPLES</span>
-        <div class="step"><span class="num">a</span><span class="txt">y = 5x + sin x → 5 + cos x</span></div>
-        <div class="step"><span class="num">b</span><span class="txt">y = cos(x²−3) → −2x sin(x²−3)</span></div>
-        <div class="step"><span class="num">c</span><span class="txt">y = cos²(x²−3) → −2x sin 2(x²−3) (using sin 2a = 2 sin a cos a)</span></div>
-        <div class="step"><span class="num">d</span><span class="txt">y = x²tan 2x → 2x²sec²2x + 2x tan 2x (product rule)</span></div>
+      <div class="ex"><span class="tag">EXAMPLES (each combines a trig derivative with another rule)</span>
+        <div class="step"><span class="num">a</span><span class="txt">y = 5x + sin x → 5 + cos x &nbsp;(term by term)</span></div>
+        <div class="step"><span class="num">b</span><span class="txt">y = cos(x²−3) → −sin(x²−3)·2x = −2x sin(x²−3) &nbsp;(chain rule)</span></div>
+        <div class="step"><span class="num">c</span><span class="txt">y = cos²(x²−3) → 2cos(x²−3)·(−sin(x²−3))·2x = −2x sin 2(x²−3) &nbsp;(chain rule twice + sin 2a = 2 sin a cos a)</span></div>
+        <div class="step"><span class="num">d</span><span class="txt">y = x²tan 2x → x²(2sec²2x) + tan 2x(2x) = 2x²sec²2x + 2x tan 2x &nbsp;(product rule)</span></div>
       </div>
+      <div class="tip">📐 These derivatives assume x is in <strong>radians</strong>, not degrees — that's why d/dx(sin x) = cos x holds cleanly. Also note the negatives: cos, cot, and cosec all differentiate to something with a <strong>minus sign</strong>.</div>
     </div></details>
 
     <details class="lesson"><summary>Lesson 2.8 — Implicit Differentiation<span class="chev">▶</span></summary><div class="body">
