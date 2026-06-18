@@ -330,6 +330,7 @@
     <p>The <strong>derivative</strong> f′(x) measures the <strong>instantaneous rate of change</strong> — the slope of the tangent to the curve at each point. Where Topic 1's limits told us where a function <em>heads</em>, the derivative tells us how <em>fast</em> it changes. Notation: f′(x), dy/dx, and y′ all mean the same thing.</p>
 
     <details class="lesson"><summary>Lesson 2.1 — Differentiation from First Principle<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> The derivative is just the <strong>steepness (slope) of a curve at one exact point</strong>. To measure it, pick a second point nearby and find the slope of the line joining them — then slide that second point closer and closer until the two points are practically touching. The slope you end up with is the derivative. "First principle" just means doing this the long, honest way before we learn the shortcuts.</div>
       <p>Before the shortcut rules, you should understand <em>where they come from</em>. The slope between two points on a curve, (x, f(x)) and (x+δx, f(x+δx)), is "rise over run":</p>
       <div class="math">slope of chord = [f(x + δx) − f(x)] / δx</div>
       <p>As the second point slides toward the first (δx → 0), that chord becomes the <strong>tangent</strong>, and its slope becomes the derivative. That limit <em>is</em> the definition — the <strong>first principle</strong>:</p>
@@ -359,6 +360,7 @@
     </div></details>
 
     <details class="lesson"><summary>Lesson 2.2 — Differentiating Simple Algebraic Functions<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Here's the magic shortcut for powers of x: <strong>bring the little power number down to the front, then knock the power down by one.</strong> So x⁵ becomes 5x⁴. That's 90% of differentiation right there. The only prep step: turn any roots or fractions into powers first (√x is really x^½, and 1/x³ is x⁻³).</div>
       <p>Doing first principles every time would be exhausting. Instead we use rules that the first principle proves once and for all. The workhorse is the <strong>power rule</strong>: bring the power down to the front, then subtract 1 from the power.</p>
       <ul>
         <li><strong>Constant:</strong> if y = c then dy/dx = 0 (a flat line has zero slope).</li>
@@ -387,6 +389,7 @@
     </div></details>
 
     <details class="lesson"><summary>Lesson 2.3 — The Chain Rule<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Use this when there's a <strong>function tucked inside another function</strong> — like a box inside a box. Differentiate the <em>outer</em> box first (pretend the inside is a single blob), then multiply by the derivative of what's inside. "Outside, then inside, and multiply." Forgetting that last "× inside" is the most common mistake in all of calculus.</div>
       <p>The chain rule handles a <strong>function inside a function</strong> (a composite) — like (x³+6x−3)²⁰ or sin(2x−5). The idea: differentiate the <em>outside</em> function (leaving the inside alone), then multiply by the derivative of the <em>inside</em>. Formally, with u = g(x):</p>
       <div class="math">dy/dx = dy/du · du/dx &nbsp; ("derivative of outside × derivative of inside")</div>
       <div class="ex"><span class="tag">WORKED EXAMPLE — y = (x³ + 6x − 3)²⁰, shown in full</span>
@@ -404,6 +407,7 @@
     </div></details>
 
     <details class="lesson"><summary>Lesson 2.4 — Product &amp; Quotient Rules<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> When two functions are <strong>multiplied</strong>, you can't just differentiate each and multiply — that's wrong. Instead: "differentiate the first × leave the second, PLUS leave the first × differentiate the second." For <strong>division</strong> there's a similar (slightly longer) recipe with a minus sign and a "÷ bottom squared." Just learn the two recipes by heart and follow them step by step.</div>
       <p>Use these when two functions are <strong>multiplied</strong> or <strong>divided</strong>. ⚠️ A very common error is to think (uv)′ = u′v′ — that is <em>wrong</em>. Each rule has its own pattern.</p>
       <h4>Product rule</h4>
       <p>"First times derivative of second, plus second times derivative of first."</p>
@@ -432,6 +436,7 @@
     </div></details>
 
     <details class="lesson"><summary>Lesson 2.5 — Higher-Order Derivatives<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Just keep differentiating. Differentiate once → 1st derivative (the slope). Differentiate that again → 2nd derivative (tells you how the curve bends). Again → 3rd, and so on. For a polynomial each round makes it simpler until you eventually reach 0.</div>
       <p>You can differentiate a derivative. Doing it again gives the <strong>second derivative</strong> y″, again the third y‴, and so on. These matter later: y′ is the slope (rate of change), and y″ tells you <strong>concavity</strong> — whether the curve bends up (∪) or down (∩) — which is the key to max/min tests in Topic 3.</p>
       <div class="math">y′ &nbsp;→&nbsp; y″ = d²y/dx² &nbsp;→&nbsp; y‴ &nbsp;→&nbsp; y⁽⁴⁾ &nbsp;→&nbsp; … y⁽ⁿ⁾</div>
       <div class="ex"><span class="tag">WORKED EXAMPLE — f(x) = 4x⁴ − 2x³ + 3</span>
@@ -444,6 +449,7 @@
     </div></details>
 
     <details class="lesson"><summary>Lesson 2.6 — Exponential &amp; Logarithmic Functions<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> eˣ is the "lazy" function — differentiate it and you get eˣ right back, unchanged. ln x differentiates to 1/x. For anything more complex (like e^(stuff) or ln(stuff)) you just tack on the chain rule: multiply by the derivative of the "stuff." Tip: if you see ln of a fraction or a product, split it up with log laws first — it's way easier.</div>
       <p>eˣ is special: it is its <em>own</em> derivative. Everything else here is that fact plus the chain rule. ln x and eˣ are inverses, which is why the log rule produces a 1/u.</p>
       <h4>Exponential</h4>
       <ul>
@@ -468,6 +474,7 @@
     </div></details>
 
     <details class="lesson"><summary>Lesson 2.7 — Trigonometric Functions<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> There are six little facts to memorise (sin→cos, cos→−sin, and so on). The handy pattern: the three "co-" ones (cos, cot, cosec) all get a <strong>minus sign</strong>. After that it's just the chain rule again — multiply by the derivative of whatever is inside the bracket. And always work in radians, not degrees.</div>
       <p>There are six trig derivatives to know. Learn the three "co-" ones (cos, cot, cosec) as the <strong>negative</strong> partners of the other three. The chain-rule factor u′ rides along just as before.</p>
       <div class="ex"><span class="tag">STANDARD DERIVATIVES (chain-rule form, u = f(x))</span>
         <div class="step"><span class="num">sin</span><span class="txt">d/dx sin u = cos u · u′</span></div>
@@ -487,6 +494,7 @@
     </div></details>
 
     <details class="lesson"><summary>Lesson 2.8 — Implicit Differentiation<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Sometimes y and x are tangled together (like x² + y² = 25) and you can't neatly write "y = …". No problem — differentiate everything as normal, but every time you differentiate a y, stick a "dy/dx" next to it (because y secretly depends on x). Then rearrange to get dy/dx by itself.</div>
       <p>Some relations (e.g. x² + y² = 25 or x³ + y³ = 6xy) can't easily be solved for y. Instead, <strong>differentiate both sides with respect to x</strong> — and whenever you differentiate a term in y, multiply by dy/dx (chain rule) — then solve for dy/dx.</p>
       <div class="ex"><span class="tag">EXAMPLE — x² + y² = 25</span>
         <div class="step"><span class="num">1</span><span class="txt">d/dx: 2x + 2y(dy/dx) = 0</span></div>
@@ -500,6 +508,7 @@
     </div></details>
 
     <details class="lesson"><summary>Lesson 2.9 — Parametric Differentiation<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Sometimes x and y are each written in terms of a third helper variable t (think of t as time, with x and y both depending on it). To get dy/dx, just differentiate y by t, differentiate x by t, and <strong>divide</strong> one by the other: dy/dx = (dy/dt) ÷ (dx/dt).</div>
       <p>If x = h(t) and y = g(t), then:</p>
       <div class="math">dy/dx = (dy/dt) · (dt/dx) = (dy/dt) / (dx/dt)</div>
       <div class="ex"><span class="tag">EXAMPLE — x = 2t, y = 4 − 4t − 4t²</span>
@@ -516,6 +525,7 @@
     <p>Use derivatives to find rates of change, tangents and normals, maximum/minimum points, sketch curves, and solve optimisation problems.</p>
 
     <details class="lesson" open><summary>Lesson 3.1 — Rate of Change<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A derivative answers "how fast is one thing changing compared to another?" — like how fast water rises as a tank fills, or how fast a balloon grows as you pump it. When two rates are linked (e.g. radius and volume), you chain them together. Watch the sign: going up is positive, going down is negative.</div>
       <p>If y is a function of x, then dy/dx is the <strong>rate of change</strong> of y with respect to x (always state appropriate units). For time problems, chain related rates together:</p>
       <div class="math">dr/dt = (dr/du) · (du/dt) &nbsp; and &nbsp; dr/dt = (change in r) / (change in t)</div>
       <div class="ex"><span class="tag">WORKED EXAMPLE — water in a container</span>
@@ -527,6 +537,7 @@
     </div></details>
 
     <details class="lesson"><summary>Lesson 3.2 — Tangents &amp; Normals to a Curve<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A <strong>tangent</strong> is the straight line that just grazes the curve at a point — its slope is the derivative there. The <strong>normal</strong> is the line at right angles to it (like a flagpole standing straight up from the ground). To get the normal's slope, flip the tangent's slope and change its sign (−1/m). Then use y − y₀ = m(x − x₀) to write the line.</div>
       <ul>
         <li>The gradient of the tangent at a point is dy/dx evaluated there. Equation of a line: <strong>y − y₀ = m(x − x₀)</strong>.</li>
         <li>The <strong>normal</strong> is perpendicular: (gradient of tangent) × (gradient of normal) = −1, so m<sub>normal</sub> = −1/m<sub>tangent</sub>.</li>
@@ -544,6 +555,7 @@
     </div></details>
 
     <details class="lesson"><summary>Lesson 3.3 — Increasing, Decreasing &amp; Critical Points<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> The sign of the derivative tells you which way the curve is going. Positive slope = climbing uphill (increasing). Negative slope = going downhill (decreasing). Slope exactly zero = a flat spot (the top of a hill or bottom of a valley) — these flat spots are the <strong>critical points</strong>.</div>
       <ul>
         <li>f′(x) &gt; 0 → function <strong>increasing</strong>; f′(x) &lt; 0 → <strong>decreasing</strong>; f′(x) = 0 → <strong>stationary</strong>.</li>
         <li>A <strong>critical point</strong> (x₀, f(x₀)) occurs where f′(x₀) = 0 or f′(x₀) is undefined (but x₀ must be in the domain of f).</li>
@@ -556,6 +568,7 @@
     </div></details>
 
     <details class="lesson"><summary>Lesson 3.4 — First &amp; Second Derivative Tests<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Once you've found a flat spot, is it a hilltop (maximum) or a valley bottom (minimum)? Two ways to check: (1) look at the slope just before and just after — uphill-then-downhill means a peak; (2) the quicker way — check the 2nd derivative: negative means a peak (∩), positive means a valley (∪).</div>
       <p><strong>First Derivative Test</strong> — examine the sign of f′ around the critical number:</p>
       <ul>
         <li>+ → 0 → − &nbsp;means a <strong>relative maximum</strong> (convex, ∩).</li>
@@ -575,6 +588,7 @@
     </div></details>
 
     <details class="lesson"><summary>Lesson 3.5 — Curve Sketching &amp; Asymptotes<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> To draw a graph properly, gather clues: where it crosses the axes, where its hills and valleys are, where it bends, and what invisible "walls" (asymptotes) it approaches. Plot those key features, then join them up. It's like a join-the-dots once you know all the important dots.</div>
       <p>Sketching pulls together everything in this topic: intercepts tell you <em>where</em> the curve meets the axes, f′ tells you where it turns, f″ tells you how it bends, and asymptotes tell you its long-range behaviour. Follow the 7-step procedure:</p>
       <ol>
         <li>Find the x- and y-intercepts.</li>
@@ -604,6 +618,7 @@
     </div></details>
 
     <details class="lesson"><summary>Lesson 3.6 — Absolute Max/Min &amp; Optimisation<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> "Optimisation" = finding the best possible value — the biggest volume, the cheapest cost, the least material. The recipe: write what you want to maximise/minimise as a formula with <em>one</em> variable, differentiate, set it to zero to find the best point, and check it really is a max (or min). On a closed range, also test the two endpoints — the winner might be at the very edge.</div>
       <h4>Absolute extrema on a closed interval [a, b]</h4>
       <p>Find critical numbers inside the interval, then compare f at those points <em>and</em> at the endpoints a and b — the largest is the absolute maximum, the smallest the absolute minimum.</p>
       <div class="ex"><span class="tag">EXAMPLE — f(x) = 2x³ − x² + 2 on −2 ≤ x ≤ 1</span>
