@@ -251,8 +251,13 @@ If a question is outside this syllabus, still help, but gently relate it back to
         if (data === "[DONE]") continue;
         try {
           const ev = JSON.parse(data);
-          if (ev.type === "content_block_delta" && ev.delta && ev.delta.type === "text_delta") {
-            out += ev.delta.text;
+          let chunk = "";
+          // Anthropic format
+          if (ev.type === "content_block_delta" && ev.delta && ev.delta.type === "text_delta") chunk = ev.delta.text;
+          // OpenAI / Groq format
+          else if (ev.choices && ev.choices[0] && ev.choices[0].delta && ev.choices[0].delta.content) chunk = ev.choices[0].delta.content;
+          if (chunk) {
+            out += chunk;
             botEl.innerHTML = renderMd(out);
             const body = document.getElementById("tutor-body");
             if (body) body.scrollTop = body.scrollHeight;

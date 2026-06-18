@@ -1,7 +1,9 @@
 /**
- * UTM Foundation Hub — AI Tutor proxy
- * Keeps the Anthropic API key secret so students don't need their own.
- * Deploy on Railway (or any Node host). Node 18+ required (built-in fetch).
+ * UTM Foundation Hub — AI Tutor proxy (Groq — FREE)
+ * Uses Groq's free API (no credit card). Keeps the key secret so students
+ * need nothing. Deploy on Railway / Render / any Node host. Node 18+.
+ *
+ * Get a FREE key at https://console.groq.com  → API Keys  (no billing needed).
  */
 const express = require("express");
 const cors = require("cors");
@@ -9,81 +11,56 @@ const cors = require("cors");
 const app = express();
 app.use(express.json({ limit: "1mb" }));
 
-// ---- CORS: allow your site to call this proxy ----
-const ALLOWED = (process.env.ALLOWED_ORIGIN || "*")
-  .split(",")
-  .map((s) => s.trim());
-app.use(
-  cors({
-    origin: ALLOWED.includes("*") ? true : ALLOWED,
-    methods: ["POST", "OPTIONS"],
-  })
-);
+const ALLOWED = (process.env.ALLOWED_ORIGIN || "*").split(",").map((s) => s.trim());
+app.use(cors({ origin: ALLOWED.includes("*") ? true : ALLOWED, methods: ["POST", "OPTIONS"] }));
 
-// ---- Simple per-IP daily limit (optional) ----
-const DAILY_LIMIT = parseInt(process.env.FREE_DAILY_LIMIT || "30", 10);
-const counters = new Map(); // ip -> { day, count }
+// optional per-IP daily limit
+const DAILY_LIMIT = parseInt(process.env.FREE_DAILY_LIMIT || "50", 10);
+const counters = new Map();
 function overLimit(ip) {
-  if (DAILY_LIMIT <= 0) return false; // 0 = unlimited
+  if (DAILY_LIMIT <= 0) return false;
   const day = new Date().toISOString().slice(0, 10);
   const c = counters.get(ip);
-  if (!c || c.day !== day) {
-    counters.set(ip, { day, count: 1 });
-    return false;
-  }
+  if (!c || c.day !== day) { counters.set(ip, { day, count: 1 }); return false; }
   c.count += 1;
   return c.count > DAILY_LIMIT;
 }
 
-const API_KEY = process.env.ANTHROPIC_API_KEY;
-const ANTHROPIC_URL = "https://api.anthropic.com/v1/messages";
-const ALLOWED_MODELS = new Set([
-  "claude-opus-4-8",
-  "claude-sonnet-4-6",
-  "claude-haiku-4-5",
-]);
+const GROQ_KEY = process.env.GROQ_API_KEY;
+const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
+// Free, capable model. Others: "llama-3.1-8b-instant" (faster), "gemma2-9b-it".
+const GROQ_MODEL = process.env.GROQ_MODEL || "llama-3.3-70b-versatile";
 
-app.get("/", (_req, res) => res.send("UTM Foundation Hub AI proxy is running ✅"));
+app.get("/", (_req, res) => res.send("UTM Foundation Hub AI proxy (Groq) is running ✅"));
 
 app.post("/api/tutor", async (req, res) => {
-  if (!API_KEY) return res.status(500).json({ error: { message: "Server missing ANTHROPIC_API_KEY" } });
+  if (!GROQ_KEY) return res.status(500).json({ error: { message: "Server missing GROQ_API_KEY" } });
 
   const ip = (req.headers["x-forwarded-for"] || req.ip || "").toString().split(",")[0];
-  if (overLimit(ip)) {
-    return res.status(429).json({ error: { message: "Daily free limit reached. Try again tomorrow." } });
-  }
+  if (overLimit(ip)) return res.status(429).json({ error: { message: "Daily free limit reached. Try again tomorrow." } });
 
-  const { system, messages, model } = req.body || {};
+  const { system, messages } = req.body || {};
   if (!Array.isArray(messages) || !messages.length) {
     return res.status(400).json({ error: { message: "messages required" } });
   }
-  const useModel = ALLOWED_MODELS.has(model) ? model : "claude-opus-4-8";
+
+  // Build OpenAI-style messages (Groq is OpenAI-compatible): system first
+  const msgs = [];
+  if (typeof system === "string" && system.trim()) msgs.push({ role: "system", content: system });
+  for (const m of messages) msgs.push({ role: m.role === "assistant" ? "assistant" : "user", content: m.content });
 
   try {
-    const upstream = await fetch(ANTHROPIC_URL, {
+    const upstream = await fetch(GROQ_URL, {
       method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "x-api-key": API_KEY,
-        "anthropic-version": "2023-06-01",
-      },
-      body: JSON.stringify({
-        model: useModel,
-        max_tokens: 2048,
-        system: typeof system === "string" ? system : undefined,
-        messages,
-        stream: true,
-      }),
+      headers: { "content-type": "application/json", authorization: "Bearer " + GROQ_KEY },
+      body: JSON.stringify({ model: GROQ_MODEL, messages: msgs, max_tokens: 2048, stream: true }),
     });
 
     if (!upstream.ok || !upstream.body) {
       const txt = await upstream.text().catch(() => "");
-      return res.status(upstream.status || 502).json({
-        error: { message: "Upstream error: " + (txt.slice(0, 300) || upstream.status) },
-      });
+      return res.status(upstream.status || 502).json({ error: { message: "Upstream error: " + (txt.slice(0, 300) || upstream.status) } });
     }
 
-    // Stream the SSE response straight back to the browser
     res.setHeader("Content-Type", "text/event-stream");
     res.setHeader("Cache-Control", "no-cache");
     res.setHeader("Connection", "keep-alive");
@@ -101,4 +78,4 @@ app.post("/api/tutor", async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log("AI proxy listening on " + PORT));
+app.listen(PORT, () => console.log("AI proxy (Groq) listening on " + PORT));

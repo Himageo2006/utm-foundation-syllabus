@@ -1,37 +1,49 @@
-# UTM Foundation Hub — AI Tutor proxy
+# UTM Foundation Hub — AI Tutor proxy (Groq, FREE)
 
-A tiny server that lets students use the AI tutor **without entering their own API key**.
-It keeps your Anthropic key secret on the server and forwards chat requests to Claude.
+Lets students use the AI tutor **with no API key and no cost**. It holds one
+**free Groq key** on the server and forwards chats to a fast free model
+(Llama 3.3 70B). Students need nothing; you pay nothing.
 
-## What it does
-- Exposes `POST /api/tutor` — accepts `{ system, messages, model }`, adds your secret key, streams Claude's reply back.
-- CORS-enabled so your GitHub Pages site can call it.
-- Optional per-IP daily limit (`FREE_DAILY_LIMIT`).
+> Groq's free tier needs **no credit card**.
 
-## Deploy on Railway (free tier)
+## Deploy — step by step (free)
 
-1. Push this `railway-proxy/` folder to a GitHub repo (or use Railway's "Deploy from local").
-2. On https://railway.app → **New Project** → **Deploy from GitHub repo** → pick the repo/folder.
-3. Railway auto-detects Node and runs `npm start`.
-4. Add environment variables (Project → **Variables**):
-   - `ANTHROPIC_API_KEY` = your key from console.anthropic.com
-   - `ALLOWED_ORIGIN` = `https://himageo2006.github.io` (your site origin)
-   - `FREE_DAILY_LIMIT` = `30` (per IP per day; set `0` for unlimited)
-5. Railway gives you a public URL like `https://utm-hub-ai-proxy.up.railway.app`.
-6. Open `https://<your-url>/` — you should see "AI proxy is running ✅".
+### 1. Get a free Groq key
+- Go to **https://console.groq.com** → sign in (Google/GitHub) → **API Keys** → **Create API Key** → copy it (`gsk_...`).
+- No billing, no card.
 
-## Connect the website
-In `assets/tutor.js`, set:
-```js
-proxyUrl: "https://<your-url>/api/tutor",
-```
-Redeploy the site. The tutor now works with no student key, and the settings
-screen hides the key field automatically.
+### 2. Deploy this folder on Railway (free)
+- Go to **https://railway.app** → sign in with GitHub → **New Project** → **Deploy from GitHub repo** → pick `Himageo2006/utm-foundation-syllabus`.
+- In the service **Settings → Root Directory**, set it to `railway-proxy`.
+- Railway runs `npm start` automatically.
+
+### 3. Add variables (Project → Variables)
+| Name | Value |
+|---|---|
+| `GROQ_API_KEY` | your `gsk_...` key |
+| `ALLOWED_ORIGIN` | `https://himageo2006.github.io` |
+| `FREE_DAILY_LIMIT` | `50` (per student/day; `0` = unlimited) |
+| `GROQ_MODEL` | *(optional)* `llama-3.3-70b-versatile` |
+
+### 4. Get the URL
+- Settings → **Generate Domain** → you get e.g. `https://utm-hub-ai.up.railway.app`.
+- Open it → you should see **"AI proxy (Groq) is running ✅"**.
+
+### 5. Connect the website
+- Tell me the URL and I'll wire it in, **or** edit `assets/tutor.js` line ~16:
+  ```js
+  proxyUrl: "https://YOUR-URL.up.railway.app/api/tutor",
+  ```
+- Redeploy the site. Done — the tutor works for everyone, free, no key.
+
+## Free alternatives to Railway (same steps)
+- **Render.com** (free web service), **Fly.io**, **Cloudflare Workers** — all free; set the same env vars.
 
 ## Run locally (optional)
 ```bash
-cd railway-proxy
-npm install
-ANTHROPIC_API_KEY=sk-ant-... npm start
-# open http://localhost:3000
+cd railway-proxy && npm install
+GROQ_API_KEY=gsk_... npm start   # http://localhost:3000
 ```
+
+## Models (all free on Groq)
+`llama-3.3-70b-versatile` (smart, default) · `llama-3.1-8b-instant` (fastest) · `gemma2-9b-it`.
