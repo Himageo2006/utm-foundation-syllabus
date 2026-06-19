@@ -67,6 +67,7 @@ If a question is outside this syllabus, still help, but gently relate it back to
     try { localStorage.setItem(HIST_KEY, JSON.stringify(history.slice(-40))); } catch (_) {}
   }
   let busy = false;
+  let pendingImage = null;   // data URL of an attached photo (cleared after one send)
 
   // --- Build DOM ---------------------------------------------
   const fab = document.createElement("button");
@@ -102,7 +103,10 @@ If a question is outside this syllabus, still help, but gently relate it back to
         <button class="tutor-chip" data-q="Explain chemical equilibrium and Le Chatelier's principle in the simplest possible way.">Explain simpler</button>
       </div>
       <div class="tutor-foot">
+        <div id="tutor-attach-bar" style="display:none;font-size:.78rem;margin:0 0 .4rem;opacity:.85;">📷 Image attached <button id="tutor-attach-x" type="button" style="border:none;background:transparent;cursor:pointer;color:inherit;font-weight:700;">✕</button></div>
         <div class="tutor-inrow">
+          <button id="tutor-attach" type="button" title="Attach a photo of a question" style="border:none;background:transparent;cursor:pointer;font-size:1.2rem;padding:0 .3rem;">📎</button>
+          <input id="tutor-file" type="file" accept="image/*" style="display:none">
           <textarea id="tutor-input" rows="1" placeholder="Ask anything about your syllabus…"></textarea>
           <button class="tutor-send" id="tutor-send" title="Send">➤</button>
         </div>
@@ -130,6 +134,27 @@ If a question is outside this syllabus, still help, but gently relate it back to
       input.style.height = "auto"; input.style.height = Math.min(input.scrollHeight, 120) + "px";
     });
     panel.querySelectorAll(".tutor-chip").forEach(c => c.onclick = () => submit(c.dataset.q));
+
+    // photo attach
+    const attachBtn = document.getElementById("tutor-attach");
+    const fileInp = document.getElementById("tutor-file");
+    const attachBar = document.getElementById("tutor-attach-bar");
+    const attachX = document.getElementById("tutor-attach-x");
+    if (attachBar) attachBar.style.display = pendingImage ? "" : "none";
+    if (attachBtn && fileInp) {
+      attachBtn.onclick = () => fileInp.click();
+      fileInp.onchange = function () {
+        const f = fileInp.files && fileInp.files[0];
+        if (!f) return;
+        const r = new FileReader();
+        r.onload = () => { pendingImage = r.result; if (attachBar) attachBar.style.display = ""; input.placeholder = "Ask about the attached image…"; };
+        r.readAsDataURL(f);
+      };
+    }
+    if (attachX) attachX.onclick = function () {
+      pendingImage = null; if (fileInp) fileInp.value = ""; if (attachBar) attachBar.style.display = "none";
+      input.placeholder = "Ask anything about your syllabus…";
+    };
     input.focus();
   }
 
@@ -217,9 +242,12 @@ If a question is outside this syllabus, still help, but gently relate it back to
 
   async function submit(text) {
     text = (text || "").trim();
+    if (!text && pendingImage) text = "Please look at this image and help me solve/understand it, step by step.";
     if (!text || busy) return;
     const input = document.getElementById("tutor-input");
-    if (input) { input.value = ""; input.style.height = "auto"; }
+    if (input) { input.value = ""; input.style.height = "auto"; input.placeholder = "Ask anything about your syllabus…"; }
+    const bar = document.getElementById("tutor-attach-bar");
+    if (bar) bar.style.display = "none";
     const welcome = panel.querySelector(".tutor-welcome");
     if (welcome) welcome.remove();
 
@@ -244,6 +272,8 @@ If a question is outside this syllabus, still help, but gently relate it back to
     } finally {
       busy = false;
       if (sendBtn) sendBtn.disabled = false;
+      pendingImage = null;
+      const fi = document.getElementById("tutor-file"); if (fi) fi.value = "";
     }
   }
 
@@ -258,6 +288,22 @@ If a question is outside this syllabus, still help, but gently relate it back to
       const model = localStorage.getItem(MODEL_KEY) || TUTOR_CONFIG.puterModel;
       botEl.innerHTML = "";
       let out = "";
+
+      // ---- Image attached: use Puter vision (one-shot) ----
+      if (pendingImage) {
+        const img = pendingImage; pendingImage = null;
+        const lastUser = [...history].reverse().find(m => m.role === "user");
+        const prompt = SYLLABUS + "\n\nThe student attached an image. " + (lastUser ? lastUser.content : "Please help with it.");
+        try {
+          const r = await puter.ai.chat(prompt, img, { model });
+          out = (r && (r.text || (r.message && r.message.content) || (typeof r === "string" ? r : ""))) || "";
+        } catch (e) {
+          throw new Error("Couldn't read the image with the free engine. Try a clearer photo, or type the question instead.");
+        }
+        botEl.innerHTML = renderMd(out || "(No response — try again.)");
+        return out;
+      }
+
       try {
         const resp = await puter.ai.chat(msgs, { model, stream: true });
         for await (const part of resp) {
@@ -465,7 +511,11 @@ If a question is outside this syllabus, still help, but gently relate it back to
       ".dash-bar>span{display:block;height:100%;width:0;background:linear-gradient(90deg,#22c55e,#16a34a);transition:width .4s;}" +
       ".dash-pct{font-size:.8rem;font-weight:700;margin-top:.4rem;}" +
       "#study-dash .dash-overall{font-size:.85rem;opacity:.8;margin:.2rem 0 1rem;font-weight:600;}" +
-      "html.dark .dash-card{background:#1a2030;} html.dark .dash-bar{background:rgba(255,255,255,.15);}";
+      "html.dark .dash-card{background:#1a2030;} html.dark .dash-bar{background:rgba(255,255,255,.15);}" +
+      "#study-streak{font-size:.78rem;font-weight:700;opacity:.85;white-space:nowrap;}" +
+      /* print: clean notes, hide interactive chrome */
+      "@media print{#study-toolbar,#tutor-fab,#tutor-panel,#study-top,.ai-actions,.lesson-done,.mark-all,.topic-prog,.topic-prog-row,.chev{display:none!important;}" +
+      "details.lesson{break-inside:avoid;} details.lesson>.body{display:block!important;} body{background:#fff!important;color:#000!important;}}";
     document.head.appendChild(st);
   }
 
@@ -508,6 +558,20 @@ If a question is outside this syllabus, still help, but gently relate it back to
     let done = 0; all.forEach(l => { if (l.classList.contains("is-done")) done++; });
     const el = document.getElementById("study-overall");
     if (el) el.textContent = "✅ " + done + "/" + all.length;
+  }
+
+  // Daily study streak (counts consecutive days the site is opened)
+  function updateStreak() {
+    const today = new Date().toISOString().slice(0, 10);
+    let s = { count: 0, last: "" };
+    try { s = JSON.parse(localStorage.getItem("utm_streak") || "{}"); } catch (_) {}
+    if (s.last !== today) {
+      const y = new Date(Date.now() - 864e5).toISOString().slice(0, 10);
+      s.count = (s.last === y) ? (s.count || 0) + 1 : 1;
+      s.last = today;
+      try { localStorage.setItem("utm_streak", JSON.stringify(s)); } catch (_) {}
+    }
+    return s.count || 1;
   }
 
   let _toastTimer = null;
@@ -557,9 +621,20 @@ If a question is outside this syllabus, still help, but gently relate it back to
       '<button id="study-dark" type="button">🌙 Dark</button>' +
       '<span class="study-size"><button type="button" data-d="-1" title="Smaller text">A−</button>' +
       '<button type="button" data-d="1" title="Larger text">A+</button></span>' +
+      '<button id="study-print" type="button" title="Print / save these notes">🖨 Print</button>' +
       '<button id="study-reset" type="button">↺ Reset</button>' +
+      '<span id="study-streak" title="Daily study streak"></span>' +
       '<span id="study-overall"></span>';
     main.insertBefore(bar, main.firstChild);
+
+    const streak = updateStreak();
+    const stEl = bar.querySelector("#study-streak");
+    if (stEl) stEl.textContent = "🔥 " + streak + (streak === 1 ? " day" : " days");
+
+    bar.querySelector("#study-print").addEventListener("click", function () {
+      document.querySelectorAll("details.lesson").forEach(d => d.open = true);
+      setTimeout(() => window.print(), 120);
+    });
 
     function applyFontScale(scale) {
       scale = Math.max(0.85, Math.min(1.4, scale));
@@ -658,9 +733,11 @@ If a question is outside this syllabus, still help, but gently relate it back to
     const dash = document.createElement("section");
     dash.id = "study-dash";
     dash.className = "sec";
+    const streak = updateStreak();
     dash.innerHTML =
       '<h2>📊 My progress</h2>' +
-      '<div class="dash-overall">Overall: ' + totalDone + ' / ' + totalAll + ' lessons (' + overallPct + '%) across all subjects</div>' +
+      '<div class="dash-overall">Overall: ' + totalDone + ' / ' + totalAll + ' lessons (' + overallPct + '%) across all subjects' +
+      ' &nbsp;·&nbsp; 🔥 ' + streak + (streak === 1 ? " day streak" : " day streak") + '</div>' +
       '<div class="dash-grid">' + cards + '</div>';
 
     const subjectsSec = document.getElementById("subjects");
