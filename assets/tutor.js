@@ -457,6 +457,45 @@ If a question is outside this syllabus, still help, but gently relate it back to
   function srAdvance(title) { const m = loadSR(); const cur = m[title] || { s: 0 }; const s = Math.min((cur.s || 0) + 1, SR_INTERVALS.length - 1); m[title] = { s: s, due: isoDay(SR_INTERVALS[s]) }; saveSR(m); }
   function srDueTitles() { const m = loadSR(); const t = isoDay(0); return Object.keys(m).filter(k => (m[k] && m[k].due) <= t); }
 
+  // Activity log (for the homepage heatmap)
+  function logActivity() {
+    try {
+      const m = JSON.parse(localStorage.getItem("utm_activity") || "{}");
+      const t = isoDay(0);
+      m[t] = (m[t] || 0) + 1;
+      localStorage.setItem("utm_activity", JSON.stringify(m));
+    } catch (_) {}
+  }
+
+  // Backup: export / import all utm_* keys
+  function exportProgress() {
+    const data = {};
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.indexOf("utm_") === 0) data[k] = localStorage.getItem(k);
+    }
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "utm-progress-" + isoDay(0) + ".json";
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+  function importProgress(file, cb) {
+    const r = new FileReader();
+    r.onload = function () {
+      try {
+        const data = JSON.parse(r.result);
+        let n = 0;
+        Object.keys(data).forEach(function (k) {
+          if (k.indexOf("utm_") === 0) { localStorage.setItem(k, data[k]); n++; }
+        });
+        cb(n);
+      } catch (e) { cb(-1); }
+    };
+    r.readAsText(file);
+  }
+
   function lessonTitle(d) {
     const sum = d.querySelector("summary");
     if (!sum) return "lesson";
@@ -529,6 +568,15 @@ If a question is outside this syllabus, still help, but gently relate it back to
       ".dash-pct{font-size:.8rem;font-weight:700;margin-top:.4rem;}" +
       "#study-dash .dash-overall{font-size:.85rem;opacity:.8;margin:.2rem 0 1rem;font-weight:600;}" +
       "html.dark .dash-card{background:#1a2030;} html.dark .dash-bar{background:rgba(255,255,255,.15);}" +
+      ".hm-wrap{margin:1.4rem 0 .4rem;} .hm-title{font-size:.85rem;font-weight:700;opacity:.8;margin-bottom:.5rem;}" +
+      ".hm-grid{display:grid;grid-template-rows:repeat(7,12px);grid-auto-flow:column;grid-auto-columns:12px;gap:3px;}" +
+      ".hm-c{width:12px;height:12px;border-radius:3px;background:rgba(0,0,0,.08);display:inline-block;}" +
+      ".hm-1{background:#9be9a8;}.hm-2{background:#40c463;}.hm-3{background:#30a14e;}.hm-4{background:#216e39;}.hm-f{background:transparent;}" +
+      "html.dark .hm-c{background:rgba(255,255,255,.08);} html.dark .hm-f{background:transparent;}" +
+      ".hm-legend{display:flex;align-items:center;gap:3px;font-size:.7rem;opacity:.7;margin-top:.45rem;}" +
+      ".dash-backup{margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap;}" +
+      ".dash-backup button{padding:.45rem .9rem;border:1px solid rgba(0,0,0,.15);background:#fff;border-radius:999px;font:600 .8rem/1 inherit;cursor:pointer;}" +
+      ".dash-backup button:hover{background:#f1f5f9;} html.dark .dash-backup button{background:#0f1420;color:#e5e7eb;border-color:#2a3344;}" +
       "#study-streak{font-size:.78rem;font-weight:700;opacity:.85;white-space:nowrap;}" +
       ".lesson-star{background:none;border:none;cursor:pointer;font-size:1rem;line-height:1;padding:0 .2rem;opacity:.5;filter:grayscale(1);}" +
       ".lesson-star.on{opacity:1;filter:none;}" +
@@ -751,11 +799,34 @@ If a question is outside this syllabus, still help, but gently relate it back to
     { key: "lessons-computing", name: "Computing",    total: 73, href: "lessons-computing.html", color: "#15803d" }
   ];
 
+  function buildHeatmap() {
+    let act = {};
+    try { act = JSON.parse(localStorage.getItem("utm_activity") || "{}"); } catch (_) {}
+    const WEEKS = 13, today = new Date();
+    // start on the Sunday WEEKS-1 weeks before the start of this week
+    const start = new Date(today); start.setDate(today.getDate() - today.getDay() - (WEEKS - 1) * 7);
+    let cells = "";
+    for (let w = 0; w < WEEKS; w++) {
+      for (let dow = 0; dow < 7; dow++) {
+        const d = new Date(start); d.setDate(start.getDate() + w * 7 + dow);
+        const iso = d.toISOString().slice(0, 10);
+        const future = d > today;
+        const c = act[iso] || 0;
+        const lvl = future ? "f" : c === 0 ? 0 : c < 2 ? 1 : c < 4 ? 2 : c < 7 ? 3 : 4;
+        cells += '<i class="hm-c hm-' + lvl + '" title="' + iso + (future ? "" : (": " + c + " action" + (c === 1 ? "" : "s"))) + '"></i>';
+      }
+    }
+    return '<div class="hm-wrap"><div class="hm-title">🗓️ Study activity (last ' + WEEKS + ' weeks)</div>' +
+      '<div class="hm-grid">' + cells + '</div>' +
+      '<div class="hm-legend">Less <i class="hm-c hm-0"></i><i class="hm-c hm-1"></i><i class="hm-c hm-2"></i><i class="hm-c hm-3"></i><i class="hm-c hm-4"></i> More</div></div>';
+  }
+
   function buildHomeDashboard() {
     const grid = document.getElementById("subjectGrid") || document.querySelector(".subjects");
     const main = document.querySelector("main");
     if (!main || PAGE_KEY !== "index" || document.getElementById("study-dash")) return;
     injectStyles();
+    logActivity();
     // dark-mode preference shared with lesson pages
     if (localStorage.getItem("utm_dark") === "1") document.documentElement.classList.add("dark");
 
@@ -784,12 +855,28 @@ If a question is outside this syllabus, still help, but gently relate it back to
     dash.innerHTML =
       '<h2>📊 My progress</h2>' +
       '<div class="dash-overall">Overall: ' + totalDone + ' / ' + totalAll + ' lessons (' + overallPct + '%) across all subjects' +
-      ' &nbsp;·&nbsp; 🔥 ' + streak + (streak === 1 ? " day streak" : " day streak") + '</div>' +
-      '<div class="dash-grid">' + cards + '</div>';
+      ' &nbsp;·&nbsp; 🔥 ' + streak + ' day streak</div>' +
+      '<div class="dash-grid">' + cards + '</div>' +
+      buildHeatmap() +
+      '<div class="dash-backup"><button id="dash-export" type="button">⬇ Export progress</button>' +
+      '<button id="dash-import" type="button">⬆ Import progress</button>' +
+      '<input id="dash-import-file" type="file" accept="application/json,.json" style="display:none"></div>';
 
     const subjectsSec = document.getElementById("subjects");
     if (subjectsSec) main.insertBefore(dash, subjectsSec);
     else main.insertBefore(dash, main.firstChild);
+
+    dash.querySelector("#dash-export").addEventListener("click", exportProgress);
+    const imp = dash.querySelector("#dash-import"), impFile = dash.querySelector("#dash-import-file");
+    imp.addEventListener("click", () => impFile.click());
+    impFile.addEventListener("change", function () {
+      const f = impFile.files && impFile.files[0]; if (!f) return;
+      importProgress(f, function (n) {
+        if (n < 0) { alert("Could not read that file. Make sure it's a UTM progress export."); return; }
+        alert("Imported " + n + " items. Reloading…");
+        location.reload();
+      });
+    });
   }
 
   const FORMULAS = {
@@ -910,6 +997,7 @@ If a question is outside this syllabus, still help, but gently relate it back to
     const lessons = document.querySelectorAll("details.lesson");
     if (!lessons.length) { buildHomeDashboard(); return; }
     injectStyles();
+    logActivity();
     try { localStorage.setItem("utm_total_" + PAGE_KEY, lessons.length); } catch (_) {}
 
     const main = document.querySelector("main") || document.body;
