@@ -336,6 +336,31 @@ If a question is outside this syllabus, still help, but gently relate it back to
     openPanel();
   };
 
+  // Build a tailored question from a lesson element and ask the tutor.
+  // Used by hardcoded buttons: onclick="askTutorFromLesson(this)".
+  window.askTutorFromLesson = function (el) {
+    const d = el.closest("details.lesson") || el.closest("details");
+    let title = "this lesson", topic = "";
+    if (d) {
+      const sum = d.querySelector("summary");
+      if (sum) {
+        const c = sum.cloneNode(true);
+        const chev = c.querySelector(".chev");
+        if (chev) chev.remove();
+        title = c.textContent.trim();
+      }
+      const topicEl = d.closest(".topic");
+      if (topicEl) {
+        const h2 = topicEl.querySelector(".topic-head h2") || topicEl.querySelector("h2");
+        if (h2) topic = h2.textContent.trim();
+      }
+    }
+    const subject = (document.querySelector("h1") ? document.querySelector("h1").textContent.trim() : (document.title || "")).replace(/\s+/g, " ");
+    const q = 'Please explain this in more detail using very simple, everyday words. Give a clear step-by-step explanation, 2–3 worked examples, and common mistakes to avoid. Lesson: "' +
+      title + '"' + (topic ? (' (topic: ' + topic + ')') : '') + (subject ? (' [subject: ' + subject + ']') : '') + '.';
+    window.askTutor(q);
+  };
+
   function injectExplainButtons() {
     // style (once)
     if (!document.getElementById("ai-explain-style")) {
@@ -353,7 +378,7 @@ If a question is outside this syllabus, still help, but gently relate it back to
     const lessons = document.querySelectorAll("details.lesson");
     lessons.forEach(function (d) {
       const body = d.querySelector(".body");
-      if (!body || body.querySelector(".ai-explain-btn")) return;
+      if (!body || d.querySelector(".ai-explain-btn")) return;
       const sum = d.querySelector("summary");
       let title = "this lesson";
       if (sum) {
