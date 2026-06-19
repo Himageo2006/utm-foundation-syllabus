@@ -457,6 +457,7 @@ int main()
   <section class="topic" id="t3"><div class="topic-head"><span class="n">3</span><h2>Programming Environment</h2></div>
 
     <details class="lesson"><summary>3·1 Steps in Developing Software — Build &amp; Run<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Getting from your typed code to a running program takes a pipeline: <strong>write → preprocess → compile → link</strong> (that's the "Build") then <strong>load → execute</strong> (the "Run"). Knowing these stages helps you understand <em>where</em> an error came from when something breaks.</div>
       <p>The main idea of software development is to write instructions for the computer using a programming language. The whole process:</p>
       <ul>
         <li>It starts with the programmer writing instructions (code) for the computer.</li>
@@ -477,6 +478,7 @@ int main()
     </details></div>
 
     <details class="lesson"><summary>3·2 Source Code Editor<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A code editor is a smart text editor built for writing code. It helps you with <strong>colour-coding, auto-indenting, autocomplete, and matching brackets</strong> — little assists that make code easier to read and fewer mistakes to make.</div>
       <ul>
         <li>Source code editors are a fundamental programming tool — the fundamental job of programmers is to write and edit source code.</li>
         <li>A source code editor is a <strong>text editor program</strong> designed specifically for editing the source code of computer programs — it makes writing and reading code easier by differentiating the elements and routines.</li>
@@ -492,6 +494,7 @@ int main()
     </details></div>
 
     <details class="lesson"><summary>3·3 Preprocessor<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Before the real compiling starts, the <strong>preprocessor</strong> does prep work on lines starting with <code>#</code>. Mainly it <strong>pastes in any #include files</strong> and swaps every <code>#define</code> shortcut for its value. It's like a find-and-replace pass that gets your code ready.</div>
       <ul>
         <li>In the preprocessor stage, the source code file is temporarily expanded to prepare for compilation.</li>
         <li>A preprocessor is a <strong>directive that starts with <code>#</code></strong> — e.g. <code>#define</code>, <code>#include</code>, <code>#if</code>, <code>#then</code>, <code>#else</code>, <code>#line</code>.</li>
@@ -519,6 +522,7 @@ int main() {
     </details></div>
 
     <details class="lesson"><summary>3·4 Compiler<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> The <strong>compiler</strong> checks your code follows the language's rules (flagging <strong>syntax errors</strong>) and, if all is well, translates it into machine-readable <strong>object code</strong>. Note: object code still isn't a program you can run — that's the linker's job next.</div>
       <ul>
         <li><strong>Compilation</strong> refers to processing source code files (<code>.c</code>, <code>.cc</code>, or <code>.cpp</code>) to produce an <strong>object file</strong>.</li>
         <li>The compiler verifies that the program obeys the rules of the programming language. It catches certain mistakes and writes out an error message when it finds one.
@@ -533,6 +537,7 @@ int main() {
     </details></div>
 
     <details class="lesson"><summary>3·5 Linker<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> The <strong>linker</strong> stitches your object code together with pre-written library code (like the bits that do <code>cout</code> or square roots) into one finished <strong>executable file</strong> you can actually run. Think of it as assembling all the puzzle pieces into the complete program.</div>
       <ul>
         <li>A <strong>linker</strong> is a program that combines one or more object programs with other programs in the library to create the executable code.</li>
         <li>The prewritten code resides in a place called the <strong>library</strong>. The linker's job is to produce either a shared (dynamic) library or an executable file.</li>
@@ -551,6 +556,7 @@ int main() {
     </details></div>
 
     <details class="lesson"><summary>3·6 Loader<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> When you double-click a program, the <strong>loader</strong> copies it from storage (disk) into RAM and gets it ready for the CPU to run. It's the bridge between "file sitting on disk" and "program actually running."</div>
       <ul>
         <li>A <strong>loader</strong> is software (a system utility) that loads a program from secondary memory to main memory and prepares it for execution.</li>
       </ul>
@@ -569,6 +575,7 @@ int main() {
     </details></div>
 
     <details class="lesson"><summary>3·7 Integrated Development Environment (IDE)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> An <strong>IDE</strong> bundles all your tools — editor, compiler, linker, runner, and debugger — into <strong>one application</strong>, so you can write, build and test without juggling separate programs. (This course uses Dev-C++.)</div>
       <ul>
         <li>Developing a program requires different software to edit, compile, link and run it.</li>
         <li>An <strong>IDE</strong> is a software application that provides comprehensive facilities to programmers for software development — it integrates all the software needed to make a programmer's job simpler.</li>
@@ -586,6 +593,7 @@ int main() {
     </details></div>
 
     <details class="lesson"><summary>3·8 Debugging<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> <strong>Debugging</strong> = hunting down and fixing "bugs" (errors). A <strong>debugger</strong> lets you slow the program right down — run it line by line, pause at <strong>breakpoints</strong>, and peek at the values of variables — so you can see exactly where it goes wrong.</div>
       <ul>
         <li><strong>Debugging</strong> is the process of detecting and removing existing and potential errors (called <strong>bugs</strong>) in software code that can cause it to behave unexpectedly or crash.</li>
         <li><strong>Debuggers</strong> (debugging tools) identify coding errors at various development stages — they reproduce the conditions in which an error occurred, then examine the program state to locate the cause.</li>
@@ -601,6 +609,7 @@ int main() {
     </details></div>
 
     <details class="lesson"><summary>3·9 Multi-File Compilation<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Big programs are split across <strong>several files</strong>, each compiled on its own and then linked together. The payoff: when you change one file you only recompile <em>that</em> file (not everything), and different people can work on different files at once.</div>
       <ul>
         <li>For a large program, full programs are not contained in a single file — they are separated into multiple files containing different modules, and each file is compiled separately.</li>
       </ul>
