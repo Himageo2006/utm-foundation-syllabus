@@ -371,6 +371,7 @@
   <section class="topic" id="c4"><div class="topic-head"><span class="n">4</span><h2>DC Circuits</h2></div>
 
     <details class="lesson"><summary>4.1 — EMF and terminal voltage<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A battery's "<strong>emf</strong>" is its full advertised voltage (e.g. 9 V). But the battery also has a little resistance <em>inside</em> it, so when current flows, some voltage is lost internally and the <strong>terminal voltage</strong> you actually get is a bit less: V = ε − Ir. That's why a battery sags under heavy load.</div>
       <p><strong>Electromotive force (emf) ε</strong> is the energy provided by the source (battery/cell) to each unit charge passing through the external <em>and</em> internal resistances. <strong>Terminal voltage V</strong> is the work done bringing unit charge from − to + terminal through the external resistance only. Both are in volts.</p>
       <p>When current I flows there is an internal drop Ir, so:</p>
       <div class="math">V = ε − Ir&nbsp;·&nbsp;V = IR&nbsp;·&nbsp;ε = I(R + r)&nbsp;&nbsp;(when no current, V = ε)</div>
@@ -390,6 +391,7 @@
     </div></details>
 
     <details class="lesson"><summary>4.2 — Resistors in series and in parallel<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> <strong>Series</strong> (one after another) → just add the resistances; the same current flows through all. <strong>Parallel</strong> (side by side) → add the reciprocals, giving <em>less</em> than the smallest, because the current now has multiple paths. For tricky networks, simplify a small chunk at a time.</div>
       <p><strong>Series</strong> (same current I = I₁ = I₂ = I₃; voltages add V = V₁+V₂+V₃):</p>
       <div class="math">R_eff = R₁ + R₂ + R₃</div>
       <p><strong>Parallel</strong> (same voltage V = V₁ = V₂ = V₃; currents add I = I₁+I₂+I₃):</p>
@@ -419,6 +421,7 @@
     </div></details>
 
     <details class="lesson"><summary>4.3 — Kirchhoff's rules<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> For circuits too complex for simple series/parallel, two common-sense rules crack them: <strong>(1) Junction rule</strong> — whatever current flows <em>into</em> a junction must flow <em>out</em> (nothing piles up). <strong>(2) Loop rule</strong> — go around any loop and all the voltage gains and drops must cancel to zero (energy is conserved). Set up the equations, then solve.</div>
       <p><strong>First law (junction/current):</strong> ΣI_in = ΣI_out — charge is conserved at a junction.</p>
       <p><strong>Second law (loop/voltage):</strong> Σε = ΣIR — round any closed loop the sum of emfs equals the sum of IR products.</p>
       <div class="math">Sign convention — emf: + when loop goes − → +; IR: + when loop direction follows the current. A negative current means its real direction is opposite to that drawn.</div>
@@ -444,6 +447,7 @@
     </div></details>
 
     <details class="lesson"><summary>4.4 — RC circuits (resistor + capacitor)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Put a resistor and capacitor together and the capacitor charges up (or drains) <strong>gradually, not instantly</strong> — fast at first, then slowing down (an exponential curve). The "time constant" τ = R×C tells you the speed: after one τ it's about 63% charged. This is the timing trick behind flashing lights and timers.</div>
       <p>Closing the switch charges the capacitor: voltage rises, current falls. Around the loop ε = IR + Q/C.</p>
       <p><strong>Charging:</strong></p>
       <div class="math">Q = Q₀(1 − e^(−t/RC))&nbsp;·&nbsp;V = V₀(1 − e^(−t/RC))&nbsp;·&nbsp;I = I₀e^(−t/RC), I₀ = V₀/R</div>
@@ -471,6 +475,7 @@
   <section class="topic" id="c5"><div class="topic-head"><span class="n">5</span><h2>Magnetism</h2></div>
 
     <details class="lesson" open><summary>5.1 — Magnets and Magnetic Fields<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Magnets have a north and south pole — likes repel, opposites attract (just like charges). A magnetic field is the region around a magnet where this force is felt, drawn as lines from N to S. Fun fact: you can never get a lone pole — snap a magnet in two and each piece grows its own N and S.</div>
       <p>Magnets have two ends — <strong>poles</strong> — called <strong>north (N)</strong> and <strong>south (S)</strong>. <strong>Like poles repel; unlike poles attract.</strong></p>
       <p>If you cut a magnet in half, you don't get a separate north pole and south pole — you get two smaller magnets (each with both N and S). A single magnetic pole has never been found; poles always come in pairs.</p>
       <div class="note">The Earth's magnetic field is similar to that of a bar magnet. Note that the Earth's geographic "North Pole" is really a <strong>south magnetic pole</strong>, since the north ends of magnets are attracted to it.</div>
@@ -484,6 +489,7 @@
     </div></details>
 
     <details class="lesson"><summary>5.2 — Ampère's Law, definition of the Ampere<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Electric currents make magnetic fields. Ampère's law is a shortcut for working out that field around a current: <strong>add up the field around a closed loop and it equals μ₀ × the current passing through.</strong> For a straight wire it neatly gives B = μ₀I/2πr (stronger nearer the wire).</div>
       <p>Ampère's law relates the magnetic field around a closed loop to the total current flowing through the loop:</p>
       <div class="math">∮ B·dℓ = μ₀ I_encl</div>
       <p>The integral is taken around the edge of the closed loop. For a long straight wire, use a circular path with the wire at the centre; then B is tangent to dℓ at every point and μ₀I = ∮B·dℓ = B(2πr), giving B = μ₀I/2πr.</p>
@@ -498,6 +504,7 @@
     </div></details>
 
     <details class="lesson"><summary>5.3.1 — Magnetic field due to a straight wire<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A straight wire carrying current is wrapped in circular magnetic field loops. To find their direction, use the <strong>right-hand grip rule</strong>: point your thumb along the current and your curled fingers show which way the field circles. Strength: B = μ₀I/2πr — more current or closer = stronger.</div>
       <p>An electric current produces a magnetic field. The direction is given by the <strong>right-hand grip rule</strong>: thumb points along the current, the curled fingers give the field direction (clockwise or anticlockwise circles around the wire).</p>
       <p>Magnitude of the magnetic flux density at distance r from a long straight wire:</p>
       <div class="math">B = μ₀I / 2πr&nbsp;&nbsp;&nbsp;(μ₀ = 4π×10⁻⁷ T·m·A⁻¹)</div>
@@ -522,6 +529,7 @@
     </div></details>
 
     <details class="lesson"><summary>5.3.2 — Magnetic field of a solenoid<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A <strong>solenoid</strong> is just a wire coiled into many loops. Stacking the loops adds their fields together, making a strong, uniform field down the middle — basically a magnet you can switch on and off (an electromagnet). The field only depends on the current and how tightly packed the turns are (n = turns per metre).</div>
       <p>A <strong>solenoid</strong> is a long wire wound into a succession of closely spaced loops (a helix). The right-hand grip rule for a solenoid: fingers follow the current in the coils, thumb points to the north pole.</p>
       <p>At the <strong>centre</strong> (inside) of an N-turn solenoid, with n = N/ℓ turns per unit length:</p>
       <div class="math">B = μ₀NI/ℓ = μ₀nI</div>
@@ -535,6 +543,7 @@
     </div></details>
 
     <details class="lesson"><summary>5.4.1 — Force on a current-carrying conductor<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Put a current-carrying wire into a magnetic field and the field <strong>pushes the wire</strong> (this is how electric motors spin). The push is strongest when the wire sits at right angles to the field (F = BIℓ) and zero when it lies along the field. <strong>Fleming's left-hand rule</strong> gives the push direction.</div>
       <p>When a current-carrying conductor is placed in a magnetic field B, it experiences a magnetic force:</p>
       <div class="math">F = IℓB·sinθ&nbsp;&nbsp;(vector: F = I ℓ × B)</div>
       <p>θ is the angle between the current direction and B. The force is <strong>maximum</strong> (F = IℓB) when the conductor is perpendicular to B (θ = 90°), and <strong>zero</strong> when the conductor is parallel to B (θ = 0°).</p>
@@ -558,6 +567,7 @@
     </div></details>
 
     <details class="lesson"><summary>5.4.2 — Force on a moving electric charge<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A single moving charge feels the same kind of magnetic push (F = qvB). Because the force always acts <em>sideways</em> to the motion, it bends the charge into a <strong>circle</strong> rather than speeding it up — which is how particle accelerators and old TV tubes steer electrons.</div>
       <p>A stationary charge in a magnetic field feels no force, but a charge moving with velocity v feels:</p>
       <div class="math">F = qvB·sinθ&nbsp;&nbsp;(vector: F = q v × B)</div>
       <p>θ is the angle between v and B. Direction: Fleming's <strong>left</strong> hand for a positive charge, Fleming's <strong>right</strong> hand for a negative charge (Thumb = Force, First finger = Field, Second finger = Velocity).</p>
@@ -581,6 +591,7 @@
     </div></details>
 
     <details class="lesson"><summary>5.5 — Force between two parallel wires<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Each wire makes a field, and each sits in the other's field — so two current-carrying wires <strong>push or pull on each other</strong>. Simple rule: <strong>same-direction currents attract, opposite-direction currents repel.</strong> This exact effect is what officially defines the ampere.</div>
       <p>Two parallel conductors carrying currents I₁ and I₂ separated by d exert equal and opposite forces on each other. The field of wire 1 at wire 2 is B₁ = μ₀I₁/2πd, so the force on length ℓ is F₁₂ = I₂ℓB₁:</p>
       <div class="math">|F₁₂| = |F₂₁| = F = μ₀I₁I₂ℓ / 2πd</div>
       <p>Force per unit length:</p>
