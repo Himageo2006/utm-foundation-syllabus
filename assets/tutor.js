@@ -337,8 +337,9 @@ If a question is outside this syllabus, still help, but gently relate it back to
   };
 
   // Build a tailored question from a lesson element and ask the tutor.
-  // Used by hardcoded buttons: onclick="askTutorFromLesson(this)".
-  window.askTutorFromLesson = function (el) {
+  // Used by hardcoded buttons: onclick="askTutorFromLesson(this)" (mode defaults to 'explain').
+  window.askTutorFromLesson = function (el, mode) {
+    mode = mode || "explain";
     const d = el.closest("details.lesson") || el.closest("details");
     let title = "this lesson", topic = "";
     if (d) {
@@ -347,6 +348,8 @@ If a question is outside this syllabus, still help, but gently relate it back to
         const c = sum.cloneNode(true);
         const chev = c.querySelector(".chev");
         if (chev) chev.remove();
+        const cb = c.querySelector(".lesson-done");
+        if (cb) cb.remove();
         title = c.textContent.trim();
       }
       const topicEl = d.closest(".topic");
@@ -356,62 +359,217 @@ If a question is outside this syllabus, still help, but gently relate it back to
       }
     }
     const subject = (document.querySelector("h1") ? document.querySelector("h1").textContent.trim() : (document.title || "")).replace(/\s+/g, " ");
-    const q = 'Please explain this in more detail using very simple, everyday words. Give a clear step-by-step explanation, 2–3 worked examples, and common mistakes to avoid. Lesson: "' +
-      title + '"' + (topic ? (' (topic: ' + topic + ')') : '') + (subject ? (' [subject: ' + subject + ']') : '') + '.';
-    window.askTutor(q);
+    const ref = '"' + title + '"' + (topic ? (' (topic: ' + topic + ')') : '') + (subject ? (' [subject: ' + subject + ']') : '');
+    const prompts = {
+      explain: 'Please explain this in more detail using very simple, everyday words. Give a clear step-by-step explanation, 2–3 worked examples, and common mistakes to avoid. Lesson: ' + ref + '.',
+      quiz: 'Quiz me on this lesson with 5 questions (mix of multiple-choice and short-answer), from easy to hard. Ask them ONE at a time and wait for my answer before revealing the solution and a short explanation. Lesson: ' + ref + '.',
+      practice: 'Give me 5 practice questions on this lesson, ordered easy → hard, WITH full worked solutions shown after all the questions. Lesson: ' + ref + '.',
+      summary: 'Summarize this lesson in 3 short bullet points a beginner can remember, then give one key formula or rule and one common mistake. Keep it very simple. Lesson: ' + ref + '.'
+    };
+    window.askTutor(prompts[mode] || prompts.explain);
   };
 
-  function injectExplainButtons() {
-    // style (once)
-    if (!document.getElementById("ai-explain-style")) {
-      const st = document.createElement("style");
-      st.id = "ai-explain-style";
-      st.textContent =
-        ".ai-explain-btn{display:inline-flex;align-items:center;gap:.4rem;margin-top:1rem;" +
-        "padding:.5rem .9rem;font:600 .85rem/1 inherit;color:#fff;cursor:pointer;border:none;" +
-        "border-radius:999px;background:linear-gradient(135deg,#7c3aed,#2563eb);" +
-        "box-shadow:0 2px 8px rgba(37,99,235,.3);transition:transform .12s ease,box-shadow .12s ease;}" +
-        ".ai-explain-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(37,99,235,.45);}" +
-        ".ai-explain-btn:active{transform:translateY(0);}";
-      document.head.appendChild(st);
+  // ============================================================
+  //  Lesson enhancements: study buttons, progress, search,
+  //  expand/collapse, dark mode. Runs only on pages with lessons.
+  // ============================================================
+  const PAGE_KEY = (location.pathname.split("/").pop() || "index").replace(/\.html?$/, "");
+  const DONE_KEY = "utm_done_" + PAGE_KEY;
+
+  function loadDone() { try { return JSON.parse(localStorage.getItem(DONE_KEY) || "{}"); } catch (_) { return {}; } }
+  function saveDone(o) { try { localStorage.setItem(DONE_KEY, JSON.stringify(o)); } catch (_) {} }
+
+  function lessonTitle(d) {
+    const sum = d.querySelector("summary");
+    if (!sum) return "lesson";
+    const c = sum.cloneNode(true);
+    const chev = c.querySelector(".chev"); if (chev) chev.remove();
+    const cb = c.querySelector(".lesson-done"); if (cb) cb.remove();
+    return c.textContent.trim();
+  }
+
+  function injectStyles() {
+    if (document.getElementById("ai-explain-style")) return;
+    const st = document.createElement("style");
+    st.id = "ai-explain-style";
+    st.textContent =
+      ".ai-actions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.1rem;}" +
+      ".ai-btn{display:inline-flex;align-items:center;gap:.35rem;padding:.5rem .9rem;font:600 .82rem/1 inherit;" +
+      "color:#fff;cursor:pointer;border:none;border-radius:999px;transition:transform .12s,box-shadow .12s;}" +
+      ".ai-btn:hover{transform:translateY(-1px);} .ai-btn:active{transform:translateY(0);}" +
+      ".ai-explain-btn{background:linear-gradient(135deg,#7c3aed,#2563eb);box-shadow:0 2px 8px rgba(37,99,235,.3);}" +
+      ".ai-quiz{background:linear-gradient(135deg,#0891b2,#0ea5e9);box-shadow:0 2px 8px rgba(14,165,233,.3);}" +
+      ".ai-practice{background:linear-gradient(135deg,#16a34a,#22c55e);box-shadow:0 2px 8px rgba(34,197,94,.3);}" +
+      ".ai-summary{background:linear-gradient(135deg,#ea580c,#f59e0b);box-shadow:0 2px 8px rgba(245,158,11,.3);}" +
+      ".lesson-done{margin-left:auto;display:inline-flex;align-items:center;gap:.3rem;font-size:.75rem;font-weight:600;opacity:.8;cursor:pointer;}" +
+      ".lesson-done input{width:16px;height:16px;cursor:pointer;}" +
+      "details.lesson.is-done>summary{opacity:.62;}" +
+      ".topic-prog{height:7px;border-radius:999px;background:rgba(0,0,0,.12);overflow:hidden;margin:.5rem 0 .2rem;}" +
+      ".topic-prog>span{display:block;height:100%;width:0;background:linear-gradient(90deg,#22c55e,#16a34a);transition:width .3s;}" +
+      ".topic-prog-label{font-size:.72rem;opacity:.7;font-weight:600;}" +
+      "#study-toolbar{position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;" +
+      "padding:.6rem .8rem;margin:0 0 1.2rem;border-radius:12px;background:rgba(255,255,255,.9);" +
+      "backdrop-filter:blur(6px);box-shadow:0 2px 10px rgba(0,0,0,.08);}" +
+      "#study-search{flex:1;min-width:140px;padding:.5rem .8rem;border:1px solid rgba(0,0,0,.15);border-radius:999px;font:inherit;font-size:.85rem;}" +
+      "#study-toolbar button{padding:.45rem .8rem;border:1px solid rgba(0,0,0,.15);background:#fff;border-radius:999px;font:600 .8rem/1 inherit;cursor:pointer;}" +
+      "#study-toolbar button:hover{background:#f1f5f9;}" +
+      "#study-overall{font-size:.78rem;font-weight:700;opacity:.8;white-space:nowrap;}" +
+      ".topic.search-hidden,details.lesson.search-hidden{display:none!important;}" +
+      /* dark mode */
+      "html.dark{background:#0f1420;} html.dark body{background:#0f1420;color:#e5e7eb;}" +
+      "html.dark .lesson,html.dark .topic,html.dark .card,html.dark .body,html.dark .math,html.dark .ex,html.dark .note,html.dark .tip,html.dark .step,html.dark table,html.dark pre,html.dark code{background:#1a2030!important;color:#e5e7eb!important;border-color:#2a3344!important;}" +
+      "html.dark summary,html.dark h1,html.dark h2,html.dark h3,html.dark h4,html.dark p,html.dark li,html.dark td,html.dark th{color:#e5e7eb!important;}" +
+      "html.dark a{color:#93c5fd!important;}" +
+      "html.dark #study-toolbar{background:rgba(26,32,48,.92);} html.dark #study-search,html.dark #study-toolbar button{background:#0f1420;color:#e5e7eb;border-color:#2a3344;}" +
+      "html.dark .topic-prog{background:rgba(255,255,255,.15);}";
+    document.head.appendChild(st);
+  }
+
+  function makeBtn(cls, label, mode, lesson) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "ai-btn " + cls;
+    b.innerHTML = label;
+    b.addEventListener("click", function (e) {
+      e.preventDefault(); e.stopPropagation();
+      window.askTutorFromLesson(lesson, mode);
+    });
+    return b;
+  }
+
+  function updateTopicProgress(topicEl) {
+    const lessons = topicEl.querySelectorAll("details.lesson");
+    if (!lessons.length) return;
+    let done = 0;
+    lessons.forEach(l => { if (l.classList.contains("is-done")) done++; });
+    const bar = topicEl.querySelector(".topic-prog > span");
+    const lbl = topicEl.querySelector(".topic-prog-label");
+    const pct = Math.round(done / lessons.length * 100);
+    if (bar) bar.style.width = pct + "%";
+    if (lbl) lbl.textContent = done + " / " + lessons.length + " done";
+  }
+
+  function updateOverall() {
+    const all = document.querySelectorAll("details.lesson");
+    let done = 0; all.forEach(l => { if (l.classList.contains("is-done")) done++; });
+    const el = document.getElementById("study-overall");
+    if (el) el.textContent = "✅ " + done + "/" + all.length;
+  }
+
+  function buildToolbar(main) {
+    if (document.getElementById("study-toolbar")) return;
+    const bar = document.createElement("div");
+    bar.id = "study-toolbar";
+    bar.innerHTML =
+      '<input id="study-search" type="search" placeholder="🔍 Search lessons…">' +
+      '<button id="study-expand" type="button">⤢ Expand all</button>' +
+      '<button id="study-collapse" type="button">⤡ Collapse all</button>' +
+      '<button id="study-dark" type="button">🌙 Dark</button>' +
+      '<span id="study-overall"></span>';
+    main.insertBefore(bar, main.firstChild);
+
+    const search = bar.querySelector("#study-search");
+    search.addEventListener("input", function () {
+      const q = this.value.trim().toLowerCase();
+      document.querySelectorAll("details.lesson").forEach(function (d) {
+        const hit = !q || d.textContent.toLowerCase().indexOf(q) !== -1;
+        d.classList.toggle("search-hidden", !hit);
+        if (q && hit) d.open = true;
+      });
+      document.querySelectorAll(".topic").forEach(function (t) {
+        const anyVisible = t.querySelector("details.lesson:not(.search-hidden)");
+        t.classList.toggle("search-hidden", !!q && !anyVisible);
+      });
+    });
+    bar.querySelector("#study-expand").onclick = function () {
+      document.querySelectorAll("details.lesson:not(.search-hidden)").forEach(d => d.open = true);
+    };
+    bar.querySelector("#study-collapse").onclick = function () {
+      document.querySelectorAll("details.lesson").forEach(d => d.open = false);
+    };
+    const darkBtn = bar.querySelector("#study-dark");
+    function applyDark(on) {
+      document.documentElement.classList.toggle("dark", on);
+      darkBtn.innerHTML = on ? "☀️ Light" : "🌙 Dark";
+      try { localStorage.setItem("utm_dark", on ? "1" : "0"); } catch (_) {}
     }
+    darkBtn.onclick = () => applyDark(!document.documentElement.classList.contains("dark"));
+    if (localStorage.getItem("utm_dark") === "1") applyDark(true);
+  }
+
+  function enhanceLessons() {
     const lessons = document.querySelectorAll("details.lesson");
+    if (!lessons.length) return;
+    injectStyles();
+
+    const main = document.querySelector("main") || document.body;
+    buildToolbar(main);
+
+    const done = loadDone();
+
     lessons.forEach(function (d) {
       const body = d.querySelector(".body");
-      if (!body || d.querySelector(".ai-explain-btn")) return;
+      if (!body) return;
+      const title = lessonTitle(d);
+
+      // --- action buttons (replace any lone hardcoded explain button) ---
+      if (!d.querySelector(".ai-actions")) {
+        const old = d.querySelector(".ai-explain-btn");
+        if (old) old.remove();
+        const row = document.createElement("div");
+        row.className = "ai-actions";
+        row.appendChild(makeBtn("ai-explain-btn", "✨ Explain more", "explain", d));
+        row.appendChild(makeBtn("ai-quiz", "❓ Quiz me", "quiz", d));
+        row.appendChild(makeBtn("ai-practice", "📝 Practice", "practice", d));
+        row.appendChild(makeBtn("ai-summary", "⚡ Summarize", "summary", d));
+        body.appendChild(row);
+      }
+
+      // --- done checkbox in the summary ---
       const sum = d.querySelector("summary");
-      let title = "this lesson";
-      if (sum) {
-        const c = sum.cloneNode(true);
-        const chev = c.querySelector(".chev");
-        if (chev) chev.remove();
-        title = c.textContent.trim();
+      if (sum && !sum.querySelector(".lesson-done")) {
+        const key = title;
+        const lbl = document.createElement("label");
+        lbl.className = "lesson-done";
+        lbl.innerHTML = '<input type="checkbox"> done';
+        const cb = lbl.querySelector("input");
+        cb.checked = !!done[key];
+        d.classList.toggle("is-done", !!done[key]);
+        const stop = e => e.stopPropagation();
+        lbl.addEventListener("click", stop);
+        cb.addEventListener("click", stop);
+        cb.addEventListener("change", function () {
+          const map = loadDone();
+          if (cb.checked) map[key] = 1; else delete map[key];
+          saveDone(map);
+          d.classList.toggle("is-done", cb.checked);
+          const t = d.closest(".topic"); if (t) updateTopicProgress(t);
+          updateOverall();
+        });
+        // place before the chevron if present
+        const chev = sum.querySelector(".chev");
+        if (chev) sum.insertBefore(lbl, chev); else sum.appendChild(lbl);
       }
-      let topic = "";
-      const topicEl = d.closest(".topic");
-      if (topicEl) {
-        const h2 = topicEl.querySelector(".topic-head h2") || topicEl.querySelector("h2");
-        if (h2) topic = h2.textContent.trim();
-      }
-      const subject = (document.querySelector("h1") ? document.querySelector("h1").textContent.trim() : (document.title || "")).replace(/\s+/g, " ");
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "ai-explain-btn";
-      btn.innerHTML = '✨ Explain more with AI';
-      btn.addEventListener("click", function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        const q = 'Please explain this in more detail using very simple, everyday words. Give a clear step-by-step explanation, 2–3 worked examples, and common mistakes to avoid. Lesson: "' +
-          title + '"' + (topic ? (' (topic: ' + topic + ')') : '') + (subject ? (' [subject: ' + subject + ']') : '') + '.';
-        window.askTutor(q);
-      });
-      body.appendChild(btn);
     });
+
+    // --- per-topic progress bars ---
+    document.querySelectorAll(".topic").forEach(function (t) {
+      if (!t.querySelector("details.lesson")) return;
+      if (!t.querySelector(".topic-prog")) {
+        const head = t.querySelector(".topic-head") || t.firstElementChild;
+        const wrap = document.createElement("div");
+        wrap.innerHTML = '<div class="topic-prog"><span></span></div><div class="topic-prog-label"></div>';
+        if (head && head.nextSibling) t.insertBefore(wrap, head.nextSibling);
+        else t.insertBefore(wrap, t.firstChild);
+      }
+      updateTopicProgress(t);
+    });
+    updateOverall();
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", injectExplainButtons);
+    document.addEventListener("DOMContentLoaded", enhanceLessons);
   } else {
-    injectExplainButtons();
+    enhanceLessons();
   }
 })();
