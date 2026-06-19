@@ -271,6 +271,7 @@
   <section class="topic" id="t2"><div class="topic-head"><span class="n">2</span><h2>Programming Concepts</h2></div>
 
     <details class="lesson"><summary>2·1 Computer Languages — Machine, Assembly &amp; Compiled<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Computers only understand raw 0s-and-1s "machine language," which is painful for humans. So we write in friendlier <strong>high-level languages</strong> (like C++) and a <strong>compiler</strong> translates our code down into machine language the computer can run.</div>
       <div class="note">"Everybody should learn how to program a computer… because it teaches you how to think." — <strong>Steve Jobs</strong></div>
       <ul>
         <li>The first programmable computers required programmers to write explicit instructions to directly manipulate the hardware — <strong>machine language</strong>.</li>
@@ -287,6 +288,7 @@
     </details></div>
 
     <details class="lesson"><summary>2·2 Translators — Compiler vs Interpreter<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Two ways to translate your code. A <strong>compiler</strong> translates the <em>whole</em> program once into a runnable file (fast to run, but you must recompile after edits). An <strong>interpreter</strong> translates and runs it <em>line by line</em> each time (slower, but easier to test and fix).</div>
       <ul>
         <li><strong>Compiler</strong> — all code is translated before execution; an executable file is created at compile time and the program is run later. Programs execute faster than other types, but changes to the source require re-compilation (re-creating the executable).</li>
         <li><strong>Incremental compiler</strong> — a compromise between the other two; high-level code is interpreted, but sections used repeatedly are compiled and stored for later use as needed.</li>
@@ -296,6 +298,7 @@
     </details></div>
 
     <details class="lesson"><summary>2·3 Generations of Languages<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Programming languages evolved in "generations," each more human-friendly than the last: <strong>1st</strong> raw machine code → <strong>2nd</strong> assembly (short mnemonics) → <strong>3rd</strong> proper languages like C/C++ → <strong>4th</strong> database languages like SQL → <strong>5th</strong> AI/logic languages. The higher the generation, the less you worry about the hardware.</div>
       <h4>Low-Level Languages</h4>
       <ul>
         <li><strong>First Generation — Direct Machine Code:</strong> machine language directly understood by the computer (e.g. 0011000000111…). + Speedy processing, can use Hex to reduce errors, complete control of hardware, still used to program ROM. − Processor dependent, lengthy coding when hardware changes, requires very accurate programming.</li>
@@ -310,6 +313,7 @@
     </details></div>
 
     <details class="lesson"><summary>2·4 Syntax &amp; Errors — Hello World in Many Languages<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> <strong>Syntax</strong> is the grammar of a language — the exact spelling and punctuation rules. Break a rule (miss a semicolon, forget a bracket) and you get a <strong>syntax error</strong> that stops the program compiling. Every language says "Hello World" differently, but all are fussy about getting the syntax right.</div>
       <ul>
         <li>Different programming languages have different <strong>syntax</strong> — a "correct" way to write down code (source code) that lets the language understand what you are telling it to do.</li>
         <li>A program's source code must have correct syntax to compile correctly; otherwise it fails to compile and produces a <strong>syntax error</strong> — e.g. a missing parenthesis or a forgotten semicolon.</li>
@@ -337,6 +341,7 @@ end.</pre>
     </details></div>
 
     <details class="lesson"><summary>2·5 Models of Programming — Procedural vs OOP<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Two styles of organising code. <strong>Procedural</strong> = a recipe: a list of steps/functions done in order. <strong>Object-Oriented (OOP)</strong> = model the problem as "objects" (things) that hold their own data and talk to each other — more like the real world, and better for big secure programs.</div>
       <h4>Object-Oriented Programming (OOP)</h4>
       <ul>
         <li>First, identify the components called <strong>objects</strong> which form the basis of the solution.</li>
@@ -358,6 +363,7 @@ end.</pre>
     </details></div>
 
     <details class="lesson"><summary>2·6 How a Program Solves a Problem — Software Life Cycle<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Writing software follows a cycle: <strong>(1) work out the plan</strong> (understand the problem, design the step-by-step "algorithm"), <strong>(2) build it</strong> (write the code, test it, fix bugs = "debugging"), and <strong>(3) maintain it</strong> (keep updating it after release). Think before you type.</div>
       <p>A computer is not intelligent, but it frees people from repetitive and boring tasks. The <strong>Software Life Cycle</strong> has these phases:</p>
       <div class="ex"><span class="tag">PHASES</span>
         <div class="step"><span class="num">1</span><span class="txt"><strong>Problem-Solving Phase</strong> — Analyze the problem &amp; specify what the solution must do; develop a general solution (<strong>algorithm</strong> = a step-by-step procedure for solving a problem); verify that the solution really solves the problem.</span></div>
@@ -367,6 +373,7 @@ end.</pre>
     </details></div>
 
     <details class="lesson"><summary>2·7 The C++ Programming Language<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> <strong>C++</strong> is the language used in this course. It's an upgrade of the older C language with object-oriented features added on. It sits in the middle — powerful and fast like a low-level language, but readable like a high-level one. In class you'll mostly use it in the simpler "C style."</div>
       <ul>
         <li>C++ (pronounced "see-plus-plus") was developed by <strong>Bjarne Stroustrup</strong>.</li>
         <li>A general-purpose <strong>object-oriented</strong> language — an <strong>extension of the C language</strong> (a procedural language).</li>
@@ -379,6 +386,7 @@ end.</pre>
     </details></div>
 
     <details class="lesson"><summary>2·8 Programming Language Structure — The Building Blocks<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Almost every C++ program has the same skeleton: <strong>#include</strong> lines (borrow ready-made tools), <code>int main()</code> (where the program starts), <strong>variable declarations</strong> (reserve labelled memory boxes for data), and then the instructions. Recognise this pattern and any program looks less scary.</div>
       <p>A C++ program is built from these parts. Below is the structure shown on the slides (a palindrome-checker):</p>
       <pre>#include &lt;iostream&gt;          // pre-processor directive (header file)
 using namespace std;
@@ -421,6 +429,7 @@ int main()
     </details></div>
 
     <details class="lesson"><summary>2·9 The Three Control Structures<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Every program is built from just three flow patterns: <strong>sequence</strong> (do steps in order), <strong>selection/branch</strong> (make a decision — if/else), and <strong>loop/repetition</strong> (repeat something). That's it — even huge programs are just these three combined.</div>
       <h4>Sequence</h4>
       <ul>
         <li>Unless directed otherwise, the computer executes C++ statements one after the other, in the order they are written — in <strong>sequence</strong>.</li>
