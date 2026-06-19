@@ -186,6 +186,7 @@
   <section class="topic" id="c2"><div class="topic-head"><span class="n">2</span><h2>Capacitor and Dielectric</h2></div>
 
     <details class="lesson"><summary>2.1 — Capacitors and capacitance<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A <strong>capacitor</strong> is a little energy tank — two metal plates that store electric charge, ready to release it in a burst (like a camera flash). "Capacitance" just measures <strong>how much charge it can hold per volt</strong> — a bigger number means a bigger tank.</div>
       <p>A <strong>capacitor</strong> is a device capable of storing electric charge or electric potential energy — two conducting plates separated by a small air gap or a thin insulator (a <strong>dielectric</strong> such as mica, ceramics, paper or oil). Plates may be cylindrical, spherical or parallel.</p>
       <p><strong>Capacitance</strong> C is the ratio of the charge on either plate to the potential difference between them. It is a scalar, always positive; unit farad (F) = C·V⁻¹.</p>
       <div class="math">C = Q/V&nbsp;&nbsp;→&nbsp;&nbsp;Q = CV&nbsp;&nbsp;(Q ∝ V)&nbsp;&nbsp;·&nbsp;&nbsp;1 µF = 10⁻⁶ F, 1 pF = 10⁻¹² F</div>
@@ -210,6 +211,7 @@
     </div></details>
 
     <details class="lesson"><summary>2.2 — Capacitors in series and parallel<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> When you connect several capacitors, the combining rules are the <strong>opposite of resistors</strong>. In <strong>parallel</strong> (side by side) you just add them up — more total storage. In <strong>series</strong> (in a line) you add the reciprocals, giving <em>less</em> than the smallest. Same charge in series, same voltage in parallel.</div>
       <p><strong>Series:</strong> same charge on each (Q = Q₁ = Q₂ = Q₃), voltages add (V = V₁+V₂+V₃):</p>
       <div class="math">1/C_eff = 1/C₁ + 1/C₂ + 1/C₃ + … + 1/Cₙ</div>
       <p><strong>Parallel:</strong> same voltage on each (V = V₁ = V₂ = V₃), charges add (Q = Q₁+Q₂+Q₃):</p>
@@ -235,6 +237,7 @@
     </div></details>
 
     <details class="lesson"><summary>2.3 — Electric energy storage<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Charging a capacitor stores energy (you did work pushing charge onto it). Three equivalent formulas give that stored energy — pick whichever matches the info you have (Q, C, or V). That stored energy is what a defibrillator or camera flash dumps out all at once.</div>
       <p>A charged capacitor stores energy equal to the work done to charge it:</p>
       <div class="math">U = ½Q²/C = ½CV² = ½QV</div>
       <p><strong>Energy density</strong> (energy per unit volume) of any electric field:</p>
@@ -249,6 +252,7 @@
     </div></details>
 
     <details class="lesson"><summary>2.4 — Dielectrics<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A <strong>dielectric</strong> is an insulating slab (plastic, mica, paper) slipped between the plates. It <strong>boosts the capacitance</strong> — letting the capacitor store more charge and handle higher voltage in a smaller size. That's why real capacitors aren't just two plates in air.</div>
       <p>A <strong>dielectric</strong> is a non-conducting material placed between the plates. Inserting it increases C by the <strong>dielectric constant</strong> ε_r (κ). Advantages: more capacitance, higher operating voltage, mechanical support (smaller d, larger C).</p>
       <div class="math">ε_r = C/C₀ = ε/ε₀ = V₀/V = E₀/E&nbsp;&nbsp;(no unit)&nbsp;&nbsp;·&nbsp;&nbsp;C = ε_r·ε₀A/d = Kε₀A/d</div>
       <p><strong>Dielectric strength</strong> = the field at which breakdown occurs and the material becomes a conductor. Battery connected → V constant, C and Q rise. Battery disconnected → Q constant, V drops.</p>
@@ -273,6 +277,7 @@
   <section class="topic" id="c3"><div class="topic-head"><span class="n">3</span><h2>Electric Currents and Resistance</h2></div>
 
     <details class="lesson"><summary>3.1 / 3.2 — The electric battery & electric current<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A <strong>battery</strong> turns chemical energy into electrical energy, pushing charge around a circuit. <strong>Current</strong> is just how much charge flows past a point each second (like water flow rate in a pipe), measured in amps. Heads-up on a historical quirk: "conventional current" is drawn flowing +→−, even though the electrons actually drift the other way.</div>
       <p>Volta found electricity is created when dissimilar metals are joined by a conductive solution (an <strong>electrolyte</strong>) — a simple cell. A <strong>battery</strong> transforms chemical energy into electrical energy; chemical reactions maintain a potential difference between the terminals. Several cells together make a battery.</p>
       <p><strong>Electric current</strong> I is the total (net) charge Q flowing through an area per unit time. Base and scalar quantity; S.I. unit ampere (A) = 1 C·s⁻¹.</p>
       <div class="math">I = Q/t&nbsp;(average)&nbsp;·&nbsp;I = dQ/dt&nbsp;(instantaneous)&nbsp;·&nbsp;Q = ne, e = 1.6×10⁻¹⁹ C</div>
@@ -286,6 +291,7 @@
     </div></details>
 
     <details class="lesson"><summary>3.3 — Ohm's law: resistance and resistors<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> <strong>Resistance</strong> is how much a component "fights" the current. Ohm's law ties the three big quantities together in one tidy triangle: <strong>V = I × R</strong> (voltage = current × resistance). Push harder (more volts) → more current; more resistance → less current.</div>
       <p><strong>Ohm's law:</strong> the potential difference across a metallic conductor is proportional to the current through it, at constant temperature.</p>
       <div class="math">V ∝ I&nbsp;→&nbsp;V = IR&nbsp;·&nbsp;R = V/I&nbsp;(unit ohm Ω = V·A⁻¹)</div>
       <p>Materials obeying Ohm's law are <strong>ohmic</strong> (e.g. pure metal, constantan) — the I–V graph is a straight line through the origin (gradient 1/R). Materials that don't are <strong>non-ohmic</strong>. <strong>Resistance</strong> measures opposition to charge flow; it is a scalar, and stays constant if temperature is constant. Standard resistors are colour-coded for value and tolerance.</p>
@@ -298,6 +304,7 @@
     </div></details>
 
     <details class="lesson"><summary>3.4 — Resistivity<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Resistance depends on the wire's shape, but <strong>resistivity (ρ)</strong> is a property of the <em>material itself</em> — copper has low resistivity (good conductor), rubber has huge resistivity (insulator). A wire's resistance = resistivity × length ÷ thickness: <strong>long &amp; thin = high resistance; short &amp; fat = low.</strong></div>
       <p><strong>Resistivity</strong> ρ is the resistance of unit cross-sectional area per unit length. Scalar; unit Ω·m. It measures a material's ability to oppose current and depends on the material and temperature — good conductors have very low ρ, good insulators very high ρ.</p>
       <div class="math">ρ = RA/ℓ&nbsp;→&nbsp;R = ρℓ/A&nbsp;·&nbsp;ρ_T = ρ₀[1 + α(T − T₀)]</div>
 
@@ -322,6 +329,7 @@
     </div></details>
 
     <details class="lesson"><summary>3.5 — Electric power; power in the household<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> <strong>Power</strong> is how fast electrical energy is used, in watts. The everyday formula is <strong>P = V × I</strong> (and you can rewrite it as I²R or V²/R). This is what your electricity bill charges for — energy = power × time, measured in kilowatt-hours (kWh).</div>
       <p><strong>Power</strong> is the energy liberated per unit time. Scalar; unit watt (W).</p>
       <div class="math">P = W/t = VI&nbsp;·&nbsp;P = I²R = V²/R&nbsp;·&nbsp;1 kWh = (1000 W)(3600 s) = 3.60×10⁶ J</div>
 
@@ -346,6 +354,7 @@
     </div></details>
 
     <details class="lesson"><summary>3.6 — Alternating current<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Batteries give steady <strong>DC</strong> (one direction). Wall sockets give <strong>AC</strong> — the current rapidly flips back and forth. Since it averages to zero, we describe its "effective" size with the <strong>rms</strong> value (≈ 0.707 of the peak), which is what gives the same heating as an equivalent DC.</div>
       <p>For AC, I = I₀sin ωt and power P = I²R = I₀²R sin²ωt. Since current and voltage average zero, we use <strong>root-mean-square</strong> (rms) values:</p>
       <div class="math">I_rms = I₀/√2 = 0.707 I₀&nbsp;·&nbsp;V_rms = V₀/√2 = 0.707 V₀</div>
       <div class="math">P̄ = ½I₀²R = ½V₀²/R = ½I₀V₀&nbsp;·&nbsp;P(AC) = V_rms·I_rms&nbsp;·&nbsp;V_rms = I_rms·R</div>
