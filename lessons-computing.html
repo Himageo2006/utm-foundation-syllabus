@@ -626,6 +626,7 @@ int main() {
   <section class="topic" id="t4"><div class="topic-head"><span class="n">4</span><h2>Elementary Programming</h2></div>
 
     <details class="lesson"><summary>4·1 What Is a Program Made Of?<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Every program is built from a few basic ingredients: <strong>keywords</strong> (reserved command words), <strong>identifiers</strong> (names you make up), <strong>operators</strong> (+, =, etc.), <strong>punctuation</strong> (; , {}), all arranged by the rules of <strong>syntax</strong>. Spot these five and any code becomes readable.</div>
       <p>Common elements in programming languages:</p>
       <ul>
         <li><strong>Key Words</strong></li>
@@ -648,6 +649,7 @@ int main()
     </details></div>
 
     <details class="lesson"><summary>4·2 Key Words, Operators &amp; Punctuation<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> <strong>Keywords</strong> are special words C++ owns (like <code>int</code>, <code>return</code>) — you can't reuse them as names. <strong>Operators</strong> do things to data (<code>+</code> adds, <code>=</code> stores a value). <strong>Punctuation</strong> like the semicolon <code>;</code> marks where a statement ends.</div>
       <h4>Key Words</h4>
       <ul>
         <li>Also known as <strong>reserved words</strong>.</li>
@@ -672,6 +674,7 @@ int main()
     </details></div>
 
     <details class="lesson"><summary>4·3 The #include Directive &amp; Comments<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> <code>#include</code> pulls in ready-made code from another file (no semicolon needed). <strong>Comments</strong> are notes for humans that the computer ignores — <code>//</code> for one line, <code>/* … */</code> for several. Good comments explain <em>why</em> code does something.</div>
       <h4>The #include directive</h4>
       <ul>
         <li>Inserts the contents of another file into the program.</li>
@@ -697,6 +700,7 @@ int area; /* Calculated area */</pre>
     </details></div>
 
     <details class="lesson"><summary>4·4 The Parts of a C++ Program &amp; Special Characters<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> This lesson labels every piece of a basic program and every symbol (<code>#</code>, <code>{ }</code>, <code>" "</code>, <code>;</code>). Two rules that catch beginners out: C++ is <strong>case-sensitive</strong> (<code>Main</code> ≠ <code>main</code>), and <strong>every { needs a matching }</strong>.</div>
       <div class="ex"><span class="tag">PARTS OF A C++ PROGRAM</span>
         <div class="step"><span class="num">//</span><span class="txt"><code>//Sample C++ program</code> — comment</span></div>
         <div class="step"><span class="num">#</span><span class="txt"><code>#include &lt;iostream&gt;</code> — preprocessor directive</span></div>
@@ -720,6 +724,7 @@ int area; /* Calculated area */</pre>
     </details></div>
 
     <details class="lesson"><summary>4·5 Variables<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A <strong>variable</strong> is a labelled box in memory that holds a value you can change. Put a new value in and the old one is gone (overwritten). Each variable has a name and a type (what kind of data it holds).</div>
       <ul>
         <li>A <strong>variable</strong> is a named location in computer memory (in RAM). It holds a piece of data and must be <strong>defined</strong> before it can be used. Example: <code>double num1;</code></li>
         <li>A variable has a <strong>name</strong> and a <strong>type</strong> of data it can hold (e.g. <code>char letter;</code> — <code>char</code> is the data type, <code>letter</code> is the variable name). The value stored can be changed (it can "vary").</li>
@@ -734,6 +739,7 @@ cout &lt;&lt; age;  // Displays 18</pre>
     </details></div>
 
     <details class="lesson"><summary>4·6 Identifiers — Naming Rules<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> <strong>Identifiers</strong> are the names <em>you</em> invent for variables and functions. The rules: start with a letter or underscore (never a digit), use only letters/digits/underscores, no spaces or symbols, and don't reuse keywords. Pick names that describe what they hold.</div>
       <ul>
         <li>Identifiers are programmer-chosen names to represent parts of the program, such as variables.</li>
         <li>The name should indicate the use of the identifier.</li>
@@ -750,6 +756,7 @@ cout &lt;&lt; age;  // Displays 18</pre>
     </details></div>
 
     <details class="lesson"><summary>4·7 Lines vs Statements &amp; Literals<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A <strong>line</strong> is just text up to where you press Enter; a <strong>statement</strong> is one complete instruction (ends with <code>;</code>) and can span several lines. A <strong>literal</strong> is a fixed value typed right into the code, like <code>20</code> or <code>"hello"</code>.</div>
       <h4>Lines vs Statements</h4>
       <ul>
         <li>A <strong>line</strong> is all of the characters entered before a carriage return. Blank lines improve readability.</li>
@@ -763,6 +770,7 @@ cout &lt;&lt; age;  // Displays 18</pre>
     </details></div>
 
     <details class="lesson"><summary>4·8 Number Systems &amp; Integer Data Types<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Whole numbers are stored in <strong>integer types</strong> (<code>short</code>, <code>int</code>, <code>long</code> — bigger type, bigger range). They can be <strong>signed</strong> (allow negatives) or <strong>unsigned</strong> (positive only). In code you can write numbers in decimal, octal (starts with <code>0</code>) or hex (starts with <code>0x</code>).</div>
       <p>Numbers can be represented in various ways; the representation depends on the <strong>BASE</strong>, written as Number<sub>base</sub>. The four most common:</p>
       <ul>
         <li><strong>Decimal (base 10)</strong> — digits 0–9. e.g. 126₁₀ (normally just 126)</li>
@@ -785,6 +793,7 @@ cout &lt;&lt; age;  // Displays 18</pre>
     </details></div>
 
     <details class="lesson"><summary>4·9 Floating-Point, bool &amp; char Types<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Three more types: <strong>float/double</strong> hold decimals (double is more precise), <strong>bool</strong> holds just true/false, and <strong>char</strong> holds one character. ⚠️ Putting a decimal into an <code>int</code> chops off (not rounds) the fraction, and a single character needs <em>single</em> quotes <code>'C'</code>.</div>
       <h4>Floating-point data types</h4>
       <ul>
         <li>Designed to hold real numbers (12.45, −3.8), stored in a form similar to scientific notation; all are signed.</li>
@@ -814,6 +823,7 @@ cout &lt;&lt; age;  // Displays 18</pre>
     </details></div>
 
     <details class="lesson"><summary>4·10 Constants — Named, #define, const &amp; Strings<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A <strong>constant</strong> is a value that must never change while the program runs (like a tax rate or π). Two ways to make one: <code>#define NAME value</code> (before main) or <code>const type NAME = value;</code>. Using named constants makes code clearer and stops accidental edits.</div>
       <h4>Named constants</h4>
       <ul>
         <li>A <strong>named constant</strong> (constant variable) is a variable whose content cannot be changed during execution — used to represent constant values with descriptive names, often in UPPERCASE:
@@ -836,6 +846,7 @@ const int NUM_STATES = 50;</pre>
     </details></div>
 
     <details class="lesson"><summary>4·11 Assignment, Initialization &amp; Scope<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> <strong>Initialization</strong> = giving a variable its <em>first</em> value as you create it. <strong>Assignment</strong> = changing a value later (the variable goes on the <em>left</em> of <code>=</code>). <strong>Scope</strong> = where a variable can be used — and you can't use it before you've declared it.</div>
       <ul>
         <li><strong>Initialization</strong> gives an initial value to a variable when it is created; you can initialize some or all variables in a definition: <code>int length = 12;</code>, <code>int width = 7, height = 5, area;</code></li>
         <li><strong>Assignment</strong> gives a value to a previously created variable; a single variable name must appear on the <em>left</em> of <code>=</code>: <code>size = 5;</code> is legal, <code>5 = size;</code> is not.</li>
@@ -844,6 +855,7 @@ const int NUM_STATES = 50;</pre>
     </details></div>
 
     <details class="lesson"><summary>4·12 Arithmetic Operators &amp; Expressions<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> The maths operators: <code>+ − * /</code> plus <code>%</code> (remainder). ⚠️ Big gotcha: dividing two <em>whole numbers</em> throws away the decimal — <code>7/3</code> gives <code>2</code>, not 2.33. Make one a decimal (<code>7/3.0</code>) to get the real answer. <code>%</code> gives the leftover: <code>7 % 3 = 1</code>.</div>
       <ul>
         <li>Arithmetic operators perform numeric calculations. C++ has <strong>unary</strong> (1 operand, e.g. <code>-5</code>), <strong>binary</strong> (2 operands, e.g. <code>13 - 7</code>), and <strong>ternary</strong> (3 operands, <code>exp1 ? exp2 : exp3</code>) operators.</li>
       </ul>
@@ -861,6 +873,7 @@ const int NUM_STATES = 50;</pre>
     </details></div>
 
     <details class="lesson"><summary>4·13 Order of Operations &amp; Associativity<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Same as school maths (BODMAS): <strong>brackets first</strong>, then <code>* / %</code>, then <code>+ −</code>. So <code>5 + 2 * 4</code> is 13, not 28. When unsure, <strong>add parentheses</strong> to force the order you want.</div>
       <p>In an expression with more than one operator, evaluation order is:</p>
       <ol>
         <li><code>( )</code> — parentheses</li>
@@ -883,6 +896,7 @@ const int NUM_STATES = 50;</pre>
     </details></div>
 
     <details class="lesson"><summary>4·14 Type Conversion &amp; Type Casting<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> When you mix types (say an int and a double), C++ <strong>auto-converts</strong> one to match. Sometimes you want to force a conversion yourself — that's <strong>type casting</strong>, e.g. <code>static_cast&lt;double&gt;(x)</code> to get a real decimal answer from integer division.</div>
       <ul>
         <li>Operations are performed between operands of the <strong>same type</strong>. If they differ, C++ converts one to the type of the other — which can affect the result.</li>
         <li><strong>Type conversion</strong> is automatic conversion of an operand: <strong>promotion</strong> = convert to a higher type; <strong>demotion</strong> = convert to a lower type.</li>
@@ -900,6 +914,7 @@ const int NUM_STATES = 50;</pre>
     </details></div>
 
     <details class="lesson"><summary>4·15 Algebraic Expressions in C++<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Maths-on-paper has to be rewritten for C++. You <strong>can't leave multiplication implied</strong> — <em>lw</em> must be <code>l * w</code>. There's <strong>no power symbol</strong> — use <code>pow(s, 2)</code> for s². And add brackets to keep the intended order.</div>
       <ul>
         <li>Multiplication requires an operator: <em>Area = lw</em> → <code>Area = l * w;</code></li>
         <li>There is no exponentiation operator: <em>Area = s²</em> → <code>Area = pow(s, 2);</code></li>
@@ -913,6 +928,7 @@ const int NUM_STATES = 50;</pre>
     </details></div>
 
     <details class="lesson"><summary>4·16 Increment/Decrement, Multiple &amp; Combined Assignment<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Handy shorthands. <code>a++</code> adds 1 to <code>a</code> (<code>a--</code> subtracts 1). <code>sum += 5</code> is short for <code>sum = sum + 5</code>. And <code>a++</code> (use-then-add) behaves slightly differently from <code>++a</code> (add-then-use) when used inside another statement.</div>
       <ul>
         <li><strong>Postfix</strong> (<code>x = a++;</code>): use the value of <code>a</code> <em>before</em> increment, then <code>a = a + 1</code>.</li>
         <li><strong>Prefix</strong> (<code>x = ++a;</code>): increment <code>a</code> by 1 <em>first</em>, then use the value of <code>a</code>.</li>
@@ -929,6 +945,7 @@ const int NUM_STATES = 50;</pre>
     </details></div>
 
     <details class="lesson"><summary>4·17 Logical, Relational &amp; Boolean Expressions<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> These give true/false answers — the basis of all decisions. <strong>Relational</strong> operators compare values (<code>&gt;</code>, <code>&lt;</code>, <code>==</code>, <code>!=</code>). <strong>Logical</strong> operators combine conditions: <code>&amp;&amp;</code> (AND — both must be true), <code>||</code> (OR — either), <code>!</code> (NOT — flips it). ⚠️ Use <code>==</code> to compare, not <code>=</code> (which assigns).</div>
       <ul>
         <li>Logical data uses the <code>bool</code> type with two values: <code>true</code> and <code>false</code>. Casting bool→int: <code>true</code> → 1, <code>false</code> → 0 (so <code>2 + true</code> → 3). Casting int→bool: zero → false, non-zero → true.</li>
       </ul>

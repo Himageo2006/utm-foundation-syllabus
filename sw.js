@@ -1,5 +1,5 @@
 /* UTM Foundation Hub — service worker (offline shell) */
-const CACHE = "utm-hub-v57";
+const CACHE = "utm-hub-v58";
 const ASSETS = [
   "index.html", "subject.html",
   "lessons-calculus.html", "lessons-physics.html", "lessons-chemistry.html", "lessons-computing.html",
