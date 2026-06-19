@@ -328,4 +328,65 @@ If a question is outside this syllabus, still help, but gently relate it back to
     if (!out) botEl.innerHTML = renderMd("(No response — try again.)");
     return out;
   }
+
+  // --- "Explain more with AI" buttons (auto-injected into every lesson) ---
+  // Public helper: open the tutor with a pre-filled question.
+  window.askTutor = function (q) {
+    try { localStorage.setItem("utm_tutor_prefill", q); } catch (_) {}
+    openPanel();
+  };
+
+  function injectExplainButtons() {
+    // style (once)
+    if (!document.getElementById("ai-explain-style")) {
+      const st = document.createElement("style");
+      st.id = "ai-explain-style";
+      st.textContent =
+        ".ai-explain-btn{display:inline-flex;align-items:center;gap:.4rem;margin-top:1rem;" +
+        "padding:.5rem .9rem;font:600 .85rem/1 inherit;color:#fff;cursor:pointer;border:none;" +
+        "border-radius:999px;background:linear-gradient(135deg,#7c3aed,#2563eb);" +
+        "box-shadow:0 2px 8px rgba(37,99,235,.3);transition:transform .12s ease,box-shadow .12s ease;}" +
+        ".ai-explain-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(37,99,235,.45);}" +
+        ".ai-explain-btn:active{transform:translateY(0);}";
+      document.head.appendChild(st);
+    }
+    const lessons = document.querySelectorAll("details.lesson");
+    lessons.forEach(function (d) {
+      const body = d.querySelector(".body");
+      if (!body || body.querySelector(".ai-explain-btn")) return;
+      const sum = d.querySelector("summary");
+      let title = "this lesson";
+      if (sum) {
+        const c = sum.cloneNode(true);
+        const chev = c.querySelector(".chev");
+        if (chev) chev.remove();
+        title = c.textContent.trim();
+      }
+      let topic = "";
+      const topicEl = d.closest(".topic");
+      if (topicEl) {
+        const h2 = topicEl.querySelector(".topic-head h2") || topicEl.querySelector("h2");
+        if (h2) topic = h2.textContent.trim();
+      }
+      const subject = (document.querySelector("h1") ? document.querySelector("h1").textContent.trim() : (document.title || "")).replace(/\s+/g, " ");
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "ai-explain-btn";
+      btn.innerHTML = '✨ Explain more with AI';
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const q = 'Please explain this in more detail using very simple, everyday words. Give a clear step-by-step explanation, 2–3 worked examples, and common mistakes to avoid. Lesson: "' +
+          title + '"' + (topic ? (' (topic: ' + topic + ')') : '') + (subject ? (' [subject: ' + subject + ']') : '') + '.';
+        window.askTutor(q);
+      });
+      body.appendChild(btn);
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", injectExplainButtons);
+  } else {
+    injectExplainButtons();
+  }
 })();
