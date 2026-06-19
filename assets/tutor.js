@@ -68,6 +68,35 @@ If a question is outside this syllabus, still help, but gently relate it back to
   }
   let busy = false;
   let pendingImage = null;   // data URL of an attached photo (cleared after one send)
+  let flashcardReq = false;  // set when the next reply should offer a flashcard download
+
+  // Parse "Front | Back" lines from AI text and offer an Anki-friendly CSV download
+  function addFlashcardDownload(botEl) {
+    const last = [...history].reverse().find(m => m.role === "assistant");
+    const text = last ? last.content : "";
+    const cards = text.split("\n").map(l => l.replace(/^```.*$/, "").trim())
+      .filter(l => l.indexOf("|") !== -1 && !/^front\s*\|\s*back$/i.test(l))
+      .map(l => { const i = l.indexOf("|"); return [l.slice(0, i).replace(/^\d+[\.\)]\s*/, "").trim(), l.slice(i + 1).trim()]; })
+      .filter(c => c[0] && c[1]);
+    if (!cards.length || !botEl) return;
+    const csv = cards.map(c => '"' + c[0].replace(/"/g, '""') + '","' + c[1].replace(/"/g, '""') + '"').join("\n");
+    const wrap = document.createElement("div");
+    wrap.style.marginTop = ".6rem";
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "ai-btn ai-practice";
+    btn.textContent = "⬇ Download " + cards.length + " flashcards (Anki CSV)";
+    btn.onclick = function () {
+      const blob = new Blob(["﻿" + csv], { type: "text/csv" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "flashcards-" + new Date().toISOString().slice(0, 10) + ".csv";
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    };
+    wrap.appendChild(btn);
+    botEl.appendChild(wrap);
+  }
 
   // --- Build DOM ---------------------------------------------
   const fab = document.createElement("button");
@@ -266,6 +295,7 @@ If a question is outside this syllabus, still help, but gently relate it back to
       const full = await streamReply(bot);
       history.push({ role: "assistant", content: full });
       saveHistory();
+      if (flashcardReq) { flashcardReq = false; addFlashcardDownload(bot); }
     } catch (err) {
       bot.innerHTML = renderMd("⚠️ " + (err.message || "Something went wrong.") +
         "\n\nTip: check your API key in ⚙ settings, or your internet connection.");
@@ -428,8 +458,10 @@ If a question is outside this syllabus, still help, but gently relate it back to
       explain: 'Please explain this in more detail using very simple, everyday words. Give a clear step-by-step explanation, 2–3 worked examples, and common mistakes to avoid. Lesson: ' + ref + '.',
       quiz: 'Quiz me on this lesson with 5 questions (mix of multiple-choice and short-answer), from easy to hard. Ask them ONE at a time and wait for my answer before revealing the solution and a short explanation. Lesson: ' + ref + '.',
       practice: 'Give me 5 practice questions on this lesson, ordered easy → hard, WITH full worked solutions shown after all the questions. Lesson: ' + ref + '.',
-      summary: 'Summarize this lesson in 3 short bullet points a beginner can remember, then give one key formula or rule and one common mistake. Keep it very simple. Lesson: ' + ref + '.'
+      summary: 'Summarize this lesson in 3 short bullet points a beginner can remember, then give one key formula or rule and one common mistake. Keep it very simple. Lesson: ' + ref + '.',
+      flashcards: 'Create 8–12 Anki-style flashcards for this lesson. Output ONLY the cards — each on its own line in EXACTLY this format:\nFront | Back\n(a question or term, then a single pipe "|", then the concise answer). No numbering, no headings, no markdown, no extra commentary. Lesson: ' + ref + '.'
     };
+    flashcardReq = (mode === "flashcards");
     window.askTutor(prompts[mode] || prompts.explain);
   };
 
@@ -519,6 +551,7 @@ If a question is outside this syllabus, still help, but gently relate it back to
       ".ai-quiz{background:linear-gradient(135deg,#0891b2,#0ea5e9);box-shadow:0 2px 8px rgba(14,165,233,.3);}" +
       ".ai-practice{background:linear-gradient(135deg,#16a34a,#22c55e);box-shadow:0 2px 8px rgba(34,197,94,.3);}" +
       ".ai-summary{background:linear-gradient(135deg,#ea580c,#f59e0b);box-shadow:0 2px 8px rgba(245,158,11,.3);}" +
+      ".ai-cards{background:linear-gradient(135deg,#db2777,#ec4899);box-shadow:0 2px 8px rgba(236,72,153,.3);}" +
       ".lesson-done{margin-left:auto;display:inline-flex;align-items:center;gap:.3rem;font-size:.75rem;font-weight:600;opacity:.8;cursor:pointer;}" +
       ".lesson-done input{width:16px;height:16px;cursor:pointer;}" +
       "details.lesson.is-done>summary{opacity:.62;}" +
@@ -1020,6 +1053,7 @@ If a question is outside this syllabus, still help, but gently relate it back to
         row.appendChild(makeBtn("ai-quiz", "❓ Quiz me", "quiz", d));
         row.appendChild(makeBtn("ai-practice", "📝 Practice", "practice", d));
         row.appendChild(makeBtn("ai-summary", "⚡ Summarize", "summary", d));
+        row.appendChild(makeBtn("ai-cards", "🃏 Flashcards", "flashcards", d));
         body.appendChild(row);
       }
 
