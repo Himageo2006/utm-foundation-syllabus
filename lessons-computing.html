@@ -971,6 +971,7 @@ const int NUM_STATES = 50;</pre>
   <section class="topic" id="t5"><div class="topic-head"><span class="n">5</span><h2>Input & Output</h2></div>
 
     <details class="lesson"><summary>5·1 Input &amp; Output in C++ — Streams<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A <strong>stream</strong> is just a flow of data in or out. C++ gives you two: <strong>cin</strong> for input (data coming in from the keyboard) and <strong>cout</strong> for output (text going out to the screen). Include <code>&lt;iostream&gt;</code> to use them.</div>
       <ul>
         <li>C++ uses a convenient abstraction called <strong>streams</strong> to perform input and output operations in sequential media such as the screen, the keyboard, or a file.</li>
         <li>The C++ iostream library is included with <code>#include &lt;iostream&gt;</code>:
@@ -983,6 +984,7 @@ const int NUM_STATES = 50;</pre>
     </details></div>
 
     <details class="lesson"><summary>5·2 Input using cin<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> <code>cin &gt;&gt; height;</code> reads what the user types and stores it in a variable. The arrows <code>&gt;&gt;</code> point <em>into</em> the variable. You can read several at once (<code>cin &gt;&gt; a &gt;&gt; b;</code>). Always print a <strong>prompt</strong> with <code>cout</code> first so the user knows what to type.</div>
       <ul>
         <li><code>cin</code> is the standard input object; like <code>cout</code> it requires the <code>iostream</code> file, and reads input from the keyboard.</li>
         <li>Information is retrieved from <code>cin</code> with <code>&gt;&gt;</code> and stored in one or more variables.</li>
@@ -1001,6 +1003,7 @@ cout &lt;&lt; "The area of the rectangle is " &lt;&lt; area &lt;&lt; ".\n";</pre
     </details></div>
 
     <details class="lesson"><summary>5·3 Output using cout &amp; New Lines<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> <code>cout &lt;&lt; "text";</code> prints to the screen — the arrows <code>&lt;&lt;</code> point <em>out</em> to the display. Chain several items with more <code>&lt;&lt;</code>. To drop to a new line, add <code>endl</code> or put <code>\n</code> inside the text.</div>
       <ul>
         <li><code>cout</code> displays information on the screen; use <code>&lt;&lt;</code> to send information to it: <code>cout &lt;&lt; "Hello, there!";</code></li>
         <li>You can send multiple items: <code>cout &lt;&lt; "Hello, " &lt;&lt; "there!";</code> — or use separate statements.</li>
@@ -1013,6 +1016,7 @@ cout &lt;&lt; "The area of the rectangle is " &lt;&lt; area &lt;&lt; ".\n";</pre
     </details></div>
 
     <details class="lesson"><summary>5·4 Formatting Output — Manipulators<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> <strong>Manipulators</strong> tidy up how numbers and text are displayed — line things up in columns (<code>setw</code>), show a fixed number of decimal places (<code>fixed</code> + <code>setprecision</code>). Great for making neat tables of output. Some need <code>#include &lt;iomanip&gt;</code>.</div>
       <p>You can control how output displays for numeric and string data — <strong>size, position, number of digits</strong> — using <strong>manipulators</strong> placed on the output stream. Most are in <code>&lt;iostream&gt;</code>; some require the <code>&lt;iomanip&gt;</code> header.</p>
       <div class="ex"><span class="tag">STREAM MANIPULATORS</span>
         <div class="step"><span class="num">setw(n)</span><span class="txt">Establishes a print field of n spaces</span></div>
@@ -1037,6 +1041,7 @@ cout &lt;&lt; 156.74 &lt;&lt; endl;   // 156.74</pre>
     </details></div>
 
     <details class="lesson"><summary>5·5 Formatted Input — setw, getline, get &amp; ignore<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Plain <code>cin</code> stops reading at the first space, so it can't grab a full name like "John Smith." For that use <strong><code>getline</code></strong> (reads the whole line). <code>get</code> and <code>ignore</code> are helpers for reading or skipping leftover characters (like a stray Enter key).</div>
       <ul>
         <li><strong>setw with cin</strong> — formats field width, useful for reading into a character array: <code>cin &gt;&gt; setw(SIZE) &gt;&gt; firstName;</code> reads one less character than SIZE.</li>
         <li><strong>Problem with <code>cin &gt;&gt;</code>:</strong> reading a string with <code>cin &gt;&gt; name;</code> stops at the first whitespace, so it can't read a full line with spaces.</li>
@@ -1051,6 +1056,7 @@ cout &lt;&lt; 156.74 &lt;&lt; endl;   // 156.74</pre>
   <section class="topic" id="t6"><div class="topic-head"><span class="n">6</span><h2>Branching & Loops</h2></div>
 
     <details class="lesson"><summary>6·1 Review — Boolean, Logical &amp; Relational Operators<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A quick recap before decisions and loops: conditions are <strong>true/false</strong> tests built from comparisons (<code>&gt;</code>, <code>==</code>…) joined by AND/OR/NOT. The key new trick here is the <strong>complement</strong> — flipping a condition (the opposite of <code>n==0</code> is <code>n != 0</code>) — which you'll need when turning flowcharts into code.</div>
       <ul>
         <li>Logical data uses <code>bool</code> (two values: <code>true</code>, <code>false</code>). Casting bool→int: <code>true</code>→1, <code>false</code>→0 (so <code>2 + true</code> → 3). Casting int→bool: 0→false, non-zero→true (so <code>b = -10;</code> makes b true; <code>b = q;</code> with q=5 gives p=1).</li>
         <li>Logical operators: <code>!</code> (NOT), <code>&amp;&amp;</code> (AND — true only when both true), <code>||</code> (OR — true when either true). Short-circuit: <code>false &amp;&amp; (anything)</code>→false; <code>true || (anything)</code>→true.</li>
@@ -1062,6 +1068,7 @@ cout &lt;&lt; 156.74 &lt;&lt; endl;   // 156.74</pre>
     </details></div>
 
     <details class="lesson"><summary>6·2 Branching / Selection — the if Statement<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> The <code>if</code> statement lets a program <strong>make decisions</strong>: "IF this is true, do A; ELSE do B." Chain several with <code>else if</code> to handle more than two outcomes (like converting a score into a letter grade).</div>
       <p>Sometimes programs need to make logical choices: <em>IF score &gt; 50 THEN grade is PASS ELSE grade is FAIL</em>. In C++ this is an <code>if</code> statement with three parts:</p>
       <pre>if (score > 50)      // part 1: the condition (true/false)
 {
@@ -1086,6 +1093,7 @@ else                 letter_grade = 'F';</pre>
     </details></div>
 
     <details class="lesson"><summary>6·3 Compound Statements &amp; Common if Pitfalls<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> The classic <code>if</code> traps to avoid: writing <code>=</code> (assign) instead of <code>==</code> (compare); writing <code>2 &lt; x &lt; 9</code> (always true — split it with <code>&amp;&amp;</code>); and putting a stray <code>;</code> right after <code>if(...)</code> (which makes the if do nothing). Wrap groups of statements in <code>{ }</code>.</div>
       <ul>
         <li>The condition must be in <strong>parentheses</strong>; a statement may be a single statement or a <strong>compound statement</strong> (group of statements in <code>{ }</code>).</li>
       </ul>
@@ -1103,6 +1111,7 @@ else                 letter_grade = 'F';</pre>
     </details></div>
 
     <details class="lesson"><summary>6·4 The switch Statement<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> When you're checking <em>one</em> value against many fixed options (like a menu choice), a <code>switch</code> is cleaner than a long if-else chain. ⚠️ Don't forget <code>break;</code> after each case — leave it out and it "falls through" and runs the next case too.</div>
       <p>Many nested if/else comparing one expression to constants can be replaced by a <code>switch</code>:</p>
       <pre>switch (expression)
 {
@@ -1126,6 +1135,7 @@ else                 letter_grade = 'F';</pre>
     </details></div>
 
     <details class="lesson"><summary>6·5 Translating Flowcharts to C++ (if &amp; switch)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A flowchart's diamond shapes (decisions) map straight onto code: one decision → an <code>if</code>; two paths → <code>if/else</code>; a chain → <code>else if</code> ladder; checking one value against fixed options → <code>switch</code>. Learn these four patterns and you can convert any flowchart.</div>
       <ul>
         <li><strong>Pattern 1</strong> — one condition + true path → <code>if (condition) { statement; }</code> (the kept path must be True). e.g. print n only if negative: <code>if (n &lt; 0) { cout &lt;&lt; n; }</code></li>
         <li><strong>Pattern 2</strong> — true/false paths → <code>if (condition) { statement_1; } else { statement_2; }</code></li>
@@ -1136,6 +1146,7 @@ else                 letter_grade = 'F';</pre>
     </details></div>
 
     <details class="lesson"><summary>6·6 Loops / Repetition — Body, Condition, Init &amp; Update<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A <strong>loop</strong> repeats a block of code. It needs a <strong>condition</strong> that eventually becomes false to stop — and something inside that <strong>updates</strong> toward that stop, or it runs forever (an "infinite loop"). Pre-test loops check before running; post-test loops run at least once.</div>
       <ul>
         <li>The main idea of a loop is to repeat an action or series of actions. Without a stop condition you get an <strong>infinite loop</strong>; a <strong>condition</strong> tells the loop to continue or stop.</li>
         <li>A loop has two essential parts: the <strong>body</strong> (statements repeated) and the <strong>condition</strong> (controls iteration). It may also have <strong>initialization</strong> (prepares the loop, written outside before the body) and <strong>updating</strong> (changes the condition, written inside the body — if missing, the loop runs forever).</li>
@@ -1148,6 +1159,7 @@ else                 letter_grade = 'F';</pre>
     </details></div>
 
     <details class="lesson"><summary>6·7 while, for &amp; do…while Statements<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Three loops, same job: <strong>while</strong> (check first, maybe run zero times), <strong>do…while</strong> (run once, then check), and <strong>for</strong> (best when you're counting a known number of times — it packs the start, condition, and update onto one line).</div>
       <p>C++ provides three loop statements: <code>while</code> (pre-test), <code>for</code> (pre-test), <code>do…while</code> (post-test). All three below print 10 down to 1:</p>
       <pre>// while
 n = 10;
@@ -1172,6 +1184,7 @@ do {
     </details></div>
 
     <details class="lesson"><summary>6·8 break, continue &amp; Nested Loops<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> <code>break</code> jumps <em>out</em> of a loop early; <code>continue</code> skips the rest of <em>this</em> turn and goes to the next. A <strong>nested loop</strong> is a loop inside a loop — the inner one runs fully for every single turn of the outer one (handy for grids/tables).</div>
       <ul>
         <li><code>break</code> terminates a loop; in an inner loop it exits only that loop and returns to the outer loop.</li>
         <li><code>continue</code> skips the rest of the current iteration and jumps to the next.</li>
@@ -1190,6 +1203,7 @@ do {
     </details></div>
 
     <details class="lesson"><summary>6·9 Translating Flowcharts to C++ (loops)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A loop-back arrow in a flowchart becomes a loop in code: condition-at-top → <code>while</code>; condition-at-bottom → <code>do…while</code>; a counter that starts, tests and steps → <code>for</code>. Match the flowchart shape to the right loop and fill in the blanks.</div>
       <ul>
         <li><strong>Pattern 1</strong> — pre-test (condition at top, kept path True) → <code>while (condition) { Repeated_actions; }</code></li>
         <li><strong>Pattern 2</strong> — post-test (condition at bottom) → <code>do { Repeated_actions; } while (condition);</code></li>
