@@ -421,7 +421,18 @@ If a question is outside this syllabus, still help, but gently relate it back to
       "html.dark summary,html.dark h1,html.dark h2,html.dark h3,html.dark h4,html.dark p,html.dark li,html.dark td,html.dark th{color:#e5e7eb!important;}" +
       "html.dark a{color:#93c5fd!important;}" +
       "html.dark #study-toolbar{background:rgba(26,32,48,.92);} html.dark #study-search,html.dark #study-toolbar button{background:#0f1420;color:#e5e7eb;border-color:#2a3344;}" +
-      "html.dark .topic-prog{background:rgba(255,255,255,.15);}";
+      "html.dark .topic-prog{background:rgba(255,255,255,.15);}" +
+      ".topic-prog-row{display:flex;align-items:center;gap:.6rem;}" +
+      ".mark-all{padding:.2rem .6rem;font:600 .7rem/1 inherit;border:1px solid rgba(0,0,0,.2);background:transparent;border-radius:999px;cursor:pointer;opacity:.75;}" +
+      ".mark-all:hover{opacity:1;} html.dark .mark-all{border-color:#3a4456;color:#e5e7eb;}" +
+      "#study-top{position:fixed;left:18px;bottom:18px;width:44px;height:44px;border:none;border-radius:50%;" +
+      "background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;font-size:1.3rem;cursor:pointer;z-index:60;" +
+      "box-shadow:0 4px 14px rgba(37,99,235,.4);opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .2s,transform .2s;}" +
+      "#study-top.show{opacity:1;pointer-events:auto;transform:translateY(0);}" +
+      "#study-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);z-index:70;" +
+      "background:#111827;color:#fff;padding:.7rem 1.2rem;border-radius:999px;font:600 .85rem/1 inherit;" +
+      "box-shadow:0 6px 20px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;}" +
+      "#study-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}";
     document.head.appendChild(st);
   }
 
@@ -437,7 +448,7 @@ If a question is outside this syllabus, still help, but gently relate it back to
     return b;
   }
 
-  function updateTopicProgress(topicEl) {
+  function updateTopicProgress(topicEl, notify) {
     const lessons = topicEl.querySelectorAll("details.lesson");
     if (!lessons.length) return;
     let done = 0;
@@ -447,6 +458,16 @@ If a question is outside this syllabus, still help, but gently relate it back to
     const pct = Math.round(done / lessons.length * 100);
     if (bar) bar.style.width = pct + "%";
     if (lbl) lbl.textContent = done + " / " + lessons.length + " done";
+    const complete = done === lessons.length;
+    if (complete && topicEl.dataset.celebrated !== "1") {
+      topicEl.dataset.celebrated = "1";
+      if (notify) {
+        const h2 = topicEl.querySelector(".topic-head h2") || topicEl.querySelector("h2");
+        toast("🎉 " + (h2 ? h2.textContent.trim() : "Topic") + " complete!");
+      }
+    } else if (!complete) {
+      topicEl.dataset.celebrated = "0";
+    }
   }
 
   function updateOverall() {
@@ -456,17 +477,72 @@ If a question is outside this syllabus, still help, but gently relate it back to
     if (el) el.textContent = "✅ " + done + "/" + all.length;
   }
 
+  let _toastTimer = null;
+  function toast(msg) {
+    let t = document.getElementById("study-toast");
+    if (!t) { t = document.createElement("div"); t.id = "study-toast"; document.body.appendChild(t); }
+    t.textContent = msg;
+    t.classList.add("show");
+    clearTimeout(_toastTimer);
+    _toastTimer = setTimeout(() => t.classList.remove("show"), 2600);
+  }
+
+  function refreshContinue() {
+    const btn = document.getElementById("study-continue");
+    if (!btn) return;
+    const last = localStorage.getItem("utm_last_" + PAGE_KEY);
+    if (last) {
+      const short = last.length > 22 ? last.slice(0, 22) + "…" : last;
+      btn.style.display = "";
+      btn.innerHTML = "▶ Continue: " + short;
+      btn.title = "Jump to: " + last;
+    } else {
+      btn.style.display = "none";
+    }
+  }
+
+  function setupBackToTop() {
+    if (document.getElementById("study-top")) return;
+    const b = document.createElement("button");
+    b.id = "study-top"; b.type = "button"; b.title = "Back to top"; b.innerHTML = "↑";
+    b.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    document.body.appendChild(b);
+    const onScroll = () => b.classList.toggle("show", window.scrollY > 600);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
   function buildToolbar(main) {
     if (document.getElementById("study-toolbar")) return;
     const bar = document.createElement("div");
     bar.id = "study-toolbar";
     bar.innerHTML =
       '<input id="study-search" type="search" placeholder="🔍 Search lessons…">' +
+      '<button id="study-continue" type="button" style="display:none">▶ Continue</button>' +
       '<button id="study-expand" type="button">⤢ Expand all</button>' +
       '<button id="study-collapse" type="button">⤡ Collapse all</button>' +
       '<button id="study-dark" type="button">🌙 Dark</button>' +
+      '<button id="study-reset" type="button">↺ Reset</button>' +
       '<span id="study-overall"></span>';
     main.insertBefore(bar, main.firstChild);
+
+    bar.querySelector("#study-continue").addEventListener("click", function () {
+      const last = localStorage.getItem("utm_last_" + PAGE_KEY);
+      if (!last) return;
+      const target = [...document.querySelectorAll("details.lesson")].find(d => lessonTitle(d) === last);
+      if (target) { target.open = true; target.scrollIntoView({ behavior: "smooth", block: "center" }); }
+    });
+    bar.querySelector("#study-reset").addEventListener("click", function () {
+      if (!confirm("Reset your progress on this page?")) return;
+      saveDone({});
+      document.querySelectorAll("details.lesson").forEach(function (d) {
+        d.classList.remove("is-done");
+        const cb = d.querySelector(".lesson-done input"); if (cb) cb.checked = false;
+      });
+      document.querySelectorAll(".topic").forEach(updateTopicProgress);
+      updateOverall();
+      toast("↺ Progress reset");
+    });
 
     const search = bar.querySelector("#study-search");
     search.addEventListener("input", function () {
@@ -543,12 +619,23 @@ If a question is outside this syllabus, still help, but gently relate it back to
           if (cb.checked) map[key] = 1; else delete map[key];
           saveDone(map);
           d.classList.toggle("is-done", cb.checked);
-          const t = d.closest(".topic"); if (t) updateTopicProgress(t);
+          const t = d.closest(".topic"); if (t) updateTopicProgress(t, true);
           updateOverall();
         });
         // place before the chevron if present
         const chev = sum.querySelector(".chev");
         if (chev) sum.insertBefore(lbl, chev); else sum.appendChild(lbl);
+      }
+
+      // --- remember last-opened lesson (for Continue) ---
+      if (!d.dataset.trk) {
+        d.dataset.trk = "1";
+        d.addEventListener("toggle", function () {
+          if (d.open) {
+            try { localStorage.setItem("utm_last_" + PAGE_KEY, lessonTitle(d)); } catch (_) {}
+            refreshContinue();
+          }
+        });
       }
     });
 
@@ -558,13 +645,32 @@ If a question is outside this syllabus, still help, but gently relate it back to
       if (!t.querySelector(".topic-prog")) {
         const head = t.querySelector(".topic-head") || t.firstElementChild;
         const wrap = document.createElement("div");
-        wrap.innerHTML = '<div class="topic-prog"><span></span></div><div class="topic-prog-label"></div>';
+        wrap.innerHTML = '<div class="topic-prog"><span></span></div>' +
+          '<div class="topic-prog-row"><span class="topic-prog-label"></span>' +
+          '<button type="button" class="mark-all">Mark all done</button></div>';
         if (head && head.nextSibling) t.insertBefore(wrap, head.nextSibling);
         else t.insertBefore(wrap, t.firstChild);
+        wrap.querySelector(".mark-all").addEventListener("click", function () {
+          const ls = t.querySelectorAll("details.lesson");
+          const allDone = [...ls].every(l => l.classList.contains("is-done"));
+          const map = loadDone();
+          ls.forEach(function (l) {
+            const key = lessonTitle(l);
+            const cb = l.querySelector(".lesson-done input");
+            if (allDone) { delete map[key]; l.classList.remove("is-done"); if (cb) cb.checked = false; }
+            else { map[key] = 1; l.classList.add("is-done"); if (cb) cb.checked = true; }
+          });
+          saveDone(map);
+          this.textContent = allDone ? "Mark all done" : "Unmark all";
+          updateTopicProgress(t, !allDone);
+          updateOverall();
+        });
       }
       updateTopicProgress(t);
     });
     updateOverall();
+    refreshContinue();
+    setupBackToTop();
   }
 
   if (document.readyState === "loading") {
