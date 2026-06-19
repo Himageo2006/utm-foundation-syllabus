@@ -310,48 +310,62 @@ If a question is outside this syllabus, still help, but gently relate it back to
   async function streamReply(botEl) {
     // ---- FREE engine: Puter.js (no key, no server) ----
     const useFree = TUTOR_CONFIG.freeMode && !TUTOR_CONFIG.proxyUrl && !localStorage.getItem(STORAGE_KEY);
-    if (useFree) {
-      const puter = await loadPuter();
-      const msgs = [{ role: "system", content: SYLLABUS }].concat(
-        history.map(m => ({ role: m.role === "assistant" ? "assistant" : "user", content: m.content }))
-      );
-      const model = localStorage.getItem(MODEL_KEY) || TUTOR_CONFIG.puterModel;
-      botEl.innerHTML = "";
-      let out = "";
+    if (useFree) return await freeReply(botEl);
 
-      // ---- Image attached: use Puter vision (one-shot) ----
-      if (pendingImage) {
-        const img = pendingImage; pendingImage = null;
-        const lastUser = [...history].reverse().find(m => m.role === "user");
-        const prompt = SYLLABUS + "\n\nThe student attached an image. " + (lastUser ? lastUser.content : "Please help with it.");
-        try {
-          const r = await puter.ai.chat(prompt, img, { model });
-          out = (r && (r.text || (r.message && r.message.content) || (typeof r === "string" ? r : ""))) || "";
-        } catch (e) {
-          throw new Error("Couldn't read the image with the free engine. Try a clearer photo, or type the question instead.");
-        }
-        botEl.innerHTML = renderMd(out || "(No response — try again.)");
-        return out;
+    // ---- Server proxy / direct key path (with auto-fallback to free engine) ----
+    try {
+      return await proxyReply(botEl);
+    } catch (err) {
+      // If a school server / key path fails, transparently fall back to the free engine.
+      if (TUTOR_CONFIG.freeMode) {
+        try { return await freeReply(botEl, true); } catch (_) {}
       }
+      throw err;
+    }
+  }
 
+  // Free, keyless engine (Puter). Also used as a fallback if the proxy is down.
+  async function freeReply(botEl, isFallback) {
+    const puter = await loadPuter();
+    const msgs = [{ role: "system", content: SYLLABUS }].concat(
+      history.map(m => ({ role: m.role === "assistant" ? "assistant" : "user", content: m.content }))
+    );
+    const model = (localStorage.getItem(MODEL_KEY) && !isFallback) ? localStorage.getItem(MODEL_KEY) : TUTOR_CONFIG.puterModel;
+    botEl.innerHTML = "";
+    let out = "";
+
+    if (pendingImage) {
+      const img = pendingImage; pendingImage = null;
+      const lastUser = [...history].reverse().find(m => m.role === "user");
+      const prompt = SYLLABUS + "\n\nThe student attached an image. " + (lastUser ? lastUser.content : "Please help with it.");
       try {
-        const resp = await puter.ai.chat(msgs, { model, stream: true });
-        for await (const part of resp) {
-          const t = (part && (part.text || (part.message && part.message.content))) || "";
-          if (t) { out += t; botEl.innerHTML = renderMd(out); const b = document.getElementById("tutor-body"); if (b) b.scrollTop = b.scrollHeight; }
-        }
+        const r = await puter.ai.chat(prompt, img, { model });
+        out = (r && (r.text || (r.message && r.message.content) || (typeof r === "string" ? r : ""))) || "";
       } catch (e) {
-        // fall back to non-streaming
-        try {
-          const r = await puter.ai.chat(msgs, { model });
-          out = (r && (r.text || (r.message && r.message.content) || (typeof r === "string" ? r : ""))) || "";
-          botEl.innerHTML = renderMd(out || "(No response — try again.)");
-        } catch (e2) { throw new Error("Free AI engine error. Try again, or add your own key in ⚙ settings."); }
+        throw new Error("Couldn't read the image with the free engine. Try a clearer photo, or type the question instead.");
       }
-      if (!out) botEl.innerHTML = renderMd("(No response — try again.)");
+      botEl.innerHTML = renderMd(out || "(No response — try again.)");
       return out;
     }
 
+    try {
+      const resp = await puter.ai.chat(msgs, { model, stream: true });
+      for await (const part of resp) {
+        const t = (part && (part.text || (part.message && part.message.content))) || "";
+        if (t) { out += t; botEl.innerHTML = renderMd(out); const b = document.getElementById("tutor-body"); if (b) b.scrollTop = b.scrollHeight; }
+      }
+    } catch (e) {
+      try {
+        const r = await puter.ai.chat(msgs, { model });
+        out = (r && (r.text || (r.message && r.message.content) || (typeof r === "string" ? r : ""))) || "";
+        botEl.innerHTML = renderMd(out || "(No response — try again.)");
+      } catch (e2) { throw new Error("Free AI engine error. Try again, or add your own key in ⚙ settings."); }
+    }
+    if (!out) botEl.innerHTML = renderMd("(No response — try again.)");
+    return out;
+  }
+
+  async function proxyReply(botEl) {
     const model = localStorage.getItem(MODEL_KEY) || TUTOR_CONFIG.defaultModel;
     const payload = {
       model,
@@ -610,6 +624,19 @@ If a question is outside this syllabus, still help, but gently relate it back to
       ".dash-backup{margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap;}" +
       ".dash-backup button{padding:.45rem .9rem;border:1px solid rgba(0,0,0,.15);background:#fff;border-radius:999px;font:600 .8rem/1 inherit;cursor:pointer;}" +
       ".dash-backup button:hover{background:#f1f5f9;} html.dark .dash-backup button{background:#0f1420;color:#e5e7eb;border-color:#2a3344;}" +
+      ".goal-box{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;margin:1rem 0;padding:.7rem 1rem;border-radius:12px;background:rgba(37,99,235,.08);font-size:.9rem;}" +
+      ".goal-box input{padding:.35rem .5rem;border:1px solid rgba(0,0,0,.2);border-radius:8px;font:inherit;}" +
+      ".goal-box button{padding:.4rem .8rem;border:none;border-radius:999px;background:#2563eb;color:#fff;font:600 .8rem/1 inherit;cursor:pointer;}" +
+      "html.dark .goal-box{background:rgba(147,197,253,.12);}" +
+      /* mobile More menu */
+      "#study-moretoggle{display:none;}" +
+      "@media(max-width:720px){#study-moretoggle{display:inline-block;}#study-toolbar .tb-more{display:none;}" +
+      "#study-toolbar.more-open{flex-wrap:wrap;}#study-toolbar.more-open .tb-more{display:inline-flex;}}" +
+      /* mock-exam timer */
+      "#study-timer{position:fixed;top:12px;right:12px;z-index:65;display:flex;align-items:center;gap:.5rem;" +
+      "background:#111827;color:#fff;padding:.5rem .8rem;border-radius:999px;font:700 1rem/1 inherit;box-shadow:0 6px 20px rgba(0,0,0,.35);}" +
+      "#study-timer.done{background:#dc2626;animation:stpulse 1s infinite;} @keyframes stpulse{50%{opacity:.55;}}" +
+      "#study-timer .st-x{border:none;background:rgba(255,255,255,.2);color:#fff;border-radius:50%;width:22px;height:22px;cursor:pointer;}" +
       "#study-streak{font-size:.78rem;font-weight:700;opacity:.85;white-space:nowrap;}" +
       /* feature toggles */
       ".pref-hide-aibtns .ai-actions{display:none!important;}" +
@@ -751,6 +778,7 @@ If a question is outside this syllabus, still help, but gently relate it back to
       '<button id="study-review" type="button" title="Lessons due for spaced-repetition review">🔁 Review (0)</button>' +
       '<button id="study-saved" type="button" title="Show only saved lessons">⭐ Saved (0)</button>' +
       '<button id="study-formulas" type="button" title="Key formulas for this subject">📐 Formulas</button>' +
+      '<button id="study-mock" type="button" title="Start a timed mock exam">📝 Mock exam</button>' +
       '<button id="study-print" type="button" title="Print / save these notes">🖨 Print</button>' +
       '<button id="study-settings" type="button" title="Settings">⚙</button>' +
       '<button id="study-help" type="button" title="Help &amp; keyboard shortcuts">?</button>' +
@@ -761,8 +789,20 @@ If a question is outside this syllabus, still help, but gently relate it back to
 
     bar.querySelector("#study-settings").addEventListener("click", openSettings);
     bar.querySelector("#study-help").addEventListener("click", () => openHelp(true));
+    bar.querySelector("#study-mock").addEventListener("click", startMockExam);
     // accessibility: mirror titles into aria-labels for icon buttons
     bar.querySelectorAll("button[title]").forEach(b => b.setAttribute("aria-label", b.getAttribute("title")));
+
+    // mobile: collapse secondary actions behind a "More" button
+    ["study-continue", "study-expand", "study-collapse", "study-review", "study-saved",
+     "study-formulas", "study-mock", "study-print", "study-settings", "study-help", "study-reset"]
+      .forEach(id => { const b = bar.querySelector("#" + id); if (b) b.classList.add("tb-more"); });
+    const sz = bar.querySelector(".study-size"); if (sz) sz.classList.add("tb-more");
+    const moreBtn = document.createElement("button");
+    moreBtn.id = "study-moretoggle"; moreBtn.type = "button"; moreBtn.title = "More options"; moreBtn.setAttribute("aria-label", "More options");
+    moreBtn.textContent = "⋯ More";
+    moreBtn.addEventListener("click", () => bar.classList.toggle("more-open"));
+    bar.insertBefore(moreBtn, bar.querySelector("#study-dark").nextSibling);
 
     if (!FORMULAS[PAGE_KEY]) { const fb = bar.querySelector("#study-formulas"); if (fb) fb.style.display = "none"; }
     bar.querySelector("#study-formulas").addEventListener("click", openFormulas);
@@ -912,6 +952,7 @@ If a question is outside this syllabus, still help, but gently relate it back to
       ' &nbsp;·&nbsp; 🔥 ' + streak + ' day streak</div>' +
       '<div class="dash-grid">' + cards + '</div>' +
       buildHeatmap() +
+      '<div id="dash-goal"></div>' +
       '<div class="dash-backup"><button id="dash-export" type="button">⬇ Export progress</button>' +
       '<button id="dash-import" type="button">⬆ Import progress</button>' +
       '<input id="dash-import-file" type="file" accept="application/json,.json" style="display:none"></div>';
@@ -919,6 +960,30 @@ If a question is outside this syllabus, still help, but gently relate it back to
     const subjectsSec = document.getElementById("subjects");
     if (subjectsSec) main.insertBefore(dash, subjectsSec);
     else main.insertBefore(dash, main.firstChild);
+
+    // 🎯 goal / deadline
+    const goalEl = dash.querySelector("#dash-goal");
+    function renderGoal() {
+      const date = localStorage.getItem("utm_goal_date");
+      if (date) {
+        const days = Math.ceil((new Date(date + "T23:59:59") - new Date()) / 864e5);
+        const remaining = totalAll - totalDone;
+        const perDay = days > 0 ? Math.ceil(remaining / days) : remaining;
+        const msg = days < 0 ? "⚠️ Goal date passed — " + remaining + " lessons left."
+          : days === 0 ? "🎯 Goal is <b>today</b>! " + remaining + " lessons to go."
+          : "🎯 <b>" + days + " day" + (days === 1 ? "" : "s") + "</b> to your goal · " + remaining + " lessons left · aim for ~<b>" + perDay + "/day</b>.";
+        goalEl.innerHTML = '<div class="goal-box"><span>' + msg + '</span><button id="goal-clear" type="button">Clear</button></div>';
+        goalEl.querySelector("#goal-clear").onclick = () => { localStorage.removeItem("utm_goal_date"); renderGoal(); };
+      } else {
+        goalEl.innerHTML = '<div class="goal-box"><span>🎯 Set a target date to finish the syllabus:</span>' +
+          '<input id="goal-date" type="date"><button id="goal-save" type="button">Save</button></div>';
+        goalEl.querySelector("#goal-save").onclick = function () {
+          const v = goalEl.querySelector("#goal-date").value;
+          if (v) { localStorage.setItem("utm_goal_date", v); renderGoal(); }
+        };
+      }
+    }
+    renderGoal();
 
     dash.querySelector("#dash-export").addEventListener("click", exportProgress);
     const imp = dash.querySelector("#dash-import"), impFile = dash.querySelector("#dash-import-file");
@@ -1035,6 +1100,34 @@ If a question is outside this syllabus, still help, but gently relate it back to
     const tb = document.getElementById("study-toolbar");
     if (tb) tb.classList.toggle("review-only", reviewOnly);
     refreshReviewBtn();
+  }
+
+  let _examTimer = null;
+  function startTimer(mins) {
+    let t = document.getElementById("study-timer");
+    if (!t) {
+      t = document.createElement("div"); t.id = "study-timer";
+      t.innerHTML = '<span class="st-clock">⏱</span> <b class="st-time"></b> <button class="st-x" type="button" aria-label="Stop timer">✕</button>';
+      document.body.appendChild(t);
+      t.querySelector(".st-x").onclick = () => { clearInterval(_examTimer); t.remove(); };
+    }
+    let left = mins * 60;
+    const span = t.querySelector(".st-time");
+    const render = () => { const m = Math.floor(left / 60), s = left % 60; span.textContent = m + ":" + (s < 10 ? "0" : "") + s; };
+    render();
+    clearInterval(_examTimer);
+    _examTimer = setInterval(function () {
+      left--; render();
+      if (left <= 0) { clearInterval(_examTimer); span.textContent = "0:00"; t.classList.add("done"); toast("⏰ Time's up — submit your answers to the tutor!"); }
+    }, 1000);
+  }
+  function startMockExam() {
+    const subject = (document.querySelector("h1") ? document.querySelector("h1").textContent.trim() : document.title).replace(/\s+/g, " ");
+    const mins = 30;
+    startTimer(mins);
+    window.askTutor('Act as a strict but fair examiner. Create a ' + mins + '-minute MOCK EXAM for ' + (subject || "this subject") +
+      ' covering the whole syllabus. Give 8 questions of increasing difficulty with mark allocations (total 20 marks); present ALL questions at once. ' +
+      'I will type my answers; then mark them out of 20, give brief feedback per question, a final grade, and the top 3 things I should revise. A 30-minute timer is already running on my screen.');
   }
 
   function testTopic(topicEl) {
