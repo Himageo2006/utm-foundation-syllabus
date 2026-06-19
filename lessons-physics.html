@@ -613,6 +613,7 @@
   <section class="topic" id="c6"><div class="topic-head"><span class="n">6</span><h2>Electromagnetic Induction</h2></div>
 
     <details class="lesson"><summary>6.1 — Induced EMF<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> We saw electricity makes magnetism — now the reverse: <strong>a changing magnetic field makes electricity</strong>. Wave a magnet near a coil and you generate a voltage. The catch is it must be <em>changing</em> — a still magnet does nothing; faster movement makes more voltage. This is the idea behind every generator.</div>
       <p>Faraday looked for evidence that a magnetic field induces a current using a coil, battery, switch and galvanometer. He found <strong>no</strong> current when the current was steady, but a current was induced when the switch was turned on or off.</p>
       <p>Moving a bar magnet relative to a coil:</p>
       <ul>
@@ -623,6 +624,7 @@
     </div></details>
 
     <details class="lesson"><summary>6.2.1 — Magnetic flux<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> <strong>Flux</strong> is just "how many field lines pass through a loop." It's biggest when the loop faces the field straight-on and zero when the loop is edge-on. Changing this flux is exactly what creates induced voltage — so flux is the key quantity for the rest of this chapter.</div>
       <p>Magnetic flux is the scalar product of the magnetic flux density B and the area vector A:</p>
       <div class="math">Φ = B·A = BA·cosϕ&nbsp;&nbsp;(unit: weber, Wb = T·m²)</div>
       <p>ϕ is the angle between B and the area vector A (which is always normal to the surface). Φ is maximum (= BA) when ϕ = 0° (B ⊥ surface, parallel to A), and zero when ϕ = 90°. Flux ∝ number of field lines through the area.</p>
@@ -635,6 +637,7 @@
     </div></details>
 
     <details class="lesson"><summary>6.2 — Faraday's Law of Induction<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Faraday's law puts a number on it: <strong>the faster the flux changes, the bigger the voltage</strong> (and more coil turns multiply it). You can change the flux three ways — change the field strength, the loop's area, or its angle. The minus sign is just Lenz's law (next lesson) reminding us the effect opposes the change.</div>
       <p>Faraday's law: the magnitude of the induced emf is proportional to the rate of change of magnetic flux. The minus sign (Lenz's law) shows the induced emf opposes the change producing it.</p>
       <div class="math">ε = −dΦ/dt&nbsp;&nbsp;and for N turns&nbsp;&nbsp;ε = −N·dΦ/dt = −N(Φ_f − Φ_i)/dt</div>
       <p>For a coil in series with a resistor R: ε = IR. Three factors change the flux: change in B, change in area A, or change in orientation angle θ:</p>
@@ -659,6 +662,7 @@
     </div></details>
 
     <details class="lesson"><summary>6.2.2 — Lenz's Law<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Lenz's law tells you which <em>way</em> the induced current flows: <strong>it always opposes whatever change created it</strong> ("nature pushes back"). Push a magnet in, the coil pushes it away; pull it out, the coil tries to hold it. It's really just energy conservation — you have to do work to generate electricity.</div>
       <p><strong>Lenz's law:</strong> an induced emf is always in a direction that opposes the original change in flux that caused it (the current produces a field that tends to restore the changed flux). It is used to find the direction of the induced current.</p>
       <p>To produce an induced current you need a closed conducting loop and an external flux through it that changes in time. Steps:</p>
       <ol>
@@ -676,6 +680,7 @@
     </div></details>
 
     <details class="lesson"><summary>6.3 — EMF induced in a moving conductor<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Just sliding a straight wire through a magnetic field generates a voltage across its ends — no magnet-waving needed. The faster you move it, the longer the wire, and the stronger the field, the bigger the voltage: <strong>ε = Bℓv</strong>. (Even an aircraft's wings do this flying through Earth's field.)</div>
       <p>A straight conductor of length ℓ moving with velocity v perpendicular to a field B sweeps area A = ℓx, giving Φ = Bℓx. By Faraday's law, ε = dΦ/dt = Bℓ(dx/dt) = Bℓv. In general:</p>
       <div class="math">ε = Bℓv·sinθ&nbsp;&nbsp;(θ = angle between v and B)</div>
       <div class="ex"><span class="tag">WORKED EXAMPLE 7 (from slides)</span>
@@ -691,6 +696,7 @@
     </div></details>
 
     <details class="lesson"><summary>6.4 — Electric Generators<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A <strong>generator</strong> is induction put to work: spin a coil in a magnetic field and the constantly-changing flux produces a voltage that smoothly rises and falls — that's where AC mains electricity comes from. Spin it faster (bigger ω) or use more turns/stronger field → bigger voltage.</div>
       <p>A rectangular coil of N turns, area A, rotating at constant angular velocity ω in a field B has flux Φ = BA·cosωt. By Faraday's law the induced emf is:</p>
       <div class="math">ε = NBAω·sinωt&nbsp;&nbsp;with&nbsp;&nbsp;ε_max = NBAω,&nbsp;&nbsp;ω = 2πf = 2π/T</div>
       <p>It can also be written ε = NBAω·sinϕ (ϕ = angle between A and B). A coil rotating at constant ω produces a sinusoidally alternating emf — the basis of the generator/dynamo.</p>
@@ -703,6 +709,7 @@
     </div></details>
 
     <details class="lesson"><summary>6.5 — Transformers & power transmission<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A <strong>transformer</strong> changes one AC voltage into another using two coils. More turns on the output coil = higher voltage (step-up); fewer = lower (step-down). Voltage up means current down (power stays the same). This is why power is sent across the country at super-high voltage — high voltage means low current, which means far less wasted heat in the wires.</div>
       <p>A transformer is two coils linked by an iron core; a changing emf in the primary induces an emf in the secondary. The emf ratio equals the turns ratio, and (energy conserved) the current ratio is the inverse:</p>
       <div class="math">V_S/V_P = N_S/N_P&nbsp;&nbsp;and&nbsp;&nbsp;I_S/I_P = N_P/N_S&nbsp;&nbsp;|&nbsp;&nbsp;P = VI</div>
       <p>Step-up: V_S &gt; V_P (more secondary turns). Transformers work only with changing (ac) current — one reason electricity is transmitted as ac, stepped up to high voltage to cut transmission loss (P_loss = I²R).</p>
@@ -720,6 +727,7 @@
     </div></details>
 
     <details class="lesson"><summary>6.6 — Self-Inductance<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A coil's own changing current creates a changing field through itself, which induces a <strong>"back-voltage" that resists the change</strong>. So a coil (inductor) is sluggish — it doesn't like sudden changes in current. "Inductance" (L, in henrys) measures how strongly it resists. It's the electrical version of inertia.</div>
       <p><strong>Self-induction:</strong> producing an induced emf in a coil due to a change of current in the same coil. By Lenz's law the induced (back) emf opposes the change — when I increases the induced emf opposes the current; when I decreases it acts in the same direction. (Demonstrated by a lamp with an iron-core coil brightening slowly vs. a lamp with a resistor lighting instantly.)</p>
       <div class="math">Φ_L = LI,&nbsp;&nbsp;ε = −L·dI/dt,&nbsp;&nbsp;L = NΦ/I = Φ_L/I&nbsp;&nbsp;(unit: henry, H)</div>
       <p>For an air-core solenoid: L = μ₀N²A/ℓ. The inductor stores energy in its magnetic field.</p>
@@ -736,12 +744,14 @@
     </div></details>
 
     <details class="lesson"><summary>6.7 — Energy stored in a magnetic field<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Just as a capacitor stores energy in its electric field, an <strong>inductor stores energy in its magnetic field</strong> while current flows: U = ½LI². The two formulas are mirror images (½CV² vs ½LI²).</div>
       <p>Building current against the back emf stores energy. Integrating dU = LI·dI from 0 to I:</p>
       <div class="math">U = ½LI²&nbsp;&nbsp;(analogous to U = ½CV² for a capacitor)</div>
       <p>For a long air-core solenoid (L = μ₀N²A/ℓ): U = ½(μ₀N²AI²/ℓ). The energy density of a magnetic field is u = ½B²/μ₀.</p>
     </div></details>
 
     <details class="lesson"><summary>6.8 — Mutual Inductance<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Put two coils near each other and a changing current in one induces a voltage in the <em>other</em> — they "talk" through their shared magnetic field. "Mutual inductance" (M) measures how strongly they're coupled. This is exactly how a transformer (and wireless phone charging) works.</div>
       <p><strong>Mutual induction:</strong> producing an induced emf in one coil due to the change of current in another coil that is magnetically linked. For coils with N₁, N₂ turns:</p>
       <div class="math">ε₂ = −M·dI₁/dt,&nbsp;&nbsp;ε₁ = −M·dI₂/dt,&nbsp;&nbsp;M = N₂Φ₂/I₁ = N₁Φ₁/I₂&nbsp;&nbsp;(unit: H)</div>
       <p>For two coaxial solenoids with no flux leakage: M = μ₀N₁N₂A/ℓ.</p>
