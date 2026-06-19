@@ -59,7 +59,13 @@ If a question is outside this syllabus, still help, but gently relate it back to
   const STORAGE_KEY = "utm_tutor_key";
   const MODEL_KEY = "utm_tutor_model";
 
+  // Per-page persistent chat history
+  const HIST_KEY = "utm_tutor_hist_" + ((location.pathname.split("/").pop() || "index").replace(/\.html?$/, ""));
   let history = [];     // {role, content}
+  try { const h = JSON.parse(localStorage.getItem(HIST_KEY) || "[]"); if (Array.isArray(h)) history = h; } catch (_) {}
+  function saveHistory() {
+    try { localStorage.setItem(HIST_KEY, JSON.stringify(history.slice(-40))); } catch (_) {}
+  }
   let busy = false;
 
   // --- Build DOM ---------------------------------------------
@@ -77,6 +83,7 @@ If a question is outside this syllabus, still help, but gently relate it back to
       <div class="av">AI</div>
       <div><h3>UTM AI Tutor</h3><small>Semester 3 study helper</small></div>
       <div class="sp">
+        <button id="tutor-clear" title="Clear chat">🗑</button>
         <button id="tutor-settings" title="Settings">⚙</button>
         <button id="tutor-close" title="Close">✕</button>
       </div>
@@ -103,9 +110,16 @@ If a question is outside this syllabus, still help, but gently relate it back to
       </div>`;
 
     history.forEach(m => addBubble(m.role === "user" ? "user" : "bot", m.content));
+    if (history.length) { const w = panel.querySelector(".tutor-welcome"); if (w) w.remove(); }
 
     document.getElementById("tutor-close").onclick = closePanel;
     document.getElementById("tutor-settings").onclick = setupView;
+    const clearBtn = document.getElementById("tutor-clear");
+    if (clearBtn) clearBtn.onclick = function () {
+      history = [];
+      try { localStorage.removeItem(HIST_KEY); } catch (_) {}
+      chatView();
+    };
     const input = document.getElementById("tutor-input");
     const send = document.getElementById("tutor-send");
     send.onclick = () => submit(input.value);
@@ -211,6 +225,7 @@ If a question is outside this syllabus, still help, but gently relate it back to
 
     addBubble("user", text);
     history.push({ role: "user", content: text });
+    saveHistory();
 
     busy = true;
     const sendBtn = document.getElementById("tutor-send");
@@ -222,6 +237,7 @@ If a question is outside this syllabus, still help, but gently relate it back to
     try {
       const full = await streamReply(bot);
       history.push({ role: "assistant", content: full });
+      saveHistory();
     } catch (err) {
       bot.innerHTML = renderMd("⚠️ " + (err.message || "Something went wrong.") +
         "\n\nTip: check your API key in ⚙ settings, or your internet connection.");
@@ -432,7 +448,24 @@ If a question is outside this syllabus, still help, but gently relate it back to
       "#study-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);z-index:70;" +
       "background:#111827;color:#fff;padding:.7rem 1.2rem;border-radius:999px;font:600 .85rem/1 inherit;" +
       "box-shadow:0 6px 20px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;}" +
-      "#study-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}";
+      "#study-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}" +
+      ".study-size{display:inline-flex;gap:.25rem;align-items:center;}" +
+      ".study-size button{width:30px;padding:.35rem 0;}" +
+      /* home dashboard */
+      "#study-dash{margin:1.5rem 0;}" +
+      "#study-dash h2{margin:0 0 .9rem;font-size:1.15rem;}" +
+      ".dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.9rem;}" +
+      ".dash-card{display:block;text-decoration:none;color:inherit;padding:1rem 1.1rem;border-radius:14px;" +
+      "background:rgba(255,255,255,.96);box-shadow:0 2px 12px rgba(0,0,0,.08);border-left:5px solid var(--dc,#2563eb);" +
+      "transition:transform .12s,box-shadow .12s;}" +
+      ".dash-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.14);}" +
+      ".dash-card .dc-name{font-weight:800;font-size:1rem;}" +
+      ".dash-card .dc-sub{font-size:.78rem;opacity:.7;margin:.15rem 0 .6rem;}" +
+      ".dash-bar{height:9px;border-radius:999px;background:rgba(0,0,0,.1);overflow:hidden;}" +
+      ".dash-bar>span{display:block;height:100%;width:0;background:linear-gradient(90deg,#22c55e,#16a34a);transition:width .4s;}" +
+      ".dash-pct{font-size:.8rem;font-weight:700;margin-top:.4rem;}" +
+      "#study-dash .dash-overall{font-size:.85rem;opacity:.8;margin:.2rem 0 1rem;font-weight:600;}" +
+      "html.dark .dash-card{background:#1a2030;} html.dark .dash-bar{background:rgba(255,255,255,.15);}";
     document.head.appendChild(st);
   }
 
@@ -522,9 +555,25 @@ If a question is outside this syllabus, still help, but gently relate it back to
       '<button id="study-expand" type="button">⤢ Expand all</button>' +
       '<button id="study-collapse" type="button">⤡ Collapse all</button>' +
       '<button id="study-dark" type="button">🌙 Dark</button>' +
+      '<span class="study-size"><button type="button" data-d="-1" title="Smaller text">A−</button>' +
+      '<button type="button" data-d="1" title="Larger text">A+</button></span>' +
       '<button id="study-reset" type="button">↺ Reset</button>' +
       '<span id="study-overall"></span>';
     main.insertBefore(bar, main.firstChild);
+
+    function applyFontScale(scale) {
+      scale = Math.max(0.85, Math.min(1.4, scale));
+      document.documentElement.style.fontSize = Math.round(scale * 100) + "%";
+      try { localStorage.setItem("utm_fontscale", String(scale)); } catch (_) {}
+      return scale;
+    }
+    let fontScale = parseFloat(localStorage.getItem("utm_fontscale")) || 1;
+    if (fontScale !== 1) applyFontScale(fontScale);
+    bar.querySelectorAll(".study-size button").forEach(function (b) {
+      b.addEventListener("click", function () {
+        fontScale = applyFontScale(fontScale + (b.dataset.d === "1" ? 0.1 : -0.1));
+      });
+    });
 
     bar.querySelector("#study-continue").addEventListener("click", function () {
       const last = localStorage.getItem("utm_last_" + PAGE_KEY);
@@ -573,10 +622,57 @@ If a question is outside this syllabus, still help, but gently relate it back to
     if (localStorage.getItem("utm_dark") === "1") applyDark(true);
   }
 
+  const SUBJECTS = [
+    { key: "lessons-calculus",  name: "Calculus",     total: 54, href: "lessons-calculus.html",  color: "#8c1d40" },
+    { key: "lessons-chemistry", name: "Chemistry II", total: 42, href: "lessons-chemistry.html", color: "#0e7490" },
+    { key: "lessons-physics",   name: "Physics II",   total: 66, href: "lessons-physics.html",   color: "#1d4ed8" },
+    { key: "lessons-computing", name: "Computing",    total: 73, href: "lessons-computing.html", color: "#15803d" }
+  ];
+
+  function buildHomeDashboard() {
+    const grid = document.getElementById("subjectGrid") || document.querySelector(".subjects");
+    const main = document.querySelector("main");
+    if (!main || PAGE_KEY !== "index" || document.getElementById("study-dash")) return;
+    injectStyles();
+    // dark-mode preference shared with lesson pages
+    if (localStorage.getItem("utm_dark") === "1") document.documentElement.classList.add("dark");
+
+    let totalDone = 0, totalAll = 0, cards = "";
+    SUBJECTS.forEach(function (s) {
+      let done = 0;
+      try { done = Object.keys(JSON.parse(localStorage.getItem("utm_done_" + s.key) || "{}")).length; } catch (_) {}
+      const total = parseInt(localStorage.getItem("utm_total_" + s.key), 10) || s.total;
+      const capped = Math.min(done, total);
+      totalDone += capped; totalAll += total;
+      const pct = Math.round(capped / total * 100);
+      cards +=
+        '<a class="dash-card" href="' + s.href + '" style="--dc:' + s.color + '">' +
+        '<div class="dc-name">' + s.name + '</div>' +
+        '<div class="dc-sub">' + capped + ' / ' + total + ' lessons</div>' +
+        '<div class="dash-bar"><span style="width:' + pct + '%"></span></div>' +
+        '<div class="dash-pct" style="color:' + s.color + '">' + pct + '% complete</div>' +
+        '</a>';
+    });
+    const overallPct = totalAll ? Math.round(totalDone / totalAll * 100) : 0;
+
+    const dash = document.createElement("section");
+    dash.id = "study-dash";
+    dash.className = "sec";
+    dash.innerHTML =
+      '<h2>📊 My progress</h2>' +
+      '<div class="dash-overall">Overall: ' + totalDone + ' / ' + totalAll + ' lessons (' + overallPct + '%) across all subjects</div>' +
+      '<div class="dash-grid">' + cards + '</div>';
+
+    const subjectsSec = document.getElementById("subjects");
+    if (subjectsSec) main.insertBefore(dash, subjectsSec);
+    else main.insertBefore(dash, main.firstChild);
+  }
+
   function enhanceLessons() {
     const lessons = document.querySelectorAll("details.lesson");
-    if (!lessons.length) return;
+    if (!lessons.length) { buildHomeDashboard(); return; }
     injectStyles();
+    try { localStorage.setItem("utm_total_" + PAGE_KEY, lessons.length); } catch (_) {}
 
     const main = document.querySelector("main") || document.body;
     buildToolbar(main);
