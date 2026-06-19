@@ -1220,6 +1220,7 @@ do {
   <section class="topic" id="t7"><div class="topic-head"><span class="n">7</span><h2>Files (Input & Output)</h2></div>
 
     <details class="lesson"><summary>7·1 Introduction to Files<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Instead of typing on the keyboard and printing to the screen, a program can read from and write to <strong>files on disk</strong> — so the data sticks around after the program ends. Always three steps: <strong>open</strong> the file, <strong>use</strong> it, then <strong>close</strong> it.</div>
       <ul>
         <li>You can use <strong>files</strong> instead of the keyboard and monitor for program input and output.</li>
         <li>A <strong>file</strong> is a set of data stored on a computer (often on a disk drive) — it allows data to be retained between program runs.</li>
@@ -1234,6 +1235,7 @@ do {
     </details></div>
 
     <details class="lesson"><summary>7·2 File Operations &amp; Stream Types<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Three file "types": <strong>ifstream</strong> for reading only (fails if the file's missing), <strong>ofstream</strong> for writing only (⚠️ wipes the file if it already exists!), and <strong>fstream</strong> for both. Use <code>ios::app</code> mode if you want to <em>add</em> to a file rather than overwrite it. Needs <code>#include &lt;fstream&gt;</code>.</div>
       <p>File handling requires the <code>fstream</code> header (<code>#include &lt;fstream&gt;</code>). There are three stream data types:</p>
       <ul>
         <li><strong><code>ifstream</code></strong> — input files: opened for <strong>input only</strong> (cannot be written to); <strong>open fails if the file does not exist</strong>.</li>
@@ -1249,6 +1251,7 @@ do {
     </details></div>
 
     <details class="lesson"><summary>7·3 Opening &amp; Checking Files<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> <code>open()</code> connects your program to a file by name. ⚠️ Opening can fail (file missing, no permission), so <strong>always check it worked</strong> before using it — e.g. <code>if (!input) { error... }</code>. Skipping this check is a top cause of file bugs.</div>
       <ul>
         <li>Opening a file creates a link between the file name (outside the program) and the file stream object (inside). The filename may include drive/path info.</li>
         <li><code>ifstream</code>/<code>ofstream</code> use the <code>open()</code> member function: <code>infile.open("inventory.dat"); outfile.open("report.txt");</code></li>
@@ -1263,6 +1266,7 @@ if (!input.is_open())  { /* file not open */ }</pre>
     </details></div>
 
     <details class="lesson"><summary>7·4 Using &amp; Closing Files<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Reading/writing files uses the same arrows as the screen/keyboard: <code>outfile &lt;&lt; data;</code> writes, <code>infile &gt;&gt; var;</code> reads. Use <code>eof()</code> to detect the end of a file, and <strong>always <code>close()</code></strong> when done so buffered data is safely saved.</div>
       <ul>
         <li>Use the output file object and <code>&lt;&lt;</code> to send data to a file: <code>outfile &lt;&lt; "Inventory report";</code></li>
         <li>Use the input file object and <code>&gt;&gt;</code> to copy data from the file into variables: <code>infile &gt;&gt; partNum;</code> or <code>infile &gt;&gt; qtyInStock &gt;&gt; qtyOnOrder;</code></li>
@@ -1273,6 +1277,7 @@ if (!input.is_open())  { /* file not open */ }</pre>
     </details></div>
 
     <details class="lesson"><summary>7·5 File Operations — Worked Examples<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> These examples put it all together — copying numbers between files, writing names to a file, and reading until the end while doubling each value. Notice the pattern every time: <strong>open → check → loop with <code>&lt;&lt;</code>/<code>&gt;&gt;</code> → close.</div>
       <p><strong>Example 1 — copy 10 numbers between files (fstream):</strong></p>
       <pre>#include &lt;fstream&gt;
 using namespace std;
@@ -1314,6 +1319,7 @@ out.close();</pre>
   <section class="topic" id="t8"><div class="topic-head"><span class="n">8</span><h2>Functions</h2></div>
 
     <details class="lesson"><summary>8·1 What is a Function? — Overview<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A <strong>function</strong> is a named mini-program that does one job — you "call" it by name whenever you need it. Like a kitchen appliance: give it ingredients (arguments), it does the work, hands back a result. Functions let you <strong>divide a big problem into small pieces</strong> and reuse code instead of repeating it.</div>
       <ul>
         <li>We use <strong>functions</strong> (a.k.a. modules, methods, procedures, subprograms) to perform a specific task. In algebra, a function is a rule between values (its <strong>arguments</strong>) and the unique resulting value.</li>
         <li>Example: if <code>f(x) = 2x + 5</code>, then <code>f(1)=7</code>, <code>f(2)=9</code>, <code>f(3)=11</code> — the call <code>f(1)</code> returns 7. Here 1, 2, 3 are <strong>arguments</strong>; 7, 9, 11 are the resulting values.</li>
@@ -1329,6 +1335,7 @@ out.close();</pre>
     </details></div>
 
     <details class="lesson"><summary>8·2 Library (Predefined) Functions<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> C++ ships with thousands of <strong>ready-made functions</strong> so you don't reinvent the wheel — like <code>sqrt()</code>, <code>pow()</code>, <code>abs()</code>. Just <code>#include</code> the right header (e.g. <code>&lt;cmath&gt;</code> for maths) and call them. Treat them as a <strong>black box</strong>: feed in a value, get a result.</div>
       <ul>
         <li><strong>Predefined functions</strong> are "built-in" functions that come with the compiler, provided in function libraries. The source code (definition) does NOT appear in your program.</li>
         <li>To use one, just <strong>include the proper header file</strong> (a <code>#include</code> compiler directive) and know the function's name. They work as a <strong>black box</strong>: e.g. input x=4 → <code>sqrt(x)</code> → output 2.</li>
@@ -1357,6 +1364,7 @@ result = sqrt(nom1 + nom2);          // square root</pre>
     </details></div>
 
     <details class="lesson"><summary>8·3 User-Defined Functions — Definition &amp; Calling<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> You can write your <em>own</em> functions. Two parts: the <strong>definition</strong> (the recipe — return type, name, parameters, body) and the <strong>call</strong> (using its name to run it). When called, the program jumps to the function, runs it, then comes right back to where it left off.</div>
       <ul>
         <li><strong>User-defined functions</strong> are created by you, the programmer — commonly to break a problem into small manageable pieces. You already know one: <code>int main()</code>. Ideally <code>main()</code> is short and consists mainly of function calls.</li>
         <li>Every function needs a <strong>function definition</strong> (the statements that make it up) and a <strong>function call</strong> (the statement that causes it to execute).</li>
@@ -1385,6 +1393,7 @@ int main() {
     </details></div>
 
     <details class="lesson"><summary>8·4 Function Prototypes<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> The compiler reads top-to-bottom, so it needs to know a function exists <em>before</em> you call it. A <strong>prototype</strong> is a one-line "heads-up" near the top (the header line + a semicolon, no body). With prototypes declared, you can write the full function definitions in any order below.</div>
       <ul>
         <li>The compiler must be notified about a function before it is called — either place the full definition before the call, or use a <strong>function prototype</strong> (declaration): like the header but with a semicolon and no body.</li>
         <li>Header: <code>void printHeading()</code> → Prototype: <code>void printHeading();</code></li>
@@ -1404,6 +1413,7 @@ void second() { cout << "Inside the second function\n"; }</pre>
     </details></div>
 
     <details class="lesson"><summary>8·5 Parameters &amp; Passing Data by Value<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> You feed data into a function through <strong>parameters</strong>. By default C++ <strong>passes by value</strong> — the function gets its own <em>copy</em>, so changing it inside the function does <strong>not</strong> change the original variable back in main. (Think photocopy, not the original document.)</div>
       <ul>
         <li>You can pass values into a function when calling it: <code>c = pow(a, b);</code>. Values passed are <strong>arguments</strong>; the variables in the function that hold them are <strong>parameters</strong>.</li>
         <li>A parameter is also called a <strong>formal parameter/argument</strong>; an argument is also called an <strong>actual parameter/argument</strong>.</li>
@@ -1420,6 +1430,7 @@ void showSum(int a, int b, int c)
     </details></div>
 
     <details class="lesson"><summary>8·6 The return Statement &amp; Returning a Value<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> <code>return</code> sends an answer back out of the function (and stops it immediately). The function's <strong>return type</strong> says what kind of answer comes back — <code>int</code>, <code>bool</code>, etc., or <code>void</code> if it returns nothing. The caller catches that answer (e.g. <code>total = sum(a, b);</code>).</div>
       <ul>
         <li>The <code>return</code> statement ends execution of a function; it can be placed anywhere (statements after it don't run) and can prevent abnormal termination. A <code>void</code> function with no <code>return</code> ends at its last <code>}</code>.</li>
         <li>A function can <strong>return a value</strong> to the caller (like <code>pow</code>). The prototype and definition must give the return type (not <code>void</code>), and the caller should use the value — assign it, send it to <code>cout</code>, or use it in an expression.</li>
@@ -1442,6 +1453,7 @@ else             cout << val << " is odd.\n";</pre>
     </details></div>
 
     <details class="lesson"><summary>8·7 Local &amp; Global Variables, Scope &amp; Lifetime<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A <strong>local</strong> variable lives only inside its own function — it's born when the function starts and gone when it ends, and other functions can't see it (so two functions can safely reuse the same name). A <strong>global</strong> variable, declared outside all functions, is visible everywhere — handy but risky, so prefer locals.</div>
       <ul>
         <li>Variables defined inside a function are <strong>local</strong> to that function — hidden from other functions, which can have separate variables with the same name (e.g. <code>num=1</code> in main and <code>num=20</code> in anotherFunction stay independent).</li>
         <li><strong>Local variable lifetime:</strong> local and parameter variables are created when the function begins and destroyed when it ends, so any value is lost between calls. Local variables are <strong>not</strong> automatically initialized.</li>
