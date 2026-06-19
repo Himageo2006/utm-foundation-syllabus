@@ -412,6 +412,8 @@ If a question is outside this syllabus, still help, but gently relate it back to
         if (chev) chev.remove();
         const cb = c.querySelector(".lesson-done");
         if (cb) cb.remove();
+        const st = c.querySelector(".lesson-star");
+        if (st) st.remove();
         title = c.textContent.trim();
       }
       const topicEl = d.closest(".topic");
@@ -437,9 +439,12 @@ If a question is outside this syllabus, still help, but gently relate it back to
   // ============================================================
   const PAGE_KEY = (location.pathname.split("/").pop() || "index").replace(/\.html?$/, "");
   const DONE_KEY = "utm_done_" + PAGE_KEY;
+  const SAVED_KEY = "utm_saved_" + PAGE_KEY;
 
   function loadDone() { try { return JSON.parse(localStorage.getItem(DONE_KEY) || "{}"); } catch (_) { return {}; } }
   function saveDone(o) { try { localStorage.setItem(DONE_KEY, JSON.stringify(o)); } catch (_) {} }
+  function loadSaved() { try { return JSON.parse(localStorage.getItem(SAVED_KEY) || "{}"); } catch (_) { return {}; } }
+  function saveSaved(o) { try { localStorage.setItem(SAVED_KEY, JSON.stringify(o)); } catch (_) {} }
 
   function lessonTitle(d) {
     const sum = d.querySelector("summary");
@@ -447,6 +452,7 @@ If a question is outside this syllabus, still help, but gently relate it back to
     const c = sum.cloneNode(true);
     const chev = c.querySelector(".chev"); if (chev) chev.remove();
     const cb = c.querySelector(".lesson-done"); if (cb) cb.remove();
+    const st = c.querySelector(".lesson-star"); if (st) st.remove();
     return c.textContent.trim();
   }
 
@@ -513,6 +519,19 @@ If a question is outside this syllabus, still help, but gently relate it back to
       "#study-dash .dash-overall{font-size:.85rem;opacity:.8;margin:.2rem 0 1rem;font-weight:600;}" +
       "html.dark .dash-card{background:#1a2030;} html.dark .dash-bar{background:rgba(255,255,255,.15);}" +
       "#study-streak{font-size:.78rem;font-weight:700;opacity:.85;white-space:nowrap;}" +
+      ".lesson-star{background:none;border:none;cursor:pointer;font-size:1rem;line-height:1;padding:0 .2rem;opacity:.5;filter:grayscale(1);}" +
+      ".lesson-star.on{opacity:1;filter:none;}" +
+      "#study-toolbar.saved-only #study-saved{background:#fde68a;border-color:#f59e0b;}" +
+      "#formula-modal{position:fixed;inset:0;z-index:80;display:none;align-items:flex-start;justify-content:center;" +
+      "background:rgba(0,0,0,.5);padding:5vh 4vw;overflow:auto;}" +
+      "#formula-modal.open{display:flex;}" +
+      "#formula-modal .fm-box{background:#fff;color:#111;max-width:640px;width:100%;border-radius:16px;padding:1.4rem 1.6rem;box-shadow:0 20px 60px rgba(0,0,0,.4);}" +
+      "html.dark #formula-modal .fm-box{background:#1a2030;color:#e5e7eb;}" +
+      "#formula-modal h3{margin:0 0 .2rem;} #formula-modal .fm-head{display:flex;justify-content:space-between;align-items:center;}" +
+      "#formula-modal .fm-x{border:none;background:none;font-size:1.4rem;cursor:pointer;color:inherit;}" +
+      "#formula-modal h4{margin:1rem 0 .3rem;font-size:.95rem;color:#2563eb;} html.dark #formula-modal h4{color:#93c5fd;}" +
+      "#formula-modal .fm-item{font:500 .9rem/1.5 inherit;padding:.15rem 0;border-bottom:1px dashed rgba(0,0,0,.08);} html.dark #formula-modal .fm-item{border-color:rgba(255,255,255,.1);}" +
+      "#formula-modal code{background:rgba(37,99,235,.1);padding:.05rem .3rem;border-radius:4px;}" +
       /* print: clean notes, hide interactive chrome */
       "@media print{#study-toolbar,#tutor-fab,#tutor-panel,#study-top,.ai-actions,.lesson-done,.mark-all,.topic-prog,.topic-prog-row,.chev{display:none!important;}" +
       "details.lesson{break-inside:avoid;} details.lesson>.body{display:block!important;} body{background:#fff!important;color:#000!important;}}";
@@ -621,11 +640,19 @@ If a question is outside this syllabus, still help, but gently relate it back to
       '<button id="study-dark" type="button">🌙 Dark</button>' +
       '<span class="study-size"><button type="button" data-d="-1" title="Smaller text">A−</button>' +
       '<button type="button" data-d="1" title="Larger text">A+</button></span>' +
+      '<button id="study-saved" type="button" title="Show only saved lessons">⭐ Saved (0)</button>' +
+      '<button id="study-formulas" type="button" title="Key formulas for this subject">📐 Formulas</button>' +
       '<button id="study-print" type="button" title="Print / save these notes">🖨 Print</button>' +
       '<button id="study-reset" type="button">↺ Reset</button>' +
       '<span id="study-streak" title="Daily study streak"></span>' +
       '<span id="study-overall"></span>';
     main.insertBefore(bar, main.firstChild);
+
+    if (!FORMULAS[PAGE_KEY]) { const fb = bar.querySelector("#study-formulas"); if (fb) fb.style.display = "none"; }
+    bar.querySelector("#study-formulas").addEventListener("click", openFormulas);
+    bar.querySelector("#study-saved").addEventListener("click", function () {
+      savedOnly = !savedOnly; applySavedFilter();
+    });
 
     const streak = updateStreak();
     const stEl = bar.querySelector("#study-streak");
@@ -745,6 +772,73 @@ If a question is outside this syllabus, still help, but gently relate it back to
     else main.insertBefore(dash, main.firstChild);
   }
 
+  const FORMULAS = {
+    "lessons-calculus": { title: "Calculus — key formulas", groups: [
+      { h: "Limits", items: ["lim of poly → substitute", "0/0 → factorize / rationalize", "lim<sub>x→∞</sub> c/xⁿ = 0", "Continuous if lim = f(a)"] },
+      { h: "Differentiation", items: ["Power: d/dx xⁿ = n·xⁿ⁻¹", "Chain: (f(g))' = f'(g)·g'", "Product: (uv)' = u'v + uv'", "Quotient: (u/v)' = (u'v − uv')/v²", "d/dx eˣ = eˣ, d/dx ln x = 1/x", "d/dx sin x = cos x, cos x = −sin x"] },
+      { h: "Integration", items: ["∫xⁿ dx = xⁿ⁺¹/(n+1) + C", "∫1/x dx = ln|x| + C", "∫eˣ dx = eˣ + C", "By parts: ∫u dv = uv − ∫v du", "Definite: ∫ₐᵇ = F(b) − F(a)"] },
+      { h: "Applications", items: ["Area = ∫(top − bottom) dx", "Volume = π∫y² dx", "Max/min: f'=0, test f''", "Newton–Raphson: xₙ₊₁ = xₙ − f/f'", "Trapezoid: (h/2)[f₀+f_n+2Σ]"] }
+    ]},
+    "lessons-chemistry": { title: "Chemistry II — key formulas", groups: [
+      { h: "Thermochemistry", items: ["q = m·c·ΔT", "ΔH = ΣΔHf(products) − ΣΔHf(reactants)", "Hess: ΔH route-independent"] },
+      { h: "Kinetics", items: ["Rate = k[A]ˣ[B]ʸ", "1st-order half-life = 0.693/k", "Arrhenius: k = A·e^(−Eₐ/RT)"] },
+      { h: "Equilibrium", items: ["Kc = [C]ᶜ[D]ᵈ / [A]ᵃ[B]ᵇ", "Kp = Kc(RT)^Δn", "Q vs K → predicts shift", "Ksp = [Mᵇ⁺]ᵃ[Xᵃ⁻]ᵇ"] },
+      { h: "Acids & Bases", items: ["pH = −log[H⁺], pH + pOH = 14", "Kw = [H⁺][OH⁻] = 1×10⁻¹⁴", "Weak acid: [H⁺] = √(Ka·C)", "Buffer: pH = pKa + log([base]/[acid])"] }
+    ]},
+    "lessons-physics": { title: "Physics II — key formulas", groups: [
+      { h: "Electricity", items: ["Coulomb: F = kq₁q₂/r²  (k=9×10⁹)", "E = F/q = kQ/r²", "V = kQ/r", "C = Q/V, energy = ½CV²", "Ohm: V = IR, P = VI = I²R"] },
+      { h: "Magnetism / Induction", items: ["B (wire) = μ₀I/2πr", "F = BIL·sinθ, F = qvB·sinθ", "Flux Φ = BA·cosθ", "Faraday: ε = −N·dΦ/dt", "Transformer: Vs/Vp = Ns/Np"] },
+      { h: "Waves & Optics", items: ["c = fλ", "Snell: n₁sinθ₁ = n₂sinθ₂", "Lens/mirror: 1/f = 1/dₒ + 1/dᵢ", "m = −dᵢ/dₒ", "Double slit: Δy = λL/d"] },
+      { h: "Modern", items: ["E = hf = hc/λ", "Photoelectric: hf = KEₘₐₓ + W₀", "de Broglie: λ = h/mv", "Half-life: N = N₀e^(−λt), t½ = 0.693/λ", "E = mc²"] }
+    ]},
+    "lessons-computing": { title: "Computing (C++) — quick reference", groups: [
+      { h: "Data sizes", items: ["1 byte = 8 bits", "KB→MB→GB→TB (×1024)", "int 4B, char 1B, double 8B, bool 1B"] },
+      { h: "Operators", items: ["Arithmetic: + − * / %", "Relational: < <= > >= == !=", "Logical: && (and) || (or) ! (not)", "Order: () then * / % then + −"] },
+      { h: "I/O", items: ['cin >> x;  (input)', 'cout << x;  (output)', 'endl or \\n = new line', "getline(cin, s) for full line"] },
+      { h: "Control & functions", items: ["if/else, switch, while, for, do…while", "for(init; cond; update)", "return type name(params){ }", "Pass by value = copy (caller unchanged)"] }
+    ]}
+  };
+
+  function openFormulas() {
+    const data = FORMULAS[PAGE_KEY];
+    if (!data) return;
+    let m = document.getElementById("formula-modal");
+    if (!m) {
+      m = document.createElement("div");
+      m.id = "formula-modal";
+      m.innerHTML = '<div class="fm-box"><div class="fm-head"><h3></h3><button class="fm-x" type="button" title="Close">✕</button></div><div class="fm-body"></div></div>';
+      document.body.appendChild(m);
+      m.addEventListener("click", e => { if (e.target === m) m.classList.remove("open"); });
+      m.querySelector(".fm-x").onclick = () => m.classList.remove("open");
+    }
+    m.querySelector("h3").textContent = "📐 " + data.title;
+    m.querySelector(".fm-body").innerHTML = data.groups.map(g =>
+      "<h4>" + g.h + "</h4>" + g.items.map(it => '<div class="fm-item">' + it + "</div>").join("")
+    ).join("");
+    m.classList.add("open");
+  }
+
+  let savedOnly = false;
+  function applySavedFilter() {
+    const saved = loadSaved();
+    document.querySelectorAll("details.lesson").forEach(function (d) {
+      const isSaved = !!saved[lessonTitle(d)];
+      d.style.display = (savedOnly && !isSaved) ? "none" : "";
+    });
+    document.querySelectorAll(".topic").forEach(function (t) {
+      if (!savedOnly) { t.style.display = ""; return; }
+      const any = [...t.querySelectorAll("details.lesson")].some(d => d.style.display !== "none");
+      t.style.display = any ? "" : "none";
+    });
+    const tb = document.getElementById("study-toolbar");
+    if (tb) tb.classList.toggle("saved-only", savedOnly);
+  }
+  function savedCount() { return Object.keys(loadSaved()).length; }
+  function refreshSavedBtn() {
+    const b = document.getElementById("study-saved");
+    if (b) b.textContent = "⭐ Saved (" + savedCount() + ")";
+  }
+
   function enhanceLessons() {
     const lessons = document.querySelectorAll("details.lesson");
     if (!lessons.length) { buildHomeDashboard(); return; }
@@ -798,6 +892,25 @@ If a question is outside this syllabus, still help, but gently relate it back to
         // place before the chevron if present
         const chev = sum.querySelector(".chev");
         if (chev) sum.insertBefore(lbl, chev); else sum.appendChild(lbl);
+
+        // ⭐ save-for-review star
+        const savedMap = loadSaved();
+        const star = document.createElement("button");
+        star.type = "button";
+        star.className = "lesson-star" + (savedMap[key] ? " on" : "");
+        star.title = "Save for review";
+        star.textContent = "⭐";
+        const stopS = e => e.stopPropagation();
+        star.addEventListener("click", function (e) {
+          stopS(e); e.preventDefault();
+          const map = loadSaved();
+          if (map[key]) { delete map[key]; star.classList.remove("on"); }
+          else { map[key] = 1; star.classList.add("on"); }
+          saveSaved(map);
+          refreshSavedBtn();
+          if (savedOnly) applySavedFilter();
+        });
+        sum.insertBefore(star, lbl);
       }
 
       // --- remember last-opened lesson (for Continue) ---
@@ -844,6 +957,7 @@ If a question is outside this syllabus, still help, but gently relate it back to
     updateOverall();
     refreshContinue();
     setupBackToTop();
+    refreshSavedBtn();
   }
 
   if (document.readyState === "loading") {
