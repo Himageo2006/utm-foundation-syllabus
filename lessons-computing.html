@@ -34,6 +34,7 @@
   <section class="topic" id="t1"><div class="topic-head"><span class="n">1</span><h2>Introduction to Information Technology</h2></div>
 
     <details class="lesson" open><summary>1·1 What is a Computer?<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A computer is just a machine that <strong>follows a list of instructions</strong> to take in data, process it, and give back a result — very fast and without getting tired. That's really all "computing" is at its heart.</div>
       <p>A <strong>computer</strong> is a <strong>programmed device</strong> with a <strong>set of instructions</strong> to <strong>perform specific tasks</strong> and <strong>generate results</strong> at a very high speed.</p>
       <p><strong>Computer functions:</strong></p>
       <ul>
@@ -46,6 +47,7 @@
     </div></details>
 
     <details class="lesson"><summary>1·2 Hardware vs Software<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> <strong>Hardware</strong> is the stuff you can touch (screen, keyboard, chips). <strong>Software</strong> is the instructions — the programs — that tell the hardware what to do. Hardware is the body; software is the thoughts.</div>
       <p>A computer is made of two parts: <strong>Hardware</strong> and <strong>Software</strong>.</p>
       <h4>Hardware</h4>
       <ul>
@@ -60,6 +62,7 @@
     </div></details>
 
     <details class="lesson"><summary>1·3 Hardware Components<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Four main parts: the <strong>CPU</strong> (the brain that does the work), <strong>RAM</strong> (fast short-term memory, wiped when power's off), <strong>storage</strong> (hard disk/SSD — keeps things permanently), and <strong>input/output</strong> (keyboard/mouse in, screen/printer out).</div>
       <p>The hardware components of a computer are the <strong>CPU</strong>, <strong>Main Memory</strong>, <strong>Secondary Storage</strong>, and <strong>Input/Output (I/O)</strong> devices.</p>
 
       <h4>Central Processing Unit (CPU)</h4>
@@ -92,6 +95,7 @@
     </div></details>
 
     <details class="lesson"><summary>1·4 Software: System vs Application<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Two kinds of software: <strong>system software</strong> runs the machine itself (the operating system, like Windows), and <strong>application software</strong> is what you actually use to get things done (browser, games, Word).</div>
       <p>Software are <strong>programs written to perform specific tasks</strong>. <strong>All software is written in programming languages.</strong></p>
       <h4>System Software</h4>
       <p>Responsible for <strong>controlling</strong>, <strong>integrating</strong>, and <strong>managing</strong> the individual hardware components of a computer system.</p>
@@ -102,6 +106,7 @@
     </div></details>
 
     <details class="lesson"><summary>1·5 How Data is Represented on a Computer<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Deep down a computer only knows two things — <strong>on (1) and off (0)</strong>. One of these is a <strong>bit</strong>; 8 bits make a <strong>byte</strong>. Bigger files just mean more bytes (KB → MB → GB → TB), each step ×1024.</div>
       <ul>
         <li>Digital signals represent information with a sequence of 0s and 1s — <strong>0</strong> = low voltage, <strong>1</strong> = high voltage.</li>
         <li>The smallest unit of data in a computer is a <strong>bit</strong>.</li>
@@ -128,6 +133,7 @@
     </div></details>
 
     <details class="lesson"><summary>1·6 Concept of Data Representation &amp; Why Binary<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Everything — text, photos, music — gets turned into 0s and 1s. Why only two digits? Because electronic switches are naturally <strong>either on or off</strong>, with nothing in between. Two clear states are reliable and cheap to build, so binary wins.</div>
       <ul>
         <li>A computer is a <strong>numerical machine</strong> — it can only process in binary, in the form of numbers.</li>
         <li>Any type of data — numbers, letters, special symbols, sound or pictures — must be <strong>converted to binary</strong> form.</li>
@@ -148,6 +154,7 @@
     </div></details>
 
     <details class="lesson"><summary>1·7 Number Systems<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> We count in <strong>base 10</strong> (digits 0–9). Computers use <strong>base 2</strong> (just 0–1). Binary gets very long, so programmers use <strong>octal (base 8)</strong> and <strong>hex (base 16)</strong> as shorthand — same value, far fewer digits to write.</div>
       <p>A <strong>number system</strong> is a set of symbols used to represent values derived from a common <strong>base (radix)</strong>.</p>
       <ul>
         <li><strong>Base 10 (Decimal)</strong> — digits 0..9.</li>
@@ -164,6 +171,7 @@
     </div></details>
 
     <details class="lesson"><summary>1·8 C++ Primitive Data Types &amp; Range<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Before storing a value, C++ needs to know <em>what kind</em> it is — a whole number (<code>int</code>), a decimal (<code>float</code>/<code>double</code>), a single character (<code>char</code>), or true/false (<code>bool</code>). Each type reserves a fixed number of bytes, which sets the <strong>range</strong> of values it can hold.</div>
       <p>C++ primitive types include: Integer, Character, Boolean, Floating Point, Double Floating Point, Valueless (Void), and Wide Character.</p>
       <div class="ex"><span class="tag">TYPICAL BIT WIDTH &amp; RANGE</span>
         <div class="step"><span class="num">char</span><span class="txt">1 byte — −127 to 127, or 0 to 255</span></div>
@@ -184,6 +192,7 @@
     </div></details>
 
     <details class="lesson"><summary>1·9 Integer Representation &amp; 2's Complement<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> How does a computer store a <em>negative</em> number using only 0s and 1s? It uses a trick called <strong>2's complement</strong>: the first bit becomes a "sign bit" (0 = positive, 1 = negative), and negatives are stored by flipping all bits and adding 1. This lets the same circuitry add and subtract.</div>
       <h4>Unsigned integers — zero &amp; positive only</h4>
       <ul>
         <li>For an <em>n</em>-bit representation: range 0 .. 2ⁿ−1 (e.g. <code>unsigned short int</code> = 16 bits, range 0 .. 65535).</li>
@@ -207,6 +216,7 @@
     </div></details>
 
     <details class="lesson"><summary>1·10 Endianness — How Representation is Stored<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> When a number takes several bytes, processors disagree on the order to store them in: <strong>big-endian</strong> puts the most important byte first, <strong>little-endian</strong> puts it last. It's like writing a date as DD/MM vs MM/DD — same info, different order. (Intel chips use little-endian.)</div>
       <p>Different processors store a number bigger than one byte in different orders:</p>
       <ul>
         <li>Intel uses <strong>Little Endian</strong>, Atmel AVR32 uses <strong>Big Endian</strong>, and ARM6 onward can operate on both.</li>
@@ -219,6 +229,7 @@
     </div></details>
 
     <details class="lesson"><summary>1·11 Symbolic Representation using Coding<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Letters are stored as numbers using an agreed code. <strong>ASCII</strong> maps each character to a number ('A' = 65). For the world's many languages and emoji, <strong>Unicode</strong> extends this to tens of thousands of characters.</div>
       <ul>
         <li>In computing, a single character, number or symbol is represented by a group of bits.</li>
         <li>The commonly used encoding scheme on personal computers is the seven-bit <strong>ASCII</strong> (American Standard Code for Information Interchange).</li>
@@ -233,6 +244,7 @@
     </div></details>
 
     <details class="lesson"><summary>1·12 Computer Basic Building Blocks — Logic Gates<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> <strong>Logic gates</strong> are tiny decision-makers built from switches. <strong>AND</strong> needs both inputs on; <strong>OR</strong> needs at least one on; <strong>NOT</strong> flips the input. Millions of these combined make up a CPU — and the same logic shows up in code (<code>&amp;&amp;</code>, <code>||</code>, <code>!</code>).</div>
       <ul>
         <li>Logic gates are the most basic building block of any digital system.</li>
         <li>You need to know logic characteristics because logic is part of a programming language. e.g. <code>if (x&lt;2) &amp;&amp; (y&gt;10) then ...</code> — <code>&amp;&amp;</code> is the AND operator.</li>
