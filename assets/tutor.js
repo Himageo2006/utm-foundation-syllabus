@@ -611,6 +611,20 @@ If a question is outside this syllabus, still help, but gently relate it back to
       ".dash-backup button{padding:.45rem .9rem;border:1px solid rgba(0,0,0,.15);background:#fff;border-radius:999px;font:600 .8rem/1 inherit;cursor:pointer;}" +
       ".dash-backup button:hover{background:#f1f5f9;} html.dark .dash-backup button{background:#0f1420;color:#e5e7eb;border-color:#2a3344;}" +
       "#study-streak{font-size:.78rem;font-weight:700;opacity:.85;white-space:nowrap;}" +
+      /* feature toggles */
+      ".pref-hide-aibtns .ai-actions{display:none!important;}" +
+      ".pref-hide-progress .lesson-done,.pref-hide-progress .topic-prog,.pref-hide-progress .topic-prog-row,.pref-hide-progress #study-overall,.pref-hide-progress #study-continue{display:none!important;}" +
+      ".pref-hide-sr #study-review{display:none!important;} .pref-hide-streak #study-streak{display:none!important;}" +
+      /* generic modal (help/settings) */
+      ".study-modal{position:fixed;inset:0;z-index:80;display:none;align-items:flex-start;justify-content:center;background:rgba(0,0,0,.5);padding:6vh 4vw;overflow:auto;}" +
+      ".study-modal.open{display:flex;} .study-modal .sm-box{background:#fff;color:#111;max-width:560px;width:100%;border-radius:16px;padding:1.3rem 1.5rem;box-shadow:0 20px 60px rgba(0,0,0,.4);}" +
+      "html.dark .study-modal .sm-box{background:#1a2030;color:#e5e7eb;}" +
+      ".study-modal .sm-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem;} .study-modal h3{margin:0;}" +
+      ".study-modal .sm-x{border:none;background:none;font-size:1.4rem;cursor:pointer;color:inherit;}" +
+      ".study-modal .sm-row{display:flex;align-items:center;gap:.55rem;padding:.5rem 0;font-size:.9rem;border-bottom:1px dashed rgba(0,0,0,.08);} html.dark .study-modal .sm-row{border-color:rgba(255,255,255,.1);}" +
+      ".study-modal .sm-row input{width:17px;height:17px;cursor:pointer;} .study-modal code{background:rgba(37,99,235,.12);padding:.05rem .3rem;border-radius:4px;}" +
+      /* accessibility: visible focus ring */
+      ".ai-btn:focus-visible,#study-toolbar button:focus-visible,#study-search:focus-visible,.lesson-star:focus-visible,.lesson-done input:focus-visible,.dash-card:focus-visible,.study-modal button:focus-visible{outline:3px solid #2563eb;outline-offset:2px;}" +
       ".lesson-star{background:none;border:none;cursor:pointer;font-size:1rem;line-height:1;padding:0 .2rem;opacity:.5;filter:grayscale(1);}" +
       ".lesson-star.on{opacity:1;filter:none;}" +
       "#study-toolbar.saved-only #study-saved{background:#fde68a;border-color:#f59e0b;}" +
@@ -738,10 +752,17 @@ If a question is outside this syllabus, still help, but gently relate it back to
       '<button id="study-saved" type="button" title="Show only saved lessons">⭐ Saved (0)</button>' +
       '<button id="study-formulas" type="button" title="Key formulas for this subject">📐 Formulas</button>' +
       '<button id="study-print" type="button" title="Print / save these notes">🖨 Print</button>' +
+      '<button id="study-settings" type="button" title="Settings">⚙</button>' +
+      '<button id="study-help" type="button" title="Help &amp; keyboard shortcuts">?</button>' +
       '<button id="study-reset" type="button">↺ Reset</button>' +
       '<span id="study-streak" title="Daily study streak"></span>' +
       '<span id="study-overall"></span>';
     main.insertBefore(bar, main.firstChild);
+
+    bar.querySelector("#study-settings").addEventListener("click", openSettings);
+    bar.querySelector("#study-help").addEventListener("click", () => openHelp(true));
+    // accessibility: mirror titles into aria-labels for icon buttons
+    bar.querySelectorAll("button[title]").forEach(b => b.setAttribute("aria-label", b.getAttribute("title")));
 
     if (!FORMULAS[PAGE_KEY]) { const fb = bar.querySelector("#study-formulas"); if (fb) fb.style.display = "none"; }
     bar.querySelector("#study-formulas").addEventListener("click", openFormulas);
@@ -1026,10 +1047,99 @@ If a question is outside this syllabus, still help, but gently relate it back to
     window.askTutor(q);
   }
 
+  // ---- Generic modal (used by Help & Settings) ----
+  function openModal(titleHtml, bodyHtml) {
+    let m = document.getElementById("study-modal");
+    if (!m) {
+      m = document.createElement("div");
+      m.id = "study-modal"; m.className = "study-modal";
+      m.setAttribute("role", "dialog"); m.setAttribute("aria-modal", "true");
+      m.innerHTML = '<div class="sm-box"><div class="sm-head"><h3></h3><button class="sm-x" type="button" aria-label="Close">✕</button></div><div class="sm-body"></div></div>';
+      document.body.appendChild(m);
+      m.addEventListener("click", e => { if (e.target === m) closeModal(); });
+      m.querySelector(".sm-x").onclick = closeModal;
+    }
+    m.querySelector("h3").innerHTML = titleHtml;
+    m.querySelector(".sm-body").innerHTML = bodyHtml;
+    m.classList.add("open");
+    return m.querySelector(".sm-body");
+  }
+  function closeModal() {
+    ["study-modal", "formula-modal"].forEach(id => { const m = document.getElementById(id); if (m) m.classList.remove("open"); });
+  }
+
+  // ---- Feature toggles (Settings) ----
+  const PREFS = [
+    { key: "aibtns",   cls: "pref-hide-aibtns",   label: "AI lesson buttons (Explain, Quiz, Flashcards…)" },
+    { key: "progress", cls: "pref-hide-progress", label: "Progress tracking (checkboxes &amp; bars)" },
+    { key: "sr",       cls: "pref-hide-sr",        label: "Spaced-repetition Review button" },
+    { key: "streak",   cls: "pref-hide-streak",    label: "Daily streak counter" }
+  ];
+  function applyPrefs() {
+    PREFS.forEach(function (p) {
+      const off = localStorage.getItem("utm_pref_" + p.key) === "0";
+      document.documentElement.classList.toggle(p.cls, off);
+    });
+  }
+  function openSettings() {
+    const rows = PREFS.map(function (p) {
+      const on = localStorage.getItem("utm_pref_" + p.key) !== "0";
+      return '<label class="sm-row"><input type="checkbox" data-pref="' + p.key + '"' + (on ? " checked" : "") + '> ' + p.label + '</label>';
+    }).join("");
+    const body = openModal("⚙️ Settings", '<p style="margin:.2rem 0 .8rem;opacity:.75;font-size:.85rem;">Show or hide features. Saved on this device.</p>' + rows);
+    body.querySelectorAll("input[data-pref]").forEach(function (cb) {
+      cb.addEventListener("change", function () {
+        localStorage.setItem("utm_pref_" + cb.dataset.pref, cb.checked ? "1" : "0");
+        applyPrefs();
+      });
+    });
+  }
+  function openHelp(force) {
+    if (!force && localStorage.getItem("utm_onboarded") === "1") return;
+    localStorage.setItem("utm_onboarded", "1");
+    openModal("👋 Welcome — quick tour", '' +
+      '<p style="margin:.2rem 0 .7rem;">Here\'s how to get the most out of your study hub:</p>' +
+      '<ul style="margin:0 0 .8rem;padding-left:1.1rem;line-height:1.7;font-size:.9rem;">' +
+      '<li>Open any lesson, then use <b>✨ Explain · ❓ Quiz · 📝 Practice · ⚡ Summarize · 🃏 Flashcards</b> for instant AI help.</li>' +
+      '<li>Tick <b>✓ done</b> to track progress and trigger <b>🔁 spaced-repetition</b> reviews.</li>' +
+      '<li><b>⭐</b> bookmarks a lesson; <b>📐 Formulas</b> shows a quick cheat-sheet.</li>' +
+      '<li>Use <b>🔍 search</b>, <b>🌙 dark mode</b>, <b>A−/A+</b> text size, and <b>🖨 Print</b> from the toolbar.</li>' +
+      '<li>The home page shows your <b>📊 dashboard</b>, <b>🔥 streak</b> and <b>🗓️ activity heatmap</b>.</li>' +
+      '</ul>' +
+      '<div style="font-size:.85rem;background:rgba(37,99,235,.08);padding:.6rem .8rem;border-radius:10px;">' +
+      '<b>⌨ Keyboard shortcuts:</b> <code>/</code> search · <code>t</code> tutor · <code>d</code> dark · <code>e</code>/<code>c</code> expand/collapse · <code>?</code> this help · <code>Esc</code> close</div>');
+  }
+
+  let _kbBound = false;
+  function bindKeyboard() {
+    if (_kbBound) return; _kbBound = true;
+    document.addEventListener("keydown", function (e) {
+      const tag = (e.target.tagName || "").toLowerCase();
+      const typing = tag === "input" || tag === "textarea" || e.target.isContentEditable;
+      if (e.key === "Escape") {
+        closeModal();
+        const tc = document.getElementById("tutor-close"); const tp = document.getElementById("tutor-panel");
+        if (tc && tp && tp.classList.contains("open")) tc.click();
+        if (typing) e.target.blur();
+        return;
+      }
+      if (typing || e.ctrlKey || e.metaKey || e.altKey) return;
+      const k = e.key.toLowerCase();
+      if (e.key === "/") { const s = document.getElementById("study-search"); if (s) { e.preventDefault(); s.focus(); } }
+      else if (e.key === "?") { openHelp(true); }
+      else if (k === "t") { const f = document.getElementById("tutor-fab"); if (f && f.style.display !== "none") f.click(); }
+      else if (k === "d") { const b = document.getElementById("study-dark"); if (b) b.click(); }
+      else if (k === "e") { const b = document.getElementById("study-expand"); if (b) b.click(); }
+      else if (k === "c") { const b = document.getElementById("study-collapse"); if (b) b.click(); }
+    });
+  }
+
   function enhanceLessons() {
     const lessons = document.querySelectorAll("details.lesson");
-    if (!lessons.length) { buildHomeDashboard(); return; }
+    if (!lessons.length) { buildHomeDashboard(); applyPrefs(); bindKeyboard(); openHelp(false); return; }
     injectStyles();
+    applyPrefs();
+    bindKeyboard();
     logActivity();
     try { localStorage.setItem("utm_total_" + PAGE_KEY, lessons.length); } catch (_) {}
 
@@ -1152,6 +1262,7 @@ If a question is outside this syllabus, still help, but gently relate it back to
     setupBackToTop();
     refreshSavedBtn();
     refreshReviewBtn();
+    openHelp(false);
   }
 
   if (document.readyState === "loading") {
