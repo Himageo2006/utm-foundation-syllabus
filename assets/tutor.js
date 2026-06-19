@@ -446,6 +446,17 @@ If a question is outside this syllabus, still help, but gently relate it back to
   function loadSaved() { try { return JSON.parse(localStorage.getItem(SAVED_KEY) || "{}"); } catch (_) { return {}; } }
   function saveSaved(o) { try { localStorage.setItem(SAVED_KEY, JSON.stringify(o)); } catch (_) {} }
 
+  // Spaced-repetition scheduler
+  const SR_KEY = "utm_sr_" + PAGE_KEY;
+  const SR_INTERVALS = [1, 3, 7, 16, 35]; // days
+  function loadSR() { try { return JSON.parse(localStorage.getItem(SR_KEY) || "{}"); } catch (_) { return {}; } }
+  function saveSR(o) { try { localStorage.setItem(SR_KEY, JSON.stringify(o)); } catch (_) {} }
+  function isoDay(offset) { return new Date(Date.now() + (offset || 0) * 864e5).toISOString().slice(0, 10); }
+  function srSchedule(title) { const m = loadSR(); m[title] = { s: 0, due: isoDay(SR_INTERVALS[0]) }; saveSR(m); }
+  function srUnschedule(title) { const m = loadSR(); delete m[title]; saveSR(m); }
+  function srAdvance(title) { const m = loadSR(); const cur = m[title] || { s: 0 }; const s = Math.min((cur.s || 0) + 1, SR_INTERVALS.length - 1); m[title] = { s: s, due: isoDay(SR_INTERVALS[s]) }; saveSR(m); }
+  function srDueTitles() { const m = loadSR(); const t = isoDay(0); return Object.keys(m).filter(k => (m[k] && m[k].due) <= t); }
+
   function lessonTitle(d) {
     const sum = d.querySelector("summary");
     if (!sum) return "lesson";
@@ -522,6 +533,8 @@ If a question is outside this syllabus, still help, but gently relate it back to
       ".lesson-star{background:none;border:none;cursor:pointer;font-size:1rem;line-height:1;padding:0 .2rem;opacity:.5;filter:grayscale(1);}" +
       ".lesson-star.on{opacity:1;filter:none;}" +
       "#study-toolbar.saved-only #study-saved{background:#fde68a;border-color:#f59e0b;}" +
+      "#study-toolbar.review-only #study-review{background:#bbf7d0;border-color:#16a34a;}" +
+      ".ai-btn.sr-reviewed{background:linear-gradient(135deg,#0d9488,#14b8a6);box-shadow:0 2px 8px rgba(20,184,166,.3);}" +
       "#formula-modal{position:fixed;inset:0;z-index:80;display:none;align-items:flex-start;justify-content:center;" +
       "background:rgba(0,0,0,.5);padding:5vh 4vw;overflow:auto;}" +
       "#formula-modal.open{display:flex;}" +
@@ -640,6 +653,7 @@ If a question is outside this syllabus, still help, but gently relate it back to
       '<button id="study-dark" type="button">🌙 Dark</button>' +
       '<span class="study-size"><button type="button" data-d="-1" title="Smaller text">A−</button>' +
       '<button type="button" data-d="1" title="Larger text">A+</button></span>' +
+      '<button id="study-review" type="button" title="Lessons due for spaced-repetition review">🔁 Review (0)</button>' +
       '<button id="study-saved" type="button" title="Show only saved lessons">⭐ Saved (0)</button>' +
       '<button id="study-formulas" type="button" title="Key formulas for this subject">📐 Formulas</button>' +
       '<button id="study-print" type="button" title="Print / save these notes">🖨 Print</button>' +
@@ -651,7 +665,13 @@ If a question is outside this syllabus, still help, but gently relate it back to
     if (!FORMULAS[PAGE_KEY]) { const fb = bar.querySelector("#study-formulas"); if (fb) fb.style.display = "none"; }
     bar.querySelector("#study-formulas").addEventListener("click", openFormulas);
     bar.querySelector("#study-saved").addEventListener("click", function () {
+      if (reviewOnly) { reviewOnly = false; applyReviewFilter(); }
       savedOnly = !savedOnly; applySavedFilter();
+    });
+    bar.querySelector("#study-review").addEventListener("click", function () {
+      if (!reviewOnly && srDueTitles().length === 0) { toast("🎉 No reviews due — you're all caught up!"); return; }
+      if (savedOnly) { savedOnly = false; applySavedFilter(); }
+      reviewOnly = !reviewOnly; applyReviewFilter();
     });
 
     const streak = updateStreak();
@@ -839,6 +859,53 @@ If a question is outside this syllabus, still help, but gently relate it back to
     if (b) b.textContent = "⭐ Saved (" + savedCount() + ")";
   }
 
+  let reviewOnly = false;
+  function refreshReviewBtn() {
+    const b = document.getElementById("study-review");
+    if (b) b.textContent = "🔁 Review (" + srDueTitles().length + ")";
+  }
+  function applyReviewFilter() {
+    const due = new Set(srDueTitles());
+    document.querySelectorAll("details.lesson").forEach(function (d) {
+      const t = lessonTitle(d);
+      const show = !reviewOnly || due.has(t);
+      d.style.display = show ? "" : "none";
+      if (reviewOnly && due.has(t)) {
+        d.open = true;
+        const row = d.querySelector(".ai-actions");
+        if (row && !row.querySelector(".sr-reviewed")) {
+          const rb = document.createElement("button");
+          rb.type = "button"; rb.className = "ai-btn sr-reviewed"; rb.innerHTML = "✅ Mark reviewed";
+          rb.addEventListener("click", function (e) {
+            e.preventDefault(); e.stopPropagation();
+            srAdvance(t); refreshReviewBtn(); toast("🔁 Next review scheduled"); applyReviewFilter();
+          });
+          row.appendChild(rb);
+        }
+      } else {
+        const rb = d.querySelector(".sr-reviewed"); if (rb) rb.remove();
+      }
+    });
+    document.querySelectorAll(".topic").forEach(function (tp) {
+      if (!reviewOnly) { tp.style.display = ""; return; }
+      const any = [...tp.querySelectorAll("details.lesson")].some(d => d.style.display !== "none");
+      tp.style.display = any ? "" : "none";
+    });
+    const tb = document.getElementById("study-toolbar");
+    if (tb) tb.classList.toggle("review-only", reviewOnly);
+    refreshReviewBtn();
+  }
+
+  function testTopic(topicEl) {
+    const h2 = topicEl.querySelector(".topic-head h2") || topicEl.querySelector("h2");
+    const topic = h2 ? h2.textContent.trim() : "this topic";
+    const subject = (document.querySelector("h1") ? document.querySelector("h1").textContent.trim() : document.title).replace(/\s+/g, " ");
+    const titles = [...topicEl.querySelectorAll("details.lesson")].map(lessonTitle).join("; ");
+    const q = 'Act as an examiner. Give me a mock test on the WHOLE topic "' + topic + '"' + (subject ? (' [' + subject + ']') : '') +
+      '. It covers these lessons: ' + titles + '. Create 6 questions of increasing difficulty (mix of short-answer and one multi-step problem). Ask them ONE at a time and wait for my answer before marking it and moving on. At the end give me a score out of 6 and what to revise.';
+    window.askTutor(q);
+  }
+
   function enhanceLessons() {
     const lessons = document.querySelectorAll("details.lesson");
     if (!lessons.length) { buildHomeDashboard(); return; }
@@ -885,6 +952,8 @@ If a question is outside this syllabus, still help, but gently relate it back to
           const map = loadDone();
           if (cb.checked) map[key] = 1; else delete map[key];
           saveDone(map);
+          if (cb.checked) { if (!loadSR()[key]) srSchedule(key); } else { srUnschedule(key); }
+          refreshReviewBtn();
           d.classList.toggle("is-done", cb.checked);
           const t = d.closest(".topic"); if (t) updateTopicProgress(t, true);
           updateOverall();
@@ -933,7 +1002,9 @@ If a question is outside this syllabus, still help, but gently relate it back to
         const wrap = document.createElement("div");
         wrap.innerHTML = '<div class="topic-prog"><span></span></div>' +
           '<div class="topic-prog-row"><span class="topic-prog-label"></span>' +
-          '<button type="button" class="mark-all">Mark all done</button></div>';
+          '<button type="button" class="mark-all">Mark all done</button>' +
+          '<button type="button" class="mark-all test-topic">📋 Test me</button></div>';
+        wrap.querySelector(".test-topic").addEventListener("click", function () { testTopic(t); });
         if (head && head.nextSibling) t.insertBefore(wrap, head.nextSibling);
         else t.insertBefore(wrap, t.firstChild);
         wrap.querySelector(".mark-all").addEventListener("click", function () {
@@ -958,6 +1029,7 @@ If a question is outside this syllabus, still help, but gently relate it back to
     refreshContinue();
     setupBackToTop();
     refreshSavedBtn();
+    refreshReviewBtn();
   }
 
   if (document.readyState === "loading") {
