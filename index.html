@@ -91,6 +91,80 @@
   .rnone{padding:.9rem;color:var(--muted);font-size:.88rem;text-align:center}
   #themeBtn{background:none;border:1px solid var(--line);color:var(--ink);width:36px;height:36px;border-radius:999px;cursor:pointer;font-size:1rem}
   @media(max-width:600px){.nav-links a:not(#installBtn):not(#themeBtn){display:none}}
+
+  /* ============ Visual polish ============ */
+  body{
+    background:
+      radial-gradient(1100px 560px at 82% -12%, rgba(212,160,23,.12), transparent 60%),
+      radial-gradient(950px 520px at -5% -5%, rgba(140,29,64,.12), transparent 55%),
+      var(--bg);
+    background-attachment:fixed;
+  }
+  html[data-theme="dark"] body{
+    background:
+      radial-gradient(1100px 560px at 82% -12%, rgba(212,160,23,.10), transparent 60%),
+      radial-gradient(950px 520px at -5% -5%, rgba(140,29,64,.22), transparent 55%),
+      var(--bg);
+  }
+
+  /* hero glows + entrance */
+  .hero{position:relative;padding-top:4.5rem;overflow:visible}
+  .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(64px);z-index:-1;pointer-events:none}
+  .hero::before{width:360px;height:360px;background:radial-gradient(circle,var(--maroon),transparent 70%);top:-40px;left:-30px;opacity:.30}
+  .hero::after{width:300px;height:300px;background:radial-gradient(circle,var(--gold),transparent 70%);top:60px;right:-20px;opacity:.28}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  .hero>*{animation:fadeUp .7s cubic-bezier(.2,.7,.2,1) both}
+  .hero h1{animation-delay:.06s}.hero p{animation-delay:.12s}.hero .cta{animation-delay:.18s}
+  .hero .searchwrap{animation-delay:.24s}.hero .hero-stats{animation-delay:.30s}
+  @media(prefers-reduced-motion:reduce){.hero>*{animation:none}}
+
+  .hero .badge{background:rgba(255,255,255,.72);backdrop-filter:blur(6px)}
+  html[data-theme="dark"] .hero .badge{background:rgba(40,30,40,.6)}
+  .hero h1 .hl{background:linear-gradient(118deg,var(--maroon),#c2436b 58%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .btn{transition:transform .15s ease,box-shadow .15s ease}
+  .btn.primary:hover{box-shadow:0 16px 36px rgba(92,18,48,.44)}
+  .btn.ghost:hover{border-color:var(--maroon);color:var(--maroon);box-shadow:var(--shadow)}
+
+  /* stat card */
+  .hero-stats{gap:0;display:inline-flex;flex-wrap:wrap;justify-content:center;background:var(--card);
+    border:1px solid var(--line);border-radius:20px;padding:1.1rem .4rem;box-shadow:var(--shadow)}
+  .hero-stats>div{padding:.2rem 1.7rem;position:relative}
+  .hero-stats>div+div::before{content:"";position:absolute;left:0;top:18%;height:64%;width:1px;background:var(--line)}
+  .hero-stats strong{background:linear-gradient(120deg,var(--maroon),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* section heads with accent underline */
+  .sec-head h2{display:inline-block}
+  .sec-head h2::after{content:"";display:block;width:56px;height:4px;border-radius:999px;margin:.55rem auto 0;
+    background:linear-gradient(90deg,var(--maroon),var(--gold))}
+
+  /* subject cards use their own colour */
+  .subj{transition:transform .18s ease,box-shadow .18s ease}
+  .subj::before{height:6px;background:linear-gradient(90deg,var(--c),transparent)}
+  .subj .ic{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;font-size:1.7rem;
+    background:#f1ecee;background:color-mix(in srgb,var(--c) 15%,transparent)}
+  .subj:hover{box-shadow:0 20px 46px rgba(40,20,30,.16);box-shadow:0 20px 46px color-mix(in srgb,var(--c) 24%,transparent)}
+  .subj .go{display:inline-flex;align-items:center;gap:.25rem;transition:gap .15s ease}
+  .subj:hover .go{gap:.6rem}
+  .subj .pill{background:#f4eef0;background:color-mix(in srgb,var(--c) 12%,transparent);color:var(--ink)}
+
+  /* feature cards */
+  .feat{transition:transform .18s ease,box-shadow .18s ease}
+  .feat:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(40,20,30,.14)}
+  .feat .ic{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;
+    background:linear-gradient(135deg,rgba(140,29,64,.13),rgba(212,160,23,.13))}
+
+  /* glowing CTA band */
+  .cta-band{position:relative;overflow:hidden;box-shadow:0 22px 52px rgba(92,18,48,.32)}
+  .cta-band::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(620px 220px at 82% -25%,rgba(212,160,23,.40),transparent 60%)}
+  .cta-band>*{position:relative}
+  .cta-band .btn.primary:hover{box-shadow:0 16px 36px rgba(0,0,0,.28)}
+
+  @media(max-width:600px){
+    .hero{padding-top:2.4rem}
+    .hero-stats>div{padding:.2rem 1.1rem}
+  }
 </style>
 </head>
 <body>
