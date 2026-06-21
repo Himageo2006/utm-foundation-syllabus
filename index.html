@@ -64,10 +64,12 @@
   .subj .go{font-weight:700;color:var(--maroon);font-size:.9rem}
 
   .features{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem}
-  .feat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.4rem;box-shadow:var(--shadow)}
+  .feat{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.4rem;box-shadow:var(--shadow);cursor:pointer;color:inherit}
   .feat .ic{font-size:1.8rem}
   .feat h3{font-size:1.1rem;margin:.5rem 0 .3rem}
   .feat p{font-size:.88rem;color:var(--muted)}
+  .feat .feat-go{display:inline-flex;align-items:center;gap:.25rem;margin-top:.7rem;font-size:.82rem;font-weight:700;color:var(--maroon);transition:gap .15s ease}
+  .feat:hover .feat-go{gap:.55rem}
 
   .cta-band{background:linear-gradient(135deg,var(--maroon),var(--maroon-dark));color:#fff;border-radius:24px;padding:3rem 2rem;text-align:center;margin:4rem 0}
   .cta-band h2{font-size:1.9rem}
@@ -210,12 +212,12 @@
   <section class="sec" id="features">
     <div class="sec-head"><h2>How it helps you study</h2><p>Built around how foundation students actually revise.</p></div>
     <div class="features">
-      <div class="feat"><div class="ic">📖</div><h3>Step-by-step lessons</h3><p>Every topic explained from your lecture slides, with worked examples solved one step at a time.</p></div>
-      <div class="feat"><div class="ic">✨</div><h3>AI tutor</h3><p>Ask anything, get instant step-by-step help. It knows all 6 subjects and your assessment structure.</p></div>
-      <div class="feat"><div class="ic">📝</div><h3>Past papers</h3><p>Real tests and final exams — many with full answers — organised per subject for focused revision.</p></div>
-      <div class="feat"><div class="ic">🧠</div><h3>Quizzes & flashcards</h3><p>Test yourself per topic with AI-generated questions and quick-recall flashcards.</p></div>
-      <div class="feat"><div class="ic">📱</div><h3>Installable app</h3><p>Add it to your phone's home screen and study offline — it works like a real app.</p></div>
-      <div class="feat"><div class="ic">🆓</div><h3>Free forever</h3><p>No paywalls. Built by students, for UTM foundation students.</p></div>
+      <a class="feat" href="lessons-calculus.html"><div class="ic">📖</div><h3>Step-by-step lessons</h3><p>Every topic explained from your lecture slides, with worked examples solved one step at a time.</p><span class="feat-go">Open lessons →</span></a>
+      <a class="feat" href="#subjects" onclick="document.getElementById('tutor-fab')?.click();return false;"><div class="ic">✨</div><h3>AI tutor</h3><p>Ask anything, get instant step-by-step help. It knows all 6 subjects and your assessment structure.</p><span class="feat-go">Ask the tutor →</span></a>
+      <a class="feat" href="#subjects"><div class="ic">📝</div><h3>Past papers</h3><p>Real tests and final exams — many with full answers — organised per subject for focused revision.</p><span class="feat-go">Browse subjects →</span></a>
+      <a class="feat" href="lessons-calculus.html"><div class="ic">🧠</div><h3>Quizzes & flashcards</h3><p>Test yourself per topic with AI-generated questions and quick-recall flashcards.</p><span class="feat-go">Try a quiz →</span></a>
+      <a class="feat" href="#" onclick="(document.getElementById('installBtn')||{click(){alert('To install: open your browser menu and choose &quot;Add to Home screen&quot;.');}}).click();return false;"><div class="ic">📱</div><h3>Installable app</h3><p>Add it to your phone's home screen and study offline — it works like a real app.</p><span class="feat-go">Install →</span></a>
+      <a class="feat" href="#subjects"><div class="ic">🆓</div><h3>Free forever</h3><p>No paywalls. Built by students, for UTM foundation students.</p><span class="feat-go">Get started →</span></a>
     </div>
   </section>
 
