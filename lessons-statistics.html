@@ -9,7 +9,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/lessons.css">
 <link rel="stylesheet" href="assets/tutor.css">
-<style>:root{--c:#8c5a1d}</style>
+<style>:root{--c:#8c5a1d}
+  table.stab{border-collapse:collapse;width:100%;font-size:.86rem;margin:.6rem 0;overflow-x:auto;display:block}
+  table.stab th,table.stab td{border:1px solid var(--line,#e7e2dc);padding:.35rem .5rem;text-align:center;white-space:nowrap}
+  table.stab th{background:rgba(140,90,29,.12);font-weight:700}
+  table.stab td.hl{background:rgba(140,90,29,.14);font-weight:700}
+</style>
 </head>
 <body>
 <header class="nav"><div class="nav-inner">
@@ -18,82 +23,264 @@
 </div></header>
 
 <div class="hero"><div class="hero-inner">
-  <span class="eyebrow">Statistics &amp; Probability</span>
+  <span class="eyebrow">Statistics &amp; Probability · FSPM 0034</span>
   <h1>Statistics — step by step</h1>
-  <p>Describing data, probability, and distributions — each explained simply with worked examples.</p>
+  <p>Matched to your FSPM 0034 lecture chapters. Every idea explained in plain words first, then the formula, then a full worked example.</p>
 </div></div>
 
 <main>
-  <div class="toc"><h2>📘 Topics</h2><ol>
+  <div class="toc"><h2>📘 Chapters</h2><ol>
     <li><a href="#t1">Descriptive Statistics</a></li>
     <li><a href="#t2">Probability</a></li>
-    <li><a href="#t3">Probability Distributions</a></li>
-    <li><a href="#t4">Data Analysis</a></li>
+    <li><a href="#t3">Random Variables</a></li>
+    <li><a href="#t4">Special Discrete Distributions</a></li>
+    <li><a href="#t5">Normal Distribution</a></li>
   </ol></div>
 
+  <!-- ==================== CHAPTER 1 ==================== -->
   <section class="topic" id="t1"><div class="topic-head"><span class="n">1</span><h2>Descriptive Statistics</h2></div>
-    <details class="lesson" open><summary>Mean, median, mode & standard deviation<span class="chev">▶</span></summary><div class="body">
+
+    <!-- 1.1 -->
+    <details class="lesson" open><summary>1.1 What is statistics? (Descriptive vs Inferential)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Statistics is just the science of making sense of numbers — collecting them, tidying them up, summarising them, and then drawing sensible conclusions so we can make decisions. When you look at exam-result averages, population census figures, or a survey, you're using statistics.</div>
+      <p><strong>Statistics</strong> deals with the process of <em>collecting, classifying, summarising, organising, analysing and using</em> numerical data — so we can interpret it, draw conclusions, make decisions and solve problems.</p>
+      <p>It splits into two branches:</p>
       <ul>
-        <li><strong>Mean</strong> = sum of values ÷ how many.</li>
-        <li><strong>Median</strong> = the middle value when sorted.</li>
-        <li><strong>Mode</strong> = the most frequent value.</li>
-        <li><strong>Standard deviation</strong> = how spread out the data is.</li>
+        <li><strong>Descriptive statistics</strong> — organising, summarising and <em>displaying</em> data (tables, charts, averages). It just describes what the data shows — no predictions. <em>This whole chapter is descriptive.</em></li>
+        <li><strong>Inferential statistics</strong> — using a <strong>sample</strong> to draw conclusions or make predictions about a larger <strong>population</strong>.</li>
       </ul>
-      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
-        <p>Find the mean and median of: 4, 8, 6, 5, 2.</p>
-        <div class="step"><span class="num">1</span><span class="txt">Mean = (4+8+6+5+2)/5 = 25/5 = <span class="ans">5</span></span></div>
-        <div class="step"><span class="num">2</span><span class="txt">Sort: 2, 4, 5, 6, 8 → middle value = <span class="ans">5</span> (median).</span></div>
+      <div class="tip">Example: A national census summarised in charts = <strong>descriptive</strong>. Polling 1,000 voters to predict a whole election = <strong>inferential</strong>.</div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 1.2 -->
+    <details class="lesson"><summary>1.2 Definitions — population, sample, variables, levels of measurement<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Before we calculate anything we need the vocabulary. A <em>population</em> is everyone/everything we care about; a <em>sample</em> is a slice of it. A <em>variable</em> is the characteristic we measure (age, gender…), and the <em>level of measurement</em> tells us what maths we're allowed to do with it.</div>
+
+      <p><strong>Population vs Sample</strong></p>
+      <ul>
+        <li><strong>Population</strong> — the <em>entire</em> group of individuals/objects in the study (ALL of them).</li>
+        <li><strong>Sample</strong> — a subset (a part) of the population.</li>
+      </ul>
+      <p><strong>Parameter vs Statistic</strong></p>
+      <ul>
+        <li><strong>Parameter</strong> — a measure computed from the <em>whole population</em> (e.g. population mean <em>μ</em>, population SD <em>σ</em>).</li>
+        <li><strong>Statistic</strong> — a measure computed from a <em>sample</em> (e.g. sample mean <em>x̄</em>, sample SD <em>s</em>). We use statistics to <em>estimate</em> parameters.</li>
+      </ul>
+
+      <p><strong>Types of variable</strong></p>
+      <ul>
+        <li><strong>Quantitative</strong> (measured numerically):
+          <ul><li><strong>Discrete</strong> — countable, distinct values (number of students, number of cars).</li>
+          <li><strong>Continuous</strong> — any value in an interval (age, weight, height).</li></ul></li>
+        <li><strong>Qualitative</strong> (categories, not numeric):
+          <ul><li><strong>Nominal</strong> — categories with no order (gender, type of car, type of food).</li>
+          <li><strong>Ordinal</strong> — categories that <em>can</em> be ranked (education level, grade, economic status).</li></ul></li>
+      </ul>
+
+      <p><strong>The 4 levels of measurement</strong> (weakest → strongest):</p>
+      <table class="stab"><tr><th>Level</th><th>Can categorise</th><th>Can rank</th><th>Equal intervals</th><th>True zero</th><th>Example</th></tr>
+        <tr><td class="hl">Nominal</td><td>✔</td><td>—</td><td>—</td><td>—</td><td>Hair colour, gender</td></tr>
+        <tr><td class="hl">Ordinal</td><td>✔</td><td>✔</td><td>—</td><td>—</td><td>Low/medium/high income</td></tr>
+        <tr><td class="hl">Interval</td><td>✔</td><td>✔</td><td>✔</td><td>—</td><td>Temperature °C</td></tr>
+        <tr><td class="hl">Ratio</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>Weight (kg), speed</td></tr>
+      </table>
+      <div class="tip"><strong>True zero</strong> means zero really means "none" (0 kg = no weight). Temperature has no true zero because 0 °C isn't "no temperature", so it's only <em>interval</em>, not ratio.</div>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 1.2.1</span>
+        <p>A survey asks 40 boys and 60 girls at a college whether they like Mathematics. State the population, sample, variable, and whether it's qualitative/quantitative.</p>
+        <div class="step"><span class="num">a</span><span class="txt">Population = <span class="ans">all students of the college</span></span></div>
+        <div class="step"><span class="num">b</span><span class="txt">Sample = <span class="ans">the 40 boys and 60 girls surveyed</span></span></div>
+        <div class="step"><span class="num">c</span><span class="txt">Variable = <span class="ans">"likes Mathematics or not"</span></span></div>
+        <div class="step"><span class="num">d</span><span class="txt">It is <span class="ans">qualitative</span> (a yes/no category, not a number).</span></div>
       </div>
-      <div class="math">Standard deviation σ = √( Σ(x − x̄)² / n )</div>
-    </div></details>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 1.3a Frequency table -->
+    <details class="lesson"><summary>1.3a Frequency distribution table (grouped data)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> When you have a big pile of numbers, you tidy them into <em>classes</em> (groups) and count how many fall in each. That table is a frequency distribution — the foundation for every chart and grouped calculation that follows.</div>
+      <p><strong>Key terms:</strong> <em>class interval</em> (e.g. 65–69), <em>class limits</em> (smallest &amp; biggest in the class), <em>class boundaries</em> (the values separating classes, e.g. 64.5–69.5), <em>class width</em> (boundary difference), <em>frequency</em> (count in the class), <em>relative frequency</em> (frequency ÷ total ≈ probability), <em>class mark / midpoint</em> (halfway point).</p>
+      <p><strong>Steps (Sturge's rule):</strong></p>
+      <div class="math">Step 1 — number of classes: k = 1 + 3.3 log n</div>
+      <div class="math">Step 2 — class width = (highest value − smallest value) ÷ number of classes</div>
+      <ul>
+        <li>Step 3 — set lower &amp; upper limits (start at the smallest value; add width each time).</li>
+        <li>Step 4 — class boundaries = go half a unit below the lower limit and half above the upper limit.</li>
+        <li>Step 5 — count the frequency in each class.</li>
+        <li>Step 6 — relative frequency = frequency ÷ n.</li>
+        <li>Step 7 — class mark = (lower limit + upper limit) ÷ 2.</li>
+      </ul>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 1.3.2 — statistics scores (n = 40)</span>
+        <p>Data ranged from 66 to 94.</p>
+        <div class="step"><span class="num">1</span><span class="txt">k = 1 + 3.3 log 40 = 6.29 ≈ <span class="ans">6 classes</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">width = (94 − 66)/6 = 4.67 ≈ <span class="ans">5</span> (integer data → integer width)</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Build the table:</span></div>
+        <table class="stab"><tr><th>Class</th><th>Boundary</th><th>Freq</th><th>Rel. freq</th><th>Class mark</th></tr>
+          <tr><td>66–70</td><td>65.5–70.5</td><td>4</td><td>0.10</td><td>68</td></tr>
+          <tr><td>71–75</td><td>70.5–75.5</td><td>16</td><td>0.40</td><td>73</td></tr>
+          <tr><td>76–80</td><td>75.5–80.5</td><td>11</td><td>0.28</td><td>78</td></tr>
+          <tr><td>81–85</td><td>80.5–85.5</td><td>3</td><td>0.08</td><td>83</td></tr>
+          <tr><td>86–90</td><td>85.5–90.5</td><td>4</td><td>0.10</td><td>88</td></tr>
+          <tr><td>91–95</td><td>90.5–95.5</td><td>2</td><td>0.05</td><td>93</td></tr>
+          <tr><td class="hl">Total</td><td></td><td class="hl">40</td><td class="hl">1.00</td><td></td></tr>
+        </table>
+      </div>
+      <div class="tip">If the raw data has decimals, the class width usually keeps decimals too (e.g. width 7.3). Always make sure your classes cover both the smallest <em>and</em> largest value.</div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 1.3b Charts -->
+    <details class="lesson"><summary>1.3b Histogram, polygon &amp; ogives (charts)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Once you have the frequency table, you can <em>draw</em> it. A histogram is bars; a polygon joins the tops; an ogive plots the running total (cumulative frequency) so you can read off "how many scored less than X".</div>
+      <ul>
+        <li><strong>Histogram</strong> — vertical bars; <em>x</em>-axis = class boundaries, <em>y</em>-axis = frequency. Bars touch (continuous data).</li>
+        <li><strong>Polygon</strong> — plot each <em>class mark</em> at its frequency and join the points. Add an empty class at each end (frequency 0) so the shape closes.</li>
+        <li><strong>Less-than ogive</strong> — plot cumulative frequency against the <em>upper</em> class boundary. Increasing curve; starts at CF = 0.</li>
+        <li><strong>More-than ogive</strong> — plot cumulative frequency against the <em>lower</em> class boundary. Decreasing curve; ends at CF = 0.</li>
+      </ul>
+      <div class="tip">Where the two ogives cross, the <em>x</em>-value is the <strong>median</strong>. Tips for a correct ogive: start/end at CF = 0, plot every point accurately, and use a sensible y-scale that starts at 0.</div>
+
+      <p><strong>Charts for qualitative data</strong>: classify into categories, count each, then draw a <strong>bar chart</strong> (bar length = frequency/percentage) or a <strong>pie chart</strong> (slice = category's share of the whole).</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — pie slice %</span>
+        <p>A dealer sold: Wira 2, Satria 4, Waja 7, Perdana 13, Putra 12 (total 38).</p>
+        <div class="step"><span class="num">1</span><span class="txt">Wira % = (2/38)×100 = <span class="ans">5.26%</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Perdana % = (13/38)×100 = <span class="ans">34.21%</span> (the biggest slice).</span></div>
+      </div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 1.4a Location ungrouped -->
+    <details class="lesson"><summary>1.4a Measures of location — mean, median, mode (ungrouped)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> These pick a single "typical" value to represent all the data. <em>Mean</em> = the average; <em>median</em> = the middle one; <em>mode</em> = the most common one.</div>
+      <div class="math">Sample mean x̄ = (Σ xᵢ) / n &nbsp;·&nbsp; Population mean μ = (Σ Xᵢ) / N</div>
+      <p><strong>Median</strong> — sort the data first, then:</p>
+      <div class="math">n odd → median = x₍₍ₙ₊₁₎∕₂₎ &nbsp;·&nbsp; n even → median = ½( x₍ₙ∕₂₎ + x₍ₙ∕₂₊₁₎ )</div>
+      <p><strong>Mode</strong> — the value that appears most often (must appear more than once). Data can have no mode, one mode, or several.</p>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 1.4.1 — mean</span>
+        <p>Find the mean of 3, 5, 7, 4, 5, 9, 6.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Sum = 39, n = 7</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">x̄ = 39/7 = <span class="ans">5.57</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 1.4.2 — median (n odd)</span>
+        <p>Data: 219, 201, 186, 191, 209, 180, 220.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Sort: 180, 186, 191, <strong>201</strong>, 209, 219, 220. n = 7 (odd).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">median = x₍₄₎ = <span class="ans">201</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 1.4.4 — mode</span>
+        <div class="step"><span class="num">a</span><span class="txt">5, 2, 3, 3, 5, 4, 28, 5 → mode = <span class="ans">5</span></span></div>
+        <div class="step"><span class="num">b</span><span class="txt">2, 3, 5, 8, 10 → <span class="ans">no mode</span></span></div>
+        <div class="step"><span class="num">c</span><span class="txt">0.2, 0.4, 0.4, 0.4, 0.5, 0.7, 0.7, 0.7, 0.5 → <span class="ans">0.4 and 0.7</span></span></div>
+      </div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 1.4b Quartiles ungrouped -->
+    <details class="lesson"><summary>1.4b Quartiles, deciles &amp; percentiles (ungrouped)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> These cut sorted data into equal slices. Quartiles into 4 parts, deciles into 10, percentiles into 100. Q₁ marks the bottom 25%, the median is Q₂ (50%), Q₃ marks 75%.</div>
+      <p><strong>Method</strong> — sort the data, find the <em>location</em> j, then read off the value:</p>
+      <div class="math">Quartile: j = (i/4)(n+1) &nbsp;·&nbsp; Decile: j = (i/10)(n+1) &nbsp;·&nbsp; Percentile: j = (i/100)(n+1)</div>
+      <ul>
+        <li>If j is a whole number q → the value is the q-th observation, X_q.</li>
+        <li>If j is not whole, j = q + t/100 → interpolate: <strong>value = X_q + (t/100)(X_{q+1} − X_q)</strong>.</li>
+      </ul>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 1.4.5 — Q₁</span>
+        <p>Data (sorted): 180, 186, 191, 201, 209, 219, 220. n = 7.</p>
+        <div class="step"><span class="num">1</span><span class="txt">j = (1/4)(7+1) = 2 → whole number, so q = 2.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Q₁ = X₂ = <span class="ans">186</span> (25% of data below 186).</span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 1.4.6 — Q₂ (interpolation)</span>
+        <p>Data (sorted): 17, 20, 21, 24, 32, 36. n = 6.</p>
+        <div class="step"><span class="num">1</span><span class="txt">j = (2/4)(6+1) = 3.5 → q = 3, t/100 = 0.5.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Q₂ = X₃ + 0.5(X₄ − X₃) = 21 + 0.5(24 − 21) = <span class="ans">22.5</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 1.4.9 — P₂₀</span>
+        <p>Data (sorted): 17, 20, 21, 24, 32, 36. n = 6.</p>
+        <div class="step"><span class="num">1</span><span class="txt">j = (20/100)(6+1) = 1.4 → q = 1, t/100 = 0.4.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">P₂₀ = X₁ + 0.4(X₂ − X₁) = 20 + 0.4(20 − 17) = <span class="ans">21.2</span></span></div>
+      </div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 1.4c Location grouped -->
+    <details class="lesson"><summary>1.4c Mean, median, mode &amp; quartiles (grouped data)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> With grouped data we don't know each exact value, so we estimate using class midpoints and cumulative frequencies. Each measure has its own formula — but they all just say "start at a boundary and step the right fraction into the class."</div>
+      <div class="math">Mean x̄ = (Σ fᵢxᵢ) / n &nbsp; (xᵢ = class midpoint)</div>
+      <div class="math">Median = L + [ (n/2 − F) / f ] × C</div>
+      <div class="math">Mode = L + [ d₁ / (d₁ + d₂) ] × C</div>
+      <div class="math">Qᵢ = L + [ ( (i/4)(n+1) − F ) / f ] × C &nbsp;(Dᵢ uses /10, Pᵢ uses /100)</div>
+      <p>where <em>L</em> = lower boundary of the class, <em>F</em> = cumulative frequency <em>before</em> that class, <em>f</em> = that class's frequency, <em>C</em> = class width; for mode <em>d₁</em>/<em>d₂</em> = frequency gap to the class before/after the modal class.</p>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 1.4.11–13 — marks of 80 students</span>
+        <table class="stab"><tr><th>Marks</th><th>f</th><th>CF</th></tr>
+          <tr><td>0–20</td><td>6</td><td>6</td></tr>
+          <tr><td>20–40</td><td>20</td><td>26</td></tr>
+          <tr><td class="hl">40–60</td><td class="hl">37</td><td class="hl">63</td></tr>
+          <tr><td>60–80</td><td>10</td><td>73</td></tr>
+          <tr><td>80–100</td><td>7</td><td>80</td></tr>
+        </table>
+        <div class="step"><span class="num">Median</span><span class="txt">n/2 = 40 → median class 40–60. = 40 + [(40 − 26)/37]×20 = <span class="ans">47.57</span></span></div>
+        <div class="step"><span class="num">Mode</span><span class="txt">modal class 40–60. = 40 + [(37−20)/((37−20)+(37−10))]×20 = <span class="ans">47.73</span></span></div>
+        <div class="step"><span class="num">Q₂</span><span class="txt">position (2/4)(81) = 40.5 → class 40–60. = 40 + [((2/4)(81) − 26)/37]×20 = <span class="ans">47.84</span></span></div>
+      </div>
+      <div class="tip">Watch the boundaries: if classes are written 0–20, 20–40 (no gap) the limits <em>are</em> the boundaries. If written 0–99, 100–199 (a gap), convert first — lower boundary of 100–199 is 99.5.</div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 1.4d Dispersion -->
+    <details class="lesson"><summary>1.4d Measures of dispersion — range, IQR, variance, SD<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Averages tell you the centre; dispersion tells you the <em>spread</em>. Small spread = data is consistent (bunched together); large spread = data is scattered. Standard deviation is the most-used measure — it's the typical distance of a value from the mean.</div>
+      <div class="math">Range = max − min &nbsp;·&nbsp; Interquartile range (IQR) = Q₃ − Q₁</div>
+      <div class="math">Sample variance s² = (1/(n−1)) [ Σxᵢ² − (Σxᵢ)²/n ]</div>
+      <div class="math">Sample standard deviation s = √(s²)</div>
+      <p>For grouped data, replace <em>xᵢ</em> with the class midpoint and use <em>fᵢxᵢ²</em> and <em>fᵢxᵢ</em> sums (n = Σf).</p>
+
+      <div class="ex"><span class="tag">WORKED EXAMPLE 1.4.16 — range &amp; IQR</span>
+        <p>Data (sorted): 180, 186, 191, 201, 209, 219, 220.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Range = 220 − 180 = <span class="ans">40</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Q₃ = X₆ = 219, Q₁ = X₂ = 186 → IQR = 219 − 186 = <span class="ans">33</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 1.4.18 — variance &amp; SD</span>
+        <p>Same 7 values.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Σxᵢ² = 283920, (Σxᵢ)² = 1976836, n = 7.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">s² = (1/6)[283920 − 1976836/7] = <span class="ans">252.48</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">s = √252.48 = <span class="ans">15.89</span></span></div>
+      </div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 1.5 Skewness -->
+    <details class="lesson"><summary>1.5 Skewness (Pearson's coefficient)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Skewness measures how <em>lopsided</em> a distribution is. A symmetric bell curve has zero skew. If it has a long tail to the right it's positively skewed; a long tail to the left is negatively skewed.</div>
+      <ul>
+        <li><strong>Symmetric</strong>: mean = median = mode (best average: <em>mean</em>).</li>
+        <li><strong>Positively skewed</strong> (tail right): mode &lt; median &lt; mean (best average: <em>median</em>).</li>
+        <li><strong>Negatively skewed</strong> (tail left): mean &lt; median &lt; mode (best average: <em>median</em>).</li>
+      </ul>
+      <div class="math">Pearson: Sₖ = 3(mean − median) / SD &nbsp; or &nbsp; Sₖ = (mean − mode) / SD</div>
+      <ul>
+        <li>Sₖ &gt; 0 → positively skewed</li>
+        <li>Sₖ &lt; 0 → negatively skewed</li>
+        <li>Sₖ = 0 → symmetric</li>
+      </ul>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 1.4.3 (Exercise) — 400 students</span>
+        <div class="step"><span class="num">1</span><span class="txt">Mean = 35.3, Median = 34.1, SD = 20.1.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Sₖ = 3(35.3 − 34.1)/20.1 = <span class="ans">0.179</span> (positive → slightly right-skewed).</span></div>
+      </div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
   </section>
 
+  <!-- ==================== CHAPTERS 2–5 (being built) ==================== -->
   <section class="topic" id="t2"><div class="topic-head"><span class="n">2</span><h2>Probability</h2></div>
-    <details class="lesson"><summary>Basic probability rules<span class="chev">▶</span></summary><div class="body">
-      <div class="math">P(event) = favourable outcomes / total outcomes &nbsp; (between 0 and 1)</div>
-      <ul>
-        <li><strong>Addition (OR):</strong> P(A or B) = P(A) + P(B) − P(A and B).</li>
-        <li><strong>Multiplication (AND, independent):</strong> P(A and B) = P(A)·P(B).</li>
-        <li><strong>Complement:</strong> P(not A) = 1 − P(A).</li>
-      </ul>
-      <div class="ex"><span class="tag">WORKED EXAMPLE</span>
-        <p>A fair die is rolled. Find P(rolling an even number).</p>
-        <div class="step"><span class="num">1</span><span class="txt">Even outcomes = {2, 4, 6} → 3 favourable. Total = 6.</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">P = 3/6 = <span class="ans">1/2</span></span></div>
-      </div>
-    </div></details>
+    <div class="tip">📗 This chapter (sample spaces, rules of probability, conditional probability, independence) is being written from your <strong>Chapter 2 – Probability</strong> notes and will appear here shortly. In the meantime you can ask the <a href="index.html" style="color:var(--c);font-weight:700">AI Tutor</a> any probability question.</div>
   </section>
-
-  <section class="topic" id="t3"><div class="topic-head"><span class="n">3</span><h2>Probability Distributions</h2></div>
-    <details class="lesson"><summary>Binomial & normal distributions<span class="chev">▶</span></summary><div class="body">
-      <p><strong>Binomial</strong> — for n independent trials each with success probability p:</p>
-      <div class="math">P(X = r) = ⁿCᵣ · pʳ · (1−p)ⁿ⁻ʳ</div>
-      <p><strong>Normal</strong> — the bell curve, described by mean μ and standard deviation σ. Convert to the standard normal with the z-score:</p>
-      <div class="math">z = (x − μ) / σ</div>
-      <div class="ex"><span class="tag">WORKED EXAMPLE — z-score</span>
-        <p>Marks are normally distributed with μ = 60, σ = 10. Find the z-score for a mark of 75.</p>
-        <div class="step"><span class="num">1</span><span class="txt">z = (75 − 60)/10</span></div>
-        <div class="step"><span class="num">2</span><span class="txt">= 15/10 = <span class="ans">1.5</span> (the mark is 1.5 standard deviations above the mean).</span></div>
-      </div>
-    </div></details>
+  <section class="topic" id="t3"><div class="topic-head"><span class="n">3</span><h2>Random Variables</h2></div>
+    <div class="tip">📗 Being written from your <strong>Chapter 3 – Random Variables</strong> notes (discrete random variables, probability distributions, expected value &amp; variance).</div>
   </section>
-
-  <section class="topic" id="t4"><div class="topic-head"><span class="n">4</span><h2>Data Analysis</h2></div>
-    <details class="lesson"><summary>Presenting & interpreting data<span class="chev">▶</span></summary><div class="body">
-      <p>Organise data with frequency tables, then visualise it:</p>
-      <ul>
-        <li><strong>Bar chart</strong> — compare categories.</li>
-        <li><strong>Histogram</strong> — show distribution of continuous data.</li>
-        <li><strong>Pie chart</strong> — show proportions of a whole.</li>
-        <li><strong>Scatter plot</strong> — show relationship between two variables (correlation).</li>
-      </ul>
-      <div class="tip">Interpreting: look for the centre (average), the spread (range/SD), and the shape (symmetric? skewed? outliers?).</div>
-    </div></details>
-    <div class="tip" style="margin-top:1.4rem">📝 Note: these lessons cover the standard foundation-level scope. Confirm exact topics with your lecturer's outline, and practise with the <a href="subject.html?s=statistics" style="color:var(--c);font-weight:700">Statistics materials</a>.</div>
+  <section class="topic" id="t4"><div class="topic-head"><span class="n">4</span><h2>Special Discrete Distributions</h2></div>
+    <div class="tip">📗 Being written from your <strong>Chapter 4 – Special Discrete Distributions</strong> notes (binomial &amp; Poisson distributions).</div>
+  </section>
+  <section class="topic" id="t5"><div class="topic-head"><span class="n">5</span><h2>Normal Distribution</h2></div>
+    <div class="tip">📗 Being written from your <strong>Chapter 5 – Normal Distribution</strong> notes (the bell curve, z-scores, standard normal table, probabilities).</div>
+    <div class="tip" style="margin-top:1.2rem">📝 Chapter 1 is fully matched to your FSPM 0034 lecture slides. Always confirm exact scope with your lecturer's outline, and practise with the past papers on the <a href="subject.html?s=statistics" style="color:var(--c);font-weight:700">Statistics materials</a> page.</div>
   </section>
 </main>
 
-<footer><div class="foot-inner"><p><strong>UTM Foundation Hub · Statistics &amp; Probability lessons.</strong> Standard foundation-level scope — confirm against your lecturer's materials. <a href="index.html">← Back to the platform</a></p></div></footer>
+<footer><div class="foot-inner"><p><strong>UTM Foundation Hub · Statistics &amp; Probability (FSPM 0034) lessons.</strong> Chapter 1 matched to lecture slides — confirm against your lecturer's materials. <a href="index.html">← Back to the platform</a></p></div></footer>
 <script src="assets/tutor.js"></script>
 </body>
 </html>
