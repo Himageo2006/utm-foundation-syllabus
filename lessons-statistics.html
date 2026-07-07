@@ -266,17 +266,362 @@
 
   <!-- ==================== CHAPTERS 2–5 (being built) ==================== -->
   <section class="topic" id="t2"><div class="topic-head"><span class="n">2</span><h2>Probability</h2></div>
-    <div class="tip">📗 This chapter (sample spaces, rules of probability, conditional probability, independence) is being written from your <strong>Chapter 2 – Probability</strong> notes and will appear here shortly. In the meantime you can ask the <a href="index.html" style="color:var(--c);font-weight:700">AI Tutor</a> any probability question.</div>
+
+    <!-- 2.1 -->
+    <details class="lesson"><summary>2.1 What is probability? (sample space, classical definition, basic rules)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Probability measures the <em>chance</em> an event happens, on a scale from 0 (impossible) to 1 (certain). If every outcome is equally likely, it's just "favourable outcomes ÷ total outcomes".</div>
+      <p><strong>Vocabulary:</strong> an <em>experiment</em> is a trial that produces an outcome; the <em>sample space S</em> is the set of all possible outcomes; an <em>event</em> is a subset of S (any capital letter).</p>
+      <p>Example: toss a die → S = {1,2,3,4,5,6}; event "even" A = {2,4,6}.</p>
+      <p><strong>Relative frequency</strong> (from experiments) = times an outcome occurs ÷ total trials.</p>
+      <p><strong>Classical definition</strong> (equally likely outcomes):</p>
+      <div class="math">P(A) = n(A) / n(S) = number of outcomes in A ÷ number of outcomes in S</div>
+      <p><strong>Basic rules:</strong></p>
+      <div class="math">0 ≤ P(A) ≤ 1 &nbsp;·&nbsp; ΣP(Aᵢ) = 1 &nbsp;·&nbsp; P(A) + P(A′) = 1 (complement)</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 2.1.1 & 2.4.1</span>
+        <div class="step"><span class="num">1</span><span class="txt">A coin flipped 100 times lands heads 48 times → relative frequency = 48/100 = <span class="ans">0.48</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">A spinner with 4 equal colours: P(green) = <span class="ans">1/4</span>; P(not green) = 1 − 1/4 = <span class="ans">3/4</span></span></div>
+      </div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 2.2 Permutations -->
+    <details class="lesson"><summary>2.2 Counting rules — permutations (order matters)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A permutation counts <em>arrangements</em> where the order matters (like passwords or seating). "n!" means n × (n−1) × … × 1.</div>
+      <p><strong>Three cases:</strong></p>
+      <div class="math">All n objects: ⁿPₙ = n!</div>
+      <div class="math">r objects from n (no repeat): ⁿPᵣ = n! / (n−r)!</div>
+      <div class="math">With identical objects: n! / (n₁! n₂! … nᵣ!)</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLES</span>
+        <div class="step"><span class="num">1</span><span class="txt">Rearrange "GLOBE" (n=5): 5! = <span class="ans">120</span> ways.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Choose &amp; arrange 4 letters from 6 (A–F): ⁶P₄ = 6!/2! = <span class="ans">360</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">4-digit PIN, no repeats: ¹⁰P₄ = 5040; P(no repeat) = 5040/10000 = <span class="ans">0.5040</span></span></div>
+        <div class="step"><span class="num">4</span><span class="txt">"STATISTICS" (10 letters; S×3, T×3, I×2): 10!/(3!3!2!) = <span class="ans">50400</span></span></div>
+      </div>
+      <div class="tip">Repetition allowed? Multiply choices (e.g. 8-digit PIN with repeats = 10⁸). No repetition? Use ⁿPᵣ.</div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 2.3 Combinations -->
+    <details class="lesson"><summary>2.3 Counting rules — combinations (order doesn't matter)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A combination counts <em>selections</em> where order does NOT matter (like picking a team or a committee). Choosing {A,B} is the same as {B,A}.</div>
+      <div class="math">ⁿCᵣ = n! / [ r! (n−r)! ]</div>
+      <p><strong>Permutation vs combination:</strong> arranging in a row / forming a number / a word = permutation; choosing a team / a committee / items on a plate = combination.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 2.5.8 — more female than male</span>
+        <p>Team of 3 from 6 male + 8 female, needing more females.</p>
+        <div class="step"><span class="num">1</span><span class="txt">2F+1M: ⁸C₂ × ⁶C₁ = 168; &nbsp; 3F: ⁸C₃ = 56 → total = <span class="ans">224 ways</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">All teams: ¹⁴C₃ = 364 → P(more female) = 224/364 = <span class="ans">0.6154</span></span></div>
+      </div>
+      <div class="tip">"At least" problems = add up the separate cases (e.g. at least 3 males = 3M + 4M + 5M cases).</div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 2.4 Additive rule -->
+    <details class="lesson"><summary>2.4 Additive rule — P(A or B)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> "A or B" means at least one happens. You add the two probabilities, but subtract the overlap so you don't count it twice.</div>
+      <div class="math">P(A ∪ B) = P(A) + P(B) − P(A ∩ B)</div>
+      <ul>
+        <li><strong>Mutually exclusive</strong> (can't both happen, no overlap): P(A ∩ B) = 0, so P(A ∪ B) = P(A) + P(B).</li>
+        <li><strong>Not mutually exclusive</strong> (they overlap): keep the − P(A ∩ B) term.</li>
+      </ul>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 2.5.9 — girl or A-student</span>
+        <p>50 students; 23 girls; 29 got an A; 15 girls got an A.</p>
+        <div class="step"><span class="num">1</span><span class="txt">P(girl or A) = 23/50 + 29/50 − 15/50</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">= 37/50 = <span class="ans">0.74</span></span></div>
+      </div>
+      <div class="tip">Useful extras: P(A′∩B′) = 1 − P(A∪B); &nbsp; P(A′∪B′) = 1 − P(A∩B).</div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 2.5 Multiplicative rule -->
+    <details class="lesson"><summary>2.5 Multiplicative rule &amp; tree diagrams — P(A and B)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> "A and B" means both happen. For <em>independent</em> events you just multiply. Tree diagrams multiply <em>along</em> the branches and add <em>between</em> them.</div>
+      <div class="math">Independent: P(A ∩ B) = P(A) × P(B)</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 2.5.11 — two spinners (A/B/C and X/Y/Z)</span>
+        <div class="step"><span class="num">a</span><span class="txt">P(C and X) = 1/3 × 1/3 = <span class="ans">1/9</span></span></div>
+        <div class="step"><span class="num">b</span><span class="txt">P(not C and X) = 1 − 1/9 = <span class="ans">8/9</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 2.5.11(Task) — sweets WITHOUT replacement</span>
+        <p>Bag: 7 blue, 3 red; pick 2 (no replacement).</p>
+        <div class="step"><span class="num">1</span><span class="txt">P(2 red) = 3/10 × 2/9 = <span class="ans">1/15</span> (denominator drops to 9!)</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">P(one of each) = (7/10×3/9) + (3/10×7/9) = <span class="ans">7/15</span></span></div>
+      </div>
+      <div class="tip">"Without replacement" = the second probability changes (fewer items left). "With replacement" = probabilities stay the same (independent).</div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 2.6 Conditional -->
+    <details class="lesson"><summary>2.6 Conditional probability — P(B | A)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> P(B given A) is the chance of B <em>once you already know A happened</em>. It narrows the world down to just the cases where A is true.</div>
+      <div class="math">P(B | A) = P(A ∩ B) / P(A) &nbsp; (P(A) ≠ 0)</div>
+      <div class="math">rearranged: P(A ∩ B) = P(A) × P(B | A)</div>
+      <ul>
+        <li>If A and B are <strong>independent</strong>, P(B|A) = P(B) (knowing A tells you nothing).</li>
+        <li>Test for independence: A, B independent ⇔ P(A|B) = P(A).</li>
+      </ul>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 2.5.13 — 130 students, handedness table</span>
+        <p>Right-handed total = 25 (13 male + 12 female).</p>
+        <div class="step"><span class="num">a</span><span class="txt">P(right-handed) = 25/130 = <span class="ans">5/26</span></span></div>
+        <div class="step"><span class="num">b</span><span class="txt">P(male | right) = (13/130)/(25/130) = <span class="ans">13/25</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 2.5.14</span>
+        <p>P(A)=0.4, P(B)=0.5, P(A|B)=0.3.</p>
+        <div class="step"><span class="num">a</span><span class="txt">P(A|B)=0.3 ≠ P(A)=0.4 → <span class="ans">dependent</span></span></div>
+        <div class="step"><span class="num">b</span><span class="txt">P(A∩B) = P(A|B)×P(B) = 0.3×0.5 = <span class="ans">0.15</span></span></div>
+      </div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 2.7 Bayes -->
+    <details class="lesson"><summary>2.7 Bayes' theorem<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Bayes' theorem "flips" a conditional probability — it lets you work out P(cause | evidence) from P(evidence | cause). Perfect for "given it's defective, which machine made it?" problems.</div>
+      <div class="math">P(A | B) = P(A ∩ B) / P(B) = [ P(A) × P(B | A) ] / P(B)</div>
+      <p>The denominator P(B) is usually found by the <strong>total probability</strong> rule — add up every branch that leads to B.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 2.5.15 — machines X, Y, Z</span>
+        <p>Output 40%/30%/30%; defect rates 2%/3%/4%.</p>
+        <div class="step"><span class="num">a</span><span class="txt">P(defective) = 0.4(0.02) + 0.3(0.03) + 0.3(0.04) = <span class="ans">0.029</span></span></div>
+        <div class="step"><span class="num">b</span><span class="txt">P(Z | defective) = [0.3×0.04] / 0.029 = <span class="ans">0.4138</span></span></div>
+      </div>
+      <div class="tip">Strategy: draw the tree, multiply along branches to get each P(cause ∩ evidence), sum them for P(evidence), then divide.</div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
   </section>
   <section class="topic" id="t3"><div class="topic-head"><span class="n">3</span><h2>Random Variables</h2></div>
-    <div class="tip">📗 Being written from your <strong>Chapter 3 – Random Variables</strong> notes (discrete random variables, probability distributions, expected value &amp; variance).</div>
+
+    <!-- 3.1 -->
+    <details class="lesson"><summary>3.1 What is a random variable? (discrete vs continuous)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A random variable is just a rule that attaches a number to each outcome of an experiment — like "the number of heads in 3 coin tosses" or "the height of a random student." We write it with a capital letter X; the values it takes are small x.</div>
+      <ul>
+        <li><strong>Discrete</strong> — takes distinct, countable values (0, 1, 2, …). Found by <em>counting</em>: number of children, calls, defects.</li>
+        <li><strong>Continuous</strong> — takes any value in an interval. Found by <em>measuring</em>: length, weight, time.</li>
+      </ul>
+      <div class="tip">Rule of thumb: if you'd <em>count</em> it → discrete; if you'd <em>measure</em> it → continuous.</div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 3.2 -->
+    <details class="lesson"><summary>3.2 Discrete RV — probability distribution function (PDF)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A probability distribution just lists each value X can take and how likely it is. For it to be valid, every probability must be between 0 and 1, and they must all add up to 1.</div>
+      <div class="math">f(x) = P(X = x) &nbsp;·&nbsp; valid if: 0 ≤ P(X=x) ≤ 1 and Σ P(X=x) = 1</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 3.2.2 — find k</span>
+        <p>P(X=x) = x/k for x = 1,2,3,4.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Σ = 1: (1+2+3+4)/k = 1 → 10/k = 1</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">k = <span class="ans">10</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 3.2.4 — find c</span>
+        <p>f(x) = c(x²+4) for x = 0,1,2,3.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Σ = 1: c(4+5+8+13) = 30c = 1 → c = <span class="ans">1/30</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">P(X≥2) = (1/30)(2²+4) + (1/30)(3²+4) = <span class="ans">21/30</span></span></div>
+      </div>
+      <div class="tip">"At least two" = P(X≥2) = add P(X=2)+P(X=3)+…; use Σ=1 to solve for unknown constants.</div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 3.3 -->
+    <details class="lesson"><summary>3.3 Discrete RV — cumulative distribution function (CDF)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> The CDF F(x) is the "running total" — the probability that X is at most x. You build it by adding up the PDF values from the smallest x upward. It always starts at 0 and ends at 1.</div>
+      <div class="math">F(x) = P(X ≤ x) = Σ f(x) (up to x)</div>
+      <p>Handy identities:</p>
+      <div class="math">P(X = a) = F(a) − F(a−1) &nbsp;·&nbsp; P(a &lt; X ≤ b) = F(b) − F(a) &nbsp;·&nbsp; P(X &gt; a) = 1 − F(a)</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE — from CDF back to PDF</span>
+        <p>Given F: F(2)=0.20, F(3)=0.30, F(4)=0.45, F(5)=0.75, F(6)=1.</p>
+        <div class="step"><span class="num">1</span><span class="txt">P(X=4) = F(4) − F(3) = 0.45 − 0.30 = <span class="ans">0.15</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">P(X&lt;5) = P(X≤4) = F(4) = <span class="ans">0.45</span></span></div>
+      </div>
+      <div class="tip">Mode = the x with the biggest P(X=x). Median m = smallest x where F(m) ≥ 0.5.</div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 3.4 -->
+    <details class="lesson"><summary>3.4 Discrete RV — expected value &amp; variance<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> The expected value E(X) is the long-run average of X (its "mean"). The variance measures how spread out the values are around that mean.</div>
+      <div class="math">E(X) = μ = Σ x·P(X=x)</div>
+      <div class="math">Var(X) = E(X²) − [E(X)]² &nbsp; where E(X²) = Σ x²·P(X=x)</div>
+      <p><strong>Properties</strong> (constants a, b): E(aX±b) = aE(X)±b; &nbsp; Var(aX±b) = a²Var(X); &nbsp; E(a)=a, Var(a)=0.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 3.2.6 — chip defects</span>
+        <div class="step"><span class="num">1</span><span class="txt">E(X) = Σ xP = 0.679</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">E(X²) = Σ x²P = 1.165</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">Var(X) = 1.165 − 0.679² = <span class="ans">0.704</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 3.2.7 — transform</span>
+        <p>Var(X)=4.05; Y = 5X + 30.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Var(Y) = 5²·Var(X) = 25×4.05 = <span class="ans">101.25</span> (the +30 doesn't affect spread).</span></div>
+      </div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 3.5 -->
+    <details class="lesson"><summary>3.5 Continuous RV — probability density function (PDF)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> For a continuous variable, probability is <em>area under the curve</em>. A single exact value has probability 0 — we only ask about ranges. To get a probability, you integrate the density between two limits.</div>
+      <div class="math">P(a &lt; X &lt; b) = ∫ₐᵇ f(x) dx &nbsp;·&nbsp; P(X = a) = 0</div>
+      <p><strong>Valid density</strong> needs: f(x) ≥ 0 everywhere, and the total area ∫f(x)dx = 1.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 3.3.1</span>
+        <p>f(x) = 2(1−x), 0 &lt; x &lt; 1.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Check area: ∫₀¹ 2(1−x)dx = [2x − x²]₀¹ = 1 ✔ (valid density).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">P(0.5&lt;X&lt;1) = [2x − x²] from 0.5 to 1 = 1 − 0.75 = <span class="ans">0.25</span></span></div>
+      </div>
+      <div class="tip">For piecewise densities, integrate each piece over the part of the interval where it applies, then add.</div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 3.6 -->
+    <details class="lesson"><summary>3.6 Continuous RV — cumulative distribution function (CDF) &amp; median<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> The continuous CDF is the running area up to x. You integrate the density from −∞ to x. Going the other way, you differentiate the CDF to get the density back.</div>
+      <div class="math">F(x) = P(X ≤ x) = ∫₋∞ˣ f(t) dt &nbsp;·&nbsp; f(x) = dF/dx</div>
+      <div class="math">P(a ≤ X ≤ b) = F(b) − F(a) &nbsp;·&nbsp; Median m: F(m) = 0.5</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 3.3.3 — build the CDF</span>
+        <p>f(x) = (3/2)√x, 0 &lt; x &lt; 1.</p>
+        <div class="step"><span class="num">1</span><span class="txt">For 0&lt;x&lt;1: F(x) = ∫₀ˣ (3/2)√t dt = <span class="ans">x^(3/2)</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">So F(x) = 0 for x&lt;0, x^(3/2) for 0≤x&lt;1, and 1 for x≥1 (starts at 0, ends at 1).</span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 3.3.3 (Task) — median</span>
+        <p>F(x) = ⅓x(4−x), 0≤x&lt;3.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Set F(m)=0.5 → m² − 4m + 1.5 = 0 → m = 0.419 (taking the root inside the range).</span></div>
+      </div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 3.7 -->
+    <details class="lesson"><summary>3.7 Continuous RV — expected value &amp; variance<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Same idea as the discrete case, but sums become integrals. Multiply x (or x²) by the density and integrate across the whole range.</div>
+      <div class="math">E(X) = μ = ∫ x·f(x) dx &nbsp;·&nbsp; E(X²) = ∫ x²·f(x) dx</div>
+      <div class="math">Var(X) = E(X²) − [E(X)]² &nbsp;·&nbsp; σ = √Var(X)</div>
+      <p>Same transform rules: E(aX±b)=aE(X)±b; Var(aX±b)=a²Var(X).</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 3.3.8</span>
+        <p>f(x) = 2(1−x), 0 &lt; x &lt; 1.</p>
+        <div class="step"><span class="num">1</span><span class="txt">E(X) = ∫₀¹ x·2(1−x)dx = <span class="ans">1/3</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">E(X²) = ∫₀¹ x²·2(1−x)dx = 1/6 → Var(X) = 1/6 − (1/3)² = <span class="ans">1/18</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">For Y = −2X: E(Y) = −2/3, Var(Y) = 4·(1/18) = <span class="ans">2/9</span></span></div>
+      </div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
   </section>
   <section class="topic" id="t4"><div class="topic-head"><span class="n">4</span><h2>Special Discrete Distributions</h2></div>
-    <div class="tip">📗 Being written from your <strong>Chapter 4 – Special Discrete Distributions</strong> notes (binomial &amp; Poisson distributions).</div>
+
+    <!-- 4.1 -->
+    <details class="lesson"><summary>4.1 Discrete uniform distribution<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> A uniform distribution is the "everything equally likely" one — like a fair die or a random digit. Every one of the n outcomes has the same probability 1/n.</div>
+      <div class="math">P(X = x) = 1/n for x = a…b, where n = b − a + 1</div>
+      <div class="math">E(X) = ½(a + b) &nbsp;·&nbsp; Var(X) = (n² − 1)/12</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 4.1.1 — fair die</span>
+        <p>X = 1…6, so a=1, b=6, n=6.</p>
+        <div class="step"><span class="num">1</span><span class="txt">P(odd) = 3×(1/6) = <span class="ans">0.5</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">E(X) = ½(1+6) = <span class="ans">3.5</span>; Var(X) = (36−1)/12 = <span class="ans">2.9167</span></span></div>
+      </div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 4.2 -->
+    <details class="lesson"><summary>4.2 Binomial distribution — B(n, p)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Use the binomial when you repeat the <em>same</em> yes/no trial a fixed number of times and count the successes — e.g. "out of 10 people, how many exercise daily?" The four conditions: fixed n trials, only success/failure, constant p, and independent trials.</div>
+      <div class="math">P(X = x) = ⁿCₓ · pˣ · (1−p)ⁿ⁻ˣ &nbsp; (written X ~ B(n, p))</div>
+      <div class="math">E(X) = np &nbsp;·&nbsp; Var(X) = np(1−p)</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 4.2.1 — X ~ B(6, 0.2)</span>
+        <div class="step"><span class="num">1</span><span class="txt">P(X=2) = ⁶C₂(0.2)²(0.8)⁴ = <span class="ans">0.2458</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">P(X≤4) = 1 − P(X=5) − P(X=6) = 1 − 0.0016 = <span class="ans">0.9984</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">E(X) = 6(0.2) = <span class="ans">1.2</span>; Var(X) = 6(0.2)(0.8) = <span class="ans">0.96</span></span></div>
+      </div>
+      <div class="tip"><strong>Binomial table</strong> gives the <em>cumulative</em> F(x)=P(X≤x). Then P(X=x)=F(x)−F(x−1); P(X≥x)=1−F(x−1). The table only covers p ≤ 0.5 — for bigger p, see 4.3.</div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 4.3 -->
+    <details class="lesson"><summary>4.3 Binomial with p &gt; 0.5 (using the failure trick)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> The binomial table stops at p = 0.5. When your success probability is bigger (say 0.8), flip the problem to <em>count failures</em> instead — the failure probability (0.2) is on the table. "x successes" = "(n−x) failures."</div>
+      <p>If X ~ B(n, p) counts successes, let Y ~ B(n, 1−p) count failures. Then:</p>
+      <div class="math">P(X = x) = P(Y = n−x) &nbsp;·&nbsp; P(X &lt; x) = P(Y &gt; n−x)</div>
+      <div class="math">P(X ≥ x) = P(Y ≤ n−x) &nbsp;·&nbsp; P(X ≤ x) = P(Y ≥ n−x)</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 4.3.1 — X ~ B(15, 0.8) → Y ~ B(15, 0.2)</span>
+        <div class="step"><span class="num">1</span><span class="txt">P(X&gt;8) = P(Y&lt;7) = P(Y≤6) = F(6) = <span class="ans">0.9819</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">P(4≤X&lt;9) = P(6&lt;Y≤11) = F(11) − F(6) = 1 − 0.9819 = <span class="ans">0.0181</span></span></div>
+      </div>
+      <div class="tip">Flip the inequality when you switch to Y: a lower bound on successes becomes an upper bound on failures.</div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 4.4 -->
+    <details class="lesson"><summary>4.4 Poisson distribution — Po(λ)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Use the Poisson to count how many times something happens in a fixed interval (per hour, per page, per day) when events happen at a steady average rate λ — like calls to a call centre or defects per batch. There's no fixed "number of trials" — just a rate.</div>
+      <div class="math">P(X = x) = (λˣ · e⁻λ) / x! &nbsp; (e ≈ 2.71828), written X ~ Po(λ)</div>
+      <div class="math">E(X) = λ &nbsp;·&nbsp; Var(X) = λ (mean = variance)</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 4.4.1 — λ = 3</span>
+        <div class="step"><span class="num">1</span><span class="txt">P(X=2) = (3²·e⁻³)/2! = <span class="ans">0.2240</span></span></div>
+        <div class="step"><span class="num">2</span><span class="txt">P(X≥3) = 1 − P(X≤2) = 1 − 0.4232 = <span class="ans">0.5768</span></span></div>
+      </div>
+      <div class="tip"><strong>Scaling the interval:</strong> if the rate is 3 per day and you want a week, multiply: λ = 3×7 = 21. Always match λ to the interval in the question. A <strong>Poisson table</strong> gives cumulative F(x)=P(X≤x), used exactly like the binomial one.</div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 4.5 -->
+    <details class="lesson"><summary>4.5 Poisson approximation of the binomial<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> When you have a LOT of trials (large n) but each success is rare (small p), the binomial gets hard to compute and the table runs out (n ≤ 30). Trick: approximate it with a Poisson using λ = np.</div>
+      <div class="math">X ~ B(n, p) with large n, small p → X ≈ Po(λ = np)</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 4.5.1 — flights late 5%, n = 130</span>
+        <div class="step"><span class="num">1</span><span class="txt">n=130 &gt; 30 → use Po(λ = 130×0.05 = 6.5)</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">P(X&gt;4) = 1 − F(4) = 1 − 0.2237 = <span class="ans">0.7763</span></span></div>
+        <div class="step"><span class="num">3</span><span class="txt">P(8&lt;X&lt;15) = F(14) − F(8) = 0.9970 − 0.7916 = <span class="ans">0.2054</span></span></div>
+      </div>
+      <div class="tip">Use this whenever n &gt; 30 (the binomial table's limit) and p is small. Compute λ = np first, then treat it as a normal Poisson problem.</div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
   </section>
   <section class="topic" id="t5"><div class="topic-head"><span class="n">5</span><h2>Normal Distribution</h2></div>
-    <div class="tip">📗 Being written from your <strong>Chapter 5 – Normal Distribution</strong> notes (the bell curve, z-scores, standard normal table, probabilities).</div>
-    <div class="tip" style="margin-top:1.2rem">📝 Chapter 1 is fully matched to your FSPM 0034 lecture slides. Always confirm exact scope with your lecturer's outline, and practise with the past papers on the <a href="subject.html?s=statistics" style="color:var(--c);font-weight:700">Statistics materials</a> page.</div>
+
+    <!-- 5.1 -->
+    <details class="lesson"><summary>5.1 The normal distribution — the bell curve<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> The normal (or "Gaussian") distribution is the famous symmetric bell curve. Loads of real-world data — heights, weights, exam marks — follow it. It's fully described by just two numbers: the mean μ (where the peak sits) and the standard deviation σ (how wide it is).</div>
+      <p>Written <strong>X ~ N(μ, σ²)</strong>, with E(X) = μ and Var(X) = σ².</p>
+      <p><strong>Properties:</strong> symmetric bell shape; mean = median = mode, all at the centre; total area under the curve = 1; tails approach (but never touch) zero.</p>
+      <ul>
+        <li>Changing <strong>μ</strong> slides the whole curve left/right.</li>
+        <li>Changing <strong>σ</strong> squeezes it (small σ = tall & narrow) or stretches it (large σ = short & wide).</li>
+      </ul>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 5.2 -->
+    <details class="lesson"><summary>5.2 Standard normal &amp; z-scores — finding probabilities<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Every normal curve is different, so we can't tabulate them all. Instead we <em>standardize</em> — convert any X into a z-score (how many standard deviations from the mean it is). The z-score follows one fixed curve, Z ~ N(0, 1), that we read from a single table.</div>
+      <div class="math">z = (x − μ) / σ &nbsp; (Z ~ N(0, 1))</div>
+      <p>The FSPM table gives the <strong>upper-tail</strong> area P(Z &gt; z) for z ≥ 0. Useful relationships:</p>
+      <div class="math">P(Z &lt; z) = 1 − P(Z &gt; z) &nbsp;·&nbsp; P(Z &lt; −a) = P(Z &gt; a) (symmetry)</div>
+      <div class="math">P(a &lt; Z &lt; b) = P(Z &gt; a) − P(Z &gt; b)</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 5.2.1</span>
+        <div class="step"><span class="num">a</span><span class="txt">P(Z&lt;1.35) = 1 − P(Z&gt;1.35) = 1 − 0.0885 = <span class="ans">0.9115</span></span></div>
+        <div class="step"><span class="num">b</span><span class="txt">P(Z&lt;−1.23) = P(Z&gt;1.23) = <span class="ans">0.1093</span> (mirror to the positive side)</span></div>
+        <div class="step"><span class="num">d</span><span class="txt">P(−0.64&lt;Z&lt;2.71) = [0.5−0.0034] + [0.5−0.2611] = <span class="ans">0.7355</span></span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 5.2.3 — real data</span>
+        <p>Heights: μ=66 in, σ=5 in. P(height ≥ 6 ft = 72 in)?</p>
+        <div class="step"><span class="num">1</span><span class="txt">z = (72−66)/5 = 1.2 → P(Z≥1.2) = 0.1151</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">Out of 800 students: 0.1151×800 ≈ <span class="ans">92 students</span></span></div>
+      </div>
+      <div class="tip">Always sketch the bell, shade the area you want, and express it in terms of upper tails the table gives you.</div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 5.3 -->
+    <details class="lesson"><summary>5.3 Working backwards — finding z, μ or σ from a probability<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> Sometimes you're told the probability and must find the cut-off value (the z, or the mean/SD behind it). You read the table in reverse — look up the area to find its z — then unstandardize.</div>
+      <div class="math">from z = (x − μ)/σ → x = μ + zσ (rearrange to find μ or σ)</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 5.2.2 — find Zα</span>
+        <p>P(Z &gt; Zα) = 0.3594.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Look up area 0.3594 in the P(Z&gt;z) table → <span class="ans">Zα ≈ 0.36</span> (0.3585 from the Zα table).</span></div>
+      </div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 5.2.4 — find μ</span>
+        <p>P(X≥50) = 0.2514, σ = 10.</p>
+        <div class="step"><span class="num">1</span><span class="txt">Area 0.2514 → z = 0.67. So 0.67 = (50 − μ)/10.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">μ = 50 − 0.67(10) = <span class="ans">43.3</span></span></div>
+      </div>
+      <div class="tip">Decide first whether the cut-off is on the positive or negative side by comparing the given area to 0.5, then choose the sign of z accordingly.</div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 5.4 -->
+    <details class="lesson"><summary>5.4 Normal approximation to the binomial (continuity correction)<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> When a binomial has many trials, computing it is painful. If n is large and p isn't too extreme, the bell curve fits it well. Because we're using a <em>continuous</em> curve for a <em>discrete</em> count, we add/subtract 0.5 — the "continuity correction" — to catch the right bars.</div>
+      <p><strong>Condition:</strong> n &gt; 30 and 0.1 ≤ p ≤ 0.9 (so np ≥ 5). Then:</p>
+      <div class="math">X ~ B(n, p) → X ≈ N( np , np(1−p) )</div>
+      <p><strong>Continuity correction</strong> (a, b integers):</p>
+      <div class="math">P(X = a) → P(a−0.5 &lt; X &lt; a+0.5) &nbsp;·&nbsp; P(X ≥ a) → P(X &gt; a−0.5) &nbsp;·&nbsp; P(X ≤ a) → P(X &lt; a+0.5)</div>
+      <p>Rule of thumb: if the value is <em>included</em> (≤ or ≥ or =), the 0.5 <em>widens</em> the interval; if <em>excluded</em> (&lt; or &gt;), it <em>narrows</em> it.</p>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 5.3.2 — X ~ B(200, 0.3) → N(60, 42)</span>
+        <div class="step"><span class="num">1</span><span class="txt">μ = 200(0.3) = 60; σ² = 60(0.7) = 42.</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">P(X≤50) → P(X&lt;50.5): z = (50.5−60)/√42 = −1.47 → P(Z≥1.47) = <span class="ans">0.0708</span></span></div>
+      </div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <!-- 5.5 -->
+    <details class="lesson"><summary>5.5 Normal approximation to the Poisson<span class="chev">▶</span></summary><div class="body">
+      <div class="note">🟢 <strong>In plain words:</strong> The Poisson table stops at λ = 40. For a big rate (λ &gt; 40), switch to the normal curve — its mean and variance are both λ. Same continuity-correction step applies (Poisson counts are discrete too).</div>
+      <div class="math">X ~ Po(λ) with λ &gt; 40 → X ≈ N( λ , λ )</div>
+      <div class="ex"><span class="tag">WORKED EXAMPLE 5.3.3 — cars arrive at 50/hour</span>
+        <p>λ = 50 → N(50, 50). P(54 &lt; X &lt; 62)?</p>
+        <div class="step"><span class="num">1</span><span class="txt">Both excluded → P(54.5 &lt; X &lt; 61.5).</span></div>
+        <div class="step"><span class="num">2</span><span class="txt">z: (54.5−50)/√50 = 0.64, (61.5−50)/√50 = 1.63</span></div>
+        <div class="step"><span class="num">3</span><span class="txt">P(Z&gt;0.64) − P(Z&gt;1.63) = 0.2611 − 0.0516 = <span class="ans">0.2095</span></span></div>
+      </div>
+      <div class="tip">Scale λ to the interval first (e.g. 45 fires per 100 km² → for 240 km², λ = 45×2.4 = 108), then apply the normal approximation.</div>
+    </div><button type="button" class="ai-explain-btn" onclick="askTutorFromLesson(this)">✨ Explain more with AI</button></details>
+
+    <div class="tip" style="margin-top:1.4rem">✅ All 5 FSPM 0034 chapters are matched to your lecture slides. Always confirm exact scope with your lecturer's outline, and practise with the past papers on the <a href="subject.html?s=statistics" style="color:var(--c);font-weight:700">Statistics materials</a> page.</div>
   </section>
 </main>
 
